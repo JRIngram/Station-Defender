@@ -4,10 +4,6 @@ import com.aston.group.stationdefender.other.callbacks.MenuCallback;
 import com.aston.group.stationdefender.screens.GameScreen;
 import com.aston.group.stationdefender.screens.MenuScreen;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Main extends Game {
 
