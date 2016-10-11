@@ -8,7 +8,6 @@ import com.aston.group.stationdefender.screens.MenuScreen;
 import com.badlogic.gdx.Game;
 
 public class Main extends Game {
-
 	private IntroScreen introScreen;
 	private MenuScreen menuScreen;
 	private GameScreen gameScreen;

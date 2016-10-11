@@ -13,15 +13,11 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class MenuScreen implements Screen {
-
     private SpriteBatch batch;
-
     private OrthographicCamera camera;
     private Viewport viewport;
-
     private FreeTypeFontGenerator fontGenerator;
     private BitmapFont font;
-
     private MenuCallback menuCallback;
 
     public MenuScreen() {
@@ -44,7 +40,6 @@ public class MenuScreen implements Screen {
 
     @Override
     public void show() {
-
     }
 
     @Override
@@ -62,7 +57,6 @@ public class MenuScreen implements Screen {
         batch.begin();
         font.draw(batch, Constants.GAME_NAME, (Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + 25);
         batch.end();
-
     }
 
     private void takeInput(){
@@ -78,17 +72,14 @@ public class MenuScreen implements Screen {
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
     public void hide() {
-
     }
 
     @Override

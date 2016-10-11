@@ -10,9 +10,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GameScreen implements Screen{
-
     private SpriteBatch batch;
-
     private OrthographicCamera camera;
     private Viewport viewport;
 
@@ -26,12 +24,10 @@ public class GameScreen implements Screen{
 
         //Setup viewport
         viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
-
     }
 
     @Override
     public void show() {
-
     }
 
     @Override
@@ -50,17 +46,14 @@ public class GameScreen implements Screen{
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
     public void hide() {
-
     }
 
     @Override
