@@ -1,5 +1,8 @@
 package com.aston.group.stationdefender;
 
+import com.aston.group.stationdefender.other.callbacks.MenuCallback;
+import com.aston.group.stationdefender.screens.GameScreen;
+import com.aston.group.stationdefender.screens.MenuScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -7,27 +10,43 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Main extends Game {
-	private SpriteBatch batch;
-	private Texture img;
-	
+
+	private MenuScreen menuScreen;
+	private GameScreen gameScreen;
+
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+
+		menuScreen = new MenuScreen();
+		gameScreen = new GameScreen();
+
+		menuScreen.setMenuCallback(new MenuCallback() {
+			@Override
+			public void onPlay() {
+
+				setScreen(gameScreen);
+			}
+
+			@Override
+			public void onExit() {
+				System.exit(0);
+			}
+		});
+
+		//Set the screen to menu upon creation
+		setScreen(menuScreen);
+
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		super.render();
 	}
 	
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+		menuScreen.dispose();
+
+		super.dispose();
 	}
 }
