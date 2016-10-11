@@ -9,4 +9,10 @@ public interface Constants {
     //Game Name
     String GAME_NAME = "Station Defender";
 
+    String[] MENU_ITEMS = {
+            "Introduction",
+            "How to Play",
+            "Play",
+            "Exit"
+    };
 }

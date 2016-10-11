@@ -1,25 +1,35 @@
 package com.aston.group.stationdefender;
 
+import com.aston.group.stationdefender.other.callbacks.IntroCallback;
 import com.aston.group.stationdefender.other.callbacks.MenuCallback;
 import com.aston.group.stationdefender.screens.GameScreen;
+import com.aston.group.stationdefender.screens.IntroScreen;
 import com.aston.group.stationdefender.screens.MenuScreen;
 import com.badlogic.gdx.Game;
 
 public class Main extends Game {
 
+	private IntroScreen introScreen;
 	private MenuScreen menuScreen;
 	private GameScreen gameScreen;
 
 	@Override
 	public void create () {
 
+		introScreen = new IntroScreen();
 		menuScreen = new MenuScreen();
 		gameScreen = new GameScreen();
+
+		introScreen.setIntroCallback(new IntroCallback() {
+			@Override
+			public void onDisplayMenu() {
+				setScreen(menuScreen);
+			}
+		});
 
 		menuScreen.setMenuCallback(new MenuCallback() {
 			@Override
 			public void onPlay() {
-
 				setScreen(gameScreen);
 			}
 
@@ -29,8 +39,8 @@ public class Main extends Game {
 			}
 		});
 
-		//Set the screen to menu upon creation
-		setScreen(menuScreen);
+		//Set the screen to intro upon creation
+		setScreen(introScreen);
 
 	}
 
@@ -41,7 +51,7 @@ public class Main extends Game {
 	
 	@Override
 	public void dispose () {
-		menuScreen.dispose();
+		introScreen.dispose();
 
 		super.dispose();
 	}
