@@ -20,6 +20,11 @@ public class Main extends Game {
 		gameScreen = new GameScreen();
 
 		introScreen.setIntroCallback(new IntroCallback() {
+            @Override
+            public void onPlay() {
+                setScreen(gameScreen);
+            }
+            
 			@Override
 			public void onDisplayMenu() {
 				setScreen(menuScreen);
