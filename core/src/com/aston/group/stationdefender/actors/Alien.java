@@ -4,6 +4,9 @@ public class Alien implements Actor {
     private int buildTime;
     private double upgradeCost;
 
+    public Alien() {
+    }
+
     @Override
     public void act() {
 

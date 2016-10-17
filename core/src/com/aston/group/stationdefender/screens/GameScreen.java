@@ -1,6 +1,8 @@
 package com.aston.group.stationdefender.screens;
 
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.gamesetting.Level;
+import com.aston.group.stationdefender.gamesetting.Player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -13,6 +15,8 @@ public class GameScreen implements Screen{
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;
+    private Level level;
+    private Player player;
 
     public GameScreen() {
         batch = new SpriteBatch();
@@ -24,6 +28,8 @@ public class GameScreen implements Screen{
 
         //Setup viewport
         viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
+        level = new Level();
+        player = new Player();
     }
 
     @Override
