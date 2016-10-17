@@ -1,7 +1,7 @@
 package com.aston.group.stationdefender;
 
-import com.aston.group.stationdefender.other.callbacks.IntroCallback;
-import com.aston.group.stationdefender.other.callbacks.MenuCallback;
+import com.aston.group.stationdefender.callbacks.IntroCallback;
+import com.aston.group.stationdefender.callbacks.MenuCallback;
 import com.aston.group.stationdefender.screens.GameScreen;
 import com.aston.group.stationdefender.screens.IntroScreen;
 import com.aston.group.stationdefender.screens.MenuScreen;

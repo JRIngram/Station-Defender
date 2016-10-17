@@ -1,4 +1,4 @@
-package com.aston.group.stationdefender.other.config;
+package com.aston.group.stationdefender.config;
 
 public interface Constants {
 
@@ -8,6 +8,7 @@ public interface Constants {
 
     //Game Name
     String GAME_NAME = "Station Defender";
+
 
     String[] MENU_ITEMS = {
             "Introduction",

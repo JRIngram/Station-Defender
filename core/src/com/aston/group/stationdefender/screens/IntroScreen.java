@@ -1,7 +1,7 @@
 package com.aston.group.stationdefender.screens;
 
-import com.aston.group.stationdefender.other.callbacks.IntroCallback;
-import com.aston.group.stationdefender.other.config.Constants;
+import com.aston.group.stationdefender.callbacks.IntroCallback;
+import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;

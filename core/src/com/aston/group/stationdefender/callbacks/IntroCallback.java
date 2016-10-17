@@ -1,4 +1,4 @@
-package com.aston.group.stationdefender.other.callbacks;
+package com.aston.group.stationdefender.callbacks;
 
 public interface IntroCallback {
     void onDisplayMenu();

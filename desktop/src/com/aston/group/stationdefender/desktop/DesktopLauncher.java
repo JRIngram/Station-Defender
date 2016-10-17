@@ -1,6 +1,6 @@
 package com.aston.group.stationdefender.desktop;
 
-import com.aston.group.stationdefender.other.config.Constants;
+import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.aston.group.stationdefender.Main;
