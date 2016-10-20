@@ -44,9 +44,6 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        //input
-        takeInput();
-
         //render
         batch.setProjectionMatrix(camera.projection);
         batch.setTransformMatrix(camera.view);
@@ -57,12 +54,6 @@ public class MenuScreen implements Screen {
         batch.begin();
         font.draw(batch, Constants.GAME_NAME, (Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + 25);
         batch.end();
-    }
-
-    private void takeInput(){
-        if(Gdx.input.isTouched()){
-            menuCallback.onPlay();
-        }
     }
 
     @Override

@@ -29,6 +29,11 @@ public class Main extends Game {
 			public void onDisplayMenu() {
 				setScreen(menuScreen);
 			}
+
+			@Override
+			public void onExit() {
+				System.exit(0);
+			}
 		});
 
 		menuScreen.setMenuCallback(new MenuCallback() {
