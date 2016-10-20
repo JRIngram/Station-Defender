@@ -6,6 +6,7 @@ import com.aston.group.stationdefender.screens.GameScreen;
 import com.aston.group.stationdefender.screens.IntroScreen;
 import com.aston.group.stationdefender.screens.MenuScreen;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 
 public class Main extends Game {
     private IntroScreen introScreen;
@@ -32,7 +33,7 @@ public class Main extends Game {
 
             @Override
             public void onExit() {
-                System.exit(0);
+                Gdx.app.exit();
             }
         });
 
@@ -44,7 +45,7 @@ public class Main extends Game {
 
             @Override
             public void onExit() {
-                System.exit(0);
+                Gdx.app.exit();
             }
         });
 
