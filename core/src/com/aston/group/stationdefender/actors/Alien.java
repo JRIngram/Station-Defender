@@ -1,6 +1,6 @@
 package com.aston.group.stationdefender.actors;
 
-public class Alien implements Actor {
+public abstract class Alien implements Actor {
     private int buildTime;
     private double upgradeCost;
 
@@ -9,11 +9,9 @@ public class Alien implements Actor {
 
     @Override
     public void act() {
-
     }
 
     @Override
     public void destroy() {
-
     }
 }
