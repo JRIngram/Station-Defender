@@ -10,7 +10,7 @@ public interface Constants {
     String GAME_NAME = "Station Defender";
 
     String[] MENU_ITEMS = {
-            "Introduction",
+            "Background",
             "How to Play",
             "Play",
             "Exit"

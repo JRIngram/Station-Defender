@@ -26,14 +26,14 @@ public class IntroScreen implements Screen {
     private IntroCallback introCallback;
     private Stage stage;
     private BitmapFont font;
-    private TextButton introButton, instructionButton, playButton, exitButton;
+    private TextButton backgroundButton, instructionButton, playButton, exitButton;
     private float fadeElapsed = 0;
     private TextButton[] buttons;
     private ChangeListener buttonListener = new ChangeListener() {
         @Override
         public void changed(ChangeEvent event, Actor actor) {
-            if (actor.equals(introButton)) {
-                //TODO: Add with pitch/game setting screen
+            if (actor.equals(backgroundButton)) {
+                //TODO: Add with background screen
             } else if (actor.equals(instructionButton)) {
                 //TODO: Add with instructions screen
             } else if (actor.equals(playButton)) {
@@ -67,11 +67,11 @@ public class IntroScreen implements Screen {
         Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
         TextButtonStyle textButtonStyle = new TextButtonStyle();
         textButtonStyle.font = font;
-        introButton = new TextButton(Constants.MENU_ITEMS[0], textButtonStyle);
+        backgroundButton = new TextButton(Constants.MENU_ITEMS[0], textButtonStyle);
         instructionButton = new TextButton(Constants.MENU_ITEMS[1], textButtonStyle);
         playButton = new TextButton(Constants.MENU_ITEMS[2], textButtonStyle);
         exitButton = new TextButton(Constants.MENU_ITEMS[3], textButtonStyle);
-        buttons = new TextButton[]{introButton, instructionButton, playButton, exitButton};
+        buttons = new TextButton[]{backgroundButton, instructionButton, playButton, exitButton};
         for (TextButton button : buttons) {
             button.setColor(0, 0, 0, 0);
             button.setWidth(400);
