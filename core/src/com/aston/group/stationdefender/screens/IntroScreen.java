@@ -29,6 +29,20 @@ public class IntroScreen implements Screen {
     private TextButton introButton, instructionButton, playButton, exitButton;
     private float fadeElapsed = 0;
     private TextButton[] buttons;
+    private ChangeListener buttonListener = new ChangeListener() {
+        @Override
+        public void changed(ChangeEvent event, Actor actor) {
+            if (actor.equals(introButton)) {
+                //TODO: Add with pitch/game setting screen
+            } else if (actor.equals(instructionButton)) {
+                //TODO: Add with instructions screen
+            } else if (actor.equals(playButton)) {
+                introCallback.onPlay();
+            } else if (actor.equals(exitButton)) {
+                introCallback.onExit();
+            }
+        }
+    };
 
     public IntroScreen() {
         batch = new SpriteBatch();
@@ -69,21 +83,6 @@ public class IntroScreen implements Screen {
             buttons[i].setPosition((Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + (100 - 60 * i));
         }
     }
-
-    private ChangeListener buttonListener = new ChangeListener() {
-        @Override
-        public void changed(ChangeEvent event, Actor actor) {
-            if(actor.equals(introButton)) {
-                //TODO: Add with pitch/game setting screen
-            } else if(actor.equals(instructionButton)) {
-                //TODO: Add with instructions screen
-            } else if(actor.equals(playButton)) {
-                introCallback.onPlay();
-            } else if(actor.equals(exitButton)) {
-                introCallback.onExit();
-            }
-        }
-    };
 
     @Override
     public void show() {

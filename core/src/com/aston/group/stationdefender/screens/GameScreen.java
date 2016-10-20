@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class GameScreen implements Screen{
+public class GameScreen implements Screen {
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;
