@@ -1,8 +1,5 @@
 package com.aston.group.stationdefender.gamesetting.items;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -44,18 +41,18 @@ public abstract class Item {
         batch = new SpriteBatch();
     }
 
-    public void render(float delta){
+    public void render(float delta) {
         //todo add specular effect
         batch.begin();
         batch.draw(itemTexture, x, y, width, height);
         batch.end();
     }
 
-    public void collect(){
+    public void collect() {
         collected = true;
     }
 
-    public void drop(){
+    public void drop() {
         collected = false;
     }
 
@@ -87,16 +84,16 @@ public abstract class Item {
         return collected;
     }
 
+    public void setCollected(boolean collected) {
+        this.collected = collected;
+    }
+
     public Texture getItemTexture() {
         return itemTexture;
     }
 
     public void setItemTexture(Texture itemTexture) {
         this.itemTexture = itemTexture;
-    }
-
-    public void setCollected(boolean collected) {
-        this.collected = collected;
     }
 
     public boolean isJustSpawned() {

@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class ItemCredit extends Item{
+public class ItemCredit extends Item {
 
     public ItemCredit() {
         id = 1;

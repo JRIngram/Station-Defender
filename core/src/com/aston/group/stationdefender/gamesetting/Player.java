@@ -1,7 +1,6 @@
 package com.aston.group.stationdefender.gamesetting;
 
 import com.aston.group.stationdefender.gamesetting.items.Item;
-import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
 import com.aston.group.stationdefender.utils.resources.Inventory;
 import com.aston.group.stationdefender.utils.resources.PlayerInventory;
 
@@ -19,15 +18,15 @@ public class Player {
         money = 0;
     }
 
-    public void collectItem(Item item){
+    public void collectItem(Item item) {
         inventory.addItem(item);
     }
 
-    public void collectItems(ArrayList<Item> items){
+    public void collectItems(ArrayList<Item> items) {
         inventory.addAllItems(items);
     }
 
-    public void dropItem(Item item){
+    public void dropItem(Item item) {
         inventory.removeItem(item);
     }
 

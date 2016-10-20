@@ -5,7 +5,7 @@ import com.aston.group.stationdefender.gamesetting.items.Item;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class PlayerInventory implements Inventory{
+public class PlayerInventory implements Inventory {
 
     private ArrayList<Item> items;
 
@@ -17,15 +17,15 @@ public class PlayerInventory implements Inventory{
         this.items = items;
     }
 
-    public boolean addItem(Item item){
+    public boolean addItem(Item item) {
         return items.add(item);
     }
 
-    public boolean removeItem(Item item){
+    public boolean removeItem(Item item) {
         return items.remove(item);
     }
 
-    public void addAllItems(ArrayList<Item> items){
+    public void addAllItems(ArrayList<Item> items) {
         this.items.addAll(items);
     }
 
@@ -37,7 +37,7 @@ public class PlayerInventory implements Inventory{
     @Override
     public void removeItemById(int id) {
         for (int i = 0; i < items.size(); i++) {
-            if(items.get(i) != null && items.get(i).getId() == id){
+            if (items.get(i) != null && items.get(i).getId() == id) {
                 items.remove(i);
 
                 break;
@@ -45,9 +45,9 @@ public class PlayerInventory implements Inventory{
         }
     }
 
-    public Item getItemById(int id){
+    public Item getItemById(int id) {
         for (int i = 0; i < items.size(); i++) {
-            if(items.get(i) != null && items.get(i).getId() == id){
+            if (items.get(i) != null && items.get(i).getId() == id) {
                 return items.get(i);
             }
         }
@@ -60,7 +60,7 @@ public class PlayerInventory implements Inventory{
         ArrayList<Item> items = new ArrayList<Item>();
 
         for (int i = 0; i < items.size(); i++) {
-            if(items.get(i) != null && items.get(i).getId() == id){
+            if (items.get(i) != null && items.get(i).getId() == id) {
                 items.add(items.get(i));
             }
         }
@@ -70,10 +70,10 @@ public class PlayerInventory implements Inventory{
 
     @Override
     public void removeAllItemsById(int id) {
-        for (Iterator<Item> iterator = items.iterator(); iterator.hasNext();){
+        for (Iterator<Item> iterator = items.iterator(); iterator.hasNext(); ) {
             Item item = iterator.next();
 
-            if(item.getId() == id){
+            if (item.getId() == id) {
                 iterator.remove();
             }
         }
