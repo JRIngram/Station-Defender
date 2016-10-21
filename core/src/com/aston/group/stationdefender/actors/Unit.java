@@ -1,19 +1,26 @@
 package com.aston.group.stationdefender.actors;
 
-public class Unit implements Actor {
-    private String name;
-    private double speed, damage, rateOfFire, health, range;
 
-    public Unit() {
+/**
+ * Abstract superclass inherited by Weapon and Alien subclasses.
+ * @author IngramJ
+ * @version 20/10/2016
+ *
+ */
+public abstract class Unit implements Actor {
+    protected String name;
+    protected double speed;
+    protected double damage;
+    protected double rateOfFire;
+    protected double health;
+    protected double range;
+
+    public Unit(){
     }
 
     @Override
-    public void act() {
-
-    }
+    public abstract void act();
 
     @Override
-    public void destroy() {
-
-    }
+    public abstract void destroy();
 }

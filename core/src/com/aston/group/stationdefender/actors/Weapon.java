@@ -1,17 +1,24 @@
 package com.aston.group.stationdefender.actors;
 
-public class Weapon implements Actor {
 
+/**
+ * Superclass for Human weapons within the game.
+ * @author IngramJ
+ * @version 20/10/2016
+ *
+ */
+public abstract class Weapon extends Unit implements Actor {
+	private double buildTime;
+	private int cost;
+	private int costToUpgrade;
+	
     public Weapon() {
+    	super();
     }
 
     @Override
-    public void act() {
-
-    }
+    public abstract void act();
 
     @Override
-    public void destroy() {
-
-    }
+    public abstract void destroy();
 }

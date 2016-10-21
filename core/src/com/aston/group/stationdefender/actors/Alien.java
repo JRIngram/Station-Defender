@@ -1,19 +1,20 @@
 package com.aston.group.stationdefender.actors;
 
-public class Alien implements Actor {
-    private int buildTime;
-    private double upgradeCost;
 
-    public Alien() {
-    }
+/**
+ * Superclass for different Alien types.
+ * @author IngramJ
+ * @version 20/10/2016
+ */
+public abstract class Alien extends Unit implements Actor{
+	
+	public Alien(){
+		super();
+	}
 
-    @Override
-    public void act() {
+	@Override
+	public abstract void act();
 
-    }
-
-    @Override
-    public void destroy() {
-
-    }
+	@Override
+	public abstract void destroy();
 }
