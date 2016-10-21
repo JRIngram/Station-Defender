@@ -1,6 +1,15 @@
 package com.aston.group.stationdefender.actors;
 
+/**
+ * Interface implemented by the Unit and Tower classes.
+ * Used for entities within the game that can act and be destroyed.
+ * @author IngramJ
+ * @version 20/10/2016
+ *
+ */
 public interface Actor {
-    void act();
-    void destroy();
+    
+	public void act();
+    
+	public void destroy();
 }

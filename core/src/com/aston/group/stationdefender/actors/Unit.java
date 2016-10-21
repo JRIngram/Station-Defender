@@ -1,17 +1,15 @@
 package com.aston.group.stationdefender.actors;
 
 public abstract class Unit implements Actor {
-    private String name;
-    private double speed, damage, rateOfFire, health, range;
+    protected String name;
+    protected double speed, damage, rateOfFire, health, range;
 
     public Unit() {
     }
 
     @Override
-    public void act() {
-    }
+    public abstract void act();
 
     @Override
-    public void destroy() {
-    }
+    public abstract void destroy();
 }
