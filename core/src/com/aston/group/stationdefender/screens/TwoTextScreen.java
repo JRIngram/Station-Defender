@@ -27,10 +27,7 @@ public class TwoTextScreen implements Screen {
     private TwoTextCallback twoTextCallback;
     private Stage stage;
     private BitmapFont titleFont;
-    private BitmapFont buttonFont;
     private BitmapFont bodyFont;
-    private FreeTypeFontGenerator fontGenerator;
-    private FreeTypeFontParameter params;
     private TextButton backButton;
     private float fadeElapsed = 0;
     private String title;
@@ -56,10 +53,10 @@ public class TwoTextScreen implements Screen {
         viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
 
         //Initialise Font
-        fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
-        params = new FreeTypeFontParameter();
+        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
+        FreeTypeFontParameter params = new FreeTypeFontParameter();
         params.size = 18;
-        buttonFont = fontGenerator.generateFont(params);
+        BitmapFont buttonFont = fontGenerator.generateFont(params);
         params.size = 30;
         bodyFont = fontGenerator.generateFont(params);
         params.size = 50;
