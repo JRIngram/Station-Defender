@@ -4,4 +4,5 @@ public interface IntroCallback {
     void onDisplayMenu();
     void onPlay();
     void onExit();
+    void onDisplayBackground();
 }

@@ -1,6 +1,6 @@
 package com.aston.group.stationdefender.screens;
 
-import com.aston.group.stationdefender.callbacks.IntroCallback;
+import com.aston.group.stationdefender.callbacks.BackgroundCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -19,32 +19,25 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class IntroScreen implements Screen {
+public class BackgroundScreen implements Screen {
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;
-    private IntroCallback introCallback;
+    private BackgroundCallback backgroundCallback;
     private Stage stage;
     private BitmapFont font;
-    private TextButton backgroundButton, instructionButton, playButton, exitButton;
+    private TextButton backButton;
     private float fadeElapsed = 0;
-    private TextButton[] buttons;
     private ChangeListener buttonListener = new ChangeListener() {
         @Override
         public void changed(ChangeEvent event, Actor actor) {
-            if (actor.equals(backgroundButton)) {
-                introCallback.onDisplayBackground();
-            } else if (actor.equals(instructionButton)) {
-                //TODO: Add with instructions screen
-            } else if (actor.equals(playButton)) {
-                introCallback.onPlay();
-            } else if (actor.equals(exitButton)) {
-                introCallback.onExit();
+            if (actor.equals(backButton)) {
+                backgroundCallback.onBack();
             }
         }
     };
 
-    public IntroScreen() {
+    public BackgroundScreen() {
         batch = new SpriteBatch();
 
         //Setup camera
@@ -67,21 +60,13 @@ public class IntroScreen implements Screen {
         Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
         TextButtonStyle textButtonStyle = new TextButtonStyle();
         textButtonStyle.font = font;
-        backgroundButton = new TextButton(Constants.MENU_ITEMS[0], textButtonStyle);
-        instructionButton = new TextButton(Constants.MENU_ITEMS[1], textButtonStyle);
-        playButton = new TextButton(Constants.MENU_ITEMS[2], textButtonStyle);
-        exitButton = new TextButton(Constants.MENU_ITEMS[3], textButtonStyle);
-        buttons = new TextButton[]{backgroundButton, instructionButton, playButton, exitButton};
-        for (TextButton button : buttons) {
-            button.setColor(0, 0, 0, 0);
-            button.setWidth(400);
-            button.setHeight(50);
-            stage.addActor(button);
-            button.addListener(buttonListener);
-        }
-        for (int i = 0; i < Constants.MENU_ITEMS.length; i++) {
-            buttons[i].setPosition((Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + (100 - 60 * i));
-        }
+        backButton = new TextButton(Constants.BACKGROUND, textButtonStyle);
+        backButton.setColor(0, 0, 0, 0);
+        backButton.setWidth(400);
+        backButton.setHeight(50);
+        stage.addActor(backButton);
+        backButton.addListener(buttonListener);
+        backButton.setPosition((Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + (100 - 60));
     }
 
     @Override
@@ -106,16 +91,14 @@ public class IntroScreen implements Screen {
 
         batch.begin();
         font.setColor(1, 1, 1, fade);
-        font.draw(batch, Constants.GAME_NAME, (Gdx.graphics.getWidth() / 2) - 180, Gdx.graphics.getHeight() - 25);
+        font.draw(batch, Constants.MENU_ITEMS[0], (Gdx.graphics.getWidth() / 2) - 150, Gdx.graphics.getHeight() - 25);
         batch.end();
         batch.begin();
         stage.draw();
         // delay animation by a certain amount for each menu item
         font.setColor(1, 1, 1, fade2);
-        for (int i = 0; i < buttons.length; i++) {
-            fade2 = Interpolation.fade.apply((fadeElapsed - (fadeDelay + i + 1f)) / fadeInTime);
-            buttons[i].setColor(1, 1, 1, fade2);
-        }
+        fade2 = Interpolation.fade.apply((fadeElapsed - (fadeDelay + 1f)) / fadeInTime);
+        backButton.setColor(1, 1, 1, fade2);
         batch.end();
     }
 
@@ -143,7 +126,7 @@ public class IntroScreen implements Screen {
         batch.dispose();
     }
 
-    public void setIntroCallback(IntroCallback introCallback) {
-        this.introCallback = introCallback;
+    public void setBackgroundCallback(BackgroundCallback backgroundCallback) {
+        this.backgroundCallback = backgroundCallback;
     }
 }

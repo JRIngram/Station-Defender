@@ -15,4 +15,6 @@ public interface Constants {
             "Play",
             "Exit"
     };
+
+    String BACKGROUND = "Background paragraph will go here";
 }
