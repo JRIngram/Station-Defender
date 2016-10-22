@@ -35,7 +35,7 @@ public class IntroScreen implements Screen {
             if (actor.equals(backgroundButton)) {
                 introCallback.onDisplayBackground();
             } else if (actor.equals(instructionButton)) {
-                //TODO: Add with instructions screen
+                introCallback.onDisplayInstructions();
             } else if (actor.equals(playButton)) {
                 introCallback.onPlay();
             } else if (actor.equals(exitButton)) {

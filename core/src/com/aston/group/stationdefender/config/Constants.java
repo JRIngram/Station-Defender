@@ -8,7 +8,6 @@ public interface Constants {
     int SCREEN_WIDTH = 1024;
     int SCREEN_HEIGHT = 576;
 
-    //Game Name
     String GAME_NAME = "Station Defender";
 
     String[] MENU_ITEMS = {
@@ -19,4 +18,8 @@ public interface Constants {
     };
 
     String BACKGROUND = "Background paragraph will go here";
+
+    String BACK = "Back";
+
+    String INSTRUCTIONS = "Instruction text will go here";
 }

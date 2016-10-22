@@ -1,5 +1,5 @@
 package com.aston.group.stationdefender.callbacks;
 
-public interface BackgroundCallback {
+public interface TwoTextCallback {
     void onBack();
 }

@@ -1,6 +1,6 @@
 package com.aston.group.stationdefender.screens;
 
-import com.aston.group.stationdefender.callbacks.BackgroundCallback;
+import com.aston.group.stationdefender.callbacks.TwoTextCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,25 +20,31 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class BackgroundScreen implements Screen {
+public class TwoTextScreen implements Screen {
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;
-    private BackgroundCallback backgroundCallback;
+    private TwoTextCallback twoTextCallback;
     private Stage stage;
-    private BitmapFont font;
+    private BitmapFont titleFont;
+    private BitmapFont buttonFont;
+    private BitmapFont bodyFont;
+    private FreeTypeFontGenerator fontGenerator;
+    private FreeTypeFontParameter params;
     private TextButton backButton;
     private float fadeElapsed = 0;
+    private String title;
+    private String body;
     private ChangeListener buttonListener = new ChangeListener() {
         @Override
         public void changed(ChangeEvent event, Actor actor) {
             if (actor.equals(backButton)) {
-                backgroundCallback.onBack();
+                twoTextCallback.onBack();
             }
         }
     };
 
-    public BackgroundScreen() {
+    public TwoTextScreen() {
         batch = new SpriteBatch();
 
         //Setup camera
@@ -49,24 +56,28 @@ public class BackgroundScreen implements Screen {
         viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
 
         //Initialise Font
-        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
+        params = new FreeTypeFontParameter();
+        params.size = 18;
+        buttonFont = fontGenerator.generateFont(params);
+        params.size = 30;
+        bodyFont = fontGenerator.generateFont(params);
         params.size = 50;
-        font = fontGenerator.generateFont(params);
+        titleFont = fontGenerator.generateFont(params);
 
         //Buttons
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
         TextButtonStyle textButtonStyle = new TextButtonStyle();
-        textButtonStyle.font = font;
-        backButton = new TextButton(Constants.BACKGROUND, textButtonStyle);
+        textButtonStyle.font = buttonFont;
+        backButton = new TextButton(Constants.BACK, textButtonStyle);
         backButton.setColor(0, 0, 0, 0);
         backButton.setWidth(400);
         backButton.setHeight(50);
         stage.addActor(backButton);
         backButton.addListener(buttonListener);
-        backButton.setPosition((Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + (100 - 60));
+        backButton.setPosition(-150, (Gdx.graphics.getHeight()) - 60);
     }
 
     @Override
@@ -89,16 +100,18 @@ public class BackgroundScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        // Draw things on screen
         batch.begin();
-        font.setColor(1, 1, 1, fade);
-        font.draw(batch, Constants.MENU_ITEMS[0], (Gdx.graphics.getWidth() / 2) - 150, Gdx.graphics.getHeight() - 25);
-        batch.end();
-        batch.begin();
+        titleFont.setColor(1, 1, 1, fade);
+        backButton.setColor(1, 1, 1, fade);
+        titleFont.draw(batch, title, (Gdx.graphics.getWidth() / 2) - 150, Gdx.graphics.getHeight() - 25);
+        restartBatch();
         stage.draw();
+        restartBatch();
+
         // delay animation by a certain amount for each menu item
-        font.setColor(1, 1, 1, fade2);
-        fade2 = Interpolation.fade.apply((fadeElapsed - (fadeDelay + 1f)) / fadeInTime);
-        backButton.setColor(1, 1, 1, fade2);
+        bodyFont.setColor(1, 1, 1, fade2);
+        bodyFont.draw(batch, body, (Gdx.graphics.getWidth() / 2) - 235, (Gdx.graphics.getHeight() / 2) + (100 - 60));
         batch.end();
     }
 
@@ -122,11 +135,34 @@ public class BackgroundScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
-        font.dispose();
         batch.dispose();
     }
 
-    public void setBackgroundCallback(BackgroundCallback backgroundCallback) {
-        this.backgroundCallback = backgroundCallback;
+    public void setTwoTextCallback(TwoTextCallback twoTextCallback) {
+        this.twoTextCallback = twoTextCallback;
+    }
+
+    /**
+     * Sets the text of the screen title
+     * @param title The String to set as the title.
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * Sets the text of the body message
+     * @param body The String to set as the body message
+     */
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    /**
+     * Restart the batch to allow objects to be drawn over the stage.
+     */
+    private void restartBatch() {
+        batch.end();
+        batch.begin();
     }
 }
