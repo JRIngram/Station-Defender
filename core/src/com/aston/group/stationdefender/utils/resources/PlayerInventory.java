@@ -45,6 +45,15 @@ public class PlayerInventory implements Inventory {
         }
     }
 
+    @Override
+    public Item getItem(int index) {
+        if(items.size() > index + 1 && items.get(index) != null){
+            return items.get(index);
+        }
+
+        return null;
+    }
+
     public Item getItemById(int id) {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i) != null && items.get(i).getId() == id) {

@@ -14,6 +14,8 @@ public interface Inventory {
 
     public void removeAllItems();
 
+    public Item getItem(int index);
+
     public Item getItemById(int id);
 
     public void removeItemById(int id);

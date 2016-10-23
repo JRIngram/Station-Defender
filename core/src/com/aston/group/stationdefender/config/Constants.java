@@ -2,6 +2,8 @@ package com.aston.group.stationdefender.config;
 
 public interface Constants {
 
+    boolean DEBUG = false;
+
     // 16/9 Aspect Ratio
     int SCREEN_WIDTH = 1024;
     int SCREEN_HEIGHT = 576;

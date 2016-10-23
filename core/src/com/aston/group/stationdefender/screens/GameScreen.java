@@ -30,10 +30,14 @@ public class GameScreen implements Screen {
         viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
         level = new Level();
         player = new Player();
+
     }
+
+
 
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(null);
     }
 
     @Override
@@ -43,6 +47,8 @@ public class GameScreen implements Screen {
 
         Gdx.gl.glClearColor(255, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        player.render(delta);
     }
 
     @Override

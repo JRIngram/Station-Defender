@@ -3,6 +3,7 @@ package com.aston.group.stationdefender;
 import com.aston.group.stationdefender.callbacks.BackgroundCallback;
 import com.aston.group.stationdefender.callbacks.IntroCallback;
 import com.aston.group.stationdefender.callbacks.MenuCallback;
+import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.screens.BackgroundScreen;
 import com.aston.group.stationdefender.screens.GameScreen;
 import com.aston.group.stationdefender.screens.IntroScreen;
@@ -66,7 +67,11 @@ public class Main extends Game {
         });
 
         //Set the screen to intro upon creation
-        setScreen(introScreen);
+        if(!Constants.DEBUG){
+            setScreen(introScreen);
+        }else{
+            setScreen(gameScreen);
+        }
 
     }
 
