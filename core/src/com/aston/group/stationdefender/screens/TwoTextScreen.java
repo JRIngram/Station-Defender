@@ -20,6 +20,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+/**
+ * TwoTextScreen is a class that creates a screen holding a title text,
+ * a body of text and a back button.
+ * @author Jonathon Fitch
+ */
 public class TwoTextScreen implements Screen {
     private SpriteBatch batch;
     private OrthographicCamera camera;
@@ -41,6 +46,10 @@ public class TwoTextScreen implements Screen {
         }
     };
 
+    /**
+     * Constuctor sets the camera, viewpoint and
+     * initializes the font and button(s).
+     */
     public TwoTextScreen() {
         batch = new SpriteBatch();
 
@@ -135,6 +144,10 @@ public class TwoTextScreen implements Screen {
         batch.dispose();
     }
 
+    /**
+     * Sets the TwoTextCallback to be used within this class
+     * @param twoTextCallback The TwoTextCallback supplied in Main.java
+     */
     public void setTwoTextCallback(TwoTextCallback twoTextCallback) {
         this.twoTextCallback = twoTextCallback;
     }

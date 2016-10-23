@@ -11,6 +11,10 @@ import com.aston.group.stationdefender.screens.MenuScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
+/**
+ * The Main game class.
+ * @author Jonathon Fitch
+ */
 public class Main extends Game {
     private IntroScreen introScreen;
     private TwoTextScreen backgroundScreen;
@@ -20,7 +24,6 @@ public class Main extends Game {
 
     @Override
     public void create() {
-
         backgroundScreen = new TwoTextScreen();
         instructionScreen = new TwoTextScreen();
         introScreen = new IntroScreen();
@@ -54,6 +57,10 @@ public class Main extends Game {
         super.dispose();
     }
 
+    /**
+     * Sets the callbacks to be used for each screen and adds actions based
+     * on which callback method is used.
+     */
     private void setupCallbacks() {
         introScreen.setIntroCallback(new IntroCallback() {
             @Override
