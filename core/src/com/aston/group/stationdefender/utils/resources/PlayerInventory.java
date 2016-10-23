@@ -5,6 +5,9 @@ import com.aston.group.stationdefender.gamesetting.items.Item;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * @author Mohammad Foysal
+ */
 public class PlayerInventory implements Inventory {
     private ArrayList<Item> items;
 

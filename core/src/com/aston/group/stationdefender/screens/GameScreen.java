@@ -11,6 +11,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+/**
+ * This screen holds the main game loop
+ * @author Mohammad Foysal
+ */
 public class GameScreen implements Screen {
     private SpriteBatch batch;
     private OrthographicCamera camera;

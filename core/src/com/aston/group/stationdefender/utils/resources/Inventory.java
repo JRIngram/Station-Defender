@@ -7,6 +7,7 @@ import java.util.ArrayList;
 /**
  * Inventory is a storage place for items
  * that the player can use.
+ * @author Mohammad Foysal
  */
 public interface Inventory {
 

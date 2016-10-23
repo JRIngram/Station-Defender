@@ -12,6 +12,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import java.util.ArrayList;
 
+/**
+ * Skeleton Player class
+ * @author Jonathon Fitch
+ */
 public class Player {
 
     //Player Properties

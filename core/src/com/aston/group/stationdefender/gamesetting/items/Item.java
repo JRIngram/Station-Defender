@@ -5,6 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+/**
+ * Item class represents an in-game item that the player
+ * can pick up, buy for credits, and use
+ * @author Mohammad Foysal
+ */
 public abstract class Item {
 
     //Item Properties

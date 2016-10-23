@@ -1,12 +1,15 @@
 package com.aston.group.stationdefender.tests;
+
 import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class
-ItemTest extends Game {
+/**
+ * @author Jamie Ingram
+ */
+public class ItemTest extends Game {
 
     private SpriteBatch batch;
 
