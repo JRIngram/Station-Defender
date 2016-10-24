@@ -73,7 +73,6 @@ public class TwoTextScreen implements Screen {
 
         //Buttons
         stage = new Stage();
-        Gdx.input.setInputProcessor(stage);
         Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
         TextButtonStyle textButtonStyle = new TextButtonStyle();
         textButtonStyle.font = buttonFont;
@@ -88,6 +87,7 @@ public class TwoTextScreen implements Screen {
 
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override

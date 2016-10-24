@@ -69,7 +69,6 @@ public class IntroScreen implements Screen {
 
         //Buttons
         stage = new Stage();
-        Gdx.input.setInputProcessor(stage);
         Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
         TextButtonStyle textButtonStyle = new TextButtonStyle();
         textButtonStyle.font = font;
@@ -92,6 +91,7 @@ public class IntroScreen implements Screen {
 
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
