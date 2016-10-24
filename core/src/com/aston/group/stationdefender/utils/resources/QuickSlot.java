@@ -201,11 +201,7 @@ public class QuickSlot {
      * @return isColliding - returns true if params collide, false if not
      */
     public boolean isColliding(int x, int y, int width, int height) {
-        if (x + width > this.x && x < this.x + this.width &&
-                y + height > this.y && y < this.y + this.height) {
-            return true;
-        } else {
-            return false;
-        }
+        return x + width > this.x && x < this.x + this.width &&
+                y + height > this.y && y < this.y + this.height;
     }
 }
