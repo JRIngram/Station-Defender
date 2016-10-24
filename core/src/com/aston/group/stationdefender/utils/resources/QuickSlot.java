@@ -40,7 +40,7 @@ public class QuickSlot {
         this.height = height;
         batch = new SpriteBatch();
 
-        Texture textureQuickSlot = new Texture(Gdx.files.internal("uiskin.png"));
+        Texture textureQuickSlot = new Texture(Gdx.files.internal("data/uiskin.json"));
         trQuickSlot = new TextureRegion(textureQuickSlot, 78, 29, 20, 20);
         trQuickSlotHovered = new TextureRegion(textureQuickSlot, 57, 29, 20, 20);
 
