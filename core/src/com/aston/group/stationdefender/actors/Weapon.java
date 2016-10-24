@@ -1,8 +1,8 @@
 package com.aston.group.stationdefender.actors;
 
-
 /**
- * Superclass for Human weapons within the game.
+ * Weapon is a class that represents a weapon object 
+ * that Humans (Unit) can arm themselves with and use to destroy Aliens
  * @author IngramJ
  * @version 20/10/2016
  *
@@ -47,5 +47,4 @@ public abstract class Weapon extends Unit implements Actor {
     		built = true;
     	}
     }
-    
-}
+}   

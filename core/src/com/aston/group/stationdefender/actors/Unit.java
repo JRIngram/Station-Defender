@@ -1,9 +1,8 @@
 package com.aston.group.stationdefender.actors;
 
-
 /**
  * Abstract superclass inherited by Weapon and Alien subclasses.
- * @author IngramJ
+ * @author Jamie Ingram
  * @version 20/10/2016
  *
  */

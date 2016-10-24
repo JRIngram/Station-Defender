@@ -12,13 +12,10 @@ public class TestWeapon extends Weapon {
 	@Override
 	public void act() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		
 	}
-
 }

@@ -1,6 +1,5 @@
 package com.aston.group.stationdefender.actors;
 
-
 /**
  * Superclass for different Alien types.
  * @author IngramJ
@@ -12,7 +11,7 @@ public abstract class Alien extends Unit{
 		super(name, speed, damage, rateOfFire, health, range);
 	}
 	
-    /*
+    /**
      * Move to the left.
      * Checks if adjacent space to the left is occupied by a human weapon, and if so, attack.
      * @see com.aston.group.stationdefender.actors.Unit#act()
