@@ -156,7 +156,17 @@ public class Player implements InputProcessor{
 
     @Override
     public boolean scrolled(int amount) {
-        return false;
+        selectedSlot += amount;
+
+        if(selectedSlot > quickSlots.size() - 1){
+            selectedSlot = 0;
+        }
+
+        if(selectedSlot < 0){
+            selectedSlot = quickSlots.size() - 1;
+        }
+
+        return true;
     }
 
     public void collectItem(Item item) {
