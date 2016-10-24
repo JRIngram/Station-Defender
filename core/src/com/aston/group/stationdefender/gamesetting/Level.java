@@ -18,4 +18,16 @@ public class Level {
     public Level(int levelNumber) {
         this.levelNumber = levelNumber;
     }
+
+    public void incrememnetLevel() {
+        levelNumber++;
+    }
+
+    public void setLevel(int level) {
+        levelNumber = level;
+    }
+
+    public int getLevel() {
+        return levelNumber;
+    }
 }
