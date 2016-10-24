@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender.utils.resources;
 
+import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

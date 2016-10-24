@@ -1,6 +1,8 @@
 package com.aston.group.stationdefender.gamesetting;
 
+import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.gamesetting.items.Item;
+import com.aston.group.stationdefender.gamesetting.items.ItemBlank;
 import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
 import com.aston.group.stationdefender.utils.resources.Inventory;
 import com.aston.group.stationdefender.utils.resources.PlayerInventory;
@@ -25,6 +27,7 @@ public class Player implements InputProcessor{
     //Quickslots
     private ArrayList<QuickSlot> quickSlots;
     private int selectedSlot = 0;
+    private QuickSlotCallback quickSlotCallback;
 
     //Graphics Variables
     private SpriteBatch batch;
@@ -45,11 +48,22 @@ public class Player implements InputProcessor{
         int slotX = 0;
         for (int i = 0; i < 8; i++) {
             QuickSlot quickSlot = new QuickSlot(slotX, 0, 48, 48);
-            quickSlot.setItem(new ItemCredit());
+            if(i % 2 == 0) {
+                quickSlot.setItem(new ItemCredit());
+            }else{
+                quickSlot.setItem(new ItemBlank());
+            }
 
             quickSlots.add(quickSlot);
             slotX += 48;
         }
+
+        quickSlotCallback = new QuickSlotCallback() {
+            @Override
+            public void onSelectedItemChanged(Item item) {
+                currentItem = item;
+            }
+        };
     }
 
     public void render(float delta){
@@ -120,9 +134,9 @@ public class Player implements InputProcessor{
             case Input.Keys.NUM_8:
                 selectedSlot = 7;
                 break;
-
-
         }
+
+        quickSlotCallback.onSelectedItemChanged(quickSlots.get(selectedSlot).getItem());
 
         return true;
     }
@@ -139,8 +153,6 @@ public class Player implements InputProcessor{
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        System.out.println("Touched Up");
-        selectedSlot = 1;
         return true;
     }
 
@@ -165,6 +177,8 @@ public class Player implements InputProcessor{
         if(selectedSlot < 0){
             selectedSlot = quickSlots.size() - 1;
         }
+
+        quickSlotCallback.onSelectedItemChanged(quickSlots.get(selectedSlot).getItem());
 
         return true;
     }
