@@ -12,5 +12,10 @@ public class Level {
     private Board board = new Board();
 
     public Level() {
+        this(1);
+    }
+
+    public Level(int levelNumber) {
+        this.levelNumber = levelNumber;
     }
 }
