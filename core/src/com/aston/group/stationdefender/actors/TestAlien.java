@@ -3,7 +3,6 @@ package com.aston.group.stationdefender.actors;
 public class TestAlien extends Alien{
 	
 	public TestAlien(){
-		
 	}
 
 	@Override
