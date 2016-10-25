@@ -1,7 +1,7 @@
 package com.aston.group.stationdefender.gamesetting.items;
 
+import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -18,10 +18,10 @@ public abstract class Item {
     protected boolean usable;
     protected boolean collected;
     protected boolean justSpawned;
+    protected boolean placeable;
 
     //Rendering
     protected Texture itemTexture;
-    protected Sprite sprite;
     protected int x, y, width, height;
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
@@ -48,9 +48,15 @@ public abstract class Item {
 
     public void render(float delta) {
         //todo add specular effect
-        batch.begin();
-        batch.draw(itemTexture, x, y, width, height);
-        batch.end();
+        if (itemTexture != null) {
+            batch.begin();
+            batch.draw(itemTexture, x, y, width, height);
+            batch.end();
+        }
+    }
+
+    public void useItem(ItemCallback itemCallback) {
+        itemCallback.onUse(placeable);
     }
 
     public void collect() {
@@ -139,6 +145,14 @@ public abstract class Item {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public boolean isPlaceable() {
+        return placeable;
+    }
+
+    public void setPlaceable(boolean placeable) {
+        this.placeable = placeable;
     }
 
     @Override

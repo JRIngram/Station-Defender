@@ -1,30 +1,36 @@
 package com.aston.group.stationdefender.utils.resources;
 
+import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
-* QuickSlot class allows the player inventory to
-* have a limited number of items and each item takes
-* up a slot.
-* @author Mohammad Foysal
-*/
+ * QuickSlot class allows the player inventory to
+ * have a limited number of items and each item takes
+ * up a slot.
+ *
+ * @author Mohammad Foysal
+ */
 public class QuickSlot {
     private int x, y, width, height;
     private boolean isSelected;
     private Item item;
     private SpriteBatch batch;
     private TextureRegion trQuickSlot;
+    private TextureRegion trQuickSlotHovered;
+    private BitmapFont font;
 
     /**
      * Construct a new QuickSlot
-     * @param x The X co-ordinate of the QuickSlot
-     * @param y The Y co-ordinate of the QuickSlot
-     * @param width The width of the QuickSlot
+     *
+     * @param x      The X co-ordinate of the QuickSlot
+     * @param y      The Y co-ordinate of the QuickSlot
+     * @param width  The width of the QuickSlot
      * @param height The height of the QuickSlot
      */
     public QuickSlot(int x, int y, int width, int height) {
@@ -34,71 +40,97 @@ public class QuickSlot {
         this.height = height;
         batch = new SpriteBatch();
 
-        Texture textureQuickSlot = new Texture(Gdx.files.internal("uiskin.png"));
-        trQuickSlot = new TextureRegion(textureQuickSlot, 1, 20, 27, 20);
+        Texture textureQuickSlot = new Texture(Gdx.files.internal("data/uiskin.json"));
+        trQuickSlot = new TextureRegion(textureQuickSlot, 78, 29, 20, 20);
+        trQuickSlotHovered = new TextureRegion(textureQuickSlot, 57, 29, 20, 20);
+
+        font = new BitmapFont();
     }
 
-    public void render(float delta){
-        batch.begin();
-        if(isSelected)
-            batch.setColor(Color.YELLOW);
-        batch.draw(trQuickSlot, x, y, width, height);
+    public void render(float delta) {
 
-        batch.setColor(Color.WHITE);
-        if(item != null) {
-            item.setX(x);
-            item.setX(y);
+        //Draw Hovered Batch
+        if (isSelected) {
+            batch.begin();
+//            batch.setColor(new Color(77, 190, 227, .5f));
+            batch.draw(trQuickSlotHovered, x, y, width, height);
+            batch.end();
+        } else {
+            batch.begin();
+            batch.draw(trQuickSlot, x, y, width, height);
+            batch.end();
+        }
+
+        batch.begin();
+        if (item != null) {
+            item.setX(x + (width / 5));
+            item.setY(y + (height / 6));
             item.render(delta);
         }
         batch.end();
+
+        if(isColliding(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY(), 1, 1)) {
+            batch.begin();
+            font.setColor(Color.BLACK);
+            font.draw(batch, "Item Title", x, y + height + 20);
+            batch.end();
+        }
+
     }
 
-    public void dispose(){
+    public void dispose() {
         batch.dispose();
+        font.dispose();
     }
 
-	/**
+    /**
      * Returns the X co-ordinate value of an QuickSlot
+     *
      * @return The X co-ordinate value of the QuickSlot
      */
     public int getX() {
         return x;
     }
 
-	/**
+    /**
      * Sets the X co-ordinate of the QuickSlot
+     *
      * @param x The X co-ordinate of the QuickSlot
      */
     public void setX(int x) {
         this.x = x;
     }
 
-	/**
+    /**
      * Returns the Y co-ordinate value of the item.
+     *
      * @return The Y co-ordinate value of the QuickSlot
      */
     public int getY() {
         return y;
     }
 
-	/**
+    /**
      * Sets the Y co-ordinate of the item
+     *
      * @param y The Y co-ordinate of the item
      */
     public void setY(int y) {
         this.y = y;
     }
 
-	/**
+    /**
      * Returns the width of the QuickSlot
+     *
      * @return The width of the QuickSlot
      */
     public int getWidth() {
         return width;
     }
 
-	/**
+    /**
      * Sets the width of the QuickSlot
+     *
      * @param width The width of the QuickSlot
      */
     public void setWidth(int width) {
@@ -107,6 +139,7 @@ public class QuickSlot {
 
     /**
      * Returns the height of the QuickSlot
+     *
      * @return The height of the QuickSlot
      */
     public int getHeight() {
@@ -115,6 +148,7 @@ public class QuickSlot {
 
     /**
      * Sets the height of the Quickslot
+     *
      * @param height The height of the QuickSlot
      */
     public void setHeight(int height) {
@@ -123,6 +157,7 @@ public class QuickSlot {
 
     /**
      * Returns whether a QuickSlot is selected or not
+     *
      * @return whether a QuickSlot is selected or not
      */
     public boolean isSelected() {
@@ -131,6 +166,7 @@ public class QuickSlot {
 
     /**
      * Sets whether a QuickSlot is selected or not
+     *
      * @param selected Whether a QuickSlot is selected or not
      */
     public void setSelected(boolean selected) {
@@ -139,6 +175,7 @@ public class QuickSlot {
 
     /**
      * Returns the Item in the QuickSlot
+     *
      * @return The Item in the QuickSlot
      */
     public Item getItem() {
@@ -147,9 +184,24 @@ public class QuickSlot {
 
     /**
      * Puts an item in a QuickSlot
+     *
      * @param item The item to put in the QuickSlot
      */
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    /**
+     * Checks whether the params collides with the QuickSlot box
+     *
+     * @param x      The x to be compared with the quickslot
+     * @param y      The y to be compared with the quickslot
+     * @param width  The width to be compared with the quickslot
+     * @param height The height to be compared with the quickslot
+     * @return isColliding - returns true if params collide, false if not
+     */
+    public boolean isColliding(int x, int y, int width, int height) {
+        return x + width > this.x && x < this.x + this.width &&
+                y + height > this.y && y < this.y + this.height;
     }
 }

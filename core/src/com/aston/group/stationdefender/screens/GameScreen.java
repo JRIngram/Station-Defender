@@ -41,7 +41,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(null);
+        Gdx.input.setInputProcessor(player);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class GameScreen implements Screen {
         batch.setProjectionMatrix(camera.projection);
         batch.setTransformMatrix(camera.view);
 
-        Gdx.gl.glClearColor(255, 0, 0, 1);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         player.render(delta);
