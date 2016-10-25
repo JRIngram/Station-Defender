@@ -1,5 +1,9 @@
 package com.aston.group.stationdefender.actors;
 
+/**
+ * Test class for Weapon
+ * @author Jamie Ingram
+ */
 public class TestWeapon extends Weapon {
 	
 	public TestWeapon(){
