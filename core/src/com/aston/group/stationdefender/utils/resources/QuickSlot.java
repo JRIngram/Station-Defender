@@ -78,6 +78,9 @@ public class QuickSlot {
 
     }
 
+    /**
+     * Dispose of the resources created
+     */
     public void dispose() {
         batch.dispose();
         font.dispose();

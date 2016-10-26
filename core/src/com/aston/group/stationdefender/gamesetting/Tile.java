@@ -5,6 +5,10 @@ package com.aston.group.stationdefender.gamesetting;
  * @author Jonathon Fitch
  */
 public class Tile {
+
+    /**
+     * Construct a new Tile
+     */
     public Tile() {
     }
 }

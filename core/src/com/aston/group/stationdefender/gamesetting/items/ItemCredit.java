@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class ItemCredit extends Item {
 
+    /**
+     * Construct a new ItemCredit
+     */
     public ItemCredit() {
         id = 1;
         name = "Credits";

@@ -5,9 +5,23 @@ package com.aston.group.stationdefender.gamesetting;
  * @author Jonathon Fitch
  */
 public class Lane {
-    private int xpos = 0;
-    private int ypos = 0;
+    private int x, y;
 
-    private Lane() {
+    /**
+     * Construct a new Lane with default
+     * X and Y co-ordinates of '0'
+     */
+    public Lane() {
+        this(0, 0);
+    }
+
+    /**
+     * Construct a new Lane
+     * @param x The X co-ordinate of the Lane
+     * @param y The Y co-ordinate of the Lane
+     */
+    public Lane(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 }
