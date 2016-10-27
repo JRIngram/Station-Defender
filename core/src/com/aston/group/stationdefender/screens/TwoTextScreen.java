@@ -1,6 +1,6 @@
 package com.aston.group.stationdefender.screens;
 
-import com.aston.group.stationdefender.callbacks.IntroCallback;
+import com.aston.group.stationdefender.callbacks.TwoTextCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -20,37 +21,36 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
- * IntroScreen is the first screen shown in the game and contains
- * the game title and buttons that link to other screens such as the
- * background information screen, instruction screen etc.
+ * TwoTextScreen is a class that creates a screen holding a title text,
+ * a body of text and a back button.
  * @author Jonathon Fitch
  */
-public class IntroScreen implements Screen {
+public class TwoTextScreen implements Screen {
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;
-    private IntroCallback introCallback;
+    private TwoTextCallback twoTextCallback;
     private Stage stage;
-    private BitmapFont font;
-    private TextButton backgroundButton, instructionButton, playButton, exitButton;
+    private BitmapFont titleFont;
+    private BitmapFont bodyFont;
+    private TextButton backButton;
     private float fadeElapsed = 0;
-    private TextButton[] buttons;
+    private String title;
+    private String body;
     private ChangeListener buttonListener = new ChangeListener() {
         @Override
         public void changed(ChangeEvent event, Actor actor) {
-            if (actor.equals(backgroundButton)) {
-                introCallback.onDisplayBackground();
-            } else if (actor.equals(instructionButton)) {
-                introCallback.onDisplayInstructions();
-            } else if (actor.equals(playButton)) {
-                introCallback.onPlay();
-            } else if (actor.equals(exitButton)) {
-                introCallback.onExit();
+            if (actor.equals(backButton)) {
+                twoTextCallback.onBack();
             }
         }
     };
 
-    public IntroScreen() {
+    /**
+     * Constuctor sets the camera, viewpoint and
+     * initializes the font and button(s).
+     */
+    public TwoTextScreen() {
         batch = new SpriteBatch();
 
         //Setup camera
@@ -63,30 +63,26 @@ public class IntroScreen implements Screen {
 
         //Initialise Font
         FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        FreeTypeFontParameter params = new FreeTypeFontParameter();
+        params.size = 18;
+        BitmapFont buttonFont = fontGenerator.generateFont(params);
+        params.size = 30;
+        bodyFont = fontGenerator.generateFont(params);
         params.size = 50;
-        font = fontGenerator.generateFont(params);
+        titleFont = fontGenerator.generateFont(params);
 
         //Buttons
         stage = new Stage();
         Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
         TextButtonStyle textButtonStyle = new TextButtonStyle();
-        textButtonStyle.font = font;
-        backgroundButton = new TextButton(Constants.MENU_ITEMS[0], textButtonStyle);
-        instructionButton = new TextButton(Constants.MENU_ITEMS[1], textButtonStyle);
-        playButton = new TextButton(Constants.MENU_ITEMS[2], textButtonStyle);
-        exitButton = new TextButton(Constants.MENU_ITEMS[3], textButtonStyle);
-        buttons = new TextButton[]{backgroundButton, instructionButton, playButton, exitButton};
-        for (TextButton button : buttons) {
-            button.setColor(0, 0, 0, 0);
-            button.setWidth(400);
-            button.setHeight(50);
-            stage.addActor(button);
-            button.addListener(buttonListener);
-        }
-        for (int i = 0; i < Constants.MENU_ITEMS.length; i++) {
-            buttons[i].setPosition((Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + (100 - 60 * i));
-        }
+        textButtonStyle.font = buttonFont;
+        backButton = new TextButton(Constants.BACK, textButtonStyle);
+        backButton.setColor(0, 0, 0, 0);
+        backButton.setWidth(400);
+        backButton.setHeight(50);
+        stage.addActor(backButton);
+        backButton.addListener(buttonListener);
+        backButton.setPosition(-150, (Gdx.graphics.getHeight()) - 60);
     }
 
     @Override
@@ -110,18 +106,18 @@ public class IntroScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        // Draw things on screen
         batch.begin();
-        font.setColor(1, 1, 1, fade);
-        font.draw(batch, Constants.GAME_NAME, (Gdx.graphics.getWidth() / 2) - 180, Gdx.graphics.getHeight() - 25);
-        batch.end();
-        batch.begin();
+        titleFont.setColor(1, 1, 1, fade);
+        backButton.setColor(1, 1, 1, fade);
+        titleFont.draw(batch, title, (Gdx.graphics.getWidth() / 2) - 150, Gdx.graphics.getHeight() - 25);
+        restartBatch();
         stage.draw();
+        restartBatch();
+
         // delay animation by a certain amount for each menu item
-        font.setColor(1, 1, 1, fade2);
-        for (int i = 0; i < buttons.length; i++) {
-            fade2 = Interpolation.fade.apply((fadeElapsed - (fadeDelay + i + 1f)) / fadeInTime);
-            buttons[i].setColor(1, 1, 1, fade2);
-        }
+        bodyFont.setColor(1, 1, 1, fade2);
+        bodyFont.draw(batch, body, (Gdx.graphics.getWidth() / 2) - 235, (Gdx.graphics.getHeight() / 2) + (100 - 60));
         batch.end();
     }
 
@@ -145,11 +141,38 @@ public class IntroScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
-        font.dispose();
         batch.dispose();
     }
 
-    public void setIntroCallback(IntroCallback introCallback) {
-        this.introCallback = introCallback;
+    /**
+     * Sets the TwoTextCallback to be used within this class
+     * @param twoTextCallback The TwoTextCallback supplied in Main.java
+     */
+    public void setTwoTextCallback(TwoTextCallback twoTextCallback) {
+        this.twoTextCallback = twoTextCallback;
+    }
+
+    /**
+     * Sets the text of the screen title
+     * @param title The String to set as the title.
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * Sets the text of the body message
+     * @param body The String to set as the body message
+     */
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    /**
+     * Restart the batch to allow objects to be drawn over the stage.
+     */
+    private void restartBatch() {
+        batch.end();
+        batch.begin();
     }
 }

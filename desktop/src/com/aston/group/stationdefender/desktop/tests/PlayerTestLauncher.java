@@ -5,8 +5,10 @@ import com.aston.group.stationdefender.tests.PlayerTest;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
+/**
+ * @author Jamie Ingram
+ */
 public class PlayerTestLauncher {
-
     public static void main(String[] arg) {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
@@ -16,5 +18,4 @@ public class PlayerTestLauncher {
 
         new LwjglApplication(new PlayerTest(), config);
     }
-
 }

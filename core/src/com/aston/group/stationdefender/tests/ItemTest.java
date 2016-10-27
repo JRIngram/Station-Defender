@@ -6,6 +6,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * @author Jamie Ingram
+ */
 public class ItemTest extends Game {
 
     private SpriteBatch batch;

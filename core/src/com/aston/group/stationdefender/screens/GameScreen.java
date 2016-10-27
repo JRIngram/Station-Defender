@@ -11,6 +11,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+/**
+ * This screen holds the main game loop
+ * @author Mohammad Foysal
+ */
 public class GameScreen implements Screen {
     private SpriteBatch batch;
     private OrthographicCamera camera;
@@ -30,10 +34,14 @@ public class GameScreen implements Screen {
         viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
         level = new Level();
         player = new Player();
+
     }
+
+
 
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(player);
     }
 
     @Override
@@ -41,8 +49,10 @@ public class GameScreen implements Screen {
         batch.setProjectionMatrix(camera.projection);
         batch.setTransformMatrix(camera.view);
 
-        Gdx.gl.glClearColor(255, 0, 0, 1);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        player.render(delta);
     }
 
     @Override
