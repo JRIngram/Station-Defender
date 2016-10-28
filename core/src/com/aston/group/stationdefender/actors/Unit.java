@@ -3,7 +3,7 @@ package com.aston.group.stationdefender.actors;
 /**
  * Abstract superclass inherited by Weapon and Alien subclasses.
  * @author Jamie Ingram
- * @version 20/10/2016
+ * @version 28/10/2016
  *
  */
 public abstract class Unit implements Actor {
@@ -102,7 +102,7 @@ public abstract class Unit implements Actor {
     }
     
     /**
-     * 
+     * Causes the Units health to lower by the damage parameter.
      * @param damage Causes the Unit's health to deplete.
      */
     public void takeDamage(double damage){
@@ -116,5 +116,15 @@ public abstract class Unit implements Actor {
      */
     public boolean isAdjacent(Actor entity){
     	return false;
+    }
+    
+    /**
+     * Checks the health of the Unit and calls destroy if Health is less than 1.
+     * @see act
+     */
+    protected void checkHealth(){
+    	if(health < 1){
+    		destroy();
+    	}
     }
 }
