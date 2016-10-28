@@ -55,7 +55,7 @@ public abstract class Unit implements Actor {
     
     /**
      * Method for getting the name of the Unit.
-     * @return
+     * @return name of the Unit.
      */
     public String getName(){
     	return name;
@@ -122,9 +122,11 @@ public abstract class Unit implements Actor {
      * Checks the health of the Unit and calls destroy if Health is less than 1.
      * @see act
      */
-    protected void checkHealth(){
+    public boolean checkZeroHealth(){
     	if(health < 1){
     		destroy();
+    		return true;
     	}
+    	return false;
     }
 }
