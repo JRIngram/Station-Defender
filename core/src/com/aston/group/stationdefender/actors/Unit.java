@@ -7,11 +7,29 @@ package com.aston.group.stationdefender.actors;
  *
  */
 public abstract class Unit implements Actor {
-    protected String name;
+    /**
+     * Name of the type of unit.
+     */
+	protected String name;
+	/**
+	 * How many tiles it can move per "tick".
+	 */
     protected double speed;
+    /**
+     * How much damage each successful hit causes.
+     */
     protected double damage;
+    /**
+     * How many times the unit fires per "tick".
+     */
     protected double rateOfFire;
+    /**
+     * How much damage the Unit can take before being destroyed.
+     */
     protected double health;
+    /**
+     * How many tiles forward the Unit can fire.
+     */
     protected double range;
 
     public Unit(String name, double speed, double damage, double rateOfFire, double health, double range){
@@ -34,6 +52,14 @@ public abstract class Unit implements Actor {
      */
     @Override
     public abstract void destroy();
+    
+    /**
+     * Method for getting the name of the Unit.
+     * @return
+     */
+    public String getName(){
+    	return name;
+    }
     
     /**
      * 
