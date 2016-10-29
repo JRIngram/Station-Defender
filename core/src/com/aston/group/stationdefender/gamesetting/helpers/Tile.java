@@ -1,4 +1,4 @@
-package com.aston.group.stationdefender.gamesetting;
+package com.aston.group.stationdefender.gamesetting.helpers;
 
 /**
  * Skeleton Tile class
