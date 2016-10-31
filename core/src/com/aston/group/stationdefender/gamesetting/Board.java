@@ -1,30 +1,40 @@
 package com.aston.group.stationdefender.gamesetting;
 
+import com.aston.group.stationdefender.actors.Actor;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Skeleton Board class
+ * Board class
  * @author Jonathon Fitch
+ * @author Twba Alshaghdari
  */
 public class Board {
     private ArrayList<Lane> lanes = new ArrayList<Lane>();
+	private static int numberOfLanes = 4;
+	private static int numberOfTiles = 4;
 
     /**
      * Construct a new Board with a default of 4 Lanes
      */
     public Board() {
-        this(4);
+		this(numberOfLanes, numberOfTiles);
     }
 
-    /**
-     * Construct a new Board with a given number of Lanes
-     * @param numberOfLanes The number of Lanes for the Board to have
-     */
-    public Board(int numberOfLanes) {
-        Lane[] lane = new Lane[numberOfLanes - 1];
-        Collections.addAll(lanes, lane);
-    }
+	/**
+	 * Construct a new Board with a given number of Lanes each lane will have
+	 * the same number of Tiles.
+	 * @param numberOfLanes The number of Lanes for the Board to have
+	 * @param numberOfTiles The number of Lanes for the Board to have
+	 */
+	public Board(int numberOfLanes, int numberOfTiles) {
+		Lane[] lane = new Lane[numberOfLanes - 1];
+		for (int i = 0; i < numberOfLanes; i++) {
+			lane[i] = new Lane(numberOfTiles);
+		}
+		Collections.addAll(lanes, lane);
+	}
 
     /**
      * Adds a Lane to the Board
@@ -58,4 +68,35 @@ public class Board {
     public Lane getLane(int index) {
         return lanes.get(index - 1);
     }
+
+	/**
+	 * Empty the board
+	 **/
+	public void clear() {
+		for (int i = 0; i < numberOfLanes; i++)
+			lanes.clear();
+	}
+
+	/**
+	 * Place an actor at the given lane and tile. if there is already an actor
+	 * at that tile placing should not happen.
+	 * @param actor The actor to be placed
+	 * @param laneNo The index of the lane the entity is in
+	 * @param tileNo The index of the tile the entity is in
+	 * @return true if the actor has been placed,
+     *          false if the actor hasn't been placed in the tile
+	 **/
+	public boolean place(Actor actor, int laneNo, int tileNo) {
+		return lanes.get(laneNo).getTile(tileNo).placeActor(actor);
+	}
+
+	/**
+	 * Place an entity at the given lane and tile. if there is already an entity
+	 * at that tile it will be lost.
+	 * @param laneNo The index of the lane the entity is in
+	 * @param tileNo The index of the tile the entity is in
+	 **/
+	public Actor getActorAt(int laneNo, int tileNo) {
+		return lanes.get(laneNo).getTile(tileNo).getActor();
+	}
 }
