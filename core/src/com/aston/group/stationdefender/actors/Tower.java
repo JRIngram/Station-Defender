@@ -37,4 +37,10 @@ public class Tower implements Actor {
     public int getWidth() {
         return width;
     }
+
+	@Override
+	public void takeDamage(double damage) {
+		// TODO Auto-generated method stub
+		
+	}
 }
