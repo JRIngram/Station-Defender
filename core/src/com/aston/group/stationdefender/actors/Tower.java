@@ -7,6 +7,7 @@ package com.aston.group.stationdefender.actors;
  */
 public class Tower implements Actor {
     private int height, width;
+    private double health;
 
     /**
      * Constructs a new Tower
@@ -38,9 +39,11 @@ public class Tower implements Actor {
         return width;
     }
 
-	@Override
-	public void takeDamage(double damage) {
-		// TODO Auto-generated method stub
-		
-	}
+    /**
+     * Causes the Units health to lower by the damage parameter.
+     * @param damage Causes the Unit's health to deplete.
+     */
+    public void takeDamage(double damage){
+    	health = health - damage;
+    }
 }
