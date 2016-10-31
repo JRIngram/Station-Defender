@@ -33,6 +33,9 @@ public class Lane {
         this.x = x;
         this.y = y;
         Tile[] tile = new Tile[numberOfTiles - 1];
+		for (int i = 0; i < numberOfTiles; i++) {
+			tile[i] = new Tile();
+		}
         Collections.addAll(tiles, tile); 
     }
     
