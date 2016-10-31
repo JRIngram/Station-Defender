@@ -73,8 +73,7 @@ public class Board {
 	 * Empty the board
 	 **/
 	public void clear() {
-		for (int i = 0; i < numberOfLanes; i++)
-			lanes.clear();
+        lanes.clear();
 	}
 
 	/**
