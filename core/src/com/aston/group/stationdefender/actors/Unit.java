@@ -1,37 +1,56 @@
 package com.aston.group.stationdefender.actors;
 
+import java.util.Random;
+
 /**
  * Abstract superclass inherited by Weapon and Alien subclasses.
  * @author Jamie Ingram
- * @version 28/10/2016
+ * @version 01/11/2016
  *
  */
 public abstract class Unit implements Actor {
-    /**
+    
+	/**
      * Name of the type of unit.
      */
 	protected String name;
+	
 	/**
 	 * How many tiles it can move per "tick".
 	 */
     protected double speed;
+    
     /**
      * How much damage each successful hit causes.
      */
     protected double damage;
+    
     /**
      * How many times the unit fires per "tick".
      */
     protected double rateOfFire;
+    
     /**
      * How much damage the Unit can take before being destroyed.
      */
     protected double health;
+    
     /**
      * How many tiles forward the Unit can fire.
      */
     protected double range;
-
+    
+    /**
+     * Checks if the Unit is adjacent to any other unit.
+     * This information is retrieved from the Board.
+     */
+    protected boolean isAdjacent;
+    
+    /**
+     * The Unit that this Unit is adjacent to.
+     */
+    protected Actor adjacentActor;
+    
     public Unit(String name, double speed, double damage, double rateOfFire, double health, double range){
     	this.name = name;
     	this.speed = speed;
@@ -39,6 +58,8 @@ public abstract class Unit implements Actor {
     	this.rateOfFire = rateOfFire;
     	this.health = health;
     	this.range = range;
+    	isAdjacent = false;
+    	adjacentActor = null;
     }
     
     /**
@@ -111,22 +132,53 @@ public abstract class Unit implements Actor {
     
     /**
      * Checks if the Unit is adjacent to another entity.
-     * @param entity An Actor.
      * @return Boolean which says if the Unit is adjacent to another entity.
      */
-    public boolean isAdjacent(Actor entity){
-    	return false;
+    public boolean isAdjacent(){
+    	return isAdjacent;
+    }
+    
+    public void setIsAdjacent(boolean isAdjacent){
+    	this.isAdjacent = isAdjacent;
+    }
+    
+    public Actor getAdjacentActor(){
+    	if (isAdjacent()){
+        	return adjacentActor;
+    	}else{
+    		return null;
+    	}
+    }
+    
+    public void setAdjacentActor(Actor adjacentActor){
+    	if(adjacentActor != null){
+        	this.adjacentActor = adjacentActor;
+        	setIsAdjacent(true);
+    	}else{
+    		this.adjacentActor = null;
+    		setIsAdjacent(false);
+    	}
     }
     
     /**
-     * Checks the health of the Unit and calls destroy if Health is less than 1.
+     * Checks if the Health of the Unit is less than 1.
      * @see act
      */
     public boolean checkZeroHealth(){
     	if(health < 1){
-    		destroy();
     		return true;
     	}
     	return false;
+    }
+    
+    public double fire(){
+    	Random rng = new Random();
+    	int hit = 0;
+    	for(int i = 0; i < rateOfFire; i++){
+    		if(5 == rng.nextInt(10)){
+    			hit++;
+    		}
+    	}
+    	return (hit * damage);
     }
 }

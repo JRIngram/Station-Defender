@@ -4,7 +4,7 @@ package com.aston.group.stationdefender.actors;
  * Weapon is a class that represents a weapon object 
  * that Humans (Unit) can arm themselves with and use to destroy Aliens
  * @author Jamie Ingram
- * @version 20/10/2016
+ * @version 01/11/2016
  *
  */
 public abstract class Weapon extends Unit implements Actor {
@@ -49,22 +49,42 @@ public abstract class Weapon extends Unit implements Actor {
     	}
     }
     
+    /**
+     * Returns the build time for the Weapon
+     * @return buildTime
+     */
     public double getBuildTime(){
     	return buildTime;
     }
     
+    /**
+     * Returns the remaining build time of the Weapon.
+     * @return remainingBuildTime
+     */
     public double getRemainingBuildTime(){
     	return remainingBuildTime;
     }
     
+    /**
+     * Returns the cost of building the weapon.
+     * @return cost.
+     */
     public int getCost(){
     	return cost;
     }
     
+    /**
+     * Returns the cost to upgrade the weapon.
+     * @return costToUpgrade
+     */
     public int getCostToUpgrade(){
     	return costToUpgrade;
     }
     
+    /**
+     * Returns a boolean stating if the Unit has been built or not.
+     * @return built
+     */
     public boolean getBuilt(){
     	return built;
     }

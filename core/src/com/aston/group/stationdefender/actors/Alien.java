@@ -3,7 +3,7 @@ package com.aston.group.stationdefender.actors;
 /**
  * Superclass for different Alien types.
  * @author IngramJ
- * @version 20/10/2016
+ * @version 01/11/2016
  */
 public abstract class Alien extends Unit{
 	
@@ -18,7 +18,18 @@ public abstract class Alien extends Unit{
      */
 	@Override
 	public abstract void act();
-
+	
+    /**
+     * Abstract method for each Unit, the main method which determines how the unit acts.
+     */
 	@Override
 	public abstract void destroy();
+	
+	/**
+	 * Moves the Alien from the left side of the lane to the right
+	 * @param speed Distance the Alien moves.
+	 */
+	public void move(double speed){
+		//TODO IMPLEMENT
+	}
 }

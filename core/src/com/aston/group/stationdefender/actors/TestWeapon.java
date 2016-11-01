@@ -3,22 +3,42 @@ package com.aston.group.stationdefender.actors;
 /**
  * Test class for Weapon
  * @author Jamie Ingram
+ * @version 01/11/2016
  */
 public class TestWeapon extends Weapon {
 	
-	public TestWeapon(double speed, double damage, double rateOfFire, double health,
+	public TestWeapon(double damage, double rateOfFire, double health,
 			double range, double buildTime, int cost, int costToUpgrade
 			){
-		super("Test Weapon", speed, damage, rateOfFire, health, range, buildTime, cost, costToUpgrade);
+		super("Test Weapon", 0, damage, rateOfFire, health, range, buildTime, cost, costToUpgrade);
 	}
 	
+    /**
+     * The main method which determines how the weapon acts.
+     */
 	@Override
-	public void act() {
-		// TODO Auto-generated method stub
+	public void act(){
+		if(!checkZeroHealth() && built){
+			if(isAdjacent){
+				try{
+					adjacentActor.takeDamage(fire());
+				}catch(Exception e){
+					System.out.println("Null values are not allowed");
+				}
+			}
+		}else{
+			destroy();
+		}
 	}
-
+	
+	/**
+	 * Plays an explosion sound and animation.
+	 */
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
+		// TODO IMPLEMENT
+		//Play explosion animation.
+		//Play explosion sound.
+		System.out.println("UNIT DESTROYED - FILLER BEFORE IMPLEMENTATION.");
 	}
 }
