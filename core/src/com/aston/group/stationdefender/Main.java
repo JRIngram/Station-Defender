@@ -1,18 +1,19 @@
 package com.aston.group.stationdefender;
 
-import com.aston.group.stationdefender.callbacks.TwoTextCallback;
 import com.aston.group.stationdefender.callbacks.IntroCallback;
 import com.aston.group.stationdefender.callbacks.MenuCallback;
+import com.aston.group.stationdefender.callbacks.TwoTextCallback;
 import com.aston.group.stationdefender.config.Constants;
-import com.aston.group.stationdefender.screens.TwoTextScreen;
 import com.aston.group.stationdefender.screens.GameScreen;
 import com.aston.group.stationdefender.screens.IntroScreen;
 import com.aston.group.stationdefender.screens.MenuScreen;
+import com.aston.group.stationdefender.screens.TwoTextScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
 /**
  * The Main game class.
+ *
  * @author Jonathon Fitch
  */
 public class Main extends Game {
@@ -40,7 +41,7 @@ public class Main extends Game {
         setupCallbacks();
 
         //Set the screen to intro upon creation if debug flag is not set
-        if(!Constants.DEBUG){
+        if (!Constants.DEBUG) {
             setScreen(introScreen);
         } else {
             setScreen(gameScreen);

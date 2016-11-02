@@ -23,6 +23,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * IntroScreen is the first screen shown in the game and contains
  * the game title and buttons that link to other screens such as the
  * background information screen, instruction screen etc.
+ *
  * @author Jonathon Fitch
  */
 public class IntroScreen implements Screen {

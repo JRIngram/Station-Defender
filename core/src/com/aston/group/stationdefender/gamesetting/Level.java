@@ -4,6 +4,7 @@ import com.aston.group.stationdefender.actors.Tower;
 
 /**
  * Skeleton Level class
+ *
  * @author Jonathon Fitch
  */
 public class Level {
@@ -23,11 +24,11 @@ public class Level {
         levelNumber++;
     }
 
-    public void setLevel(int level) {
-        levelNumber = level;
-    }
-
     public int getLevel() {
         return levelNumber;
+    }
+
+    public void setLevel(int level) {
+        levelNumber = level;
     }
 }

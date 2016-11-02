@@ -2,6 +2,7 @@ package com.aston.group.stationdefender.config;
 
 /**
  * This class is for constant known variables used throughout the game
+ *
  * @author Mohammad Foysal
  */
 public interface Constants {

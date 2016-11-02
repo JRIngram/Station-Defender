@@ -10,17 +10,16 @@ import com.aston.group.stationdefender.utils.resources.QuickSlot;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import java.util.ArrayList;
 
 /**
  * Skeleton Player class
+ *
  * @author Jonathon Fitch
  */
-public class Player implements InputProcessor{
+public class Player implements InputProcessor {
 
     //Player Properties
     private Item currentItem;
@@ -52,9 +51,9 @@ public class Player implements InputProcessor{
         int slotX = 0;
         for (int i = 0; i < 8; i++) {
             QuickSlot quickSlot = new QuickSlot(slotX, 0, 48, 48);
-            if(i % 2 == 0) {
+            if (i % 2 == 0) {
                 quickSlot.setItem(new ItemCredit());
-            }else{
+            } else {
                 quickSlot.setItem(new ItemBlank());
             }
 
@@ -70,7 +69,7 @@ public class Player implements InputProcessor{
         };
     }
 
-    public void render(float delta){
+    public void render(float delta) {
         //Render Quick Slots
         for (int i = 0; i < quickSlots.size(); i++) {
             //Update Quickslot Items to inventory
@@ -79,9 +78,9 @@ public class Player implements InputProcessor{
 //            }
 
             //Update Selected
-            if(selectedSlot == i){
+            if (selectedSlot == i) {
                 quickSlots.get(i).setSelected(true);
-            }else{
+            } else {
                 quickSlots.get(i).setSelected(false);
             }
 
@@ -90,7 +89,7 @@ public class Player implements InputProcessor{
         }
 
         //Render Player's current item (if any)
-        if(currentItem != null) {
+        if (currentItem != null) {
             currentItem.setX(Gdx.input.getX() - (currentItem.getWidth() / 2));
             currentItem.setY((Gdx.graphics.getHeight() - Gdx.input.getY()) - currentItem.getHeight() / 2);
 
@@ -98,7 +97,7 @@ public class Player implements InputProcessor{
         }
     }
 
-    public void dispose(){
+    public void dispose() {
         batch.dispose();
 
         for (int i = 0; i < quickSlots.size(); i++) {
@@ -113,7 +112,7 @@ public class Player implements InputProcessor{
 
     @Override
     public boolean keyUp(int keycode) {
-        switch (keycode){
+        switch (keycode) {
             case Input.Keys.NUM_1:
                 selectedSlot = 0;
                 break;
@@ -174,11 +173,11 @@ public class Player implements InputProcessor{
     public boolean scrolled(int amount) {
         selectedSlot += amount;
 
-        if(selectedSlot > quickSlots.size() - 1){
+        if (selectedSlot > quickSlots.size() - 1) {
             selectedSlot = 0;
         }
 
-        if(selectedSlot < 0){
+        if (selectedSlot < 0) {
             selectedSlot = quickSlots.size() - 1;
         }
 

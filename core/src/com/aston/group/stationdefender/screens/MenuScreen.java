@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * MenuScreen is the screen shown when pressing the menu button
  * from within the game.  It shows options such as play, exit, save etc.
+ *
  * @author Jonathon Fitch
  */
 public class MenuScreen implements Screen {

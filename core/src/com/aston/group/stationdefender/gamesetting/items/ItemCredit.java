@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 /**
  * ItemCredit is the in-game currency used.
+ *
  * @author Mohammad Foysal
  */
 public class ItemCredit extends Item {

@@ -23,6 +23,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * TwoTextScreen is a class that creates a screen holding a title text,
  * a body of text and a back button.
+ *
  * @author Jonathon Fitch
  */
 public class TwoTextScreen implements Screen {
@@ -146,6 +147,7 @@ public class TwoTextScreen implements Screen {
 
     /**
      * Sets the TwoTextCallback to be used within this class
+     *
      * @param twoTextCallback The TwoTextCallback supplied in Main.java
      */
     public void setTwoTextCallback(TwoTextCallback twoTextCallback) {
@@ -154,6 +156,7 @@ public class TwoTextScreen implements Screen {
 
     /**
      * Sets the text of the screen title
+     *
      * @param title The String to set as the title.
      */
     public void setTitle(String title) {
@@ -162,6 +165,7 @@ public class TwoTextScreen implements Screen {
 
     /**
      * Sets the text of the body message
+     *
      * @param body The String to set as the body message
      */
     public void setBody(String body) {

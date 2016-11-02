@@ -20,6 +20,7 @@ public class PlayerInventory implements Inventory {
 
     /**
      * Construct a new PlayerInventory
+     *
      * @param items The Items to add to the inventory
      */
     public PlayerInventory(ArrayList<Item> items) {
@@ -28,6 +29,7 @@ public class PlayerInventory implements Inventory {
 
     /**
      * Adds an Item to the PlayerInventory
+     *
      * @param item Item to add to the PlayerInventory
      * @return The Item added
      */
@@ -37,6 +39,7 @@ public class PlayerInventory implements Inventory {
 
     /**
      * Removes an Item from the PlayerInventory
+     *
      * @param item Item to be removed from the PlayerInventory
      * @return The Item removed
      */
@@ -46,6 +49,7 @@ public class PlayerInventory implements Inventory {
 
     /**
      * Adds all given Items from the PlayerInventory
+     *
      * @param items ArrayList of Items to be added to the PlayerInventory
      */
     public void addAllItems(ArrayList<Item> items) {
@@ -62,6 +66,7 @@ public class PlayerInventory implements Inventory {
 
     /**
      * Removes an Item from the PlayerInventory by the Item ID
+     *
      * @param id The ID of the Item to be removed
      */
     @Override
@@ -76,12 +81,13 @@ public class PlayerInventory implements Inventory {
 
     /**
      * Returns an Item at a specific number in the PlayerInventory
+     *
      * @param index The number of the queue to get the Item from
      * @return The Item at the given queue index number
      */
     @Override
     public Item getItem(int index) {
-        if(items.size() > index + 1 && items.get(index) != null){
+        if (items.size() > index + 1 && items.get(index) != null) {
             return items.get(index);
         }
         return null;
@@ -89,6 +95,7 @@ public class PlayerInventory implements Inventory {
 
     /**
      * Returns an Item at a specific id in the PlayerInventory
+     *
      * @param id The id of the item to return
      * @return The Item at the given ID number
      */
@@ -103,6 +110,7 @@ public class PlayerInventory implements Inventory {
 
     /**
      * Returns all Items in the PlayerInventory by a specific ID
+     *
      * @param id The ID to get all items by
      * @return All Items that contain the given ID
      */
@@ -119,6 +127,7 @@ public class PlayerInventory implements Inventory {
 
     /**
      * Removes all items from the PlayerInventory by a given ID
+     *
      * @param id The Item ID to remove all items by
      */
     @Override
@@ -133,6 +142,7 @@ public class PlayerInventory implements Inventory {
 
     /**
      * Prints the Items in the PlayerInventory
+     *
      * @return The Items in the PlayerInventory
      */
     @Override

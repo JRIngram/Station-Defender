@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
  * This screen holds the main game loop
+ *
  * @author Mohammad Foysal
  */
 public class GameScreen implements Screen {
@@ -36,7 +37,6 @@ public class GameScreen implements Screen {
         player = new Player();
 
     }
-
 
 
     @Override

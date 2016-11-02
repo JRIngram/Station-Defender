@@ -3,6 +3,7 @@ package com.aston.group.stationdefender.actors;
 /**
  * Tower is the object which the Humans defend,
  * and which the Aliens attack.
+ *
  * @author Jonathon Fitch
  */
 public class Tower implements Actor {
@@ -24,6 +25,7 @@ public class Tower implements Actor {
 
     /**
      * Returns the height of the Tower
+     *
      * @return The height of the Tower
      */
     public int getHeight() {
@@ -32,6 +34,7 @@ public class Tower implements Actor {
 
     /**
      * Returns the width of the Tower
+     *
      * @return The width of the Tower
      */
     public int getWidth() {

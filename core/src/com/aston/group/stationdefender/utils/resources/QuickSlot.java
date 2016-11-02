@@ -1,6 +1,5 @@
 package com.aston.group.stationdefender.utils.resources;
 
-import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -69,7 +68,7 @@ public class QuickSlot {
         }
         batch.end();
 
-        if(isColliding(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY(), 1, 1)) {
+        if (isColliding(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY(), 1, 1)) {
             batch.begin();
             font.setColor(Color.BLACK);
             font.draw(batch, "Item Title", x, y + height + 20);

@@ -2,18 +2,19 @@ package com.aston.group.stationdefender.actors;
 
 /**
  * Test class for Alien
+ *
  * @author Jamie Ingram
  */
-public class TestAlien extends Alien{
-	
-	public TestAlien(){
-	}
+public class TestAlien extends Alien {
 
-	@Override
-	public void act() {
-	}
+    public TestAlien() {
+    }
 
-	@Override
-	public void destroy() {	
-	}
+    @Override
+    public void act() {
+    }
+
+    @Override
+    public void destroy() {
+    }
 }

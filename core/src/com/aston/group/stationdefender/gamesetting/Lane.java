@@ -7,6 +7,7 @@ import java.util.Collections;
 
 /**
  * Lane class
+ *
  * @author Jonathon Fitch
  * @author Twba Alshaghdari
  */
@@ -17,6 +18,7 @@ public class Lane {
     /**
      * Construct a new Lane with default
      * X and Y co-ordinates of '0'
+     *
      * @param numberOfTiles The Number of tiles in the lane
      */
     public Lane(int numberOfTiles) {
@@ -25,50 +27,55 @@ public class Lane {
 
     /**
      * Construct a new Lane
-     * @param x The X co-ordinate of the Lane
-     * @param y The Y co-ordinate of the Lane
+     *
+     * @param x             The X co-ordinate of the Lane
+     * @param y             The Y co-ordinate of the Lane
      * @param numberOfTiles The Number of tiles in the lane
      */
     public Lane(int x, int y, int numberOfTiles) {
         this.x = x;
         this.y = y;
         Tile[] tile = new Tile[numberOfTiles - 1];
-		for (int i = 0; i < numberOfTiles; i++) {
-			tile[i] = new Tile();
-		}
-        Collections.addAll(tiles, tile); 
+        for (int i = 0; i < numberOfTiles; i++) {
+            tile[i] = new Tile();
+        }
+        Collections.addAll(tiles, tile);
     }
-    
+
     /**
-	 * Returns a tile by the specific tile number
-	 * @param index The lane number of the lane to get
-	 * @return The lane of the specific lane number
-	 */
-	public Tile getTile(int index) {
-		return tiles.get(index);
-	}
-	
-	/**
-	 * Adds a tile to the Board
-	 * @param tile The tile to add to the Board
-	 */
-	public void addTile(Tile tile) {
-		tiles.add(tile);
-	}
+     * Returns a tile by the specific tile number
+     *
+     * @param index The lane number of the lane to get
+     * @return The lane of the specific lane number
+     */
+    public Tile getTile(int index) {
+        return tiles.get(index);
+    }
 
-	/**
-	 * Removes a tile from the Board by Tile number
-	 * @param index The tile number to remove from the Board
-	 */
-	public void removeTileByIndex(int index) {
-		tiles.remove(index);
-	}
+    /**
+     * Adds a tile to the Board
+     *
+     * @param tile The tile to add to the Board
+     */
+    public void addTile(Tile tile) {
+        tiles.add(tile);
+    }
 
-	/**
-	 * Removes a tile from the Board by Tile Object
-	 * @param tile The tile Object to be removed from the Board
-	 */
-	public void removeTileByObject(Tile tile) {
-		tiles.remove(tile);
-	}
+    /**
+     * Removes a tile from the Board by Tile number
+     *
+     * @param index The tile number to remove from the Board
+     */
+    public void removeTileByIndex(int index) {
+        tiles.remove(index);
+    }
+
+    /**
+     * Removes a tile from the Board by Tile Object
+     *
+     * @param tile The tile Object to be removed from the Board
+     */
+    public void removeTileByObject(Tile tile) {
+        tiles.remove(tile);
+    }
 }
