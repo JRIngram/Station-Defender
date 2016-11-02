@@ -24,8 +24,8 @@ public class GameScreen implements Screen {
     private Viewport viewport;
     private Level level;
     private Player player;
-    private static ArrayList<Actor> entityBufferA = new ArrayList<Actor>();
-    private static ArrayList<Actor> entityBufferB = new ArrayList<Actor>();
+    private static ArrayList<Actor> actorBufferA = new ArrayList<Actor>();
+    private static ArrayList<Actor> actorBufferB = new ArrayList<Actor>();
     private static byte mainUpdateBuffer = (byte) 0;
 
     public GameScreen() {
@@ -99,10 +99,10 @@ public class GameScreen implements Screen {
     }
 
     private static ArrayList<Actor> getMainBuffer() {
-        return (mainUpdateBuffer == 0 ? entityBufferA : entityBufferB);
+        return (mainUpdateBuffer == 0 ? actorBufferA : actorBufferB);
     }
 
     private static ArrayList<Actor> getOtherBuffer() {
-        return (mainUpdateBuffer == 1 ? entityBufferA : entityBufferB);
+        return (mainUpdateBuffer == 1 ? actorBufferA : actorBufferB);
     }
 }
