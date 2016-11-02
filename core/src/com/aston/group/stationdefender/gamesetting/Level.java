@@ -12,22 +12,43 @@ public class Level {
     private Tower tower = new Tower();
     private Board board = new Board();
 
+    /**
+     * Construct a new Level with default level number of 1.
+     */
     public Level() {
         this(1);
     }
 
+    /**
+     * Construct a new Level with a given level number.
+     *
+     * @param levelNumber The number of the Level
+     */
     public Level(int levelNumber) {
         this.levelNumber = levelNumber;
     }
 
+    /**
+     * Increments the level number by 1.
+     */
     public void incrememnetLevel() {
         levelNumber++;
     }
 
+    /**
+     * Returns the current level number
+     *
+     * @return The number of the Level
+     */
     public int getLevel() {
         return levelNumber;
     }
 
+    /**
+     * Sets the current level number
+     *
+     * @param level The number of the level
+     */
     public void setLevel(int level) {
         levelNumber = level;
     }
