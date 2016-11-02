@@ -85,24 +85,16 @@ public class GameScreen implements Screen {
 
 
     public static void refresh(float delta) {
-        for (Actor a : getMainBuffer()) {
+        for (Actor a : actorBufferA) {
             a.render(delta);
         }
 
-        for (Actor a : getMainBuffer()) {
+        for (Actor a : actorBufferA) {
             if (a.getExists()) {
-                getOtherBuffer().add(a);
+                actorBufferB.add(a);
             }
         }
-        getMainBuffer().clear();
-        mainUpdateBuffer = (byte) (mainUpdateBuffer == 0 ? 1 : 0);
-    }
-
-    private static ArrayList<Actor> getMainBuffer() {
-        return (mainUpdateBuffer == 0 ? actorBufferA : actorBufferB);
-    }
-
-    private static ArrayList<Actor> getOtherBuffer() {
-        return (mainUpdateBuffer == 1 ? actorBufferA : actorBufferB);
+        actorBufferA.clear();
+        actorBufferA = actorBufferB;
     }
 }
