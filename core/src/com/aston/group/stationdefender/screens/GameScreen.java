@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender.screens;
 
+import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.Level;
 import com.aston.group.stationdefender.gamesetting.Player;
@@ -11,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.ArrayList;
+
 /**
  * This screen holds the main game loop
  * @author Mohammad Foysal
@@ -21,6 +24,9 @@ public class GameScreen implements Screen {
     private Viewport viewport;
     private Level level;
     private Player player;
+    private static ArrayList<Actor> entityBufferA = new ArrayList<Actor>();
+    private static ArrayList<Actor> entityBufferB = new ArrayList<Actor>();
+    private static byte mainUpdateBuffer = (byte) 0;
 
     public GameScreen() {
         batch = new SpriteBatch();
@@ -75,5 +81,29 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
+    }
+
+
+    public static void refresh(float delta) {
+        for (Actor a : getMainBuffer()) {
+            a.render(delta);
+        }
+
+        for (Actor a : getMainBuffer()) {
+            if (a.exists()) {
+                getOtherBuffer().add(a);
+            }
+        }
+        getMainBuffer().clear();
+        mainUpdateBuffer = (byte) (mainUpdateBuffer == 0 ? 1 : 0);
+        System.out.println(delta);
+    }
+
+    private static ArrayList<Actor> getMainBuffer() {
+        return (mainUpdateBuffer == 0 ? entityBufferA : entityBufferB);
+    }
+
+    private static ArrayList<Actor> getOtherBuffer() {
+        return (mainUpdateBuffer == 1 ? entityBufferA : entityBufferB);
     }
 }

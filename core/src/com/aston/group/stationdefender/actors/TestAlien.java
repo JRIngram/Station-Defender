@@ -6,10 +6,21 @@ package com.aston.group.stationdefender.actors;
  * @version 01/11/2016
  */
 public class TestAlien extends Alien{
-	
+	private boolean exists;
+
 	public TestAlien(double speed, double damage, double rateOfFire, double health, double range){
 		super("Test Alien", speed, damage, rateOfFire, health, range);
 		
+	}
+
+	@Override
+	public void render(float delta) {
+		exists = true;
+	}
+
+	@Override
+	public boolean exists(){
+		return exists;
 	}
 	
     /**
@@ -40,5 +51,6 @@ public class TestAlien extends Alien{
 		//TODO IMPLEMENT
 		//Play explosion animation.
 		//Play explosion sound.
+		exists = false;
 	}
 }

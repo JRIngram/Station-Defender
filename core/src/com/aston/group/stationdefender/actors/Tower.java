@@ -8,11 +8,22 @@ package com.aston.group.stationdefender.actors;
 public class Tower implements Actor {
     private int height, width;
     private double health;
+    private boolean exists = false;
 
     /**
      * Constructs a new Tower
      */
     public Tower() {
+    }
+
+    @Override
+    public void render(float delta) {
+        exists = true;
+    }
+
+    @Override
+    public boolean exists(){
+        return exists;
     }
 
     @Override
@@ -44,6 +55,6 @@ public class Tower implements Actor {
      * @param damage Causes the Unit's health to deplete.
      */
     public void takeDamage(double damage){
-    	health = health - damage;
+    	health -= damage;
     }
 }

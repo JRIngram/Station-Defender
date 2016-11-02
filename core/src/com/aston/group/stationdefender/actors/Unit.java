@@ -61,6 +61,12 @@ public abstract class Unit implements Actor {
     	isAdjacent = false;
     	adjacentActor = null;
     }
+
+    @Override
+    public abstract void render(float delta);
+
+    @Override
+    public abstract boolean exists();
     
     /**
      * Abstract method for each Unit, the main method which determines how the unit acts.
@@ -165,10 +171,7 @@ public abstract class Unit implements Actor {
      * @see act
      */
     public boolean checkZeroHealth(){
-    	if(health < 1){
-    		return true;
-    	}
-    	return false;
+        return health < 1;
     }
     
     public double fire(){

@@ -7,8 +7,10 @@ package com.aston.group.stationdefender.actors;
  * @version 20/10/2016
  */
 public interface Actor {
+    public void render(float delta);
 	public void act();
 	public void destroy();
+    public boolean exists();
 	
     /**
      * Causes the Units health to lower by the damage parameter.

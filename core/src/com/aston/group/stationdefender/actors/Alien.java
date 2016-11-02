@@ -10,6 +10,12 @@ public abstract class Alien extends Unit{
 	public Alien(String name,  double speed, double damage, double rateOfFire, double health, double range){
 		super(name, speed, damage, rateOfFire, health, range);
 	}
+
+    @Override
+    public abstract void render(float delta);
+
+    @Override
+    public abstract boolean exists();
 	
     /**
      * Move to the left.
