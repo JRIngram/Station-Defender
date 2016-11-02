@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender.screens;
 
+import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.Level;
 import com.aston.group.stationdefender.gamesetting.Player;
@@ -10,6 +11,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
+import java.util.ArrayList;
 
 /**
  * This screen holds the main game loop
@@ -22,6 +25,9 @@ public class GameScreen implements Screen {
     private Viewport viewport;
     private Level level;
     private Player player;
+    private static ArrayList<Actor> actorBufferA = new ArrayList<Actor>();
+    private static ArrayList<Actor> actorBufferB = new ArrayList<Actor>();
+    private static byte mainUpdateBuffer = (byte) 0;
 
     public GameScreen() {
         batch = new SpriteBatch();
@@ -75,5 +81,20 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
+    }
+
+
+    public static void refresh(float delta) {
+        for (Actor a : actorBufferA) {
+            a.render(delta);
+        }
+
+        for (Actor a : actorBufferA) {
+            if (a.getExists()) {
+                actorBufferB.add(a);
+            }
+        }
+        actorBufferA.clear();
+        actorBufferA = actorBufferB;
     }
 }
