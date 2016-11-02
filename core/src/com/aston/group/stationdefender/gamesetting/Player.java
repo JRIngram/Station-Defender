@@ -100,8 +100,8 @@ public class Player implements InputProcessor {
     public void dispose() {
         batch.dispose();
 
-        for (int i = 0; i < quickSlots.size(); i++) {
-            quickSlots.get(i).dispose();
+        for (QuickSlot quickSlot : quickSlots) {
+            quickSlot.dispose();
         }
     }
 
