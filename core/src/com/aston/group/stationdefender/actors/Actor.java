@@ -10,7 +10,7 @@ public interface Actor {
     public void render(float delta);
 	public void act();
 	public void destroy();
-    public boolean exists();
+	public boolean getExists();
 	
     /**
      * Causes the Units health to lower by the damage parameter.

@@ -8,22 +8,17 @@ package com.aston.group.stationdefender.actors;
 public class Tower implements Actor {
     private int height, width;
     private double health;
-    private boolean exists = false;
+    private boolean exists;
 
     /**
      * Constructs a new Tower
      */
     public Tower() {
+        exists = false;
     }
 
     @Override
     public void render(float delta) {
-        exists = true;
-    }
-
-    @Override
-    public boolean exists(){
-        return exists;
     }
 
     @Override
@@ -32,6 +27,26 @@ public class Tower implements Actor {
 
     @Override
     public void destroy() {
+        exists = false;
+    }
+
+    /**
+     * Returns the existence state of the Unit.
+     *
+     * @return true if the Unit exits, false if not
+     */
+    @Override
+    public boolean getExists() {
+        return exists;
+    }
+
+    /**
+     * Sets the existence state of the Unit.
+     *
+     * @param exists The existence state of the Unit
+     */
+    public void setExists(boolean exists) {
+        this.exists = exists;
     }
 
     /**

@@ -13,9 +13,6 @@ public abstract class Alien extends Unit{
 
     @Override
     public abstract void render(float delta);
-
-    @Override
-    public abstract boolean exists();
 	
     /**
      * Move to the left.

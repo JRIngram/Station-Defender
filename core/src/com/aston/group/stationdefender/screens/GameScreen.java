@@ -90,13 +90,12 @@ public class GameScreen implements Screen {
         }
 
         for (Actor a : getMainBuffer()) {
-            if (a.exists()) {
+            if (a.getExists()) {
                 getOtherBuffer().add(a);
             }
         }
         getMainBuffer().clear();
         mainUpdateBuffer = (byte) (mainUpdateBuffer == 0 ? 1 : 0);
-        System.out.println(delta);
     }
 
     private static ArrayList<Actor> getMainBuffer() {

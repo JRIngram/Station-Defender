@@ -50,6 +50,11 @@ public abstract class Unit implements Actor {
      * The Unit that this Unit is adjacent to.
      */
     protected Actor adjacentActor;
+
+    /**
+     * Whether the Unit is alive or dead.
+     */
+    protected boolean exists;
     
     public Unit(String name, double speed, double damage, double rateOfFire, double health, double range){
     	this.name = name;
@@ -60,13 +65,30 @@ public abstract class Unit implements Actor {
     	this.range = range;
     	isAdjacent = false;
     	adjacentActor = null;
+    	exists = false;
     }
 
     @Override
     public abstract void render(float delta);
 
+    /**
+     * Returns the existence state of the Unit.
+     *
+     * @return true if the Unit exits, false if not
+     */
     @Override
-    public abstract boolean exists();
+    public boolean getExists() {
+        return exists;
+    }
+
+    /**
+     * Sets the existence state of the Unit.
+     *
+     * @param exists The existence state of the Unit
+     */
+    public void setExists(boolean exists) {
+        this.exists = exists;
+    }
     
     /**
      * Abstract method for each Unit, the main method which determines how the unit acts.
@@ -133,7 +155,7 @@ public abstract class Unit implements Actor {
      * @param damage Causes the Unit's health to deplete.
      */
     public void takeDamage(double damage){
-    	health = health - damage;
+    	health -= damage;
     }
     
     /**
@@ -168,7 +190,7 @@ public abstract class Unit implements Actor {
     
     /**
      * Checks if the Health of the Unit is less than 1.
-     * @see act
+     * @see #act()
      */
     public boolean checkZeroHealth(){
         return health < 1;

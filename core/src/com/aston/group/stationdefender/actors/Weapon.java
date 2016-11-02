@@ -26,9 +26,6 @@ public abstract class Weapon extends Unit implements Actor {
 
     @Override
     public abstract void render(float delta);
-
-    @Override
-    public abstract boolean exists();
     
     /**
      * Checks if adjacent space to the right is occupied by an alien, and if so, attack.

@@ -6,7 +6,6 @@ package com.aston.group.stationdefender.actors;
  * @version 01/11/2016
  */
 public class TestWeapon extends Weapon {
-	private boolean exists = false;
 	
 	public TestWeapon(double damage, double rateOfFire, double health,
 			double range, double buildTime, int cost, int costToUpgrade
@@ -16,12 +15,6 @@ public class TestWeapon extends Weapon {
 
 	@Override
 	public void render(float delta) {
-		exists = true;
-	}
-
-	@Override
-	public boolean exists(){
-		return exists;
 	}
 	
     /**
