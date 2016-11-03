@@ -1,5 +1,8 @@
 package com.aston.group.stationdefender.actors;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
 /**
  * Test class for Alien
  * @author Jamie Ingram
@@ -9,14 +12,14 @@ public class TestAlien extends Alien{
 	
 	private ShapeRenderer shapeRenderer;
 	public TestAlien(double speed, double damage, double rateOfFire, double health, double range, int x, int y, int height, int width){
-		super("Test Alien", speed, damage, rateOfFire, health, range, x, y, height, width);
+		super("Test Alien", speed, damage, rateOfFire, health, range, x, y, width, height);
 		shapeRenderer = new ShapeRenderer();
 	}
 
 	@Override
 	public void render(float delta) {
-		shapeRenderer.begin(ShapeRenderer.ShapeType.Filler);
-		shapeRenderer.setColor(Colour.BLUE);
+		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+		shapeRenderer.setColor(Color.BLUE);
 		shapeRenderer.rect(x, y, width, height);
 		shapeRenderer.end();
 	}

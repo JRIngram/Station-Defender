@@ -1,5 +1,8 @@
 package com.aston.group.stationdefender.actors;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
 /**
  * Test class for Weapon
  * @author Jamie Ingram
@@ -8,16 +11,16 @@ package com.aston.group.stationdefender.actors;
 public class TestWeapon extends Weapon {
 	
 	private ShapeRenderer shapeRenderer;
-	public TestWeapon(double damage, double rateOfFire, double health, int x, int y, int height, int width
+	public TestWeapon(double damage, double rateOfFire, double health, int x, int y, int height, int width,
 			double range, double buildTime, int cost, int costToUpgrade
 			){
-		super("Test Weapon", 0, damage, rateOfFire, health, range, x, y, height, width buildTime, cost, costToUpgrade);
+		super("Test Weapon", 0, damage, rateOfFire, health, range, x, y, height, width, buildTime, cost, costToUpgrade);
 		shapeRenderer = new ShapeRenderer();
 	}
 
 	@Override
 	public void render(float delta) {
-		shapeRenderer.begin(ShapeRenderer.ShapeType.Filler);
+		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 		shapeRenderer.setColor(Color.GREEN);
 		shapeRenderer.rect(x, y, width, height);
 		shapeRenderer.end();
