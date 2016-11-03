@@ -76,13 +76,17 @@ public abstract class Unit implements Actor {
     */
     protected int height;
 	
-    public Unit(String name, double speed, double damage, double rateOfFire, double health, double range){
+    public Unit(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height){
     	this.name = name;
     	this.speed = speed;
     	this.damage = damage;
     	this.rateOfFire = rateOfFire;
     	this.health = health;
     	this.range = range;
+	this.x = x;
+	this.y = y;
+        this.height = height;
+        this.width = width;
     	isAdjacent = false;
     	adjacentActor = null;
     	exists = false;
