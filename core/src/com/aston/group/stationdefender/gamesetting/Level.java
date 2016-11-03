@@ -9,7 +9,7 @@ import com.aston.group.stationdefender.actors.Tower;
  */
 public class Level {
     private int levelNumber;
-    private Tower tower = new Tower();
+    private Tower tower = new Tower(1, 1, 10, 10);
     private Board board = new Board();
 
     /**
@@ -31,7 +31,7 @@ public class Level {
     /**
      * Increments the level number by 1.
      */
-    public void incrememnetLevel() {
+    public void incrementLevel() {
         levelNumber++;
     }
 

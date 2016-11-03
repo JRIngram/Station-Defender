@@ -83,7 +83,7 @@ public abstract class Unit implements Actor {
     /**
      * @return The damage that the unit inflicts.
      */
-    public static double getDamage() {
+    public double getDamage() {
         return damage;
     }
 

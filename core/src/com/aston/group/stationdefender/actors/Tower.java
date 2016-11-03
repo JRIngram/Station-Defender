@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender.actors;
 
+import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -42,11 +43,20 @@ public class Tower implements Actor {
 
     @Override
     public void act() {
-    	if(Unit.isAdjacent) {
-    		takeDamage(Unit.getDamage());
-    	}
+
     }
-    
+
+    public boolean isColliding (int x, int y, int width, int height) {
+        if (x + width > this.x && x < this.x + this.width &&
+                y + height > this.y && y < this.y + this.height) {
+
+            takeDamage(Constants.DEFAULT_DAMAGE);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Determines what happens when the tower gets destroyed.
      */
