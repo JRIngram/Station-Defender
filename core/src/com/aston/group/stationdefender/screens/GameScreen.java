@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * This screen holds the main game loop
  *
- * @author Mohammad Foysal
+ * @author Mohammed Foysal
  */
 public class GameScreen implements Screen {
     private static ArrayList<Actor> actorBufferA = new ArrayList<Actor>();
