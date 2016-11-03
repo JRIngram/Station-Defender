@@ -5,7 +5,10 @@ import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.Level;
 import com.aston.group.stationdefender.gamesetting.Player;
+import com.aston.group.stationdefender.gamesetting.helpers.Projectile;
+import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -29,6 +32,7 @@ public class GameScreen implements Screen {
     private Level level;
     private Player player;
 
+    private ProjectileFactory projectileFactory;
     /**
      * Construct a new GameScreen
      */
@@ -51,6 +55,9 @@ public class GameScreen implements Screen {
                 //todo implement place actor
             }
         });
+
+        projectileFactory = new ProjectileFactory();
+        projectileFactory.createBullet(20, 400, 1);
     }
 
     /**
@@ -92,6 +99,13 @@ public class GameScreen implements Screen {
 
         level.render(delta);
         player.render(delta);
+
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+            projectileFactory.createBullet(20, 400, 1);
+        }
+
+        projectileFactory.render(delta);
+
     }
 
     @Override
