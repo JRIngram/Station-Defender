@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.screens;
 
 import com.aston.group.stationdefender.actors.Actor;
+import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.Level;
 import com.aston.group.stationdefender.gamesetting.Player;
@@ -40,7 +41,14 @@ public class GameScreen implements Screen {
         //Setup viewport
         viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
         level = new Level();
+
         player = new Player();
+        player.setPlayerCallback(new PlayerCallback() {
+            @Override
+            public void placeActor(Actor actor, int x, int y) {
+                //todo implement place actor
+            }
+        });
 
     }
 
@@ -58,6 +66,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        level.render(delta);
         player.render(delta);
     }
 
@@ -83,12 +92,10 @@ public class GameScreen implements Screen {
         batch.dispose();
     }
 
-
     public static void refresh(float delta) {
         for (Actor a : actorBufferA) {
             a.render(delta);
         }
-
         for (Actor a : actorBufferA) {
             if (a.getExists()) {
                 actorBufferB.add(a);

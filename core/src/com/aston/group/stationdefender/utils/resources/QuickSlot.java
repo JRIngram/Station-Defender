@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * have a limited number of items and each item takes
  * up a slot.
  *
- * @author Mohammad Foysal
+ * @author Mohammed Foysal
  */
 public class QuickSlot {
     private int x, y, width, height;

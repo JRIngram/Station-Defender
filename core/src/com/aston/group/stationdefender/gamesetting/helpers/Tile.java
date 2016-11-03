@@ -1,6 +1,9 @@
 package com.aston.group.stationdefender.gamesetting.helpers;
 
 import com.aston.group.stationdefender.actors.Actor;
+import com.aston.group.stationdefender.config.Constants;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 /**
  * Tile class
@@ -9,12 +12,24 @@ import com.aston.group.stationdefender.actors.Actor;
  * @author Twba Al-shaghdari
  */
 public class Tile {
+
+    private int x, y, width, height;
     private Actor actor;
+
+    //DEBUG - Remove if not need
+    private ShapeRenderer shapeRenderer;
 
     /**
      * Construct a new Tile
      */
-    public Tile() {
+    public Tile(int x, int y) {
+        this.x = x;
+        this.y = y;
+
+        width = Constants.TILE_WIDTH;
+        height = Constants.TILE_HEIGHT;
+
+        shapeRenderer = new ShapeRenderer();
     }
 
     /**
@@ -24,6 +39,10 @@ public class Tile {
      * @param actor The actor to be placed
      * @return true if the actor has been placed, false if the actor hasn't been placed in the tile
      **/
+    @Deprecated
+    /**
+     * This method should be removed as Tiles are being used as helpers, not to store Actors
+     */
     public boolean placeActor(Actor actor) {
         if (getActor() == null) {
             this.actor = actor;
@@ -39,5 +58,18 @@ public class Tile {
      **/
     public Actor getActor() {
         return actor;
+    }
+
+    public void render(float delta){
+
+        //Remove if not needed
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setColor(Color.RED);
+        shapeRenderer.rect(x, y, width, height);
+        shapeRenderer.end();
+    }
+
+    public void dispose(){
+
     }
 }

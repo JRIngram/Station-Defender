@@ -27,4 +27,8 @@ public interface Constants {
     String BACK = "Back";
 
     String INSTRUCTIONS = "Instruction text will go here";
+
+    int TILE_WIDTH = 60;
+    int TILE_HEIGHT = 60;
+    int TILE_AMOUNT = 10;
 }
