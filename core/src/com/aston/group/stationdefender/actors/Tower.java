@@ -14,8 +14,10 @@ public class Tower implements Actor {
     /**
      * Constructs a new Tower
      */
-    public Tower() {
+    public Tower(int height, int width) {
         exists = true;
+        this.height = height;
+        this.width = width;
     }
 
     @Override
@@ -28,8 +30,8 @@ public class Tower implements Actor {
 
     @Override
     public void act() {
-    	if(isAdjacent) {
-    		takeDamage(getDamage());
+    	if(Unit.isAdjacent) {
+    		takeDamage(Unit.getDamage());
     	}
     }
     
@@ -87,12 +89,8 @@ public class Tower implements Actor {
      * @param damage Causes the Unit's health to deplete.
      */
     public void takeDamage(double damage) {
-    	if(checkZeroHealth()) {
-    		try {
-            	destroy();
-            } catch (Exception e) {
-            	System.out.println("Null pointer exception..");
-            }
+    	if(health <= 0) {
+    		destroy();
     	} else {
     		health -= damage;
     	}
