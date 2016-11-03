@@ -42,7 +42,7 @@ public class Projectile implements Pool.Poolable {
         alive = false;
     }
 
-    public void render(float delta){
+    public void render(float delta) {
         x += (speed * delta * 60);
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -50,19 +50,19 @@ public class Projectile implements Pool.Poolable {
         shapeRenderer.rect(x, y, width, height);
         shapeRenderer.end();
 
-        if(isOutOfScreen())
+        if (isOutOfScreen())
             alive = false;
     }
 
-    public boolean isOutOfScreen(){
-        if(x > 2000){
+    public boolean isOutOfScreen() {
+        if (x > 2000) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public void dispose(){
+    public void dispose() {
         shapeRenderer.dispose();
     }
 

@@ -9,80 +9,72 @@ import java.util.Random;
  * @version 01/11/2016
  */
 public abstract class Unit implements Actor {
-    
-	/**
-     * Name of the type of unit.
-     */
-	protected String name;
-	
-	/**
-	 * How many tiles it can move per "tick".
-	 */
-    protected double speed;
-    
-    /**
-     * How much damage each successful hit causes.
-     */
-    private double damage;
-
-    /**
-     * How many times the unit fires per "tick".
-     */
-    private double rateOfFire;
-
-    /**
-     * How much damage the Unit can take before being destroyed.
-     */
-    private double health;
-
-    /**
-     * How many tiles forward the Unit can fire.
-     */
-    private double range;
-
-    /**
-     * Checks if the Unit is adjacent to any other unit.
-     * This information is retrieved from the Board.
-     */
-    boolean isAdjacent;
-
-    /**
-     * The Unit that this Unit is adjacent to.
-     */
-    Actor adjacentActor;
-
-    /**
-     * Whether the Unit is alive or dead.
-     */
-    protected boolean exists;
 
     /**
      * Unit's position on the X-Axis
      */
     protected int x;
-
     /**
      * Unit's position on the Y-Axis
      */
     protected int y;
-
     /**
      * Unit's width.
      */
     protected int width;
-
     /**
      * Unit's height
      */
     protected int height;
+    /**
+     * How many tiles it can move per "tick".
+     */
+    double speed;
+    /**
+     * Checks if the Unit is adjacent to any other unit.
+     * This information is retrieved from the Board.
+     */
+    boolean isAdjacent;
+    /**
+     * The Unit that this Unit is adjacent to.
+     */
+    Actor adjacentActor;
+    /**
+     * Whether the Unit is alive or dead.
+     */
+    boolean exists;
+    /**
+     * Name of the type of unit.
+     */
+    private String name;
+    /**
+     * How much damage each successful hit causes.
+     */
+    private double damage;
+    /**
+     * How many times the unit fires per "tick".
+     */
+    private double rateOfFire;
+    /**
+     * How much damage the Unit can take before being destroyed.
+     */
+    private double health;
+    /**
+     * How many tiles forward the Unit can fire.
+     */
+    private double range;
 
-    public Unit(String name, double speed, double damage, double rateOfFire, double health, double range) {
+    public Unit(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
         this.name = name;
         this.speed = speed;
         this.damage = damage;
         this.rateOfFire = rateOfFire;
         this.health = health;
         this.range = range;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
         isAdjacent = false;
         adjacentActor = null;
         exists = false;
@@ -226,32 +218,32 @@ public abstract class Unit implements Actor {
         return (hit * damage);
     }
 
-    public void setHeightAndWidth(int height, int width){
-    	this.height = height;
-	    this.width = width;
+    public void setHeightAndWidth(int height, int width) {
+        this.height = height;
+        this.width = width;
     }
 
-    public void setX(int x){
-     	this.x = x;
+    public int getHeight() {
+        return height;
     }
 
-    public void setY(int y){
-    	this.y = y;
+    public int getWidth() {
+        return width;
     }
 
-    public int getHeight(){
-    	return height;
+    public int getX() {
+        return x;
     }
 
-    public int getWidth(){
-    	return width;
+    public void setX(int x) {
+        this.x = x;
     }
 
-    public int getX(){
-    	return x;
+    public int getY() {
+        return y;
     }
 
-    public int getY(){
-    	return y;
+    public void setY(int y) {
+        this.y = y;
     }
 }

@@ -88,6 +88,7 @@ public class Player implements InputProcessor {
 
     /**
      * Render the Player.
+     *
      * @param delta - The time in seconds since the last render.
      */
     public void render(float delta) {

@@ -96,6 +96,7 @@ public class TwoTextScreen implements Screen {
 
     /**
      * Render the TwoTextScreen.
+     *
      * @param delta - The time in seconds since the last render.
      */
     @Override

@@ -53,6 +53,7 @@ public class MenuScreen implements Screen {
 
     /**
      * Render the MenuScreen.
+     *
      * @param delta - The time in seconds since the last render.
      */
     @Override

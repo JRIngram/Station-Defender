@@ -103,6 +103,7 @@ public class IntroScreen implements Screen {
 
     /**
      * Render the IntroScreen.
+     *
      * @param delta - The time in seconds since the last render.
      */
     @Override

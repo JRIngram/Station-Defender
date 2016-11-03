@@ -11,6 +11,7 @@ public interface Actor {
 
     /**
      * Render the Actor.
+     *
      * @param delta - The time in seconds since the last render.
      */
     void render(float delta);

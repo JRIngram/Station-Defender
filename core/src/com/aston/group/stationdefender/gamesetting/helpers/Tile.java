@@ -61,6 +61,7 @@ public class Tile {
 
     /**
      * Render the Tile.
+     *
      * @param delta - The time in seconds since the last render.
      */
     public void render(float delta) {

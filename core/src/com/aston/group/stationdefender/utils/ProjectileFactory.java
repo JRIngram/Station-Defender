@@ -8,22 +8,21 @@ import java.util.Iterator;
 
 public class ProjectileFactory {
 
-    private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
-
     private final Pool<Projectile> projectilePool = new Pool<Projectile>() {
         @Override
         protected Projectile newObject() {
             return new Projectile();
         }
     };
+    private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 
-    public void createBullet(int x, int y, int direction){
+    public void createBullet(int x, int y, int direction) {
         Projectile projectile = projectilePool.obtain();
         projectile.init(x, y);
         projectiles.add(projectile);
     }
 
-    public void render(float delta){
+    public void render(float delta) {
 
         for (int i = 0; i < projectiles.size(); i++) {
             projectiles.get(i).render(delta);
@@ -31,10 +30,10 @@ public class ProjectileFactory {
 
         //Remove Dead Projectiles
         Iterator<Projectile> projectileIterator = projectiles.iterator();
-        while (projectileIterator.hasNext()){
+        while (projectileIterator.hasNext()) {
             Projectile projectile = projectileIterator.next();
 
-            if(!projectile.isAlive()){
+            if (!projectile.isAlive()) {
                 projectileIterator.remove();
                 projectilePool.free(projectile);
             }
@@ -42,7 +41,7 @@ public class ProjectileFactory {
 
     }
 
-    public void dispose(){
+    public void dispose() {
 
     }
 
