@@ -13,9 +13,19 @@ public class TestAlien extends Alien {
 
     private ShapeRenderer shapeRenderer;
 
+    public TestAlien() {
+        this(0, 0);
+    }
+
     public TestAlien(int x, int y) {
         super(x, y);
         shapeRenderer = new ShapeRenderer();
+        facingLeft = true;
+        if(facingLeft){
+            speed = -100;
+        }else{
+            speed = 100;
+        }
     }
 
     public TestAlien(double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
@@ -26,9 +36,20 @@ public class TestAlien extends Alien {
     @Override
     public void render(float delta) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        if(!isAdjacent())
         shapeRenderer.setColor(Color.BLUE);
+        else
+            shapeRenderer.setColor(Color.BLACK);
         shapeRenderer.rect(x, y, width, height);
         shapeRenderer.end();
+
+        if(!isAdjacent()) {
+            x += (speed * delta);
+        }else{
+            if(getAdjacentActor() != null && !((Unit) getAdjacentActor()).isFacingLeft()){
+                getAdjacentActor().takeDamage(200);
+            }
+        }
     }
 
     /**

@@ -14,6 +14,13 @@ public abstract class Weapon extends Unit implements Actor {
     private int cost;
     private int costToUpgrade;
 
+    public Weapon() {
+    }
+
+    public Weapon(int x, int y) {
+        super(x, y);
+    }
+
     public Weapon(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height,
                   double buildTime, int cost, int costToUpgrade) {
         super(name, speed, damage, rateOfFire, health, range, x, y, width, height);

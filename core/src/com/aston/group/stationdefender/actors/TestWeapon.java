@@ -13,6 +13,22 @@ public class TestWeapon extends Weapon {
 
     private ShapeRenderer shapeRenderer;
 
+    public TestWeapon() {
+        this(0, 0);
+    }
+
+    public TestWeapon(int x, int y) {
+        super(x, y);
+        shapeRenderer = new ShapeRenderer();
+        facingLeft = false;
+        if(facingLeft){
+            speed = -100;
+        }else{
+            speed = 100;
+        }
+        health = 100;
+    }
+
     public TestWeapon(double damage, double rateOfFire, double health, int x, int y, int height, int width,
                       double range, double buildTime, int cost, int costToUpgrade
     ) {
@@ -23,7 +39,10 @@ public class TestWeapon extends Weapon {
     @Override
     public void render(float delta) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        if(getHealth() > 0)
         shapeRenderer.setColor(Color.GREEN);
+        else
+            shapeRenderer.setColor(Color.ORANGE);
         shapeRenderer.rect(x, y, width, height);
         shapeRenderer.end();
     }

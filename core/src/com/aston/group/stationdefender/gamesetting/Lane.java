@@ -1,14 +1,17 @@
 package com.aston.group.stationdefender.gamesetting;
 
 import com.aston.group.stationdefender.actors.Actor;
+import com.aston.group.stationdefender.actors.TestAlien;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.gamesetting.helpers.Projectile;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 /**
  * Lane class
@@ -23,6 +26,8 @@ public class Lane {
     private int x, y, width, height;
     private ArrayList<Tile> tiles = new ArrayList<Tile>();
     private ArrayList<Unit> units = new ArrayList<Unit>();
+
+    private long lastRenderTime;
 
     /**
      * Construct a new Lane with default
@@ -66,7 +71,6 @@ public class Lane {
                 unit.setX(tiles.get(i).getCenterX() - (unit.getWidth() / 2));
                 unit.setY(tiles.get(i).getCenterY() - (unit.getHeight() / 2));
                 units.add(unit);
-                System.out.println("Placed Unit");
             }
         }
     }
@@ -138,6 +142,69 @@ public class Lane {
 
         for (int i = 0; i < units.size(); i++) {
             units.get(i).render(delta);
+        }
+
+        for (int i = 0; i < units.size(); i++) {
+            boolean isUnitAdjacent = false;
+
+            Unit unit = null;
+
+            for (int j = 0; j < units.size(); j++) {
+                if(i != j){
+                    if(units.get(i).isUnitAdjacent(units.get(j))){
+                        isUnitAdjacent = true;
+                        unit = units.get(j);
+                        System.out.println("Adjacent");
+                        break;
+                    }
+                }
+            }
+
+            if(isUnitAdjacent){
+                units.get(i).setIsAdjacent(true);
+            }else{
+                units.get(i).setIsAdjacent(false);
+            }
+
+            units.get(i).setAdjacentActor(unit);
+        }
+
+        //Remove Dead Units
+        Iterator<Unit> unitsIterator = units.iterator();
+        while (unitsIterator.hasNext()) {
+            Unit unit = unitsIterator.next();
+
+            if (unit.getHealth() <= 0) {
+                unitsIterator.remove();
+            }
+        }
+
+        //Spawn New Aliens
+        if(System.currentTimeMillis() - lastRenderTime > 2000){
+            TestAlien testAlien = new TestAlien();
+            testAlien.setX(getLastTileCenterX() - (testAlien.getWidth() / 2));
+            testAlien.setY(getLastTileCenterY() - (testAlien.getHeight() / 2));
+
+            units.add(testAlien);
+            lastRenderTime = System.currentTimeMillis();
+
+        }
+
+    }
+
+    public int getLastTileCenterX(){
+        if(tiles.size() > 0){
+            return tiles.get(tiles.size() - 1).getCenterX();
+        }else{
+            return 0;
+        }
+    }
+
+    public int getLastTileCenterY(){
+        if(tiles.size() > 0){
+            return tiles.get(tiles.size() - 1).getCenterY();
+        }else{
+            return 0;
         }
     }
 

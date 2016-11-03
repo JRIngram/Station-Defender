@@ -8,6 +8,9 @@ package com.aston.group.stationdefender.actors;
  */
 public abstract class Alien extends Unit {
 
+    public Alien() {
+    }
+
     public Alien(int x, int y) {
         super(x, y);
     }

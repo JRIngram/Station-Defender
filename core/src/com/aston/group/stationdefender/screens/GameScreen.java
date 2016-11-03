@@ -2,6 +2,7 @@ package com.aston.group.stationdefender.screens;
 
 import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.TestAlien;
+import com.aston.group.stationdefender.actors.TestWeapon;
 import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.Level;
@@ -50,7 +51,7 @@ public class GameScreen implements Screen {
             public void placeActor(Actor actor, int x, int y) {
                 //todo change actor to unit
                 y = Gdx.graphics.getHeight() - y;
-                level.getBoard().place(new TestAlien(x, y), x, y);
+                level.getBoard().place(new TestWeapon(x, y), x, y);
             }
         });
 

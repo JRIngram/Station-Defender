@@ -14,7 +14,7 @@ public abstract class Unit implements Actor {
      * Checks if the Unit is adjacent to any other unit.
      * This information is retrieved from the Board.
      */
-    static boolean isAdjacent;
+    protected boolean isAdjacent;
     /**
      * Unit's position on the X-Axis
      */
@@ -58,17 +58,23 @@ public abstract class Unit implements Actor {
     /**
      * How much damage the Unit can take before being destroyed.
      */
-    private double health;
+    protected double health;
     /**
      * How many tiles forward the Unit can fire.
      */
     private double range;
+
+    protected boolean facingLeft;
+
+    public Unit() {
+    }
 
     public Unit(int x, int y){
         this.x = x;
         this.y = y;
         width = 60;
         height = 60;
+        health = 100;
     }
 
     public Unit(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
@@ -85,6 +91,7 @@ public abstract class Unit implements Actor {
         isAdjacent = false;
         adjacentActor = null;
         exists = false;
+        health = 100;
     }
 
     /**
@@ -184,7 +191,7 @@ public abstract class Unit implements Actor {
     }
 
     public void setIsAdjacent(boolean isAdjacent) {
-        Unit.isAdjacent = isAdjacent;
+        this.isAdjacent = isAdjacent;
     }
 
     public Actor getAdjacentActor() {
@@ -202,6 +209,26 @@ public abstract class Unit implements Actor {
         } else {
             this.adjacentActor = null;
             setIsAdjacent(false);
+        }
+    }
+
+    public boolean isUnitAdjacent(Unit unit){
+        if(unit == this) return false;
+
+        if(facingLeft){
+            if (unit.getX() + unit.getWidth() > this.x - (this.width + 5) && unit.getX() < this.x + this.width &&
+                    y + height > this.y && y < this.y + this.height) {
+                return true;
+            } else {
+                return false;
+            }
+        }else{
+            if (unit.getX() + unit.getWidth() > this.x && unit.getX() < this.x + (this.width * 2) + 5  &&
+                    y + height > this.y && y < this.y + this.height) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
@@ -225,9 +252,9 @@ public abstract class Unit implements Actor {
         return (hit * damage);
     }
 
-    public void setHeightAndWidth(int height, int width) {
-        this.height = height;
+    public void setWidthAndHeight(int width, int height) {
         this.width = width;
+        this.height = height;
     }
 
     public int getHeight() {
@@ -252,5 +279,13 @@ public abstract class Unit implements Actor {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public boolean isFacingLeft() {
+        return facingLeft;
+    }
+
+    public void setFacingLeft(boolean facingLeft) {
+        this.facingLeft = facingLeft;
     }
 }
