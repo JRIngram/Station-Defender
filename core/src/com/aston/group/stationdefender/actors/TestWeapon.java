@@ -7,14 +7,20 @@ package com.aston.group.stationdefender.actors;
  */
 public class TestWeapon extends Weapon {
 	
-	public TestWeapon(double damage, double rateOfFire, double health,
+	private ShapeRenderer shapeRenderer;
+	public TestWeapon(double damage, double rateOfFire, double health, int x, int y, int height, int width
 			double range, double buildTime, int cost, int costToUpgrade
 			){
-		super("Test Weapon", 0, damage, rateOfFire, health, range, buildTime, cost, costToUpgrade);
+		super("Test Weapon", 0, damage, rateOfFire, health, range, x, y, height, width buildTime, cost, costToUpgrade);
+		shapeRenderer = new ShapeRenderer();
 	}
 
 	@Override
 	public void render(float delta) {
+		shapeRenderer.begin(ShapeRenderer.ShapeType.Filler);
+		shapeRenderer.setColor(Color.GREEN);
+		shapeRenderer.rect(x, y, width, height);
+		shapeRenderer.end();
 	}
 	
     /**
