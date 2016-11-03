@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -36,6 +37,7 @@ public class IntroScreen implements Screen {
     private TextButton backgroundButton, instructionButton, playButton, exitButton;
     private float fadeElapsed = 0;
     private TextButton[] buttons;
+    private Texture texture;
 
     /**
      * Construct a new IntroScreen
@@ -91,6 +93,8 @@ public class IntroScreen implements Screen {
         for (int i = 0; i < Constants.MENU_ITEMS.length; i++) {
             buttons[i].setPosition((Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + (100 - 60 * i));
         }
+
+        texture = new Texture(Gdx.files.internal("textures/intro-back.jpg"));
     }
 
     /**
@@ -110,8 +114,8 @@ public class IntroScreen implements Screen {
     public void render(float delta) {
         // fade in animation
         fadeElapsed += delta;
-        float fadeInTime = 2f;
-        float fadeDelay = 1f;
+        float fadeInTime = .5f;
+        float fadeDelay = 0f;
         float fade = Interpolation.fade.apply(fadeElapsed / fadeInTime);
         float fade2 = Interpolation.fade.apply((fadeElapsed - fadeDelay) / fadeInTime);
 
@@ -123,9 +127,9 @@ public class IntroScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-        font.setColor(1, 1, 1, fade);
-        font.draw(batch, Constants.GAME_NAME, (Gdx.graphics.getWidth() / 2) - 180, Gdx.graphics.getHeight() - 25);
+        batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
+
         batch.begin();
         stage.draw();
         // delay animation by a certain amount for each menu item
