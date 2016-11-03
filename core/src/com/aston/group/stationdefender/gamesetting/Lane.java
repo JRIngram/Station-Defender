@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender.gamesetting;
 
+import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.Collections;
  * @author Twba Alshaghdari
  */
 public class Lane {
-    private int x, y;
+    private int x, y, width, height;
     private ArrayList<Tile> tiles = new ArrayList<Tile>();
 
     /**
@@ -35,9 +36,14 @@ public class Lane {
     public Lane(int x, int y, int numberOfTiles) {
         this.x = x;
         this.y = y;
+
         Tile[] tile = new Tile[numberOfTiles - 1];
+
+        int tileX = x;
+
         for (int i = 0; i < numberOfTiles - 1; i++) {
-            tile[i] = new Tile();
+            tile[i] = new Tile(tileX, y);
+            tileX += Constants.TILE_WIDTH;
         }
         Collections.addAll(tiles, tile);
     }
@@ -77,5 +83,15 @@ public class Lane {
      */
     public void removeTileByObject(Tile tile) {
         tiles.remove(tile);
+    }
+
+    public void render(float delta){
+        for (int i = 0; i < tiles.size(); i++) {
+            tiles.get(i).render(delta);
+        }
+    }
+
+    public void dispose(){
+
     }
 }

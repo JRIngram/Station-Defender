@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.gamesetting;
 
 import com.aston.group.stationdefender.actors.Actor;
+import com.aston.group.stationdefender.config.Constants;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,11 +32,13 @@ public class Board {
      * @param numberOfTiles The number of Lanes for the Board to have
      */
     public Board(int numberOfLanes, int numberOfTiles) {
-        Lane[] lane = new Lane[numberOfLanes - 1];
+        int laneY = 100;
+
         for (int i = 0; i < numberOfLanes - 1; i++) {
-            lane[i] = new Lane(numberOfTiles);
+            lanes.add(new Lane(20, laneY, Constants.TILE_AMOUNT));
+
+            laneY += (Constants.TILE_HEIGHT + (Constants.TILE_HEIGHT / 2));
         }
-        Collections.addAll(lanes, lane);
     }
 
     /**
@@ -105,5 +108,17 @@ public class Board {
      **/
     public Actor getActorAt(int laneNo, int tileNo) {
         return lanes.get(laneNo).getTile(tileNo).getActor();
+    }
+
+    public void render(float delta){
+        for (int i = 0; i < lanes.size(); i++) {
+            lanes.get(i).render(delta);
+        }
+    }
+
+    public void dispose(){
+        for (int i = 0; i < lanes.size(); i++) {
+            lanes.get(i).dispose();
+        }
     }
 }

@@ -12,7 +12,10 @@ import com.aston.group.stationdefender.utils.resources.QuickSlot;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 import java.util.ArrayList;
 
@@ -20,6 +23,7 @@ import java.util.ArrayList;
  * Skeleton Player class
  *
  * @author Jonathon Fitch
+ * @author Mohammed Foysal
  */
 public class Player implements InputProcessor {
 
@@ -37,6 +41,7 @@ public class Player implements InputProcessor {
 
     //Graphics Variables
     private SpriteBatch batch;
+    private BitmapFont font;
 
     public Player() {
         batch = new SpriteBatch();
@@ -70,15 +75,26 @@ public class Player implements InputProcessor {
                 currentItem = item;
             }
         };
+
+        //Font Init
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 16;
+        font = generator.generateFont(parameter);
+        generator.dispose();
     }
 
     public void render(float delta) {
+        //Render Player's current item (if any)
+        if (currentItem != null) {
+            currentItem.setX(Gdx.input.getX() - (currentItem.getWidth() / 2));
+            currentItem.setY((Gdx.graphics.getHeight() - Gdx.input.getY()) - currentItem.getHeight() / 2);
+
+            currentItem.render(delta);
+        }
+
         //Render Quick Slots
         for (int i = 0; i < quickSlots.size(); i++) {
-            //Update Quickslot Items to inventory
-//            if(inventory.getItem(i) != null){
-//                quickSlots.get(i).setItem(inventory.getItem(i));
-//            }
 
             //Update Selected
             if (selectedSlot == i) {
@@ -91,13 +107,13 @@ public class Player implements InputProcessor {
             quickSlots.get(i).render(delta);
         }
 
-        //Render Player's current item (if any)
-        if (currentItem != null) {
-            currentItem.setX(Gdx.input.getX() - (currentItem.getWidth() / 2));
-            currentItem.setY((Gdx.graphics.getHeight() - Gdx.input.getY()) - currentItem.getHeight() / 2);
+        //Render Player Stats
+        batch.begin();
+        font.setColor(Color.BLACK);
+        font.draw(batch, "Score: " + score, Gdx.graphics.getWidth() - 100, 60);
+        font.draw(batch, "Money: " + money, Gdx.graphics.getWidth() - 100, 30);
+        batch.end();
 
-            currentItem.render(delta);
-        }
     }
 
     public void dispose() {
