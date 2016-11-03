@@ -32,7 +32,7 @@ public class Board {
      */
     public Board(int numberOfLanes, int numberOfTiles) {
         Lane[] lane = new Lane[numberOfLanes - 1];
-        for (int i = 0; i < numberOfLanes; i++) {
+        for (int i = 0; i < numberOfLanes - 1; i++) {
             lane[i] = new Lane(numberOfTiles);
         }
         Collections.addAll(lanes, lane);
