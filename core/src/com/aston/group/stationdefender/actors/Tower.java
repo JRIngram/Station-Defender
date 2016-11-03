@@ -14,7 +14,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  */
 public class Tower implements Actor {
     private int height, width, x, y;
-    private double health;
+    private int health;
     private boolean exists;
     private ShapeRenderer shapeRenderer;
     
@@ -29,6 +29,7 @@ public class Tower implements Actor {
         this.height = height;
         shapeRenderer = new ShapeRenderer();
         exists = true;
+        health = Constants.TOWER_HEALTH;
     }
 
     @Override

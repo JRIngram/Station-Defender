@@ -52,20 +52,12 @@ public class Tile {
     }
 
     public boolean isColliding (int x, int y, int width, int height) {
-        if (x + width > this.x && x < this.x + this.width &&
-                y + height > this.y && y < this.y + this.height) {
-            return true;
-        } else {
-            return false;
-        }
+        return x + width > this.x && x < this.x + this.width &&
+                y + height > this.y && y < this.y + this.height;
     }
 
     public boolean isColliding(Unit unit){
-        if(isColliding(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight())){
-            return true;
-        }else{
-            return false;
-        }
+        return isColliding(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
     }
 
     /**

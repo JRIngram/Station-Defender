@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender.actors;
 
+import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -12,7 +13,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  * @version 01/11/2016
  */
 public class TestWeapon extends Weapon {
-
     private ShapeRenderer shapeRenderer;
 
     public TestWeapon() {
@@ -28,7 +28,7 @@ public class TestWeapon extends Weapon {
         }else{
             speed = 100;
         }
-        health = 100;
+        health = Constants.WEAPON_HEALTH;
     }
 
     public TestWeapon(double damage, double rateOfFire, double health, int x, int y, int height, int width,
@@ -42,7 +42,7 @@ public class TestWeapon extends Weapon {
     public void render(float delta) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         if(getHealth() > 0)
-        shapeRenderer.setColor(Color.GREEN);
+            shapeRenderer.setColor(Color.GREEN);
         else
             shapeRenderer.setColor(Color.ORANGE);
         shapeRenderer.rect(x, y, width, height);

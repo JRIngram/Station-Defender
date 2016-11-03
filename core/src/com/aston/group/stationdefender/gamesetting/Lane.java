@@ -1,10 +1,8 @@
 package com.aston.group.stationdefender.gamesetting;
 
-import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.TestAlien;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
-import com.aston.group.stationdefender.gamesetting.helpers.Projectile;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -78,8 +76,8 @@ public class Lane {
     //Check if a unit is on a tile
     public boolean isTileOccupied(int tileIndex){
         if(tiles.get(tileIndex) != null){
-            for (int i = 0; i < units.size(); i++) {
-                if(tiles.get(tileIndex).isColliding(units.get(i))){
+            for (Unit unit : units) {
+                if (tiles.get(tileIndex).isColliding(unit)) {
                     return true;
                 }
             }
@@ -139,9 +137,8 @@ public class Lane {
         for (Tile tile : tiles) {
             tile.render(delta);
         }
-
-        for (int i = 0; i < units.size(); i++) {
-            units.get(i).render(delta);
+        for (Unit unit1 : units) {
+            unit1.render(delta);
         }
 
         for (int i = 0; i < units.size(); i++) {
@@ -209,20 +206,16 @@ public class Lane {
     }
 
     public boolean isColliding (int x, int y, int width, int height) {
-        if (x + width > this.x && x < this.x + this.width &&
-                y + height > this.y && y < this.y + this.height) {
-            return true;
-        } else {
-            return false;
-        }
+        return x + width > this.x && x < this.x + this.width &&
+                y + height > this.y && y < this.y + this.height;
     }
 
     /**
      * Dispose of unused resources
      */
     public void dispose() {
-        for (int i = 0; i < tiles.size(); i++) {
-            tiles.get(i).dispose();
+        for (Tile tile : tiles) {
+            tile.dispose();
         }
 
         //Todo dispose units

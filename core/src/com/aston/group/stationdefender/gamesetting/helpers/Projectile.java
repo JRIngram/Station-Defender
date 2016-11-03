@@ -11,7 +11,6 @@ import com.badlogic.gdx.utils.Pool;
  * @author Mohammed Foysal
  */
 public class Projectile implements Pool.Poolable {
-
     protected int x, y, width, height;
     protected boolean alive;
     protected int damage;
@@ -57,11 +56,7 @@ public class Projectile implements Pool.Poolable {
 
 
     public boolean isOutOfScreen(){
-        if(x > Gdx.graphics.getWidth() + 1 || x < -10){
-            return true;
-        }else{
-            return false;
-        }
+        return x > Gdx.graphics.getWidth() + 1 || x < -10;
     }
 
     public boolean isColliding (int x, int y, int width, int height) {
