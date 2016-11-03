@@ -6,13 +6,19 @@ package com.aston.group.stationdefender.actors;
  * @version 01/11/2016
  */
 public class TestAlien extends Alien{
-
-	public TestAlien(double speed, double damage, double rateOfFire, double health, double range){
-		super("Test Alien", speed, damage, rateOfFire, health, range);
+	
+	private ShapeRenderer shapeRenderer;
+	public TestAlien(double speed, double damage, double rateOfFire, double health, double range, int x, int y, int height, int width){
+		super("Test Alien", speed, damage, rateOfFire, health, range, x, y, height, width);
+		shapeRenderer = new ShapeRenderer();
 	}
 
 	@Override
 	public void render(float delta) {
+		shapeRenderer.begin(ShapeRenderer.ShapeType.Filler);
+		shapeRenderer.setColor(Colour.BLUE);
+		shapeRenderer.rect(x, y, width, height);
+		shapeRenderer.end();
 	}
 	
     /**
