@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender.gamesetting.helpers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Pool;
@@ -42,7 +43,7 @@ public class Projectile implements Pool.Poolable {
         alive = false;
     }
 
-    public void render(float delta) {
+    public void render(float delta){
         x += (speed * delta * 60);
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -56,6 +57,19 @@ public class Projectile implements Pool.Poolable {
 
     public boolean isOutOfScreen() {
         if (x > 2000) {
+    public boolean isOutOfScreen(){
+        if(x > Gdx.graphics.getWidth() + 1 || x < -10){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean isColliding (int x, int y, int width, int height) {
+        if (x + width > this.x && x < this.x + this.width &&
+                y + height > this.y && y < this.y + this.height) {
+
+            alive = false;
             return true;
         } else {
             return false;
