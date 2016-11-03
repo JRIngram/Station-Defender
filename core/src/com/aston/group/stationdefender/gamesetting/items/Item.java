@@ -1,6 +1,8 @@
 package com.aston.group.stationdefender.gamesetting.items;
 
+import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
+import com.aston.group.stationdefender.gamesetting.Player;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -9,7 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  * Item class represents an in-game item that the player
  * can pick up, buy for credits, and use
  *
- * @author Mohammad Foysal
+ * @author Mohammed Foysal
  */
 public abstract class Item {
 
@@ -72,9 +74,9 @@ public abstract class Item {
      *
      * @param itemCallback The ItemCallBack associated with the Item
      */
-    public void useItem(ItemCallback itemCallback) {
-        itemCallback.onUse(placeable);
-    }
+    public abstract void useItem(Player player, ItemCallback itemCallback);
+
+    public abstract Actor getPlaceableActor();
 
     /**
      * Changes the collected state of the Item to show it

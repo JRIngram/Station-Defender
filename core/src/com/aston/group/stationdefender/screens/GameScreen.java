@@ -1,5 +1,7 @@
 package com.aston.group.stationdefender.screens;
 
+import com.aston.group.stationdefender.actors.Actor;
+import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.Level;
 import com.aston.group.stationdefender.gamesetting.Player;
@@ -34,7 +36,14 @@ public class GameScreen implements Screen {
         //Setup viewport
         viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
         level = new Level();
+
         player = new Player();
+        player.setPlayerCallback(new PlayerCallback() {
+            @Override
+            public void placeActor(Actor actor, int x, int y) {
+                //todo implement place actor
+            }
+        });
 
     }
 

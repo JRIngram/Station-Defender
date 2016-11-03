@@ -1,5 +1,7 @@
 package com.aston.group.stationdefender.gamesetting;
 
+import com.aston.group.stationdefender.callbacks.ItemCallback;
+import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.gamesetting.items.ItemBlank;
@@ -26,6 +28,7 @@ public class Player implements InputProcessor {
     private Inventory inventory;
     private int score;
     private int money;
+    private PlayerCallback playerCallback;
 
     //Quickslots
     private ArrayList<QuickSlot> quickSlots;
@@ -155,7 +158,18 @@ public class Player implements InputProcessor {
     }
 
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    public boolean touchUp(final int screenX, final int screenY, int pointer, int button) {
+        if(button == Input.Buttons.LEFT){
+            if(currentItem != null){
+                currentItem.useItem(this, new ItemCallback() {
+                    @Override
+                    public void onUse(boolean placeable) {
+                        if(playerCallback != null && placeable)
+                            playerCallback.placeActor(currentItem.getPlaceableActor(), screenX, screenY);
+                    }
+                });
+            }
+        }
         return true;
     }
 
@@ -228,5 +242,13 @@ public class Player implements InputProcessor {
 
     public void setCurrentItem(Item currentItem) {
         this.currentItem = currentItem;
+    }
+
+    public PlayerCallback getPlayerCallback() {
+        return playerCallback;
+    }
+
+    public void setPlayerCallback(PlayerCallback playerCallback) {
+        this.playerCallback = playerCallback;
     }
 }

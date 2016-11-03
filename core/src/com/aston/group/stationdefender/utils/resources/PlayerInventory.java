@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @author Mohammad Foysal
+ * @author Mohammed Foysal
  */
 public class PlayerInventory implements Inventory {
     private ArrayList<Item> items;
