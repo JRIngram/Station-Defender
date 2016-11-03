@@ -13,7 +13,7 @@ public interface Constants {
     int SCREEN_WIDTH = 1024;
     int SCREEN_HEIGHT = 576;
 
-    String GAME_NAME = "Station Defender";
+    String GAME_NAME = "Station Defenders";
 
     String[] MENU_ITEMS = {
             "Background",
