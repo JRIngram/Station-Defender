@@ -4,30 +4,43 @@ package com.aston.group.stationdefender.actors;
  * Tower is the object which the Humans defend,
  * and which the Aliens attack.
  *
- * @author Jonathon Fitch
+ * @author Jonathon Fitch, Peter Holmes
  */
 public class Tower implements Actor {
     private int height, width;
-    private double health;
+    private double health = 100;
     private boolean exists;
 
     /**
      * Constructs a new Tower
      */
     public Tower() {
-        exists = false;
+        exists = true;
     }
 
     @Override
     public void render(float delta) {
     }
+    
+    /**
+     * Determines how the Tower acts when colliding with another unit.
+     */
 
     @Override
     public void act() {
+    	if(isAdjacent) {
+    		takeDamage(getDamage());
+    	}
     }
+    
+    /**
+     * Determines what happens when the tower gets destroyed.
+     */
 
     @Override
     public void destroy() {
+    	//TODO
+    	//animations/sound?
         exists = false;
     }
 
@@ -74,6 +87,14 @@ public class Tower implements Actor {
      * @param damage Causes the Unit's health to deplete.
      */
     public void takeDamage(double damage) {
-        health -= damage;
+    	if(checkZeroHealth()) {
+    		try {
+            	destroy();
+            } catch (Exception e) {
+            	System.out.println("Null pointer exception..");
+            }
+    	} else {
+    		health -= damage;
+    	}
     }
 }
