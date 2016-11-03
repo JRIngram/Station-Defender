@@ -23,9 +23,9 @@ public class ProjectileFactory {
         sound = Gdx.audio.newSound(Gdx.files.internal("sounds/Gun_Shot.mp3"));
     }
 
-    public void createBullet(int x, int y, int direction) {
+    public void shootBullet(int x, int y, int speed) {
         Projectile projectile = projectilePool.obtain();
-        projectile.init(x, y);
+        projectile.init(x, y, speed);
         projectiles.add(projectile);
         sound.play();
     }

@@ -1,5 +1,7 @@
 package com.aston.group.stationdefender.actors;
 
+import com.aston.group.stationdefender.utils.ProjectileFactory;
+
 /**
  * Weapon is a class that represents a weapon object
  * that Humans (Unit) can arm themselves with and use to destroy Aliens
@@ -13,8 +15,10 @@ public abstract class Weapon extends Unit implements Actor {
     private double remainingBuildTime;
     private int cost;
     private int costToUpgrade;
+    private ProjectileFactory projectileFactory;
 
     public Weapon() {
+
     }
 
     public Weapon(int x, int y) {
@@ -102,5 +106,13 @@ public abstract class Weapon extends Unit implements Actor {
      */
     public boolean getBuilt() {
         return built;
+    }
+
+    public ProjectileFactory getProjectileFactory() {
+        return projectileFactory;
+    }
+
+    public void setProjectileFactory(ProjectileFactory projectileFactory) {
+        this.projectileFactory = projectileFactory;
     }
 }
