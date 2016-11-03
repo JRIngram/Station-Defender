@@ -85,13 +85,12 @@ public class Lane {
         tiles.remove(tile);
     }
 
-    public void render(float delta){
-        for (int i = 0; i < tiles.size(); i++) {
-            tiles.get(i).render(delta);
+    public void render(float delta) {
+        for (Tile tile : tiles) {
+            tile.render(delta);
         }
     }
 
-    public void dispose(){
-
+    public void dispose() {
     }
 }

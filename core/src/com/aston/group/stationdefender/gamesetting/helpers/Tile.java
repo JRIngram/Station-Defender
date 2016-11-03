@@ -12,11 +12,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  * @author Twba Al-shaghdari
  */
 public class Tile {
-
     private int x, y, width, height;
     private Actor actor;
 
-    //DEBUG - Remove if not need
+    //DEBUG - Remove if not needed
     private ShapeRenderer shapeRenderer;
 
     /**
@@ -40,8 +39,8 @@ public class Tile {
      * @return true if the actor has been placed, false if the actor hasn't been placed in the tile
      **/
     @Deprecated
-    /**
-     * This method should be removed as Tiles are being used as helpers, not to store Actors
+    /*
+      This method should be removed as Tiles are being used as helpers, not to store Actors
      */
     public boolean placeActor(Actor actor) {
         if (getActor() == null) {
@@ -60,7 +59,7 @@ public class Tile {
         return actor;
     }
 
-    public void render(float delta){
+    public void render(float delta) {
 
         //Remove if not needed
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
@@ -69,7 +68,6 @@ public class Tile {
         shapeRenderer.end();
     }
 
-    public void dispose(){
-
+    public void dispose() {
     }
 }

@@ -74,7 +74,6 @@ public class QuickSlot {
             font.draw(batch, "Item Title", x, y + height + 20);
             batch.end();
         }
-
     }
 
     /**

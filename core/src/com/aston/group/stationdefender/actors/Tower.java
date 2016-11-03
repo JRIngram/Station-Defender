@@ -70,9 +70,10 @@ public class Tower implements Actor {
 
     /**
      * Causes the Units health to lower by the damage parameter.
+     *
      * @param damage Causes the Unit's health to deplete.
      */
-    public void takeDamage(double damage){
-    	health -= damage;
+    public void takeDamage(double damage) {
+        health -= damage;
     }
 }

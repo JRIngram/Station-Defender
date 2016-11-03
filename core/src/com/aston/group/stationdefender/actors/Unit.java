@@ -10,14 +10,14 @@ import java.util.Random;
  */
 public abstract class Unit implements Actor {
 
-	/**
+    /**
      * Name of the type of unit.
      */
-	protected String name;
+    protected String name;
 
-	/**
-	 * How many tiles it can move per "tick".
-	 */
+    /**
+     * How many tiles it can move per "tick".
+     */
     protected double speed;
 
     /**
@@ -56,16 +56,16 @@ public abstract class Unit implements Actor {
      */
     protected boolean exists;
 
-    public Unit(String name, double speed, double damage, double rateOfFire, double health, double range){
-    	this.name = name;
-    	this.speed = speed;
-    	this.damage = damage;
-    	this.rateOfFire = rateOfFire;
-    	this.health = health;
-    	this.range = range;
-    	isAdjacent = false;
-    	adjacentActor = null;
-    	exists = false;
+    public Unit(String name, double speed, double damage, double rateOfFire, double health, double range) {
+        this.name = name;
+        this.speed = speed;
+        this.damage = damage;
+        this.rateOfFire = rateOfFire;
+        this.health = health;
+        this.range = range;
+        isAdjacent = false;
+        adjacentActor = null;
+        exists = false;
     }
 
     @Override
@@ -104,92 +104,91 @@ public abstract class Unit implements Actor {
 
     /**
      * Method for getting the name of the Unit.
+     *
      * @return name of the Unit.
      */
     public String getName() {
-    	return name;
+        return name;
     }
 
     /**
-     *
      * @return Speed of the unit.
      */
     public double getSpeed() {
-    	return speed;
+        return speed;
     }
 
     /**
-     *
      * @return The damage that the unit inflicts.
      */
     public double getDamage() {
-    	return damage;
+        return damage;
     }
 
     /**
-     *
      * @return The rate of fire of the unit.
      */
     public double getRateOfFire() {
-    	return rateOfFire;
+        return rateOfFire;
     }
 
     /**
-     *
      * @return The current health of the unit.
      */
     public double getHealth() {
-    	return health;
+        return health;
     }
 
     /**
-     *
      * @return The range that the unit can fire.
      */
     public double getRange() {
-    	return range;
+        return range;
     }
 
     /**
      * Causes the Units health to lower by the damage parameter.
+     *
      * @param damage Causes the Unit's health to deplete.
      */
     public void takeDamage(double damage) {
-    	health -= damage;
+        health -= damage;
     }
 
     /**
      * Checks if the Unit is adjacent to another entity.
+     *
      * @return Boolean which says if the Unit is adjacent to another entity.
      */
     public boolean isAdjacent() {
-    	return isAdjacent;
+        return isAdjacent;
     }
 
     public void setIsAdjacent(boolean isAdjacent) {
-    	this.isAdjacent = isAdjacent;
+        this.isAdjacent = isAdjacent;
     }
 
     public Actor getAdjacentActor() {
-    	if (isAdjacent()) {
-        	return adjacentActor;
-    	} else {
-    		return null;
-    	}
+        if (isAdjacent()) {
+            return adjacentActor;
+        } else {
+            return null;
+        }
     }
 
     public void setAdjacentActor(Actor adjacentActor) {
-    	if (adjacentActor != null) {
-        	this.adjacentActor = adjacentActor;
-        	setIsAdjacent(true);
-    	} else {
-    		this.adjacentActor = null;
-    		setIsAdjacent(false);
-    	}
+        if (adjacentActor != null) {
+            this.adjacentActor = adjacentActor;
+            setIsAdjacent(true);
+        } else {
+            this.adjacentActor = null;
+            setIsAdjacent(false);
+        }
     }
 
     /**
      * Checks if the Health of the Unit is less than 1.
+     *
      * @see #act()
      */
     public boolean checkZeroHealth() {
@@ -197,13 +196,13 @@ public abstract class Unit implements Actor {
     }
 
     public double fire() {
-    	Random rng = new Random();
-    	int hit = 0;
-    	for (int i = 0; i < rateOfFire; i++) {
-    		if (5 == rng.nextInt(10)) {
-    			hit++;
-    		}
-    	}
-    	return (hit * damage);
+        Random rng = new Random();
+        int hit = 0;
+        for (int i = 0; i < rateOfFire; i++) {
+            if (5 == rng.nextInt(10)) {
+                hit++;
+            }
+        }
+        return (hit * damage);
     }
 }

@@ -48,7 +48,7 @@ public class TwoTextScreen implements Screen {
     };
 
     /**
-     * Constuctor sets the camera, viewpoint and
+     * Constructor sets the camera, viewpoint and
      * initializes the font and button(s).
      */
     public TwoTextScreen() {

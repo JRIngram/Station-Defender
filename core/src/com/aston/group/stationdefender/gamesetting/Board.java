@@ -4,7 +4,6 @@ import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.config.Constants;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Board class
@@ -110,15 +109,15 @@ public class Board {
         return lanes.get(laneNo).getTile(tileNo).getActor();
     }
 
-    public void render(float delta){
-        for (int i = 0; i < lanes.size(); i++) {
-            lanes.get(i).render(delta);
+    public void render(float delta) {
+        for (Lane lane : lanes) {
+            lane.render(delta);
         }
     }
 
-    public void dispose(){
-        for (int i = 0; i < lanes.size(); i++) {
-            lanes.get(i).dispose();
+    public void dispose() {
+        for (Lane lane : lanes) {
+            lane.dispose();
         }
     }
 }

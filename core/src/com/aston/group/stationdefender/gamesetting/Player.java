@@ -64,7 +64,6 @@ public class Player implements InputProcessor {
             } else {
                 quickSlot.setItem(new ItemBlank());
             }
-
             quickSlots.add(quickSlot);
             slotX += 48;
         }
@@ -89,7 +88,6 @@ public class Player implements InputProcessor {
         if (currentItem != null) {
             currentItem.setX(Gdx.input.getX() - (currentItem.getWidth() / 2));
             currentItem.setY((Gdx.graphics.getHeight() - Gdx.input.getY()) - currentItem.getHeight() / 2);
-
             currentItem.render(delta);
         }
 
@@ -118,7 +116,6 @@ public class Player implements InputProcessor {
 
     public void dispose() {
         batch.dispose();
-
         for (QuickSlot quickSlot : quickSlots) {
             quickSlot.dispose();
         }
@@ -175,12 +172,12 @@ public class Player implements InputProcessor {
 
     @Override
     public boolean touchUp(final int screenX, final int screenY, int pointer, int button) {
-        if(button == Input.Buttons.LEFT){
-            if(currentItem != null){
+        if (button == Input.Buttons.LEFT) {
+            if (currentItem != null) {
                 currentItem.useItem(this, new ItemCallback() {
                     @Override
                     public void onUse(boolean placeable) {
-                        if(playerCallback != null && placeable)
+                        if (playerCallback != null && placeable)
                             playerCallback.placeActor(currentItem.getPlaceableActor(), screenX, screenY);
                     }
                 });

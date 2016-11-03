@@ -10,15 +10,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * @author Jamie Ingram
  */
 public class ItemTest extends Game {
-
     private SpriteBatch batch;
-
     private ItemCredit itemCredit;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
-
         itemCredit = new ItemCredit();
 
         //Default items are set to 32x32, but for this test they're increased
@@ -37,8 +34,6 @@ public class ItemTest extends Game {
     @Override
     public void dispose() {
         super.dispose();
-
         batch.dispose();
     }
-
 }

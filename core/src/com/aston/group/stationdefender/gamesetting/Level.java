@@ -53,12 +53,12 @@ public class Level {
         levelNumber = level;
     }
 
-    public void render(float delta){
-        if(board != null)
+    public void render(float delta) {
+        if (board != null)
             board.render(delta);
     }
 
-    public void dispose(){
+    public void dispose() {
         board.dispose();
     }
 }

@@ -21,14 +21,13 @@ import java.util.ArrayList;
  * @author Mohammad Foysal
  */
 public class GameScreen implements Screen {
+    private static ArrayList<Actor> actorBufferA = new ArrayList<Actor>();
+    private static ArrayList<Actor> actorBufferB = new ArrayList<Actor>();
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;
     private Level level;
     private Player player;
-    private static ArrayList<Actor> actorBufferA = new ArrayList<Actor>();
-    private static ArrayList<Actor> actorBufferB = new ArrayList<Actor>();
-    private static byte mainUpdateBuffer = (byte) 0;
 
     public GameScreen() {
         batch = new SpriteBatch();
@@ -49,9 +48,20 @@ public class GameScreen implements Screen {
                 //todo implement place actor
             }
         });
-
     }
 
+    public static void refresh(float delta) {
+        for (Actor a : actorBufferA) {
+            a.render(delta);
+        }
+        for (Actor a : actorBufferA) {
+            if (a.getExists()) {
+                actorBufferB.add(a);
+            }
+        }
+        actorBufferA.clear();
+        actorBufferA = actorBufferB;
+    }
 
     @Override
     public void show() {
@@ -90,18 +100,5 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
-    }
-
-    public static void refresh(float delta) {
-        for (Actor a : actorBufferA) {
-            a.render(delta);
-        }
-        for (Actor a : actorBufferA) {
-            if (a.getExists()) {
-                actorBufferB.add(a);
-            }
-        }
-        actorBufferA.clear();
-        actorBufferA = actorBufferB;
     }
 }

@@ -12,8 +12,7 @@ import com.badlogic.gdx.graphics.Texture;
  * @author Mohammed Foysal
  */
 public class ItemCredit extends Item {
-
-    protected int value;
+    private int value;
 
     /**
      * Construct a new ItemCredit
@@ -29,7 +28,7 @@ public class ItemCredit extends Item {
     public void useItem(Player player, ItemCallback itemCallback) {
         player.setMoney(player.getMoney() + value);
 
-        if(itemCallback != null)
+        if (itemCallback != null)
             itemCallback.onUse(placeable);
     }
 

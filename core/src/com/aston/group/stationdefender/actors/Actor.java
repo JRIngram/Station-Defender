@@ -9,12 +9,16 @@ package com.aston.group.stationdefender.actors;
  */
 public interface Actor {
     public void render(float delta);
-	public void act();
-	public void destroy();
-	public boolean getExists();
+
+    public void act();
+
+    public void destroy();
+
+    public boolean getExists();
 
     /**
      * Causes the Units health to lower by the damage parameter.
+     *
      * @param damage Causes the Unit's health to deplete.
      */
     public void takeDamage(double damage);

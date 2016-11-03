@@ -8,20 +8,20 @@ package com.aston.group.stationdefender.actors;
  * @version 01/11/2016
  */
 public abstract class Weapon extends Unit implements Actor {
-	protected double buildTime;
-	protected boolean built;
-	protected double remainingBuildTime;
-	protected int cost;
-	protected int costToUpgrade;
+    protected double buildTime;
+    protected boolean built;
+    protected double remainingBuildTime;
+    protected int cost;
+    protected int costToUpgrade;
 
     public Weapon(String name, double speed, double damage, double rateOfFire, double health,
-    		double range,	double buildTime, int cost, int costToUpgrade){
-    	super(name, speed, damage, rateOfFire, health, range);
-    	this.buildTime = buildTime;
-    	this.cost = cost;
-    	this.costToUpgrade = costToUpgrade;
-    	remainingBuildTime = buildTime;
-    	built = false;
+                  double range, double buildTime, int cost, int costToUpgrade) {
+        super(name, speed, damage, rateOfFire, health, range);
+        this.buildTime = buildTime;
+        this.cost = cost;
+        this.costToUpgrade = costToUpgrade;
+        remainingBuildTime = buildTime;
+        built = false;
     }
 
     @Override
@@ -43,52 +43,57 @@ public abstract class Weapon extends Unit implements Actor {
     /**
      * Decrements the build timer by 1. If afterwards the build timer equals 0 then built is set to true.
      */
-    public void decrementBuildTimer(){
-    	if(remainingBuildTime > 0){
-        	remainingBuildTime--;
-    	}
-    	if(remainingBuildTime == 0){
-    		built = true;
-    	}
+    public void decrementBuildTimer() {
+        if (remainingBuildTime > 0) {
+            remainingBuildTime--;
+        }
+        if (remainingBuildTime == 0) {
+            built = true;
+        }
     }
 
     /**
      * Returns the build time for the Weapon
+     *
      * @return buildTime
      */
-    public double getBuildTime(){
-    	return buildTime;
+    public double getBuildTime() {
+        return buildTime;
     }
 
     /**
      * Returns the remaining build time of the Weapon.
+     *
      * @return remainingBuildTime
      */
-    public double getRemainingBuildTime(){
-    	return remainingBuildTime;
+    public double getRemainingBuildTime() {
+        return remainingBuildTime;
     }
 
     /**
      * Returns the cost of building the weapon.
+     *
      * @return cost.
      */
-    public int getCost(){
-    	return cost;
+    public int getCost() {
+        return cost;
     }
 
     /**
      * Returns the cost to upgrade the weapon.
+     *
      * @return costToUpgrade
      */
-    public int getCostToUpgrade(){
-    	return costToUpgrade;
+    public int getCostToUpgrade() {
+        return costToUpgrade;
     }
 
     /**
      * Returns a boolean stating if the Unit has been built or not.
+     *
      * @return built
      */
-    public boolean getBuilt(){
-    	return built;
+    public boolean getBuilt() {
+        return built;
     }
 }

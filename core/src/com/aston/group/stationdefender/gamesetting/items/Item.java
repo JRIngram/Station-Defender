@@ -16,16 +16,15 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public abstract class Item {
 
     //Item Properties
-    protected int id;
-    protected String name;
-    protected boolean usable;
-    protected boolean collected;
-    protected boolean justSpawned;
-    protected boolean placeable;
-
+    int id;
+    String name;
+    boolean placeable;
     //Rendering
-    protected Texture itemTexture;
-    protected int x, y, width, height;
+    Texture itemTexture;
+    private boolean usable;
+    private boolean collected;
+    private boolean justSpawned;
+    private int x, y, width, height;
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
     private int flareX, flareY;

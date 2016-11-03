@@ -6,11 +6,11 @@ package com.aston.group.stationdefender.actors;
  * @author IngramJ
  * @version 01/11/2016
  */
-public abstract class Alien extends Unit{
+public abstract class Alien extends Unit {
 
-	public Alien(String name,  double speed, double damage, double rateOfFire, double health, double range){
-		super(name, speed, damage, rateOfFire, health, range);
-	}
+    public Alien(String name, double speed, double damage, double rateOfFire, double health, double range) {
+        super(name, speed, damage, rateOfFire, health, range);
+    }
 
     @Override
     public abstract void render(float delta);
@@ -21,21 +21,21 @@ public abstract class Alien extends Unit{
      *
      * @see com.aston.group.stationdefender.actors.Unit#act()
      */
-	@Override
-	public abstract void act();
+    @Override
+    public abstract void act();
 
     /**
      * Abstract method for each Unit, the main method which determines how the unit acts.
      */
-	@Override
-	public abstract void destroy();
+    @Override
+    public abstract void destroy();
 
-	/**
-	 * Moves the Alien from the left side of the lane to the right
+    /**
+     * Moves the Alien from the left side of the lane to the right
      *
-	 * @param speed Distance the Alien moves.
-	 */
-	public void move(double speed){
-		//TODO IMPLEMENT
-	}
+     * @param speed Distance the Alien moves.
+     */
+    public void move(double speed) {
+        //TODO IMPLEMENT
+    }
 }
