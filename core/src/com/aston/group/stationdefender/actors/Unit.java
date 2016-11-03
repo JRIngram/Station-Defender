@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Abstract superclass inherited by Weapon and Alien subclasses.
  * @author Jamie Ingram
- * @version 01/11/2016
+ * @version 03/11/2016
  *
  */
 public abstract class Unit implements Actor {
@@ -56,6 +56,26 @@ public abstract class Unit implements Actor {
      */
     protected boolean exists;
     
+    /**
+    * Unit's position on the X-Axis 
+    */
+    protected int x;
+
+    /**
+    * Unit's position on the Y-Axis
+    */
+    protected int y;
+
+    /**
+    * Unit's width.
+    */
+    protected int width;
+	
+    /**
+    * Unit's height
+    */
+    protected int height;
+	
     public Unit(String name, double speed, double damage, double rateOfFire, double health, double range){
     	this.name = name;
     	this.speed = speed;
