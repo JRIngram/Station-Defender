@@ -8,6 +8,11 @@ package com.aston.group.stationdefender.actors;
  * @version 20/10/2016
  */
 public interface Actor {
+
+    /**
+     * Render the Actor.
+     * @param delta - The time in seconds since the last render.
+     */
     public void render(float delta);
 
     public void act();

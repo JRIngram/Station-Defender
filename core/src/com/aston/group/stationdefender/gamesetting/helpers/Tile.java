@@ -59,6 +59,10 @@ public class Tile {
         return actor;
     }
 
+    /**
+     * Render the Tile.
+     * @param delta - The time in seconds since the last render.
+     */
     public void render(float delta) {
 
         //Remove if not needed
@@ -68,6 +72,9 @@ public class Tile {
         shapeRenderer.end();
     }
 
+    /**
+     * Dispose of unused resources
+     */
     public void dispose() {
     }
 }

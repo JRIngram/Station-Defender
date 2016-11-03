@@ -85,12 +85,19 @@ public class Lane {
         tiles.remove(tile);
     }
 
+    /**
+     * Render the Lane.
+     * @param delta - The time in seconds since the last render.
+     */
     public void render(float delta) {
         for (Tile tile : tiles) {
             tile.render(delta);
         }
     }
 
+    /**
+     * Dispose of unused resources
+     */
     public void dispose() {
     }
 }

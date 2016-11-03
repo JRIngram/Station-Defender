@@ -29,6 +29,9 @@ public class GameScreen implements Screen {
     private Level level;
     private Player player;
 
+    /**
+     * Construct a new GameScreen
+     */
     public GameScreen() {
         batch = new SpriteBatch();
 
@@ -50,6 +53,10 @@ public class GameScreen implements Screen {
         });
     }
 
+    /**
+     * Refresh the GameScreen.
+     * @param delta - The time in seconds since the last render.
+     */
     public static void refresh(float delta) {
         for (Actor a : actorBufferA) {
             a.render(delta);
@@ -63,11 +70,18 @@ public class GameScreen implements Screen {
         actorBufferA = actorBufferB;
     }
 
+    /**
+     * Show the GameScreen.
+     */
     @Override
     public void show() {
         Gdx.input.setInputProcessor(player);
     }
 
+    /**
+     * Render the GameScreen.
+     * @param delta - The time in seconds since the last render.
+     */
     @Override
     public void render(float delta) {
         batch.setProjectionMatrix(camera.projection);
@@ -97,6 +111,9 @@ public class GameScreen implements Screen {
     public void hide() {
     }
 
+    /**
+     * Dispose of unused resources
+     */
     @Override
     public void dispose() {
         batch.dispose();

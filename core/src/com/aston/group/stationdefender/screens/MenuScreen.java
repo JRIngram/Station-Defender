@@ -26,6 +26,9 @@ public class MenuScreen implements Screen {
     private BitmapFont font;
     private MenuCallback menuCallback;
 
+    /**
+     * Construct a new MenuScreen
+     */
     public MenuScreen() {
         batch = new SpriteBatch();
 
@@ -48,6 +51,10 @@ public class MenuScreen implements Screen {
     public void show() {
     }
 
+    /**
+     * Render the MenuScreen.
+     * @param delta - The time in seconds since the last render.
+     */
     @Override
     public void render(float delta) {
         //render
@@ -79,6 +86,9 @@ public class MenuScreen implements Screen {
     public void hide() {
     }
 
+    /**
+     * Dispose of unused resources
+     */
     @Override
     public void dispose() {
         fontGenerator.dispose();

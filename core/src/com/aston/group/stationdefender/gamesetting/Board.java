@@ -109,12 +109,19 @@ public class Board {
         return lanes.get(laneNo).getTile(tileNo).getActor();
     }
 
+    /**
+     * Render the Board.
+     * @param delta - The time in seconds since the last render.
+     */
     public void render(float delta) {
         for (Lane lane : lanes) {
             lane.render(delta);
         }
     }
 
+    /**
+     * Dispose of unused resources
+     */
     public void dispose() {
         for (Lane lane : lanes) {
             lane.dispose();

@@ -43,6 +43,9 @@ public class Player implements InputProcessor {
     private SpriteBatch batch;
     private BitmapFont font;
 
+    /**
+     * Construct a new Player
+     */
     public Player() {
         batch = new SpriteBatch();
 
@@ -83,6 +86,10 @@ public class Player implements InputProcessor {
         generator.dispose();
     }
 
+    /**
+     * Render the Player.
+     * @param delta - The time in seconds since the last render.
+     */
     public void render(float delta) {
         //Render Player's current item (if any)
         if (currentItem != null) {
@@ -114,6 +121,9 @@ public class Player implements InputProcessor {
 
     }
 
+    /**
+     * Disposed of unused resources
+     */
     public void dispose() {
         batch.dispose();
         for (QuickSlot quickSlot : quickSlots) {
@@ -154,9 +164,7 @@ public class Player implements InputProcessor {
                 selectedSlot = 7;
                 break;
         }
-
         quickSlotCallback.onSelectedItemChanged(quickSlots.get(selectedSlot).getItem());
-
         return true;
     }
 
@@ -199,68 +207,129 @@ public class Player implements InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         selectedSlot += amount;
-
         if (selectedSlot > quickSlots.size() - 1) {
             selectedSlot = 0;
         }
-
         if (selectedSlot < 0) {
             selectedSlot = quickSlots.size() - 1;
         }
-
         quickSlotCallback.onSelectedItemChanged(quickSlots.get(selectedSlot).getItem());
-
         return true;
     }
 
+    /**
+     * Adds an Item to the Inventory
+     *
+     * @param item The Item to be added to the Inventory
+     */
     public void collectItem(Item item) {
         inventory.addItem(item);
     }
 
+    /**
+     * Adds a list of Items to the Inventory
+     *
+     * @param items The Items to be added to the Inventory
+     */
     public void collectItems(ArrayList<Item> items) {
         inventory.addAllItems(items);
     }
 
+    /**
+     * Removes an Item from the Inventory
+     *
+     * @param item The Item to remove from the Inventory
+     */
     public void dropItem(Item item) {
         inventory.removeItem(item);
     }
 
+    /**
+     * Returns the Player's Inventory
+     *
+     * @return The current Inventory
+     */
     public Inventory getInventory() {
         return inventory;
     }
 
+    /**
+     * Sets the Player's Inventory
+     *
+     * @param inventory The Inventory to set to the Player
+     */
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
 
+    /**
+     * Returns the Player's score
+     *
+     * @return The Player's score
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * Sets the Player's score
+     *
+     * @param score The Player's score
+     */
     public void setScore(int score) {
         this.score = score;
     }
 
+    /**
+     * Returns the amount of money the Player has
+     *
+     * @return The amount of money the Player has
+     */
     public int getMoney() {
         return money;
     }
 
+    /**
+     * Sets the amount of money the Player has
+     *
+     * @param money The amount of money the Player has
+     */
     public void setMoney(int money) {
         this.money = money;
     }
 
+    /**
+     * Returns the Player's current Item
+     *
+     * @return The Player's current Item
+     */
     public Item getCurrentItem() {
         return currentItem;
     }
 
+    /**
+     * Sets the Player's current Item
+     *
+     * @param currentItem The Item to set as the Player's current Item
+     */
     public void setCurrentItem(Item currentItem) {
         this.currentItem = currentItem;
     }
 
+    /**
+     * Returns the PlayerCallback used for the Player
+     *
+     * @return The PlayerCallback being used for the Player
+     */
     public PlayerCallback getPlayerCallback() {
         return playerCallback;
     }
 
+    /**
+     * Sets the PlayerCallback for the Player
+     *
+     * @param playerCallback The PlayerCallback to set for the Player
+     */
     public void setPlayerCallback(PlayerCallback playerCallback) {
         this.playerCallback = playerCallback;
     }

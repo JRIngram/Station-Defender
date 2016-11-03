@@ -51,6 +51,9 @@ public class IntroScreen implements Screen {
         }
     };
 
+    /**
+     * Construct a new IntroScreen
+     */
     public IntroScreen() {
         batch = new SpriteBatch();
 
@@ -90,11 +93,18 @@ public class IntroScreen implements Screen {
         }
     }
 
+    /**
+     * Show the IntroScreen
+     */
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
     }
 
+    /**
+     * Render the IntroScreen.
+     * @param delta - The time in seconds since the last render.
+     */
     @Override
     public void render(float delta) {
         // fade in animation
@@ -143,6 +153,9 @@ public class IntroScreen implements Screen {
     public void hide() {
     }
 
+    /**
+     * Dispose of unused resources
+     */
     @Override
     public void dispose() {
         stage.dispose();

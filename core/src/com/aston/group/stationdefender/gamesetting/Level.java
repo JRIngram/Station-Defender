@@ -53,11 +53,18 @@ public class Level {
         levelNumber = level;
     }
 
+    /**
+     * Render the Level.
+     * @param delta - The time in seconds since the last render.
+     */
     public void render(float delta) {
         if (board != null)
             board.render(delta);
     }
 
+    /**
+     * Dispose of unused resources
+     */
     public void dispose() {
         board.dispose();
     }

@@ -12,7 +12,7 @@ public class PlayerInventory implements Inventory {
     private ArrayList<Item> items;
 
     /**
-     * Construct a new PlaayerInventory
+     * Construct a new PlayerInventory
      */
     public PlayerInventory() {
         items = new ArrayList<Item>();
