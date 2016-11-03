@@ -13,18 +13,18 @@ public interface Actor {
      * Render the Actor.
      * @param delta - The time in seconds since the last render.
      */
-    public void render(float delta);
+    void render(float delta);
 
-    public void act();
+    void act();
 
-    public void destroy();
+    void destroy();
 
-    public boolean getExists();
+    boolean getExists();
 
     /**
      * Causes the Units health to lower by the damage parameter.
      *
      * @param damage Causes the Unit's health to deplete.
      */
-    public void takeDamage(double damage);
+    void takeDamage(double damage);
 }

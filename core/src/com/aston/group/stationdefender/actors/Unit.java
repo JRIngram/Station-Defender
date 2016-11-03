@@ -13,48 +13,48 @@ public abstract class Unit implements Actor {
     /**
      * Name of the type of unit.
      */
-    protected String name;
+    private String name;
 
     /**
      * How many tiles it can move per "tick".
      */
-    protected double speed;
+    double speed;
 
     /**
      * How much damage each successful hit causes.
      */
-    protected double damage;
+    private double damage;
 
     /**
      * How many times the unit fires per "tick".
      */
-    protected double rateOfFire;
+    private double rateOfFire;
 
     /**
      * How much damage the Unit can take before being destroyed.
      */
-    protected double health;
+    private double health;
 
     /**
      * How many tiles forward the Unit can fire.
      */
-    protected double range;
+    private double range;
 
     /**
      * Checks if the Unit is adjacent to any other unit.
      * This information is retrieved from the Board.
      */
-    protected boolean isAdjacent;
+    boolean isAdjacent;
 
     /**
      * The Unit that this Unit is adjacent to.
      */
-    protected Actor adjacentActor;
+    Actor adjacentActor;
 
     /**
      * Whether the Unit is alive or dead.
      */
-    protected boolean exists;
+    boolean exists;
 
     public Unit(String name, double speed, double damage, double rateOfFire, double health, double range) {
         this.name = name;
