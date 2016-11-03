@@ -1,5 +1,8 @@
 package com.aston.group.stationdefender.actors;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+
 /**
  * Test class for Alien
  *
@@ -44,6 +47,8 @@ public class TestAlien extends Alien {
         //TODO IMPLEMENT
         //Play explosion animation.
         //Play explosion sound.
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/Explosion.mp3"));
+        sound.play();
         exists = false;
     }
 }

@@ -1,5 +1,8 @@
 package com.aston.group.stationdefender.actors;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+
 /**
  * Test class for Weapon
  *
@@ -44,6 +47,8 @@ public class TestWeapon extends Weapon {
         // TODO IMPLEMENT
         //Play explosion animation.
         //Play explosion sound.
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/Explosion.mp3"));
+        sound.play();
         System.out.println("UNIT DESTROYED - FILLER BEFORE IMPLEMENTATION.");
         exists = false;
     }
