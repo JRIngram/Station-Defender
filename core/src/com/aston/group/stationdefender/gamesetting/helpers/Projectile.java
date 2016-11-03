@@ -55,8 +55,7 @@ public class Projectile implements Pool.Poolable {
             alive = false;
     }
 
-    public boolean isOutOfScreen() {
-        if (x > 2000) {
+
     public boolean isOutOfScreen(){
         if(x > Gdx.graphics.getWidth() + 1 || x < -10){
             return true;
