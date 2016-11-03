@@ -7,21 +7,29 @@ package com.aston.group.stationdefender.actors;
  * @author Jonathon Fitch, Peter Holmes
  */
 public class Tower implements Actor {
-    private int height, width;
+    private int height, width, x, y;
     private double health = 100;
     private boolean exists;
+    
 
     /**
      * Constructs a new Tower
      */
-    public Tower(int height, int width) {
+    public Tower(int height, int width, int x, int y) {
+    	ShapeRenderer shapeRenderer = new ShapeRenderer();
         exists = true;
         this.height = height;
         this.width = width;
+        this.x = x;
+        this.y = y;
     }
 
     @Override
     public void render(float delta) {
+    	shapeRenderer.begin(ShapeRender.ShapeType.Filled);
+    	shapeRenderer.setColor(Color.GREEN);
+    	shapeRenderer.rect(x, y, width, height);
+    	shapeRenderer.end();
     }
     
     /**
