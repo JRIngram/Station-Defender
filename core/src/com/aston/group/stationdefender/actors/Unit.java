@@ -177,7 +177,7 @@ public abstract class Unit implements Actor {
     }
 
     public void setIsAdjacent(boolean isAdjacent) {
-        this.isAdjacent = isAdjacent;
+        Unit.isAdjacent = isAdjacent;
     }
 
     public Actor getAdjacentActor() {
