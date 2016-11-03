@@ -56,14 +56,12 @@ public class GameScreen implements Screen {
         });
 
         testAlien = new TestAlien(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 200, 400, 100, 100);
-
     }
 
     public static void refresh(float delta) {
         for (Actor a : actorBufferA) {
             a.render(delta);
         }
-
         for (Actor a : actorBufferA) {
             if (a.getExists()) {
                 actorBufferB.add(a);

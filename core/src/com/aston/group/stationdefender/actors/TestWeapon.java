@@ -1,5 +1,7 @@
 package com.aston.group.stationdefender.actors;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -70,9 +72,10 @@ public class TestWeapon extends Weapon {
      */
     @Override
     public void destroy() {
-        // TODO IMPLEMENT
-        //Play explosion animation.
-        //Play explosion sound.
+        //TODO: Play explosion animation
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/Explosion.mp3"));
+        sound.play();
+        sound.dispose();
         System.out.println("UNIT DESTROYED - FILLER BEFORE IMPLEMENTATION.");
         exists = false;
     }

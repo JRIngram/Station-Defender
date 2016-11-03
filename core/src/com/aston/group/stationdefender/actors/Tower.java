@@ -1,6 +1,8 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -40,10 +42,8 @@ public class Tower implements Actor {
     /**
      * Determines how the Tower acts when colliding with another unit.
      */
-
     @Override
     public void act() {
-
     }
 
     public boolean isColliding (int x, int y, int width, int height) {
@@ -63,8 +63,10 @@ public class Tower implements Actor {
 
     @Override
     public void destroy() {
-    	//TODO
-    	//animations/sound?
+        //TODO: Play explosion animation
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/Explosion.mp3"));
+        sound.play();
+        sound.dispose();
         exists = false;
     }
 
