@@ -25,12 +25,12 @@ public class Projectile implements Pool.Poolable {
         shapeRenderer = new ShapeRenderer();
     }
 
-    public void init(int x, int y) {
+    public void init(int x, int y, int speed) {
         this.x = x;
         this.y = y;
         width = 5;
         height = 4;
-        speed = 20;
+        this.speed = speed;
         alive = true;
     }
 

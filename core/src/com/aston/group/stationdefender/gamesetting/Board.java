@@ -3,6 +3,7 @@ package com.aston.group.stationdefender.gamesetting;
 import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.utils.ProjectileFactory;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ public class Board {
     private static int numberOfLanes = 4;
     private static int numberOfTiles = 4;
     private ArrayList<Lane> lanes = new ArrayList<Lane>();
+    private ProjectileFactory projectileFactory;
 
     /**
      * Construct a new Board with a default of 4 Lanes

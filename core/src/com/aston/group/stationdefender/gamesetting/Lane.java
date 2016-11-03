@@ -6,6 +6,7 @@ import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.helpers.Projectile;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
+import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -26,6 +27,7 @@ public class Lane {
     private int x, y, width, height;
     private ArrayList<Tile> tiles = new ArrayList<Tile>();
     private ArrayList<Unit> units = new ArrayList<Unit>();
+    private ProjectileFactory projectileFactory;
 
     private long lastRenderTime;
 
@@ -63,6 +65,7 @@ public class Lane {
         Collections.addAll(tiles, tile);
 
         shapeRenderer = new ShapeRenderer();
+        projectileFactory = new ProjectileFactory();
     }
 
     public void place(Unit unit, int x, int y){
@@ -144,6 +147,7 @@ public class Lane {
             units.get(i).render(delta);
         }
 
+        //Check if Units are adjacent. if they are, share the adjacent actor with each other
         for (int i = 0; i < units.size(); i++) {
             boolean isUnitAdjacent = false;
 
@@ -154,7 +158,6 @@ public class Lane {
                     if(units.get(i).isUnitAdjacent(units.get(j))){
                         isUnitAdjacent = true;
                         unit = units.get(j);
-                        System.out.println("Adjacent");
                         break;
                     }
                 }

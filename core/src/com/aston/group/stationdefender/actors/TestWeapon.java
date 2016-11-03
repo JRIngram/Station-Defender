@@ -39,7 +39,7 @@ public class TestWeapon extends Weapon {
     @Override
     public void render(float delta) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        if(getHealth() > 0)
+        if(!isAdjacent())
         shapeRenderer.setColor(Color.GREEN);
         else
             shapeRenderer.setColor(Color.ORANGE);
