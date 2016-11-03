@@ -10,15 +10,13 @@ import java.util.Iterator;
 
 public class ProjectileFactory {
 
-    private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
-
     private final Pool<Projectile> projectilePool = new Pool<Projectile>() {
         @Override
         protected Projectile newObject() {
             return new Projectile();
         }
     };
-
+    private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
     private Sound sound;
 
     public ProjectileFactory() {
@@ -33,9 +31,8 @@ public class ProjectileFactory {
     }
 
     public void render(float delta) {
-
-        for (int i = 0; i < projectiles.size(); i++) {
-            projectiles.get(i).render(delta);
+        for (Projectile projectile1 : projectiles) {
+            projectile1.render(delta);
         }
 
         //Remove Dead Projectiles
