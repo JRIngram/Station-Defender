@@ -9,17 +9,17 @@ import java.util.Random;
  * @version 01/11/2016
  */
 public abstract class Unit implements Actor {
-
-    /**
+    
+	/**
      * Name of the type of unit.
      */
-    private String name;
-
-    /**
-     * How many tiles it can move per "tick".
-     */
-    double speed;
-
+	protected String name;
+	
+	/**
+	 * How many tiles it can move per "tick".
+	 */
+    protected double speed;
+    
     /**
      * How much damage each successful hit causes.
      */
@@ -54,7 +54,27 @@ public abstract class Unit implements Actor {
     /**
      * Whether the Unit is alive or dead.
      */
-    boolean exists;
+    protected boolean exists;
+
+    /**
+     * Unit's position on the X-Axis
+     */
+    protected int x;
+
+    /**
+     * Unit's position on the Y-Axis
+     */
+    protected int y;
+
+    /**
+     * Unit's width.
+     */
+    protected int width;
+
+    /**
+     * Unit's height
+     */
+    protected int height;
 
     public Unit(String name, double speed, double damage, double rateOfFire, double health, double range) {
         this.name = name;
@@ -204,5 +224,34 @@ public abstract class Unit implements Actor {
             }
         }
         return (hit * damage);
+    }
+
+    public void setHeightAndWidth(int height, int width){
+    	this.height = height;
+	    this.width = width;
+    }
+
+    public void setX(int x){
+     	this.x = x;
+    }
+
+    public void setY(int y){
+    	this.y = y;
+    }
+
+    public int getHeight(){
+    	return height;
+    }
+
+    public int getWidth(){
+    	return width;
+    }
+
+    public int getX(){
+    	return x;
+    }
+
+    public int getY(){
+    	return y;
     }
 }
