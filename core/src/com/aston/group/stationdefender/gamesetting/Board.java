@@ -97,9 +97,9 @@ public class Board {
      * false if the actor hasn't been placed in the tile
      **/
     public boolean place(Unit unit, int x, int y) {
-        for (int i = 0; i < lanes.size(); i++) {
-            if(lanes.get(i).isColliding(x, y, 1, 1)){
-                lanes.get(i).place(unit, x, y);
+        for (Lane lane : lanes) {
+            if (lane.isColliding(x, y, 1, 1)) {
+                lane.place(unit, x, y);
             }
         }
         return true;

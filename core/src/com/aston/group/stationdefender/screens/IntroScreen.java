@@ -36,20 +36,6 @@ public class IntroScreen implements Screen {
     private TextButton backgroundButton, instructionButton, playButton, exitButton;
     private float fadeElapsed = 0;
     private TextButton[] buttons;
-    private ChangeListener buttonListener = new ChangeListener() {
-        @Override
-        public void changed(ChangeEvent event, Actor actor) {
-            if (actor.equals(backgroundButton)) {
-                introCallback.onDisplayBackground();
-            } else if (actor.equals(instructionButton)) {
-                introCallback.onDisplayInstructions();
-            } else if (actor.equals(playButton)) {
-                introCallback.onPlay();
-            } else if (actor.equals(exitButton)) {
-                introCallback.onExit();
-            }
-        }
-    };
 
     /**
      * Construct a new IntroScreen
@@ -86,6 +72,20 @@ public class IntroScreen implements Screen {
             button.setWidth(400);
             button.setHeight(50);
             stage.addActor(button);
+            ChangeListener buttonListener = new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    if (actor.equals(backgroundButton)) {
+                        introCallback.onDisplayBackground();
+                    } else if (actor.equals(instructionButton)) {
+                        introCallback.onDisplayInstructions();
+                    } else if (actor.equals(playButton)) {
+                        introCallback.onPlay();
+                    } else if (actor.equals(exitButton)) {
+                        introCallback.onExit();
+                    }
+                }
+            };
             button.addListener(buttonListener);
         }
         for (int i = 0; i < Constants.MENU_ITEMS.length; i++) {

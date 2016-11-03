@@ -67,9 +67,9 @@ public class Lane implements UnitCallback{
         projectileFactory = new ProjectileFactory();
     }
 
-    public void place(Unit unit, int x, int y) {
+    public void place(Unit unit, int x, int y){
         for (int i = 0; i < tiles.size(); i++) {
-            if (tiles.get(i).isColliding(x, y, 1, 1) && !isTileOccupied(i)) {
+            if(tiles.get(i).isColliding(x, y, 1, 1) && !isTileOccupied(i)){
                 unit.setX(tiles.get(i).getCenterX() - (unit.getWidth() / 2));
                 unit.setY(tiles.get(i).getCenterY() - (unit.getHeight() / 2));
                 units.add(unit);
@@ -138,12 +138,10 @@ public class Lane implements UnitCallback{
         shapeRenderer.rect(x, y, width, height);
         shapeRenderer.end();
 
-        //Draw all tiles
         for (Tile tile : tiles) {
             tile.render(delta);
         }
-
-        //Draw Units
+        //w Units
         for (int i = 0; i < units.size(); i++) {
             units.get(i).render(delta);
             units.get(i).setUnitCallback(this);
@@ -156,8 +154,8 @@ public class Lane implements UnitCallback{
             Unit unit = null;
 
             for (int j = 0; j < units.size(); j++) {
-                if (i != j) {
-                    if (units.get(i).isUnitAdjacent(units.get(j))) {
+                if(i != j){
+                    if(units.get(i).isUnitAdjacent(units.get(j))){
                         isUnitAdjacent = true;
                         unit = units.get(j);
                         break;
@@ -165,9 +163,9 @@ public class Lane implements UnitCallback{
                 }
             }
 
-            if (isUnitAdjacent) {
+            if(isUnitAdjacent){
                 units.get(i).setIsAdjacent(true);
-            } else {
+            }else{
                 units.get(i).setIsAdjacent(false);
             }
 
@@ -185,7 +183,7 @@ public class Lane implements UnitCallback{
         }
 
         //Spawn New Aliens
-        if (System.currentTimeMillis() - lastRenderTime > 2000) {
+        if(System.currentTimeMillis() - lastRenderTime > 2000){
             TestAlien testAlien = new TestAlien();
             testAlien.setX(getLastTileCenterX() - (testAlien.getWidth() / 2));
             testAlien.setY(getLastTileCenterY() - (testAlien.getHeight() / 2));
@@ -208,29 +206,25 @@ public class Lane implements UnitCallback{
 
     }
 
-    public int getLastTileCenterX() {
-        if (tiles.size() > 0) {
+    public int getLastTileCenterX(){
+        if(tiles.size() > 0){
             return tiles.get(tiles.size() - 1).getCenterX();
-        } else {
+        }else{
             return 0;
         }
     }
 
-    public int getLastTileCenterY() {
-        if (tiles.size() > 0) {
+    public int getLastTileCenterY(){
+        if(tiles.size() > 0){
             return tiles.get(tiles.size() - 1).getCenterY();
-        } else {
+        }else{
             return 0;
         }
     }
 
-    public boolean isColliding(int x, int y, int width, int height) {
-        if (x + width > this.x && x < this.x + this.width &&
-                y + height > this.y && y < this.y + this.height) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isColliding (int x, int y, int width, int height) {
+        return x + width > this.x && x < this.x + this.width &&
+                y + height > this.y && y < this.y + this.height;
     }
 
     @Override
@@ -242,8 +236,8 @@ public class Lane implements UnitCallback{
      * Dispose of unused resources
      */
     public void dispose() {
-        for (int i = 0; i < tiles.size(); i++) {
-            tiles.get(i).dispose();
+        for (Tile tile : tiles) {
+            tile.dispose();
         }
 
         //Todo dispose units

@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender.actors;
 
+import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -12,7 +13,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  * @version 01/11/2016
  */
 public class TestWeapon extends Weapon {
-
     private ShapeRenderer shapeRenderer;
     private long lastTime;
 
@@ -29,7 +29,7 @@ public class TestWeapon extends Weapon {
         }else{
             speed = 100;
         }
-        health = 100;
+        health = Constants.WEAPON_HEALTH;
     }
 
     public TestWeapon(double damage, double rateOfFire, double health, int x, int y, int height, int width,

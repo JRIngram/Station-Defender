@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.callbacks.UnitCallback;
+import com.aston.group.stationdefender.config.Constants;
 
 import java.util.Random;
 
@@ -34,6 +35,10 @@ public abstract class Unit implements Actor {
      */
     protected int height;
     /**
+     * How much damage the Unit can take before being destroyed.
+     */
+    protected double health;
+    /**
      * How many tiles it can move per "tick".
      */
     double speed;
@@ -58,10 +63,6 @@ public abstract class Unit implements Actor {
      */
     private double rateOfFire;
     /**
-     * How much damage the Unit can take before being destroyed.
-     */
-    protected double health;
-    /**
      * How many tiles forward the Unit can fire.
      */
     private double range;
@@ -78,7 +79,7 @@ public abstract class Unit implements Actor {
         this.y = y;
         width = 60;
         height = 60;
-        health = 100;
+        health = Constants.UNIT_HEALTH;
     }
 
     public Unit(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
@@ -95,7 +96,7 @@ public abstract class Unit implements Actor {
         isAdjacent = false;
         adjacentActor = null;
         exists = false;
-        health = 100;
+        health = Constants.UNIT_HEALTH;
     }
 
     /**
@@ -220,19 +221,11 @@ public abstract class Unit implements Actor {
         if(unit == this) return false;
 
         if(facingLeft){
-            if (unit.getX() + unit.getWidth() > this.x - (this.width + 5) && unit.getX() < this.x + this.width &&
-                    y + height > this.y && y < this.y + this.height) {
-                return true;
-            } else {
-                return false;
-            }
+            return unit.getX() + unit.getWidth() > this.x - (this.width + 5) && unit.getX() < this.x + this.width &&
+                    y + height > this.y && y < this.y + this.height;
         }else{
-            if (unit.getX() + unit.getWidth() > this.x && unit.getX() < this.x + (this.width * 2) + 5  &&
-                    y + height > this.y && y < this.y + this.height) {
-                return true;
-            } else {
-                return false;
-            }
+            return unit.getX() + unit.getWidth() > this.x && unit.getX() < this.x + (this.width * 2) + 5 &&
+                    y + height > this.y && y < this.y + this.height;
         }
     }
 

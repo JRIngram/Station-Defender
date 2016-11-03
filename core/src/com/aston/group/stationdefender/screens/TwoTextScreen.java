@@ -38,14 +38,6 @@ public class TwoTextScreen implements Screen {
     private float fadeElapsed = 0;
     private String title;
     private String body;
-    private ChangeListener buttonListener = new ChangeListener() {
-        @Override
-        public void changed(ChangeEvent event, Actor actor) {
-            if (actor.equals(backButton)) {
-                twoTextCallback.onBack();
-            }
-        }
-    };
 
     /**
      * Constructor sets the camera, viewpoint and
@@ -82,6 +74,14 @@ public class TwoTextScreen implements Screen {
         backButton.setWidth(400);
         backButton.setHeight(50);
         stage.addActor(backButton);
+        ChangeListener buttonListener = new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if (actor.equals(backButton)) {
+                    twoTextCallback.onBack();
+                }
+            }
+        };
         backButton.addListener(buttonListener);
         backButton.setPosition(-150, (Gdx.graphics.getHeight()) - 60);
     }
