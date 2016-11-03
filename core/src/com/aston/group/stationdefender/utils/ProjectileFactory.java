@@ -1,6 +1,8 @@
 package com.aston.group.stationdefender.utils;
 
 import com.aston.group.stationdefender.gamesetting.helpers.Projectile;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.utils.Pool;
 
 import java.util.ArrayList;
@@ -17,10 +19,17 @@ public class ProjectileFactory {
         }
     };
 
+    private Sound sound;
+
+    public ProjectileFactory() {
+        sound = Gdx.audio.newSound(Gdx.files.internal("sounds/Gun_Shot.mp3"));
+    }
+
     public void createBullet(int x, int y, int direction){
         Projectile projectile = projectilePool.obtain();
         projectile.init(x, y);
         projectiles.add(projectile);
+        sound.play();
     }
 
     public void render(float delta){
@@ -43,7 +52,7 @@ public class ProjectileFactory {
     }
 
     public void dispose(){
-
+        sound.dispose();
     }
 
 }
