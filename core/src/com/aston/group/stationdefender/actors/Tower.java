@@ -1,5 +1,8 @@
 package com.aston.group.stationdefender.actors;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
 /**
  * Tower is the object which the Humans defend,
  * and which the Aliens attack.
@@ -8,26 +11,27 @@ package com.aston.group.stationdefender.actors;
  */
 public class Tower implements Actor {
     private int height, width, x, y;
-    private double health = 100;
+    private double health;
     private boolean exists;
+    private ShapeRenderer shapeRenderer;
     
 
     /**
      * Constructs a new Tower
      */
-    public Tower(int height, int width, int x, int y) {
-    	ShapeRenderer shapeRenderer = new ShapeRenderer();
-        exists = true;
-        this.height = height;
-        this.width = width;
+    public Tower(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
+        shapeRenderer = new ShapeRenderer();
+        exists = true;
     }
 
     @Override
     public void render(float delta) {
-    	shapeRenderer.begin(ShapeRender.ShapeType.Filled);
-    	shapeRenderer.setColor(Color.GREEN);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(Color.GREEN);
     	shapeRenderer.rect(x, y, width, height);
     	shapeRenderer.end();
     }
@@ -97,8 +101,8 @@ public class Tower implements Actor {
      * @param damage Causes the Unit's health to deplete.
      */
     public void takeDamage(double damage) {
-    	if(health <= 0) {
-    		destroy();
+        if ((health - damage) <= 0) {
+            destroy();
     	} else {
     		health -= damage;
     	}

@@ -11,6 +11,11 @@ import java.util.Random;
 public abstract class Unit implements Actor {
 
     /**
+     * Checks if the Unit is adjacent to any other unit.
+     * This information is retrieved from the Board.
+     */
+    static boolean isAdjacent;
+    /**
      * Unit's position on the X-Axis
      */
     protected int x;
@@ -30,11 +35,6 @@ public abstract class Unit implements Actor {
      * How many tiles it can move per "tick".
      */
     double speed;
-    /**
-     * Checks if the Unit is adjacent to any other unit.
-     * This information is retrieved from the Board.
-     */
-    boolean isAdjacent;
     /**
      * The Unit that this Unit is adjacent to.
      */
@@ -78,6 +78,13 @@ public abstract class Unit implements Actor {
         isAdjacent = false;
         adjacentActor = null;
         exists = false;
+    }
+
+    /**
+     * @return The damage that the unit inflicts.
+     */
+    public static double getDamage() {
+        return damage;
     }
 
     @Override
@@ -128,13 +135,6 @@ public abstract class Unit implements Actor {
      */
     public double getSpeed() {
         return speed;
-    }
-
-    /**
-     * @return The damage that the unit inflicts.
-     */
-    public double getDamage() {
-        return damage;
     }
 
     /**

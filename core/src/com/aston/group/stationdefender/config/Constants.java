@@ -31,4 +31,6 @@ public interface Constants {
     int TILE_WIDTH = 60;
     int TILE_HEIGHT = 60;
     int TILE_AMOUNT = 10;
+
+    int TOWER_HEALTH = 1000;
 }
