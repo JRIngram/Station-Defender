@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public class TestWeapon extends Weapon {
 
     private ShapeRenderer shapeRenderer;
+    private long lastTime;
 
     public TestWeapon() {
         this(0, 0);
@@ -41,12 +42,19 @@ public class TestWeapon extends Weapon {
     @Override
     public void render(float delta) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        if(!isAdjacent())
-        shapeRenderer.setColor(Color.GREEN);
-        else
+        if(!isAdjacent()) {
+            shapeRenderer.setColor(Color.GREEN);
+
+            if(unitCallback != null && System.currentTimeMillis() - lastTime > 2000 + Math.random() * 4000) {
+                unitCallback.onFire(x, y, 20);
+                lastTime = System.currentTimeMillis();
+            }
+        }else
             shapeRenderer.setColor(Color.ORANGE);
         shapeRenderer.rect(x, y, width, height);
         shapeRenderer.end();
+
+
     }
 
     /**

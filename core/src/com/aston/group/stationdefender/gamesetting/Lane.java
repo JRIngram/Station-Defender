@@ -1,10 +1,9 @@
 package com.aston.group.stationdefender.gamesetting;
 
-import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.TestAlien;
 import com.aston.group.stationdefender.actors.Unit;
+import com.aston.group.stationdefender.callbacks.UnitCallback;
 import com.aston.group.stationdefender.config.Constants;
-import com.aston.group.stationdefender.gamesetting.helpers.Projectile;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.badlogic.gdx.graphics.Color;
@@ -20,7 +19,7 @@ import java.util.Iterator;
  * @author Jonathon Fitch
  * @author Twba Alshaghdari
  */
-public class Lane {
+public class Lane implements UnitCallback{
 
     private ShapeRenderer shapeRenderer;
 
@@ -68,9 +67,9 @@ public class Lane {
         projectileFactory = new ProjectileFactory();
     }
 
-    public void place(Unit unit, int x, int y){
+    public void place(Unit unit, int x, int y) {
         for (int i = 0; i < tiles.size(); i++) {
-            if(tiles.get(i).isColliding(x, y, 1, 1) && !isTileOccupied(i)){
+            if (tiles.get(i).isColliding(x, y, 1, 1) && !isTileOccupied(i)) {
                 unit.setX(tiles.get(i).getCenterX() - (unit.getWidth() / 2));
                 unit.setY(tiles.get(i).getCenterY() - (unit.getHeight() / 2));
                 units.add(unit);
@@ -79,10 +78,10 @@ public class Lane {
     }
 
     //Check if a unit is on a tile
-    public boolean isTileOccupied(int tileIndex){
-        if(tiles.get(tileIndex) != null){
+    public boolean isTileOccupied(int tileIndex) {
+        if (tiles.get(tileIndex) != null) {
             for (int i = 0; i < units.size(); i++) {
-                if(tiles.get(tileIndex).isColliding(units.get(i))){
+                if (tiles.get(tileIndex).isColliding(units.get(i))) {
                     return true;
                 }
             }
@@ -139,12 +138,15 @@ public class Lane {
         shapeRenderer.rect(x, y, width, height);
         shapeRenderer.end();
 
+        //Draw all tiles
         for (Tile tile : tiles) {
             tile.render(delta);
         }
 
+        //Draw Units
         for (int i = 0; i < units.size(); i++) {
             units.get(i).render(delta);
+            units.get(i).setUnitCallback(this);
         }
 
         //Check if Units are adjacent. if they are, share the adjacent actor with each other
@@ -154,8 +156,8 @@ public class Lane {
             Unit unit = null;
 
             for (int j = 0; j < units.size(); j++) {
-                if(i != j){
-                    if(units.get(i).isUnitAdjacent(units.get(j))){
+                if (i != j) {
+                    if (units.get(i).isUnitAdjacent(units.get(j))) {
                         isUnitAdjacent = true;
                         unit = units.get(j);
                         break;
@@ -163,9 +165,9 @@ public class Lane {
                 }
             }
 
-            if(isUnitAdjacent){
+            if (isUnitAdjacent) {
                 units.get(i).setIsAdjacent(true);
-            }else{
+            } else {
                 units.get(i).setIsAdjacent(false);
             }
 
@@ -183,7 +185,7 @@ public class Lane {
         }
 
         //Spawn New Aliens
-        if(System.currentTimeMillis() - lastRenderTime > 2000){
+        if (System.currentTimeMillis() - lastRenderTime > 2000) {
             TestAlien testAlien = new TestAlien();
             testAlien.setX(getLastTileCenterX() - (testAlien.getWidth() / 2));
             testAlien.setY(getLastTileCenterY() - (testAlien.getHeight() / 2));
@@ -193,31 +195,47 @@ public class Lane {
 
         }
 
+        //Draw Projectiles
+        projectileFactory.render(delta);
+
+        for (int i = 0; i < projectileFactory.getProjectiles().size(); i++) {
+            for (int j = 0; j < units.size(); j++) {
+                if(units.get(j).isFacingLeft() && projectileFactory.getProjectiles().get(i).isColliding(units.get(j).getX(), units.get(j).getY(), units.get(j).getWidth(), units.get(j).getHeight())){
+                    units.get(j).takeDamage(200);
+                }
+            }
+        }
+
     }
 
-    public int getLastTileCenterX(){
-        if(tiles.size() > 0){
+    public int getLastTileCenterX() {
+        if (tiles.size() > 0) {
             return tiles.get(tiles.size() - 1).getCenterX();
-        }else{
+        } else {
             return 0;
         }
     }
 
-    public int getLastTileCenterY(){
-        if(tiles.size() > 0){
+    public int getLastTileCenterY() {
+        if (tiles.size() > 0) {
             return tiles.get(tiles.size() - 1).getCenterY();
-        }else{
+        } else {
             return 0;
         }
     }
 
-    public boolean isColliding (int x, int y, int width, int height) {
+    public boolean isColliding(int x, int y, int width, int height) {
         if (x + width > this.x && x < this.x + this.width &&
                 y + height > this.y && y < this.y + this.height) {
             return true;
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void onFire(int x, int y, int speed) {
+        projectileFactory.shootBullet(x, y, speed);
     }
 
     /**

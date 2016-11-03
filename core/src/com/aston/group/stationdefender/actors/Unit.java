@@ -1,5 +1,7 @@
 package com.aston.group.stationdefender.actors;
 
+import com.aston.group.stationdefender.callbacks.UnitCallback;
+
 import java.util.Random;
 
 /**
@@ -65,6 +67,8 @@ public abstract class Unit implements Actor {
     private double range;
 
     protected boolean facingLeft;
+
+    protected UnitCallback unitCallback;
 
     public Unit() {
     }
@@ -287,5 +291,13 @@ public abstract class Unit implements Actor {
 
     public void setFacingLeft(boolean facingLeft) {
         this.facingLeft = facingLeft;
+    }
+
+    public UnitCallback getUnitCallback() {
+        return unitCallback;
+    }
+
+    public void setUnitCallback(UnitCallback unitCallback) {
+        this.unitCallback = unitCallback;
     }
 }

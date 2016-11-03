@@ -27,7 +27,8 @@ public class ProjectileFactory {
         Projectile projectile = projectilePool.obtain();
         projectile.init(x, y, speed);
         projectiles.add(projectile);
-        sound.play();
+        if(projectiles.size() < 20)
+        sound.play(0.1f);
     }
 
     public void render(float delta) {
@@ -45,6 +46,14 @@ public class ProjectileFactory {
                 projectilePool.free(projectile);
             }
         }
+    }
+
+    public ArrayList<Projectile> getProjectiles() {
+        return projectiles;
+    }
+
+    public void setProjectiles(ArrayList<Projectile> projectiles) {
+        this.projectiles = projectiles;
     }
 
     public void dispose(){
