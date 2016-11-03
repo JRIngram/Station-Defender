@@ -1,14 +1,11 @@
 package com.aston.group.stationdefender.screens;
 
 import com.aston.group.stationdefender.actors.Actor;
-import com.aston.group.stationdefender.callbacks.PlayerCallback;
+import com.aston.group.stationdefender.actors.TestAlien;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.Level;
 import com.aston.group.stationdefender.gamesetting.Player;
-import com.aston.group.stationdefender.gamesetting.helpers.Projectile;
-import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -20,22 +17,20 @@ import java.util.ArrayList;
 
 /**
  * This screen holds the main game loop
- *
- * @author Mohammed Foysal
+ * @author Mohammad Foysal
  */
 public class GameScreen implements Screen {
-    private static ArrayList<Actor> actorBufferA = new ArrayList<Actor>();
-    private static ArrayList<Actor> actorBufferB = new ArrayList<Actor>();
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;
     private Level level;
     private Player player;
+    private static ArrayList<Actor> actorBufferA = new ArrayList<Actor>();
+    private static ArrayList<Actor> actorBufferB = new ArrayList<Actor>();
+    private static byte mainUpdateBuffer = (byte) 0;
 
-    private ProjectileFactory projectileFactory;
-    /**
-     * Construct a new GameScreen
-     */
+    private TestAlien testAlien;
+
     public GameScreen() {
         batch = new SpriteBatch();
 
@@ -47,48 +42,19 @@ public class GameScreen implements Screen {
         //Setup viewport
         viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
         level = new Level();
-
         player = new Player();
-        player.setPlayerCallback(new PlayerCallback() {
-            @Override
-            public void placeActor(Actor actor, int x, int y) {
-                //todo implement place actor
-            }
-        });
 
-        projectileFactory = new ProjectileFactory();
-        projectileFactory.createBullet(20, 400, 1);
+        testAlien = new TestAlien(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 200, 400, 100, 100);
+
     }
 
-    /**
-     * Refresh the GameScreen.
-     * @param delta - The time in seconds since the last render.
-     */
-    public static void refresh(float delta) {
-        for (Actor a : actorBufferA) {
-            a.render(delta);
-        }
-        for (Actor a : actorBufferA) {
-            if (a.getExists()) {
-                actorBufferB.add(a);
-            }
-        }
-        actorBufferA.clear();
-        actorBufferA = actorBufferB;
-    }
 
-    /**
-     * Show the GameScreen.
-     */
+
     @Override
     public void show() {
         Gdx.input.setInputProcessor(player);
     }
 
-    /**
-     * Render the GameScreen.
-     * @param delta - The time in seconds since the last render.
-     */
     @Override
     public void render(float delta) {
         batch.setProjectionMatrix(camera.projection);
@@ -97,15 +63,9 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        level.render(delta);
+        testAlien.render(delta);
+
         player.render(delta);
-
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-            projectileFactory.createBullet(20, 400, 1);
-        }
-
-        projectileFactory.render(delta);
-
     }
 
     @Override
@@ -125,11 +85,23 @@ public class GameScreen implements Screen {
     public void hide() {
     }
 
-    /**
-     * Dispose of unused resources
-     */
     @Override
     public void dispose() {
         batch.dispose();
+    }
+
+
+    public static void refresh(float delta) {
+        for (Actor a : actorBufferA) {
+            a.render(delta);
+        }
+
+        for (Actor a : actorBufferA) {
+            if (a.getExists()) {
+                actorBufferB.add(a);
+            }
+        }
+        actorBufferA.clear();
+        actorBufferA = actorBufferB;
     }
 }
