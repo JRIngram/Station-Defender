@@ -64,6 +64,13 @@ public abstract class Unit implements Actor {
      */
     private double range;
 
+    public Unit(int x, int y){
+        this.x = x;
+        this.y = y;
+        width = 60;
+        height = 60;
+    }
+
     public Unit(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
         this.name = name;
         this.speed = speed;

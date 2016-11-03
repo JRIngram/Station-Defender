@@ -63,6 +63,30 @@ public class Level {
             board.render(delta);
     }
 
+    public int getLevelNumber() {
+        return levelNumber;
+    }
+
+    public void setLevelNumber(int levelNumber) {
+        this.levelNumber = levelNumber;
+    }
+
+    public Tower getTower() {
+        return tower;
+    }
+
+    public void setTower(Tower tower) {
+        this.tower = tower;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
     /**
      * Dispose of unused resources
      */

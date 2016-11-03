@@ -7,7 +7,7 @@ package com.aston.group.stationdefender.config;
  */
 public interface Constants {
 
-    boolean DEBUG = false;
+    boolean DEBUG = true;
 
     // 16/9 Aspect Ratio
     int SCREEN_WIDTH = 1024;
@@ -28,9 +28,9 @@ public interface Constants {
 
     String INSTRUCTIONS = "Instruction text will go here";
 
-    int TILE_WIDTH = 60;
-    int TILE_HEIGHT = 60;
-    int TILE_AMOUNT = 10;
+    int TILE_WIDTH = 80;
+    int TILE_HEIGHT = 80;
+    int TILE_AMOUNT = 12;
 
     int TOWER_HEALTH = 1000;
     int DEFAULT_DAMAGE = 100;

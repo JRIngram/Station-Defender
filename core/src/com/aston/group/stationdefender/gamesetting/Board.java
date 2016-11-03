@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.gamesetting;
 
 import com.aston.group.stationdefender.actors.Actor;
+import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
 
 import java.util.ArrayList;
@@ -31,10 +32,12 @@ public class Board {
      * @param numberOfTiles The number of Lanes for the Board to have
      */
     public Board(int numberOfLanes, int numberOfTiles) {
-        int laneY = 100;
+        int laneY = 120;
+
+
 
         for (int i = 0; i < numberOfLanes - 1; i++) {
-            lanes.add(new Lane(20, laneY, Constants.TILE_AMOUNT));
+            lanes.add(new Lane(100, laneY, Constants.TILE_AMOUNT));
 
             laneY += (Constants.TILE_HEIGHT + (Constants.TILE_HEIGHT / 2));
         }
@@ -88,14 +91,16 @@ public class Board {
      * Place an actor at the given lane and tile. if there is already an actor
      * at that tile placing should not happen.
      *
-     * @param actor  The actor to be placed
-     * @param laneNo The index of the lane the entity is in
-     * @param tileNo The index of the tile the entity is in
      * @return true if the actor has been placed,
      * false if the actor hasn't been placed in the tile
      **/
-    public boolean place(Actor actor, int laneNo, int tileNo) {
-        return lanes.get(laneNo).getTile(tileNo).placeActor(actor);
+    public boolean place(Unit unit, int x, int y) {
+        for (int i = 0; i < lanes.size(); i++) {
+            if(lanes.get(i).isColliding(x, y, 1, 1)){
+                lanes.get(i).place(unit, x, y);
+            }
+        }
+        return true;
     }
 
     /**

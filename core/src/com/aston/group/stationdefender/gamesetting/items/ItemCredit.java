@@ -22,6 +22,7 @@ public class ItemCredit extends Item {
         name = "Credits";
         itemTexture = new Texture(Gdx.files.internal("textures/item-credits.png"));
         value = 10;
+        placeable = true;
     }
 
     @Override

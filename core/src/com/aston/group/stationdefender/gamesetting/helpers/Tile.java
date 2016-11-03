@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.gamesetting.helpers;
 
 import com.aston.group.stationdefender.actors.Actor;
+import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -50,6 +51,23 @@ public class Tile {
         return false;
     }
 
+    public boolean isColliding (int x, int y, int width, int height) {
+        if (x + width > this.x && x < this.x + this.width &&
+                y + height > this.y && y < this.y + this.height) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isColliding(Unit unit){
+        if(isColliding(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight())){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     /**
      * Return the actor at this tile.
      *
@@ -57,6 +75,14 @@ public class Tile {
      **/
     public Actor getActor() {
         return actor;
+    }
+
+    public int getCenterX(){
+        return x + (width / 2);
+    }
+
+    public int getCenterY(){
+        return y + (height / 2);
     }
 
     /**

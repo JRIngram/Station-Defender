@@ -13,6 +13,11 @@ public class TestAlien extends Alien {
 
     private ShapeRenderer shapeRenderer;
 
+    public TestAlien(int x, int y) {
+        super(x, y);
+        shapeRenderer = new ShapeRenderer();
+    }
+
     public TestAlien(double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
         super("Test Alien", speed, damage, rateOfFire, health, range, x, y, width, height);
         shapeRenderer = new ShapeRenderer();
