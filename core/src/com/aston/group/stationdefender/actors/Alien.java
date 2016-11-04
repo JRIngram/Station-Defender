@@ -1,9 +1,11 @@
 package com.aston.group.stationdefender.actors;
 
+import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * Superclass for different Alien types.
@@ -12,7 +14,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  * @version 01/11/2016
  */
 public class Alien extends Unit {
-    private ShapeRenderer shapeRenderer;
+    private Texture texture;
+    private SpriteBatch batch;
+    private OrthographicCamera camera;
 
     /**
      * Construct a new Alien with default X and Y co-ordinates of '0'
@@ -29,7 +33,14 @@ public class Alien extends Unit {
      */
     public Alien(int x, int y) {
         super(x, y);
-        shapeRenderer = new ShapeRenderer();
+        batch = new SpriteBatch();
+
+        //Setup camera
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        camera.update();
+
+        texture = new Texture(Gdx.files.internal("textures/enemy.png"));
         facingLeft = true;
         if (facingLeft) {
             speed = -100;
@@ -55,7 +66,14 @@ public class Alien extends Unit {
      */
     public Alien(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
         super(name, speed, damage, rateOfFire, health, range, x, y, width, height);
-        shapeRenderer = new ShapeRenderer();
+        batch = new SpriteBatch();
+
+        //Setup camera
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        camera.update();
+
+        texture = new Texture(Gdx.files.internal("textures/enemy.png"));
     }
 
     /**
@@ -65,13 +83,15 @@ public class Alien extends Unit {
      */
     @Override
     public void render(float delta) {
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        batch.setProjectionMatrix(camera.projection);
+        batch.setTransformMatrix(camera.view);
+        batch.begin();
         if (!isAdjacent())
-            shapeRenderer.setColor(Color.BLUE);
+            batch.setColor(1f, 1f, 1f, 1f);
         else
-            shapeRenderer.setColor(Color.BLACK);
-        shapeRenderer.rect(x, y, width, height);
-        shapeRenderer.end();
+            batch.setColor(.5f, .5f, .5f, 1f);
+        batch.draw(texture, x, y, width, height);
+        batch.end();
 
         if (!isAdjacent()) {
             x += (speed * delta);
@@ -112,6 +132,7 @@ public class Alien extends Unit {
         sound.play();
         sound.dispose();
         exists = false;
+        batch.dispose();
     }
 
     /**
