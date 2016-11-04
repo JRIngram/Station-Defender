@@ -33,29 +33,26 @@ public class Tile {
     }
 
     /**
-     * Place an actor at the tile.
-     * If there is already an actor at that tile, placing should not happen.
+     * Check if an objects X & Y co-ordinates or width & height
+     * overlaps the Tiles X & Y co-ordinates, or width & height
      *
-     * @param actor The actor to be placed
-     * @return true if the actor has been placed, false if the actor hasn't been placed in the tile
-     **/
-    @Deprecated
-    /*
-      This method should be removed as Tiles are being used as helpers, not to store Actors
+     * @param x The X co-ordinate of the object to check
+     * @param y The Y co-ordinate of the object to check
+     * @param width The width of the object to check
+     * @param height The height of the object to check
+     * @return true if the values overlap, false if the values do not overlap
      */
-    public boolean placeActor(Actor actor) {
-        if (getActor() == null) {
-            this.actor = actor;
-            return true;
-        }
-        return false;
-    }
-
     public boolean isColliding (int x, int y, int width, int height) {
         return x + width > this.x && x < this.x + this.width &&
                 y + height > this.y && y < this.y + this.height;
     }
 
+    /**
+     * Returns whether a Unit is colliding with a Tile
+     *
+     * @param unit The Unit to check the collision status
+     * @return true if the Unit is colliding, false if the Unit is not colliding
+     */
     public boolean isColliding(Unit unit){
         return isColliding(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
     }
@@ -69,10 +66,20 @@ public class Tile {
         return actor;
     }
 
+    /**
+     * Returns the X co-ordinate of the center of the Tile
+     *
+     * @return The X co-ordinate of the center of the Tile
+     */
     public int getCenterX(){
         return x + (width / 2);
     }
 
+    /**
+     * Returns the Y co-ordinate of the center of the Tile
+     *
+     * @return The Y co-ordinate of the center of the Tile
+     */
     public int getCenterY(){
         return y + (height / 2);
     }

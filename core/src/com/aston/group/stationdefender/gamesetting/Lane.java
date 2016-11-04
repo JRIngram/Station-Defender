@@ -8,9 +8,8 @@ import com.aston.group.stationdefender.gamesetting.helpers.Tile;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.Array;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -24,8 +23,8 @@ public class Lane implements UnitCallback{
     private ShapeRenderer shapeRenderer;
 
     private int x, y, width, height;
-    private ArrayList<Tile> tiles = new ArrayList<Tile>();
-    private ArrayList<Unit> units = new ArrayList<Unit>();
+    private Array<Tile> tiles = new Array<Tile>();
+    private Array<Unit> units = new Array<Unit>();
     private ProjectileFactory projectileFactory;
 
     private long lastRenderTime;
@@ -61,14 +60,21 @@ public class Lane implements UnitCallback{
             tileX += Constants.TILE_WIDTH;
             width += Constants.TILE_WIDTH;
         }
-        Collections.addAll(tiles, tile);
+        tiles.addAll(tile);
 
         shapeRenderer = new ShapeRenderer();
         projectileFactory = new ProjectileFactory();
     }
 
-    public void place(Unit unit, int x, int y){
-        for (int i = 0; i < tiles.size(); i++) {
+    /**
+     * Places a Unit in a Lane using the Tile as a helper
+     *
+     * @param unit The Unit to place
+     * @param x    The X co-ordinate of the Tile
+     * @param y    The Y co-ordinate of the Tile
+     */
+    public void place(Unit unit, int x, int y) {
+        for (int i = 0; i < tiles.size; i++) {
             if(tiles.get(i).isColliding(x, y, 1, 1) && !isTileOccupied(i)){
                 unit.setX(tiles.get(i).getCenterX() - (unit.getWidth() / 2));
                 unit.setY(tiles.get(i).getCenterY() - (unit.getHeight() / 2));
@@ -77,16 +83,20 @@ public class Lane implements UnitCallback{
         }
     }
 
-    //Check if a unit is on a tile
+    /**
+     * Check if a Unit is on a tile
+     *
+     * @param tileIndex The index of the Tile to check
+     * @return true if a Unit is on the Tile, false if a Unit is not on the Tile
+     */
     public boolean isTileOccupied(int tileIndex) {
         if (tiles.get(tileIndex) != null) {
-            for (int i = 0; i < units.size(); i++) {
+            for (int i = 0; i < units.size; i++) {
                 if (tiles.get(tileIndex).isColliding(units.get(i))) {
                     return true;
                 }
             }
         }
-
         return false;
     }
 
@@ -115,7 +125,7 @@ public class Lane implements UnitCallback{
      * @param index The tile number to remove from the Board
      */
     public void removeTileByIndex(int index) {
-        tiles.remove(index);
+        tiles.removeIndex(index);
     }
 
     /**
@@ -124,7 +134,7 @@ public class Lane implements UnitCallback{
      * @param tile The tile Object to be removed from the Board
      */
     public void removeTileByObject(Tile tile) {
-        tiles.remove(tile);
+        tiles.removeValue(tile, true);
     }
 
     /**
@@ -142,19 +152,19 @@ public class Lane implements UnitCallback{
             tile.render(delta);
         }
         //w Units
-        for (int i = 0; i < units.size(); i++) {
+        for (int i = 0; i < units.size; i++) {
             units.get(i).render(delta);
             units.get(i).setUnitCallback(this);
         }
 
         //Check if Units are adjacent. if they are, share the adjacent actor with each other
-        for (int i = 0; i < units.size(); i++) {
+        for (int i = 0; i < units.size; i++) {
             boolean isUnitAdjacent = false;
 
             Unit unit = null;
 
-            for (int j = 0; j < units.size(); j++) {
-                if(i != j){
+            for (int j = 0; j < units.size; j++) {
+                if (i != j) {
                     if(units.get(i).isUnitAdjacent(units.get(j))){
                         isUnitAdjacent = true;
                         unit = units.get(j);
@@ -163,9 +173,9 @@ public class Lane implements UnitCallback{
                 }
             }
 
-            if(isUnitAdjacent){
+            if (isUnitAdjacent) {
                 units.get(i).setIsAdjacent(true);
-            }else{
+            } else {
                 units.get(i).setIsAdjacent(false);
             }
 
@@ -190,38 +200,57 @@ public class Lane implements UnitCallback{
 
             units.add(testAlien);
             lastRenderTime = System.currentTimeMillis();
-
         }
 
         //Draw Projectiles
         projectileFactory.render(delta);
 
-        for (int i = 0; i < projectileFactory.getProjectiles().size(); i++) {
-            for (int j = 0; j < units.size(); j++) {
-                if(units.get(j).isFacingLeft() && projectileFactory.getProjectiles().get(i).isColliding(units.get(j).getX(), units.get(j).getY(), units.get(j).getWidth(), units.get(j).getHeight())){
+        for (int i = 0; i < projectileFactory.getProjectiles().size; i++) {
+            for (int j = 0; j < units.size; j++) {
+                if (units.get(j).isFacingLeft() && projectileFactory.getProjectiles().get(i).isColliding(units.get(j).getX(),
+                        units.get(j).getY(), units.get(j).getWidth(), units.get(j).getHeight())) {
                     units.get(j).takeDamage(200);
                 }
             }
         }
-
     }
 
-    public int getLastTileCenterX(){
-        if(tiles.size() > 0){
-            return tiles.get(tiles.size() - 1).getCenterX();
-        }else{
+    /**
+     * Returns the X co-ordinate of the center of the last Tile
+     *
+     * @return The X co-ordinate of the center of the last Tile
+     */
+    public int getLastTileCenterX() {
+        if (tiles.size > 0) {
+            return tiles.get(tiles.size - 1).getCenterX();
+        } else {
             return 0;
         }
     }
 
-    public int getLastTileCenterY(){
-        if(tiles.size() > 0){
-            return tiles.get(tiles.size() - 1).getCenterY();
-        }else{
+    /**
+     * Returns the Y co-ordinate of the center of the last Tile
+     *
+     * @return The Y co-ordinate of the center of the last Tile
+     */
+    public int getLastTileCenterY() {
+        if (tiles.size > 0) {
+            return tiles.get(tiles.size - 1).getCenterY();
+        } else {
             return 0;
         }
     }
 
+    /**
+     * Check if an objects X & Y co-ordinates or width & height
+     * overlaps the Lanes X & Y co-ordinates, or width & height
+     *
+     * @param x The X co-ordinate of the object to check
+     * @param y The Y co-ordinate of the object to check
+     * @param width The width of the object to check
+     * @param height The height of the object to check
+     * @return true if the values overlap, false if the values do not overlap
+     */
     public boolean isColliding (int x, int y, int width, int height) {
         return x + width > this.x && x < this.x + this.width &&
                 y + height > this.y && y < this.y + this.height;

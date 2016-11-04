@@ -59,6 +59,11 @@ public abstract class Item {
         batch = new SpriteBatch();
     }
 
+    /**
+     * Render the Item.
+     *
+     * @param delta - The time in seconds since the last render.
+     */
     public void render(float delta) {
         //TODO: add specular effect
         if (itemTexture != null) {

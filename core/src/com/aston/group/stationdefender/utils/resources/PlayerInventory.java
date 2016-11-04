@@ -1,21 +1,21 @@
 package com.aston.group.stationdefender.utils.resources;
 
 import com.aston.group.stationdefender.gamesetting.items.Item;
+import com.badlogic.gdx.utils.Array;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * @author Mohammed Foysal
  */
 public class PlayerInventory implements Inventory {
-    private ArrayList<Item> items;
+    private Array<Item> items;
 
     /**
      * Construct a new PlayerInventory
      */
     public PlayerInventory() {
-        items = new ArrayList<Item>();
+        items = new Array<Item>();
     }
 
     /**
@@ -23,7 +23,7 @@ public class PlayerInventory implements Inventory {
      *
      * @param items The Items to add to the inventory
      */
-    public PlayerInventory(ArrayList<Item> items) {
+    public PlayerInventory(Array<Item> items) {
         this.items = items;
     }
 
@@ -31,10 +31,9 @@ public class PlayerInventory implements Inventory {
      * Adds an Item to the PlayerInventory
      *
      * @param item Item to add to the PlayerInventory
-     * @return The Item added
      */
-    public boolean addItem(Item item) {
-        return items.add(item);
+    public void addItem(Item item) {
+        items.add(item);
     }
 
     /**
@@ -44,15 +43,15 @@ public class PlayerInventory implements Inventory {
      * @return The Item removed
      */
     public boolean removeItem(Item item) {
-        return items.remove(item);
+        return items.removeValue(item, true);
     }
 
     /**
      * Adds all given Items from the PlayerInventory
      *
-     * @param items ArrayList of Items to be added to the PlayerInventory
+     * @param items Array of Items to be added to the PlayerInventory
      */
-    public void addAllItems(ArrayList<Item> items) {
+    public void addAllItems(Array<Item> items) {
         this.items.addAll(items);
     }
 
@@ -71,9 +70,9 @@ public class PlayerInventory implements Inventory {
      */
     @Override
     public void removeItemById(int id) {
-        for (int i = 0; i < items.size(); i++) {
+        for (int i = 0; i < items.size; i++) {
             if (items.get(i) != null && items.get(i).getId() == id) {
-                items.remove(i);
+                items.removeIndex(i);
                 break;
             }
         }
@@ -87,7 +86,7 @@ public class PlayerInventory implements Inventory {
      */
     @Override
     public Item getItem(int index) {
-        if (items.size() > index + 1 && items.get(index) != null) {
+        if (items.size > index + 1 && items.get(index) != null) {
             return items.get(index);
         }
         return null;
@@ -115,9 +114,9 @@ public class PlayerInventory implements Inventory {
      * @return All Items that contain the given ID
      */
     @Override
-    public ArrayList<Item> getAllItemsById(int id) {
-        ArrayList<Item> items = new ArrayList<Item>();
-        for (int i = 0; i < items.size(); i++) {
+    public Array<Item> getAllItemsById(int id) {
+        Array<Item> items = new Array<Item>();
+        for (int i = 0; i < items.size; i++) {
             if (items.get(i) != null && items.get(i).getId() == id) {
                 items.add(items.get(i));
             }

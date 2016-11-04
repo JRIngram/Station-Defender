@@ -46,6 +46,11 @@ public class QuickSlot {
         font = new BitmapFont();
     }
 
+    /**
+     * Render the QuickSlot.
+     *
+     * @param delta - The time in seconds since the last render.
+     */
     public void render(float delta) {
 
         //Draw Hovered Batch

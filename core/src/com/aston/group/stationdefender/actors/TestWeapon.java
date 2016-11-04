@@ -42,19 +42,17 @@ public class TestWeapon extends Weapon {
     @Override
     public void render(float delta) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        if(!isAdjacent()) {
+        if (!isAdjacent()) {
             shapeRenderer.setColor(Color.GREEN);
 
-            if(unitCallback != null && System.currentTimeMillis() - lastTime > 2000 + Math.random() * 4000) {
+            if (unitCallback != null && System.currentTimeMillis() - lastTime > 2000 + Math.random() * 4000) {
                 unitCallback.onFire(x, y, 20);
                 lastTime = System.currentTimeMillis();
             }
-        }else
+        } else
             shapeRenderer.setColor(Color.ORANGE);
         shapeRenderer.rect(x, y, width, height);
         shapeRenderer.end();
-
-
     }
 
     /**

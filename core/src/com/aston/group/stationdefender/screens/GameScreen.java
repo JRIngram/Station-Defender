@@ -12,10 +12,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
-import java.util.ArrayList;
 
 /**
  * This screen holds the main game loop
@@ -23,8 +22,8 @@ import java.util.ArrayList;
  * @author Mohammad Foysal
  */
 public class GameScreen implements Screen {
-    private static ArrayList<Actor> actorBufferA = new ArrayList<Actor>();
-    private static ArrayList<Actor> actorBufferB = new ArrayList<Actor>();
+    private static Array<Actor> actorBufferA = new Array<Actor>();
+    private static Array<Actor> actorBufferB = new Array<Actor>();
     private static byte mainUpdateBuffer = (byte) 0;
     private SpriteBatch batch;
     private OrthographicCamera camera;

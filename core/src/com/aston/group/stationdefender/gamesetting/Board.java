@@ -4,8 +4,7 @@ import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
-
-import java.util.ArrayList;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * Board class
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 public class Board {
     private static int numberOfLanes = 4;
     private static int numberOfTiles = 4;
-    private ArrayList<Lane> lanes = new ArrayList<Lane>();
+    private Array<Lane> lanes = new Array<Lane>();
     private ProjectileFactory projectileFactory;
 
     /**
@@ -35,8 +34,6 @@ public class Board {
      */
     public Board(int numberOfLanes, int numberOfTiles) {
         int laneY = 120;
-
-
 
         for (int i = 0; i < numberOfLanes - 1; i++) {
             lanes.add(new Lane(100, laneY, Constants.TILE_AMOUNT));
@@ -60,7 +57,7 @@ public class Board {
      * @param index The Lane number to remove from the Board
      */
     public void removeLaneByIndex(int index) {
-        lanes.remove(index - 1);
+        lanes.removeIndex(index - 1);
     }
 
     /**
@@ -69,7 +66,7 @@ public class Board {
      * @param lane The Lane Object to be removed from the Board
      */
     public void removeLaneByObject(Lane lane) {
-        lanes.remove(lane);
+        lanes.removeValue(lane, true);
     }
 
     /**

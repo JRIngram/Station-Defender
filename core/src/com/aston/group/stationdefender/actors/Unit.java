@@ -14,11 +14,6 @@ import java.util.Random;
 public abstract class Unit implements Actor {
 
     /**
-     * Checks if the Unit is adjacent to any other unit.
-     * This information is retrieved from the Board.
-     */
-    protected boolean isAdjacent;
-    /**
      * Unit's position on the X-Axis
      */
     protected int x;
@@ -35,9 +30,10 @@ public abstract class Unit implements Actor {
      */
     protected int height;
     /**
-     * How much damage the Unit can take before being destroyed.
+     * Checks if the Unit is adjacent to any other unit.
+     * This information is retrieved from the Board.
      */
-    protected double health;
+    boolean isAdjacent;
     /**
      * How many tiles it can move per "tick".
      */
@@ -50,6 +46,15 @@ public abstract class Unit implements Actor {
      * Whether the Unit is alive or dead.
      */
     boolean exists;
+    /**
+     * Whether the Unit is facing left or not
+     */
+    boolean facingLeft;
+    /**
+     * How much damage the Unit can take before being destroyed.
+     */
+    double health;
+    UnitCallback unitCallback;
     /**
      * Name of the type of unit.
      */
@@ -67,14 +72,10 @@ public abstract class Unit implements Actor {
      */
     private double range;
 
-    protected boolean facingLeft;
-
-    protected UnitCallback unitCallback;
-
     public Unit() {
     }
 
-    public Unit(int x, int y){
+    public Unit(int x, int y) {
         this.x = x;
         this.y = y;
         width = 60;
@@ -217,13 +218,13 @@ public abstract class Unit implements Actor {
         }
     }
 
-    public boolean isUnitAdjacent(Unit unit){
-        if(unit == this) return false;
+    public boolean isUnitAdjacent(Unit unit) {
+        if (unit == this) return false;
 
-        if(facingLeft){
+        if (facingLeft) {
             return unit.getX() + unit.getWidth() > this.x - (this.width + 5) && unit.getX() < this.x + this.width &&
                     y + height > this.y && y < this.y + this.height;
-        }else{
+        } else {
             return unit.getX() + unit.getWidth() > this.x && unit.getX() < this.x + (this.width * 2) + 5 &&
                     y + height > this.y && y < this.y + this.height;
         }

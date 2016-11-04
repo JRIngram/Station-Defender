@@ -16,8 +16,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-
-import java.util.ArrayList;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * Skeleton Player class
@@ -34,8 +33,8 @@ public class Player implements InputProcessor {
     private int money;
     private PlayerCallback playerCallback;
 
-    //Quickslots
-    private ArrayList<QuickSlot> quickSlots;
+    //QuickSlots
+    private Array<QuickSlot> quickSlots;
     private int selectedSlot = 0;
     private QuickSlotCallback quickSlotCallback;
 
@@ -58,7 +57,7 @@ public class Player implements InputProcessor {
         currentItem = new ItemCredit();
 
         //Quick Slots
-        quickSlots = new ArrayList<QuickSlot>();
+        quickSlots = new Array<QuickSlot>();
         int slotX = 0;
         for (int i = 0; i < 8; i++) {
             QuickSlot quickSlot = new QuickSlot(slotX, 0, 48, 48);
@@ -100,7 +99,7 @@ public class Player implements InputProcessor {
         }
 
         //Render Quick Slots
-        for (int i = 0; i < quickSlots.size(); i++) {
+        for (int i = 0; i < quickSlots.size; i++) {
 
             //Update Selected
             if (selectedSlot == i) {
@@ -208,11 +207,11 @@ public class Player implements InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         selectedSlot += amount;
-        if (selectedSlot > quickSlots.size() - 1) {
+        if (selectedSlot > quickSlots.size - 1) {
             selectedSlot = 0;
         }
         if (selectedSlot < 0) {
-            selectedSlot = quickSlots.size() - 1;
+            selectedSlot = quickSlots.size - 1;
         }
         quickSlotCallback.onSelectedItemChanged(quickSlots.get(selectedSlot).getItem());
         return true;
@@ -232,7 +231,7 @@ public class Player implements InputProcessor {
      *
      * @param items The Items to be added to the Inventory
      */
-    public void collectItems(ArrayList<Item> items) {
+    public void collectItems(Array<Item> items) {
         inventory.addAllItems(items);
     }
 

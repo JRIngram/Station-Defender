@@ -22,7 +22,6 @@ public class ItemBlank extends Item {
 
     @Override
     public void useItem(Player player, ItemCallback itemCallback) {
-
     }
 
     @Override

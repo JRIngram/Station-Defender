@@ -1,8 +1,7 @@
 package com.aston.group.stationdefender.utils.resources;
 
 import com.aston.group.stationdefender.gamesetting.items.Item;
-
-import java.util.ArrayList;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * Inventory is a storage place for items
@@ -16,9 +15,8 @@ public interface Inventory {
      * Adds an Item to the PlayerInventory
      *
      * @param item Item to add to the PlayerInventory
-     * @return The Item added
      */
-    boolean addItem(Item item);
+    void addItem(Item item);
 
     /**
      * Removes an Item from the Inventory
@@ -33,7 +31,7 @@ public interface Inventory {
      *
      * @param items ArrayList of Items to be added to the PlayerInventory
      */
-    void addAllItems(ArrayList<Item> items);
+    void addAllItems(Array<Item> items);
 
     /**
      * Removes all Items from the Inventory
@@ -69,7 +67,7 @@ public interface Inventory {
      * @param id The ID to get all items by
      * @return All Items that contain the given ID
      */
-    ArrayList<Item> getAllItemsById(int id);
+    Array<Item> getAllItemsById(int id);
 
     /**
      * Removes all items from the Inventory by a given ID
