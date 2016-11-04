@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -38,6 +39,7 @@ public class TwoTextScreen implements Screen {
     private float fadeElapsed = 0;
     private String title;
     private String body;
+    private Texture texture;
 
     /**
      * Constructor sets the camera, viewpoint and
@@ -84,6 +86,7 @@ public class TwoTextScreen implements Screen {
         };
         backButton.addListener(buttonListener);
         backButton.setPosition(-150, (Gdx.graphics.getHeight()) - 60);
+        texture = new Texture(Gdx.files.internal("textures/back.jpg"));
     }
 
     /**
@@ -119,6 +122,7 @@ public class TwoTextScreen implements Screen {
         batch.begin();
         titleFont.setColor(1, 1, 1, fade);
         backButton.setColor(1, 1, 1, fade);
+        batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         titleFont.draw(batch, title, (Gdx.graphics.getWidth() / 2) - 150, Gdx.graphics.getHeight() - 25);
         restartBatch();
         stage.draw();
