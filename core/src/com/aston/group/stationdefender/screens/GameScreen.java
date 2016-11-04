@@ -1,8 +1,8 @@
 package com.aston.group.stationdefender.screens;
 
 import com.aston.group.stationdefender.actors.Actor;
-import com.aston.group.stationdefender.actors.TestAlien;
-import com.aston.group.stationdefender.actors.TestWeapon;
+import com.aston.group.stationdefender.actors.Alien;
+import com.aston.group.stationdefender.actors.Weapon;
 import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.Level;
@@ -24,13 +24,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class GameScreen implements Screen {
     private static Array<Actor> actorBufferA = new Array<Actor>();
     private static Array<Actor> actorBufferB = new Array<Actor>();
-    private static byte mainUpdateBuffer = (byte) 0;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;
     private Level level;
     private Player player;
-    private TestAlien testAlien;
+    private Alien alien;
 
     public GameScreen() {
         batch = new SpriteBatch();
@@ -50,11 +49,10 @@ public class GameScreen implements Screen {
             public void placeActor(Actor actor, int x, int y) {
                 //todo change actor to unit
                 y = Gdx.graphics.getHeight() - y;
-                level.getBoard().place(new TestWeapon(x, y), x, y);
+                level.getBoard().place(new Weapon(x, y), x, y);
             }
         });
-
-        testAlien = new TestAlien(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 200, 400, 100, 100);
+        alien = new Alien("Alien", 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 200, 400, 100, 100);
     }
 
     public static void refresh(float delta) {
@@ -83,7 +81,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        testAlien.render(delta);
+        alien.render(delta);
         level.render(delta);
 
         player.render(delta);

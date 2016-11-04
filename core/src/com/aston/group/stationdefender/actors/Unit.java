@@ -151,6 +151,15 @@ public abstract class Unit implements Actor {
     }
 
     /**
+     * Method for setting the name of the Unit.
+     *
+     * @param name The name of the Unit.
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
      * @return Speed of the unit.
      */
     public double getSpeed() {

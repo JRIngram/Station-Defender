@@ -1,7 +1,7 @@
 package com.aston.group.stationdefender.tests;
 
-import com.aston.group.stationdefender.actors.TestAlien;
-import com.aston.group.stationdefender.actors.TestWeapon;
+import com.aston.group.stationdefender.actors.Alien;
+import com.aston.group.stationdefender.actors.Weapon;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,18 +9,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class WeaponTest {
-    private TestWeapon testWep;
-    private TestAlien adjacentAlien;
+    private Weapon testWep;
+    private Alien adjacentAlien;
 
     @Before
     public void setUp() {
-        testWep = new TestWeapon(1.5d, 3d, 5d, 1, 10, 100, 25, 0.0f, 0.0f, 200, 200);
-        adjacentAlien = new TestAlien(0, 5, 2, 5, 1, 200, 200, 100, 100);
+        testWep = new Weapon("Weapon", 0, 2, 2, 10, 1, 10, 10, 200, 200, 0.0d, 100, 100);
+        adjacentAlien = new Alien("Alien", 0, 5, 2, 5, 1, 200, 200, 100, 100);
     }
 
     @Test
     public void testConstructor() {
-        assertEquals("Test Weapon", testWep.getName());
+        assertEquals("Weapon", testWep.getName());
         assertEquals(0, testWep.getSpeed(), 0);
         assertEquals(1.5, testWep.getDamage(), 0);
         assertEquals(3, testWep.getRateOfFire(), 0);
@@ -71,7 +71,8 @@ public class WeaponTest {
 
     @Test
     public void testAdjacent() {
-        TestWeapon adjacentWeapon = new TestWeapon(1.5, 3, 5, 1, 10, 100, 25, 0.0f, 0.0d, 0, 0);
+        testWep = new Weapon("Weapon", 0, 2, 2, 10, 1, 10, 10, 200, 200, 0.0d, 100, 100);
+        Weapon adjacentWeapon = new Weapon("AdjWeapon", 0, 2, 2, 10, 1, 10, 10, 200, 200, 0.0d, 100, 100);
         assertEquals(false, testWep.isAdjacent());
         assertEquals(null, testWep.getAdjacentActor());
         testWep.setAdjacentActor(adjacentWeapon);

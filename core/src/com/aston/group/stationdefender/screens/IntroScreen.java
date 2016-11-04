@@ -4,6 +4,7 @@ import com.aston.group.stationdefender.callbacks.IntroCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -77,6 +79,7 @@ public class IntroScreen implements Screen {
             ChangeListener buttonListener = new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
+                    Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                     if (actor.equals(backgroundButton)) {
                         introCallback.onDisplayBackground();
                     } else if (actor.equals(instructionButton)) {
@@ -116,8 +119,7 @@ public class IntroScreen implements Screen {
         fadeElapsed += delta;
         float fadeInTime = .5f;
         float fadeDelay = 0f;
-        float fade = Interpolation.fade.apply(fadeElapsed / fadeInTime);
-        float fade2 = Interpolation.fade.apply((fadeElapsed - fadeDelay) / fadeInTime);
+        float fade = Interpolation.fade.apply((fadeElapsed - fadeDelay) / fadeInTime);
 
         //render
         batch.setProjectionMatrix(camera.projection);
@@ -133,10 +135,10 @@ public class IntroScreen implements Screen {
         batch.begin();
         stage.draw();
         // delay animation by a certain amount for each menu item
-        font.setColor(1, 1, 1, fade2);
+        font.setColor(1, 1, 1, fade);
         for (int i = 0; i < buttons.length; i++) {
-            fade2 = Interpolation.fade.apply((fadeElapsed - (fadeDelay + i + 1f)) / fadeInTime);
-            buttons[i].setColor(1, 1, 1, fade2);
+            fade = Interpolation.fade.apply((fadeElapsed - (fadeDelay + i + 1f)) / fadeInTime);
+            buttons[i].setColor(1, 1, 1, fade);
         }
         batch.end();
     }

@@ -1,6 +1,6 @@
 package com.aston.group.stationdefender.gamesetting;
 
-import com.aston.group.stationdefender.actors.TestAlien;
+import com.aston.group.stationdefender.actors.Alien;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.UnitCallback;
 import com.aston.group.stationdefender.config.Constants;
@@ -194,11 +194,12 @@ public class Lane implements UnitCallback{
 
         //Spawn New Aliens
         if(System.currentTimeMillis() - lastRenderTime > 2000){
-            TestAlien testAlien = new TestAlien();
-            testAlien.setX(getLastTileCenterX() - (testAlien.getWidth() / 2));
-            testAlien.setY(getLastTileCenterY() - (testAlien.getHeight() / 2));
+            Alien alien = new Alien();
+            alien.setName("Alien");
+            alien.setX(getLastTileCenterX() - (alien.getWidth() / 2));
+            alien.setY(getLastTileCenterY() - (alien.getHeight() / 2));
 
-            units.add(testAlien);
+            units.add(alien);
             lastRenderTime = System.currentTimeMillis();
         }
 
