@@ -76,10 +76,16 @@ public abstract class Item {
     /**
      * Allows the player to use the Item
      *
+     * @param player The current Player of the game
      * @param itemCallback The ItemCallBack associated with the Item
      */
     public abstract void useItem(Player player, ItemCallback itemCallback);
 
+    /**
+     * Abstract method to return whether the Item can be placed on the Board
+     *
+     * @return An Actor that can be placed on the Board, null if the Actor cannot be placed on the Board
+     */
     public abstract Actor getPlaceableActor();
 
     /**

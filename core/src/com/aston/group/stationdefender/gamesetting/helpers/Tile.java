@@ -20,7 +20,10 @@ public class Tile {
     private ShapeRenderer shapeRenderer;
 
     /**
-     * Construct a new Tile
+     * Construct a new Tile with given X and Y co-ordinates
+     *
+     * @param x The X co-ordinate of the Tile
+     * @param y The Y co-ordinate of the Tile
      */
     public Tile(int x, int y) {
         this.x = x;
@@ -43,8 +46,7 @@ public class Tile {
      * @return true if the values overlap, false if the values do not overlap
      */
     public boolean isColliding (int x, int y, int width, int height) {
-        return x + width > this.x && x < this.x + this.width &&
-                y + height > this.y && y < this.y + this.height;
+        return x + width > this.x && x < this.x + this.width && y + height > this.y && y < this.y + this.height;
     }
 
     /**

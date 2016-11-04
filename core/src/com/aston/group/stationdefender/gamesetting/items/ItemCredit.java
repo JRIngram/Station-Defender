@@ -25,6 +25,12 @@ public class ItemCredit extends Item {
         placeable = true;
     }
 
+    /**
+     * Allows the player to use the Item
+     *
+     * @param player       The current Player of the game
+     * @param itemCallback The ItemCallBack associated with the Item
+     */
     @Override
     public void useItem(Player player, ItemCallback itemCallback) {
         player.setMoney(player.getMoney() + value);
@@ -33,15 +39,30 @@ public class ItemCredit extends Item {
             itemCallback.onUse(placeable);
     }
 
+    /**
+     * Returns whether the Item can be placed on the Board
+     *
+     * @return An Actor that can be placed on the Board, null if the Actor cannot be placed on the Board
+     */
     @Override
     public Actor getPlaceableActor() {
         return null;
     }
 
+    /**
+     * Returns the value of the Item
+     *
+     * @return The value of the Item
+     */
     public int getValue() {
         return value;
     }
 
+    /**
+     * Sets the value of the Item
+     *
+     * @param value The value of the Item
+     */
     public void setValue(int value) {
         this.value = value;
     }

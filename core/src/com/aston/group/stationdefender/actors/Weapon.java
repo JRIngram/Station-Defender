@@ -15,7 +15,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  * @version 01/11/2016
  */
 public class Weapon extends Unit implements Actor {
-    boolean built;
+    private boolean built;
     private double buildTime;
     private double remainingBuildTime;
     private int cost;
@@ -24,12 +24,21 @@ public class Weapon extends Unit implements Actor {
     private ShapeRenderer shapeRenderer;
     private long lastTime;
 
+    /**
+     * Construct a new Weapon with default X and Y co-ordinates of '0'
+     */
     public Weapon() {
         x = 0;
         y = 0;
         setName("Weapon");
     }
 
+    /**
+     * Construct a new Weapon with given X and Y co-ordinates
+     *
+     * @param x The X co-ordinate to give the Weapon
+     * @param y The Y co-ordinate to give the Weapon
+     */
     public Weapon(int x, int y) {
         super(x, y);
         shapeRenderer = new ShapeRenderer();
@@ -42,6 +51,24 @@ public class Weapon extends Unit implements Actor {
         health = Constants.WEAPON_HEALTH;
     }
 
+    /**
+     * Construct a new Weapon with given name, speed, damage, rateOfFile, health, range, x co-ordinate, y co-ordinate,
+     * width, height, buildTime, cost and costToUpgrade parameters
+     *
+     * @param name          The name of the Weapon
+     * @param speed         The speed of the Weapon
+     * @param damage        The damage the Weapon inflicts
+     * @param rateOfFire    The rate of fire of the Weapon
+     * @param health        The health of the Weapon
+     * @param range         The range of the Weapon
+     * @param x             The X co-ordinate of the Weapon
+     * @param y             The Y co-ordinate of the Weapon
+     * @param width         The width of the Weapon
+     * @param height        The height of the Weapon
+     * @param buildTime     The build time of the Weapon
+     * @param cost          The cost of the Weapon
+     * @param costToUpgrade THe cost to upgrade to the Weapon
+     */
     public Weapon(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height,
                   double buildTime, int cost, int costToUpgrade) {
         super(name, speed, damage, rateOfFire, health, range, x, y, width, height);
@@ -53,6 +80,11 @@ public class Weapon extends Unit implements Actor {
         shapeRenderer = new ShapeRenderer();
     }
 
+    /**
+     * Render the Weapon.
+     *
+     * @param delta - The time in seconds since the last render.
+     */
     @Override
     public void render(float delta) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -157,10 +189,20 @@ public class Weapon extends Unit implements Actor {
         return built;
     }
 
+    /**
+     * Returns the ProjectileFactory used for the Weapon
+     *
+     * @return The ProjectileFactory used for the Weapon
+     */
     public ProjectileFactory getProjectileFactory() {
         return projectileFactory;
     }
 
+    /**
+     * Sets the ProjectileFactory used for the Weapon
+     *
+     * @param projectileFactory The ProjectileFactory to be used for the Weapon
+     */
     public void setProjectileFactory(ProjectileFactory projectileFactory) {
         this.projectileFactory = projectileFactory;
     }

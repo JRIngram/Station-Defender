@@ -20,10 +20,21 @@ public class ItemBlank extends Item {
         name = "Unknown Item";
     }
 
+    /**
+     * Allows the player to use the Item
+     *
+     * @param player       The current Player of the game
+     * @param itemCallback The ItemCallBack associated with the Item
+     */
     @Override
     public void useItem(Player player, ItemCallback itemCallback) {
     }
 
+    /**
+     * Returns whether the Item can be placed on the Board
+     *
+     * @return An Actor that can be placed on the Board, null if the Actor cannot be placed on the Board
+     */
     @Override
     public Actor getPlaceableActor() {
         return null;

@@ -32,12 +32,17 @@ public class Tower implements Actor {
         health = Constants.TOWER_HEALTH;
     }
 
+    /**
+     * Render the Tower.
+     *
+     * @param delta - The time in seconds since the last render.
+     */
     @Override
     public void render(float delta) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.GREEN);
-    	shapeRenderer.rect(x, y, width, height);
-    	shapeRenderer.end();
+        shapeRenderer.rect(x, y, width, height);
+        shapeRenderer.end();
     }
     
     /**
@@ -47,10 +52,18 @@ public class Tower implements Actor {
     public void act() {
     }
 
+    /**
+     * Check if an objects X & Y co-ordinates or width & height
+     * overlaps the Towers X & Y co-ordinates, or width & height
+     *
+     * @param x      The X co-ordinate of the object to check
+     * @param y      The Y co-ordinate of the object to check
+     * @param width  The width of the object to check
+     * @param height The height of the object to check
+     * @return true if the values overlap, false if the values do not overlap
+     */
     public boolean isColliding (int x, int y, int width, int height) {
-        if (x + width > this.x && x < this.x + this.width &&
-                y + height > this.y && y < this.y + this.height) {
-
+        if (x + width > this.x && x < this.x + this.width && y + height > this.y && y < this.y + this.height) {
             takeDamage(Constants.DEFAULT_DAMAGE);
             return true;
         } else {
@@ -61,7 +74,6 @@ public class Tower implements Actor {
     /**
      * Determines what happens when the tower gets destroyed.
      */
-
     @Override
     public void destroy() {
         //TODO: Play explosion animation

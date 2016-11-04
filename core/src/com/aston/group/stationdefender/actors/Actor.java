@@ -16,10 +16,21 @@ public interface Actor {
      */
     void render(float delta);
 
+    /**
+     * Makes the Actor act
+     */
     void act();
 
+    /**
+     * Destroys the Actor
+     */
     void destroy();
 
+    /**
+     * Returns the exist state of the Actor
+     *
+     * @return true if the Actor exists, false if the Actor does not exist
+     */
     boolean getExists();
 
     /**
