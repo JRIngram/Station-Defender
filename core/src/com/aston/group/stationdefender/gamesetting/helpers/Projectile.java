@@ -2,6 +2,8 @@ package com.aston.group.stationdefender.gamesetting.helpers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Pool;
 
@@ -16,6 +18,8 @@ public class Projectile implements Pool.Poolable {
     private int damage;
     private int speed;
     private ShapeRenderer shapeRenderer;
+    private SpriteBatch batch;
+    private Texture texture;
 
     /**
      * Construct a new Projectile with a default
@@ -26,6 +30,8 @@ public class Projectile implements Pool.Poolable {
         y = 0;
         alive = false;
         shapeRenderer = new ShapeRenderer();
+        batch = new SpriteBatch();
+        texture = new Texture(Gdx.files.internal("textures/projectile.png"));
     }
 
     /**
@@ -38,8 +44,8 @@ public class Projectile implements Pool.Poolable {
     public void init(int x, int y, int speed) {
         this.x = x;
         this.y = y;
-        width = 5;
-        height = 4;
+        width = 10;
+        height = 8;
         this.speed = speed;
         alive = true;
     }
@@ -65,10 +71,14 @@ public class Projectile implements Pool.Poolable {
     public void render(float delta){
         x += (speed * delta * 60);
 
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(Color.RED);
-        shapeRenderer.rect(x, y, width, height);
-        shapeRenderer.end();
+//        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+//        shapeRenderer.setColor(Color.RED);
+//        shapeRenderer.rect(x, y, width, height);
+//        shapeRenderer.end();
+
+        batch.begin();
+        batch.draw(texture, x, y, width, height);
+        batch.end();
 
         if (isOutOfScreen())
             alive = false;

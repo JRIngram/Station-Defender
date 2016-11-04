@@ -193,7 +193,7 @@ public class Lane implements UnitCallback{
         }
 
         //Spawn New Aliens
-        if(System.currentTimeMillis() - lastRenderTime > 2000){
+        if(System.currentTimeMillis() - lastRenderTime > 2000 + Math.random() * 3000){
             Alien alien = new Alien();
             alien.setName("Alien");
             alien.setX(getLastTileCenterX() - (alien.getWidth() / 2));

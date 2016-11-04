@@ -1,6 +1,9 @@
 package com.aston.group.stationdefender.gamesetting;
 
 import com.aston.group.stationdefender.actors.Tower;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * Skeleton Level class
@@ -9,8 +12,11 @@ import com.aston.group.stationdefender.actors.Tower;
  */
 public class Level {
     private int levelNumber;
-    private Tower tower = new Tower(1, 1, 10, 10);
+    private Tower tower;
     private Board board = new Board();
+
+    private SpriteBatch batch;
+    private Texture texture;
 
     /**
      * Construct a new Level with default level number of 1.
@@ -26,6 +32,9 @@ public class Level {
      */
     public Level(int levelNumber) {
         this.levelNumber = levelNumber;
+        tower = new Tower(0, 100, 100, 400);
+        batch = new SpriteBatch();
+        texture = new Texture(Gdx.files.internal("textures/level-one-back.png"));
     }
 
     /**
@@ -59,8 +68,15 @@ public class Level {
      * @param delta - The time in seconds since the last render.
      */
     public void render(float delta) {
+        batch.begin();
+        batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.end();
+
         if (board != null)
             board.render(delta);
+
+        if(tower != null)
+            tower.render(delta);
     }
 
     /**

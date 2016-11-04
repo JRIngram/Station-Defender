@@ -4,6 +4,8 @@ import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 /**
@@ -17,6 +19,8 @@ public class Tower implements Actor {
     private int health;
     private boolean exists;
     private ShapeRenderer shapeRenderer;
+    private SpriteBatch batch;
+    private Texture texture;
     
 
     /**
@@ -30,6 +34,8 @@ public class Tower implements Actor {
         shapeRenderer = new ShapeRenderer();
         exists = true;
         health = Constants.TOWER_HEALTH;
+        texture = new Texture(Gdx.files.internal("textures/tower.png"));
+        batch = new SpriteBatch();
     }
 
     /**
@@ -39,10 +45,14 @@ public class Tower implements Actor {
      */
     @Override
     public void render(float delta) {
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(Color.GREEN);
-        shapeRenderer.rect(x, y, width, height);
-        shapeRenderer.end();
+//        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+//        shapeRenderer.setColor(Color.GREEN);
+//        shapeRenderer.rect(x, y, width, height);
+//        shapeRenderer.end();
+
+        batch.begin();
+        batch.draw(texture, x, y, width, height);
+        batch.end();
     }
     
     /**

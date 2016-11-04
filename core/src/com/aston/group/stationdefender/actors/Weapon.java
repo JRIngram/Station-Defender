@@ -5,6 +5,8 @@ import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 /**
@@ -23,6 +25,8 @@ public class Weapon extends Unit implements Actor {
     private ProjectileFactory projectileFactory;
     private ShapeRenderer shapeRenderer;
     private long lastTime;
+    private SpriteBatch batch;
+    private Texture texture;
 
     /**
      * Construct a new Weapon with default X and Y co-ordinates of '0'
@@ -31,6 +35,8 @@ public class Weapon extends Unit implements Actor {
         x = 0;
         y = 0;
         setName("Weapon");
+        batch = new SpriteBatch();
+        texture = new Texture(Gdx.files.internal("textures/turret.png"));
     }
 
     /**
@@ -49,6 +55,8 @@ public class Weapon extends Unit implements Actor {
             speed = 100;
         }
         health = Constants.WEAPON_HEALTH;
+        batch = new SpriteBatch();
+        texture = new Texture(Gdx.files.internal("textures/turret.png"));
     }
 
     /**
@@ -78,6 +86,8 @@ public class Weapon extends Unit implements Actor {
         remainingBuildTime = buildTime;
         built = false;
         shapeRenderer = new ShapeRenderer();
+        batch = new SpriteBatch();
+        texture = new Texture(Gdx.files.internal("textures/turret.png"));
     }
 
     /**
@@ -87,18 +97,19 @@ public class Weapon extends Unit implements Actor {
      */
     @Override
     public void render(float delta) {
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         if (!isAdjacent()) {
-            shapeRenderer.setColor(Color.GREEN);
 
-            if (unitCallback != null && System.currentTimeMillis() - lastTime > 2000 + Math.random() * 4000) {
-                unitCallback.onFire(x, y, 20);
+            if (unitCallback != null && System.currentTimeMillis() - lastTime > 1000 + Math.random() * 4000) {
+                unitCallback.onFire(x + 40, y + 35, 20);
                 lastTime = System.currentTimeMillis();
             }
-        } else
-            shapeRenderer.setColor(Color.ORANGE);
-        shapeRenderer.rect(x, y, width, height);
-        shapeRenderer.end();
+        } else{
+
+        }
+
+        batch.begin();
+        batch.draw(texture, x, y, width, height);
+        batch.end();
     }
 
     /**

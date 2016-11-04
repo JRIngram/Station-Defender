@@ -3,7 +3,10 @@ package com.aston.group.stationdefender.gamesetting.helpers;
 import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 /**
@@ -16,6 +19,8 @@ public class Tile {
     private int x, y, width, height;
     private Actor actor;
 
+    private SpriteBatch batch;
+    private Texture texture;
     //DEBUG - Remove if not needed
     private ShapeRenderer shapeRenderer;
 
@@ -33,6 +38,8 @@ public class Tile {
         height = Constants.TILE_HEIGHT;
 
         shapeRenderer = new ShapeRenderer();
+        batch = new SpriteBatch();
+        texture = new Texture(Gdx.files.internal("textures/tile.png"));
     }
 
     /**
@@ -94,10 +101,14 @@ public class Tile {
     public void render(float delta) {
 
         //Remove if not needed
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.setColor(Color.RED);
-        shapeRenderer.rect(x, y, width, height);
-        shapeRenderer.end();
+//        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+//        shapeRenderer.setColor(Color.RED);
+//        shapeRenderer.rect(x, y, width, height);
+//        shapeRenderer.end();
+
+        batch.begin();
+        batch.draw(texture, x, y, width, height);
+        batch.end();
     }
 
     /**
