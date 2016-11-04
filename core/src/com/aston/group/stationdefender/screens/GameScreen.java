@@ -55,7 +55,7 @@ public class GameScreen implements Screen {
         alien = new Alien("Alien", 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 200, 400, 100, 100);
     }
 
-    public static void refresh(float delta) {
+    private static void refresh(float delta) {
         for (Actor a : actorBufferA) {
             a.render(delta);
         }
@@ -81,7 +81,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        alien.render(delta);
+        refresh(delta);
         level.render(delta);
 
         player.render(delta);
