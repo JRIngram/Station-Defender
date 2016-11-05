@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.gamesetting;
 
 import com.aston.group.stationdefender.actors.Tower;
+import com.aston.group.stationdefender.callbacks.LevelCallback;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,16 +14,20 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Level {
     private int levelNumber;
     private Tower tower;
-    private Board board = new Board();
+
+    //Todo - remove Board - lanes and units can be on Level, not inside a board
+    private Board board;
 
     private SpriteBatch batch;
     private Texture texture;
+    private LevelCallback levelCallback;
+    private Player player;
 
     /**
      * Construct a new Level with default level number of 1.
      */
-    public Level() {
-        this(1);
+    public Level(Player player, LevelCallback levelCallback) {
+        this(player, 1, levelCallback);
     }
 
     /**
@@ -30,8 +35,11 @@ public class Level {
      *
      * @param levelNumber The number of the Level
      */
-    public Level(int levelNumber) {
+    public Level(Player player, int levelNumber, LevelCallback levelCallback) {
         this.levelNumber = levelNumber;
+        this.levelCallback = levelCallback;
+        this.player = player;
+        board = new Board(player);
         tower = new Tower(0, 100, 100, 400);
         batch = new SpriteBatch();
         texture = new Texture(Gdx.files.internal("textures/level-one-back.png"));
@@ -72,8 +80,17 @@ public class Level {
         batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
 
-        if (board != null)
+        if (board != null) {
             board.render(delta);
+
+            if(board.isHasLost()){
+                levelCallback.onLost();
+            }
+
+            if(board.isHasWon()){
+                levelCallback.onWin();
+            }
+        }
 
         if(tower != null)
             tower.render(delta);

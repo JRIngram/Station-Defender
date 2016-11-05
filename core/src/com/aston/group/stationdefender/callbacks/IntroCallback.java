@@ -10,7 +10,7 @@ public interface IntroCallback {
 
     void onDisplayInstructions();
 
-    void onPlay();
+    void onPlay(boolean refresh);
 
     void onExit();
 }

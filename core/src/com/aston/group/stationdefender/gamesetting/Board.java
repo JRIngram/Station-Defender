@@ -17,12 +17,15 @@ public class Board {
     private static int numberOfTiles = 4;
     private Array<Lane> lanes = new Array<Lane>();
     private ProjectileFactory projectileFactory;
+    private boolean hasWon;
+    private boolean hasLost;
+    private Player player;
 
     /**
      * Construct a new Board with a default of 4 Lanes
      */
-    public Board() {
-        this(numberOfLanes, numberOfTiles);
+    public Board(Player player) {
+        this(player, numberOfLanes, numberOfTiles);
     }
 
     /**
@@ -32,11 +35,11 @@ public class Board {
      * @param numberOfLanes The number of Lanes for the Board to have
      * @param numberOfTiles The number of Lanes for the Board to have
      */
-    public Board(int numberOfLanes, int numberOfTiles) {
+    public Board(Player player, int numberOfLanes, int numberOfTiles) {
         int laneY = 120;
 
         for (int i = 0; i < numberOfLanes - 1; i++) {
-            lanes.add(new Lane(100, laneY, Constants.TILE_AMOUNT));
+            lanes.add(new Lane(player, 100, laneY, Constants.TILE_AMOUNT));
 
             laneY += (Constants.TILE_HEIGHT + (Constants.TILE_HEIGHT / 2));
         }
@@ -121,7 +124,28 @@ public class Board {
     public void render(float delta) {
         for (Lane lane : lanes) {
             lane.render(delta);
+
+            if(lane.isOverrun())
+                hasLost = true;
+
+
         }
+
+        if(isAllLanesCleared()){
+            hasWon = true;
+        }
+    }
+
+    public boolean isAllLanesCleared(){
+        boolean cleared = true;
+
+        for (int i = 0; i < lanes.size; i++) {
+            if(!lanes.get(i).isCleared()){
+                cleared = false;
+            }
+        }
+
+        return cleared;
     }
 
     /**
@@ -131,5 +155,21 @@ public class Board {
         for (Lane lane : lanes) {
             lane.dispose();
         }
+    }
+
+    public boolean isHasWon() {
+        return hasWon;
+    }
+
+    public void setHasWon(boolean hasWon) {
+        this.hasWon = hasWon;
+    }
+
+    public boolean isHasLost() {
+        return hasLost;
+    }
+
+    public void setHasLost(boolean hasLost) {
+        this.hasLost = hasLost;
     }
 }

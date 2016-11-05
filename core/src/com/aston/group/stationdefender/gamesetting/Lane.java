@@ -6,6 +6,7 @@ import com.aston.group.stationdefender.callbacks.UnitCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
@@ -26,6 +27,10 @@ public class Lane implements UnitCallback{
     private Array<Tile> tiles = new Array<Tile>();
     private Array<Unit> units = new Array<Unit>();
     private ProjectileFactory projectileFactory;
+    private boolean overrun;
+    private boolean cleared;
+    private int alienAmount;
+    private Player player;
 
     private long lastRenderTime;
 
@@ -35,8 +40,8 @@ public class Lane implements UnitCallback{
      *
      * @param numberOfTiles The Number of tiles in the lane
      */
-    public Lane(int numberOfTiles) {
-        this(0, 0, numberOfTiles);
+    public Lane(Player player, int numberOfTiles) {
+        this(player, 0, 0, numberOfTiles);
     }
 
     /**
@@ -46,10 +51,11 @@ public class Lane implements UnitCallback{
      * @param y             The Y co-ordinate of the Lane
      * @param numberOfTiles The Number of tiles in the lane
      */
-    public Lane(int x, int y, int numberOfTiles) {
+    public Lane(Player player, int x, int y, int numberOfTiles) {
         this.x = x;
         this.y = y;
         this.height = Constants.TILE_HEIGHT;
+        this.player = player;
 
         Tile[] tile = new Tile[numberOfTiles - 1];
 
@@ -61,6 +67,10 @@ public class Lane implements UnitCallback{
             width += Constants.TILE_WIDTH;
         }
         tiles.addAll(tile);
+
+        alienAmount = (int)(2 + (Math.random() * 10));
+
+        lastRenderTime = System.currentTimeMillis();
 
         shapeRenderer = new ShapeRenderer();
         projectileFactory = new ProjectileFactory();
@@ -180,6 +190,11 @@ public class Lane implements UnitCallback{
             }
 
             units.get(i).setAdjacentActor(unit);
+
+            //Check if aliens are near tower
+            if (units.get(i).isFacingLeft() && units.get(i).getX() < 120){
+                overrun = true;
+            }
         }
 
         //Remove Dead Units
@@ -194,12 +209,15 @@ public class Lane implements UnitCallback{
 
         //Spawn New Aliens
         if(System.currentTimeMillis() - lastRenderTime > 2000 + Math.random() * 3000){
-            Alien alien = new Alien();
-            alien.setName("Alien");
-            alien.setX(getLastTileCenterX() - (alien.getWidth() / 2));
-            alien.setY(getLastTileCenterY() - (alien.getHeight() / 2));
+            if(alienAmount > 0) {
+                Alien alien = new Alien();
+                alien.setName("Alien");
+                alien.setX(getLastTileCenterX() - (alien.getWidth() / 2));
+                alien.setY(getLastTileCenterY() - (alien.getHeight() / 2));
 
-            units.add(alien);
+                units.add(alien);
+                alienAmount--;
+            }
             lastRenderTime = System.currentTimeMillis();
         }
 
@@ -210,9 +228,19 @@ public class Lane implements UnitCallback{
             for (int j = 0; j < units.size; j++) {
                 if (units.get(j).isFacingLeft() && projectileFactory.getProjectiles().get(i).isColliding(units.get(j).getX(),
                         units.get(j).getY(), units.get(j).getWidth(), units.get(j).getHeight())) {
-                    units.get(j).takeDamage(200);
+                    int damage = 50;
+                    if(units.get(j).getHealth() - damage <= 0){
+                        player.addMoney(1);
+                        player.addScore(10);
+                    }
+                    units.get(j).takeDamage(damage);
                 }
             }
+        }
+
+        //Check if lane is cleared
+        if(isLaneCleared() && alienAmount <= 0){
+            cleared = true;
         }
     }
 
@@ -227,6 +255,16 @@ public class Lane implements UnitCallback{
         } else {
             return 0;
         }
+    }
+
+    public boolean isLaneCleared(){
+        for (int i = 0; i < units.size; i++) {
+            if(units.get(i).isFacingLeft()){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -277,5 +315,21 @@ public class Lane implements UnitCallback{
         }
 
         //Todo dispose units
+    }
+
+    public boolean isOverrun() {
+        return overrun;
+    }
+
+    public void setOverrun(boolean overrun) {
+        this.overrun = overrun;
+    }
+
+    public boolean isCleared() {
+        return cleared;
+    }
+
+    public void setCleared(boolean cleared) {
+        this.cleared = cleared;
     }
 }

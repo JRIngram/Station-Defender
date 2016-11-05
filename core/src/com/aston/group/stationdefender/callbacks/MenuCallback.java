@@ -6,7 +6,7 @@ package com.aston.group.stationdefender.callbacks;
  * @author Jonathon Fitch
  */
 public interface MenuCallback {
-    void onPlay();
+    void onPlay(boolean refresh);
 
     void onExit();
 }

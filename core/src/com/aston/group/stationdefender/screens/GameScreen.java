@@ -3,6 +3,8 @@ package com.aston.group.stationdefender.screens;
 import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.Alien;
 import com.aston.group.stationdefender.actors.Weapon;
+import com.aston.group.stationdefender.callbacks.GameCallback;
+import com.aston.group.stationdefender.callbacks.LevelCallback;
 import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.Level;
@@ -31,7 +33,7 @@ public class GameScreen implements Screen {
     private Player player;
     private Alien alien;
 
-    public GameScreen() {
+    public GameScreen(final GameCallback gameCallback) {
         batch = new SpriteBatch();
 
         //Setup camera
@@ -41,7 +43,7 @@ public class GameScreen implements Screen {
 
         //Setup viewport
         viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
-        level = new Level();
+
 
         player = new Player();
         player.setPlayerCallback(new PlayerCallback() {
@@ -53,9 +55,22 @@ public class GameScreen implements Screen {
             }
         });
         alien = new Alien("Alien", 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 200, 400, 100, 100);
+
+        level = new Level(player, new LevelCallback() {
+            @Override
+            public void onWin() {
+                gameCallback.onWin(player.getScore(), player.getMoney());
+            }
+
+            @Override
+            public void onLost() {
+                gameCallback.onLost(player.getScore(), player.getMoney());
+            }
+        });
+
     }
 
-    private static void refresh(float delta) {
+    private void refresh(float delta) {
         for (Actor a : actorBufferA) {
             a.render(delta);
         }
@@ -66,6 +81,7 @@ public class GameScreen implements Screen {
         }
         actorBufferA.clear();
         actorBufferA = actorBufferB;
+
     }
 
     @Override

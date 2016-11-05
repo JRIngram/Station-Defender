@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender;
 
+import com.aston.group.stationdefender.callbacks.GameCallback;
 import com.aston.group.stationdefender.callbacks.IntroCallback;
 import com.aston.group.stationdefender.callbacks.MenuCallback;
 import com.aston.group.stationdefender.callbacks.TwoTextCallback;
@@ -16,7 +17,7 @@ import com.badlogic.gdx.Gdx;
  *
  * @author Jonathon Fitch
  */
-public class Main extends Game {
+public class Main extends Game implements GameCallback, TwoTextCallback{
     private IntroScreen introScreen;
     private TwoTextScreen backgroundScreen;
     private TwoTextScreen instructionScreen;
@@ -29,7 +30,7 @@ public class Main extends Game {
         instructionScreen = new TwoTextScreen();
         introScreen = new IntroScreen();
         menuScreen = new MenuScreen();
-        gameScreen = new GameScreen();
+        initGame();
 
         // Setup title and body text
         backgroundScreen.setTitle(Constants.MENU_ITEMS[0]);
@@ -75,7 +76,8 @@ public class Main extends Game {
             }
 
             @Override
-            public void onPlay() {
+            public void onPlay(boolean refresh) {
+                if(refresh) initGame();
                 setScreen(gameScreen);
             }
 
@@ -85,23 +87,14 @@ public class Main extends Game {
             }
         });
 
-        backgroundScreen.setTwoTextCallback(new TwoTextCallback() {
-            @Override
-            public void onBack() {
-                setScreen(introScreen);
-            }
-        });
+        backgroundScreen.setTwoTextCallback(this);
 
-        instructionScreen.setTwoTextCallback(new TwoTextCallback() {
-            @Override
-            public void onBack() {
-                setScreen(introScreen);
-            }
-        });
+        instructionScreen.setTwoTextCallback(this);
 
         menuScreen.setMenuCallback(new MenuCallback() {
             @Override
-            public void onPlay() {
+            public void onPlay(boolean refresh) {
+                if(refresh) initGame();
                 setScreen(gameScreen);
             }
 
@@ -110,5 +103,39 @@ public class Main extends Game {
                 Gdx.app.exit();
             }
         });
+    }
+
+    private void initGame(){
+        if(gameScreen != null)
+            gameScreen.dispose();
+        gameScreen = new GameScreen(this);
+    }
+
+    @Override
+    public void onWin(int score, int money) {
+        TwoTextScreen twoTextScreen = new TwoTextScreen();
+        twoTextScreen.setTitle("YOU WON");
+        twoTextScreen.setBody("Score: " + score + " - Money: £" + money);
+        twoTextScreen.setTwoTextCallback(this);
+        setScreen(twoTextScreen);
+    }
+
+    @Override
+    public void onLost(int score, int money) {
+        TwoTextScreen twoTextScreen = new TwoTextScreen();
+        twoTextScreen.setTitle("YOU LOST");
+        twoTextScreen.setBody("Score: " + score + " - Money: £" + money);
+        twoTextScreen.setTwoTextCallback(this);
+        setScreen(twoTextScreen);
+    }
+
+    @Override
+    public void onPaused() {
+
+    }
+
+    @Override
+    public void onBack() {
+        setScreen(introScreen);
     }
 }

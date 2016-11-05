@@ -6,6 +6,7 @@ import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.gamesetting.items.ItemBlank;
 import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
+import com.aston.group.stationdefender.gamesetting.items.ItemTurret;
 import com.aston.group.stationdefender.utils.resources.Inventory;
 import com.aston.group.stationdefender.utils.resources.PlayerInventory;
 import com.aston.group.stationdefender.utils.resources.QuickSlot;
@@ -50,7 +51,7 @@ public class Player implements InputProcessor {
 
         inventory = new PlayerInventory();
         score = 0;
-        money = 0;
+        money = 50;
 
         inventory.addItem(new ItemCredit());
 
@@ -61,8 +62,8 @@ public class Player implements InputProcessor {
         int slotX = 0;
         for (int i = 0; i < 8; i++) {
             QuickSlot quickSlot = new QuickSlot(slotX, 0, 48, 48);
-            if (i % 2 == 0) {
-                quickSlot.setItem(new ItemCredit());
+            if (i == 0) {
+                quickSlot.setItem(new ItemTurret());
             } else {
                 quickSlot.setItem(new ItemBlank());
             }
@@ -115,6 +116,9 @@ public class Player implements InputProcessor {
         //Render Player Stats
         batch.begin();
         font.setColor(Color.BLACK);
+        font.draw(batch, "Score: " + score, Gdx.graphics.getWidth() - 99, 60);
+        font.draw(batch, "Money: " + money, Gdx.graphics.getWidth() - 99, 30);
+        font.setColor(Color.WHITE);
         font.draw(batch, "Score: " + score, Gdx.graphics.getWidth() - 100, 60);
         font.draw(batch, "Money: " + money, Gdx.graphics.getWidth() - 100, 30);
         batch.end();
@@ -185,8 +189,11 @@ public class Player implements InputProcessor {
                 currentItem.useItem(this, new ItemCallback() {
                     @Override
                     public void onUse(boolean placeable) {
-                        if (playerCallback != null && placeable)
+                        if (playerCallback != null && placeable) {
+                            if(money > 20)
                             playerCallback.placeActor(currentItem.getPlaceableActor(), screenX, screenY);
+                            money -= 20;
+                        }
                     }
                 });
             }
@@ -296,6 +303,22 @@ public class Player implements InputProcessor {
      */
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public void addScore(int amount){
+        this.score += amount;
+    }
+
+    public void removeScore(int amount){
+        this.score -= amount;
+    }
+
+    public void addMoney(int amount){
+        this.money += amount;
+    }
+
+    public void removeMoney(int amount){
+        this.money -= amount;
     }
 
     /**

@@ -85,7 +85,7 @@ public class IntroScreen implements Screen {
                     } else if (actor.equals(instructionButton)) {
                         introCallback.onDisplayInstructions();
                     } else if (actor.equals(playButton)) {
-                        introCallback.onPlay();
+                        introCallback.onPlay(true);
                     } else if (actor.equals(exitButton)) {
                         introCallback.onExit();
                     }
