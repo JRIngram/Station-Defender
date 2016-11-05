@@ -106,7 +106,7 @@ public class Alien extends Unit {
     }
 
     /**
-     * The main method which determines how the weapon acts.
+     * The main method which determines how the Alien acts.
      */
     @Override
     public void act() {

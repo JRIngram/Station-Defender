@@ -24,8 +24,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * @author Mohammad Foysal
  */
 public class GameScreen implements Screen {
-    private static Array<Actor> actorBufferA = new Array<Actor>();
-    private static Array<Actor> actorBufferB = new Array<Actor>();
+    private Array<Actor> actorBufferA = new Array<Actor>();
+    private Array<Actor> actorBufferB = new Array<Actor>();
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;
