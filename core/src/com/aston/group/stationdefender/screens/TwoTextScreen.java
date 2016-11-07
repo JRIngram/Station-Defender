@@ -14,7 +14,6 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -69,7 +68,6 @@ public class TwoTextScreen implements Screen {
 
         //Buttons
         stage = new Stage();
-        Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
         TextButtonStyle textButtonStyle = new TextButtonStyle();
         textButtonStyle.font = buttonFont;
         backButton = new TextButton(Constants.BACK, textButtonStyle);

@@ -120,7 +120,7 @@ public class Main extends Game implements GameCallback, TwoTextCallback{
         TwoTextScreen twoTextScreen = new TwoTextScreen();
         twoTextScreen.setTitle("YOU WON");
         twoTextScreen.setBody("Score: " + score + " - Money: £" + money);
-        twoTextScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 115);
+        twoTextScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 125);
         twoTextScreen.setTitleY(Gdx.graphics.getHeight() - 25);
         twoTextScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 150);
         twoTextScreen.setTwoTextCallback(this);
@@ -132,7 +132,7 @@ public class Main extends Game implements GameCallback, TwoTextCallback{
         TwoTextScreen twoTextScreen = new TwoTextScreen();
         twoTextScreen.setTitle("YOU LOST");
         twoTextScreen.setBody("Score: " + score + " - Money: £" + money);
-        twoTextScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 115);
+        twoTextScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 125);
         twoTextScreen.setTitleY(Gdx.graphics.getHeight() - 25);
         twoTextScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 150);
         twoTextScreen.setTwoTextCallback(this);

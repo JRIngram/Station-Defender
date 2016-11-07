@@ -14,11 +14,9 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -63,7 +61,6 @@ public class IntroScreen implements Screen {
 
         //Buttons
         stage = new Stage();
-        Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
         TextButtonStyle textButtonStyle = new TextButtonStyle();
         textButtonStyle.font = font;
         backgroundButton = new TextButton(Constants.MENU_ITEMS[0], textButtonStyle);
@@ -96,7 +93,6 @@ public class IntroScreen implements Screen {
         for (int i = 0; i < Constants.MENU_ITEMS.length; i++) {
             buttons[i].setPosition((Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + (100 - 60 * i));
         }
-
         texture = new Texture(Gdx.files.internal("textures/intro-back.jpg"));
     }
 
