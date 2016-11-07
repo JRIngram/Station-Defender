@@ -18,7 +18,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public class Tile {
     private int x, y, width, height;
     private Actor actor;
-
     private SpriteBatch batch;
     private Texture texture;
     //DEBUG - Remove if not needed
@@ -99,13 +98,6 @@ public class Tile {
      * @param delta - The time in seconds since the last render.
      */
     public void render(float delta) {
-
-        //Remove if not needed
-//        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-//        shapeRenderer.setColor(Color.RED);
-//        shapeRenderer.rect(x, y, width, height);
-//        shapeRenderer.end();
-
         batch.begin();
         batch.draw(texture, x, y, width, height);
         batch.end();

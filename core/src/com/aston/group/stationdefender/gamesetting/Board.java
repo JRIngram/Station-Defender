@@ -125,10 +125,8 @@ public class Board {
         for (Lane lane : lanes) {
             lane.render(delta);
 
-            if(lane.isOverrun())
+            if (lane.isOverrun())
                 hasLost = true;
-
-
         }
 
         if(isAllLanesCleared()){

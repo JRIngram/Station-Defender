@@ -56,7 +56,6 @@ public class QuickSlot {
         //Draw Hovered Batch
         if (isSelected) {
             batch.begin();
-//            batch.setColor(new Color(77, 190, 227, .5f));
             batch.draw(trQuickSlotHovered, x, y, width, height);
             batch.end();
         } else {

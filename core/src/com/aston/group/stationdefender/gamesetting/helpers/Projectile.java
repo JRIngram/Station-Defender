@@ -71,11 +71,6 @@ public class Projectile implements Pool.Poolable {
     public void render(float delta){
         x += (speed * delta * 60);
 
-//        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-//        shapeRenderer.setColor(Color.RED);
-//        shapeRenderer.rect(x, y, width, height);
-//        shapeRenderer.end();
-
         batch.begin();
         batch.draw(texture, x, y, width, height);
         batch.end();

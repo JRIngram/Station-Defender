@@ -45,11 +45,6 @@ public class Tower implements Actor {
      */
     @Override
     public void render(float delta) {
-//        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-//        shapeRenderer.setColor(Color.GREEN);
-//        shapeRenderer.rect(x, y, width, height);
-//        shapeRenderer.end();
-
         batch.begin();
         batch.draw(texture, x, y, width, height);
         batch.end();
