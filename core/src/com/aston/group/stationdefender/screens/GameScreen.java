@@ -1,7 +1,6 @@
 package com.aston.group.stationdefender.screens;
 
 import com.aston.group.stationdefender.actors.Actor;
-import com.aston.group.stationdefender.actors.Alien;
 import com.aston.group.stationdefender.actors.Weapon;
 import com.aston.group.stationdefender.callbacks.GameCallback;
 import com.aston.group.stationdefender.callbacks.LevelCallback;
@@ -31,7 +30,6 @@ public class GameScreen implements Screen {
     private Viewport viewport;
     private Level level;
     private Player player;
-    private Alien alien;
 
     public GameScreen(final GameCallback gameCallback) {
         batch = new SpriteBatch();
@@ -54,7 +52,6 @@ public class GameScreen implements Screen {
                 level.getBoard().place(new Weapon(x, y), x, y);
             }
         });
-        alien = new Alien("Alien", 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 200, 400, 100, 100);
 
         level = new Level(player, new LevelCallback() {
             @Override
