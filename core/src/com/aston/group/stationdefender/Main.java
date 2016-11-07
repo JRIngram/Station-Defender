@@ -35,8 +35,12 @@ public class Main extends Game implements GameCallback, TwoTextCallback{
         // Setup title and body text
         backgroundScreen.setTitle(Constants.MENU_ITEMS[0]);
         backgroundScreen.setBody(Constants.BACKGROUND);
+        backgroundScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 235);
+        backgroundScreen.setBodyY((Gdx.graphics.getHeight() / 2) + (100 - 60));
         instructionScreen.setTitle(Constants.MENU_ITEMS[1]);
         instructionScreen.setBody(Constants.INSTRUCTIONS);
+        instructionScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 190);
+        instructionScreen.setBodyY((Gdx.graphics.getHeight() / 2) + (100 - 60));
 
         // Setup callbacks
         setupCallbacks();
@@ -116,6 +120,9 @@ public class Main extends Game implements GameCallback, TwoTextCallback{
         TwoTextScreen twoTextScreen = new TwoTextScreen();
         twoTextScreen.setTitle("YOU WON");
         twoTextScreen.setBody("Score: " + score + " - Money: £" + money);
+        twoTextScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 115);
+        twoTextScreen.setTitleY(Gdx.graphics.getHeight() - 25);
+        twoTextScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 150);
         twoTextScreen.setTwoTextCallback(this);
         setScreen(twoTextScreen);
     }
@@ -125,13 +132,15 @@ public class Main extends Game implements GameCallback, TwoTextCallback{
         TwoTextScreen twoTextScreen = new TwoTextScreen();
         twoTextScreen.setTitle("YOU LOST");
         twoTextScreen.setBody("Score: " + score + " - Money: £" + money);
+        twoTextScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 115);
+        twoTextScreen.setTitleY(Gdx.graphics.getHeight() - 25);
+        twoTextScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 150);
         twoTextScreen.setTwoTextCallback(this);
         setScreen(twoTextScreen);
     }
 
     @Override
     public void onPaused() {
-
     }
 
     @Override

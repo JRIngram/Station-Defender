@@ -40,6 +40,7 @@ public class TwoTextScreen implements Screen {
     private String title;
     private String body;
     private Texture texture;
+    private int titleX, titleY, bodyX, bodyY;
 
     /**
      * Constructor sets the camera, viewpoint and
@@ -87,6 +88,8 @@ public class TwoTextScreen implements Screen {
         backButton.addListener(buttonListener);
         backButton.setPosition(-150, (Gdx.graphics.getHeight()) - 60);
         texture = new Texture(Gdx.files.internal("textures/back.jpg"));
+        bodyX = (Gdx.graphics.getWidth() / 2) - 235;
+        bodyY = (Gdx.graphics.getHeight() / 2) + (100 - 60);
     }
 
     /**
@@ -123,14 +126,14 @@ public class TwoTextScreen implements Screen {
         titleFont.setColor(1, 1, 1, fade);
         backButton.setColor(1, 1, 1, fade);
         batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        titleFont.draw(batch, title, (Gdx.graphics.getWidth() / 2) - 150, Gdx.graphics.getHeight() - 25);
+        titleFont.draw(batch, title, titleX, titleY);
         restartBatch();
         stage.draw();
         restartBatch();
 
         // delay animation by a certain amount for each menu item
         bodyFont.setColor(1, 1, 1, fade2);
-        bodyFont.draw(batch, body, (Gdx.graphics.getWidth() / 2) - 235, (Gdx.graphics.getHeight() / 2) + (100 - 60));
+        bodyFont.draw(batch, body, bodyX, bodyY);
         batch.end();
     }
 
@@ -193,5 +196,21 @@ public class TwoTextScreen implements Screen {
     private void restartBatch() {
         batch.end();
         batch.begin();
+    }
+
+    public void setTitleX(int x) {
+        this.titleX = x;
+    }
+
+    public void setTitleY(int y) {
+        this.titleY = y;
+    }
+
+    public void setBodyX(int x) {
+        this.bodyX = x;
+    }
+
+    public void setBodyY(int y) {
+        this.bodyY = y;
     }
 }
