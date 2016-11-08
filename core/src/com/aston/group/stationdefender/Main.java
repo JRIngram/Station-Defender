@@ -74,20 +74,17 @@ public class Main extends Game implements GameCallback, TwoTextCallback, IntroCa
 
     @Override
     public void onWin(int score, int money) {
-        TwoTextScreen twoTextScreen = new TwoTextScreen();
-        twoTextScreen.setTitle("YOU WON");
-        twoTextScreen.setBody("Score: " + score + " - Money: £" + money);
-        twoTextScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 125);
-        twoTextScreen.setTitleY(Gdx.graphics.getHeight() - 25);
-        twoTextScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 150);
-        twoTextScreen.setTwoTextCallback(this);
-        setScreen(twoTextScreen);
+        setupWinLost("YOU WON", score, money);
     }
 
     @Override
     public void onLost(int score, int money) {
+        setupWinLost("YOU LOST", score, money);
+    }
+
+    private void setupWinLost(String title, int score, int money) {
         TwoTextScreen twoTextScreen = new TwoTextScreen();
-        twoTextScreen.setTitle("YOU LOST");
+        twoTextScreen.setTitle(title);
         twoTextScreen.setBody("Score: " + score + " - Money: £" + money);
         twoTextScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 125);
         twoTextScreen.setTitleY(Gdx.graphics.getHeight() - 25);
