@@ -17,7 +17,7 @@ import com.badlogic.gdx.Gdx;
  *
  * @author Jonathon Fitch
  */
-public class Main extends Game implements GameCallback, TwoTextCallback{
+public class Main extends Game implements GameCallback, TwoTextCallback, IntroCallback, MenuCallback {
     private IntroScreen introScreen;
     private TwoTextScreen backgroundScreen;
     private TwoTextScreen instructionScreen;
@@ -43,7 +43,10 @@ public class Main extends Game implements GameCallback, TwoTextCallback{
         instructionScreen.setBodyY((Gdx.graphics.getHeight() / 2) + (100 - 60));
 
         // Setup callbacks
-        setupCallbacks();
+        introScreen.setIntroCallback(this);
+        backgroundScreen.setTwoTextCallback(this);
+        instructionScreen.setTwoTextCallback(this);
+        menuScreen.setMenuCallback(this);
 
         //Set the screen to intro upon creation if debug flag is not set
         if (!Constants.DEBUG) {
@@ -63,54 +66,8 @@ public class Main extends Game implements GameCallback, TwoTextCallback{
         super.dispose();
     }
 
-    /**
-     * Sets the callbacks to be used for each screen and adds actions based
-     * on which callback method is used.
-     */
-    private void setupCallbacks() {
-        introScreen.setIntroCallback(new IntroCallback() {
-            @Override
-            public void onDisplayBackground() {
-                setScreen(backgroundScreen);
-            }
-
-            @Override
-            public void onDisplayInstructions() {
-                setScreen(instructionScreen);
-            }
-
-            @Override
-            public void onPlay(boolean refresh) {
-                if(refresh) initGame();
-                setScreen(gameScreen);
-            }
-
-            @Override
-            public void onExit() {
-                Gdx.app.exit();
-            }
-        });
-
-        backgroundScreen.setTwoTextCallback(this);
-
-        instructionScreen.setTwoTextCallback(this);
-
-        menuScreen.setMenuCallback(new MenuCallback() {
-            @Override
-            public void onPlay(boolean refresh) {
-                if(refresh) initGame();
-                setScreen(gameScreen);
-            }
-
-            @Override
-            public void onExit() {
-                Gdx.app.exit();
-            }
-        });
-    }
-
-    private void initGame(){
-        if(gameScreen != null)
+    private void initGame() {
+        if (gameScreen != null)
             gameScreen.dispose();
         gameScreen = new GameScreen(this);
     }
@@ -141,10 +98,32 @@ public class Main extends Game implements GameCallback, TwoTextCallback{
 
     @Override
     public void onPaused() {
+        setScreen(menuScreen);
     }
 
     @Override
     public void onBack() {
         setScreen(introScreen);
+    }
+
+    @Override
+    public void onDisplayBackground() {
+        setScreen(backgroundScreen);
+    }
+
+    @Override
+    public void onDisplayInstructions() {
+        setScreen(instructionScreen);
+    }
+
+    @Override
+    public void onPlay(boolean refresh) {
+        if (refresh) initGame();
+        setScreen(gameScreen);
+    }
+
+    @Override
+    public void onExit() {
+        Gdx.app.exit();
     }
 }
