@@ -22,7 +22,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  *
  * @author Mohammad Foysal
  */
-public class GameScreen implements Screen {
+public class GameScreen implements Screen, PlayerCallback, LevelCallback {
     private Array<Actor> actorBufferA = new Array<Actor>();
     private Array<Actor> actorBufferB = new Array<Actor>();
     private SpriteBatch batch;
@@ -30,9 +30,11 @@ public class GameScreen implements Screen {
     private Viewport viewport;
     private Level level;
     private Player player;
+    private GameCallback gameCallback;
 
     public GameScreen(final GameCallback gameCallback) {
         batch = new SpriteBatch();
+        this.gameCallback = gameCallback;
 
         //Setup camera
         camera = new OrthographicCamera();
@@ -44,26 +46,9 @@ public class GameScreen implements Screen {
 
 
         player = new Player();
-        player.setPlayerCallback(new PlayerCallback() {
-            @Override
-            public void placeActor(Actor actor, int x, int y) {
-                //todo change actor to unit
-                y = Gdx.graphics.getHeight() - y;
-                level.getBoard().place(new Weapon(x, y), x, y);
-            }
-        });
+        player.setPlayerCallback(this);
 
-        level = new Level(player, new LevelCallback() {
-            @Override
-            public void onWin() {
-                gameCallback.onWin(player.getScore(), player.getMoney());
-            }
-
-            @Override
-            public void onLost() {
-                gameCallback.onLost(player.getScore(), player.getMoney());
-            }
-        });
+        level = new Level(player, this);
 
     }
 
@@ -96,7 +81,6 @@ public class GameScreen implements Screen {
 
         refresh(delta);
         level.render(delta);
-
         player.render(delta);
     }
 
@@ -120,5 +104,22 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
+    }
+
+    @Override
+    public void onWin() {
+        gameCallback.onWin(player.getScore(), player.getMoney());
+    }
+
+    @Override
+    public void onLost() {
+        gameCallback.onLost(player.getScore(), player.getMoney());
+    }
+
+    @Override
+    public void placeActor(Actor actor, int x, int y) {
+        //TODO: Change Actor to Unit
+        y = Gdx.graphics.getHeight() - y;
+        level.getBoard().place(new Weapon(x, y), x, y);
     }
 }
