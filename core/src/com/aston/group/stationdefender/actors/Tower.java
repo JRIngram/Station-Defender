@@ -3,10 +3,8 @@ package com.aston.group.stationdefender.actors;
 import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 /**
  * Tower is the object which the Humans defend,
@@ -15,10 +13,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  * @author Jonathon Fitch, Peter Holmes
  */
 public class Tower implements Actor {
-    private int height, width, x, y;
-    private int health;
+    private int height, width, x, y, health;
     private boolean exists;
-    private ShapeRenderer shapeRenderer;
     private SpriteBatch batch;
     private Texture texture;
     
@@ -31,7 +27,6 @@ public class Tower implements Actor {
         this.y = y;
         this.width = width;
         this.height = height;
-        shapeRenderer = new ShapeRenderer();
         exists = true;
         health = Constants.TOWER_HEALTH;
         texture = new Texture(Gdx.files.internal("textures/tower.png"));

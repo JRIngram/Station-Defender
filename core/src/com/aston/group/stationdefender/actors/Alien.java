@@ -42,11 +42,7 @@ public class Alien extends Unit {
 
         texture = new Texture(Gdx.files.internal("textures/enemy.png"));
         facingLeft = true;
-        if (facingLeft) {
-            speed = -100;
-        } else {
-            speed = 100;
-        }
+        speed = -100;
 
         width = 100;
         height = 38;
