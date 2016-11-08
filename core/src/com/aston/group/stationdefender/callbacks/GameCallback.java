@@ -6,9 +6,9 @@ package com.aston.group.stationdefender.callbacks;
  * @author Mohammed Foysal
  */
 public interface GameCallback {
-
     void onWin(int score, int money);
-    void onLost(int score, int money);
-    void onPaused();
 
+    void onLost(int score, int money);
+
+    void onPaused();
 }

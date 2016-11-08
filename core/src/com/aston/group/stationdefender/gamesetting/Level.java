@@ -12,16 +12,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * @author Jonathon Fitch
  */
 public class Level {
+    private final SpriteBatch batch;
+    private final Texture texture;
+    private final LevelCallback levelCallback;
     private int levelNumber;
     private Tower tower;
-
     //Todo - remove Board - lanes and units can be on Level, not inside a board
     private Board board;
-
-    private SpriteBatch batch;
-    private Texture texture;
-    private LevelCallback levelCallback;
-    private Player player;
 
     /**
      * Construct a new Level with default level number of 1.
@@ -38,7 +35,6 @@ public class Level {
     public Level(Player player, int levelNumber, LevelCallback levelCallback) {
         this.levelNumber = levelNumber;
         this.levelCallback = levelCallback;
-        this.player = player;
         board = new Board(player);
         tower = new Tower(0, 100, 100, 400);
         batch = new SpriteBatch();
@@ -83,16 +79,16 @@ public class Level {
         if (board != null) {
             board.render(delta);
 
-            if(board.isHasLost()){
+            if (board.isHasLost()) {
                 levelCallback.onLost();
             }
 
-            if(board.isHasWon()){
+            if (board.isHasWon()) {
                 levelCallback.onWin();
             }
         }
 
-        if(tower != null)
+        if (tower != null)
             tower.render(delta);
     }
 

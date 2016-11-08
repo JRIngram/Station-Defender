@@ -6,8 +6,7 @@ package com.aston.group.stationdefender.callbacks;
  * @author Mohammed Foysal
  */
 public interface LevelCallback {
-
     void onWin();
-    void onLost();
 
+    void onLost();
 }

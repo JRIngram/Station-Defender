@@ -14,9 +14,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * @version 01/11/2016
  */
 public class Alien extends Unit {
-    private Texture texture;
-    private SpriteBatch batch;
-    private OrthographicCamera camera;
+    private final Texture texture;
+    private final SpriteBatch batch;
+    private final OrthographicCamera camera;
 
     /**
      * Construct a new Alien with default X and Y co-ordinates of '0'

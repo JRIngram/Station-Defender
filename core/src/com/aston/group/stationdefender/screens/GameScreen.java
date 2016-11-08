@@ -23,14 +23,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * @author Mohammad Foysal
  */
 public class GameScreen implements Screen, PlayerCallback, LevelCallback {
+    private final Array<Actor> actorBufferB = new Array<Actor>();
+    private final SpriteBatch batch;
+    private final OrthographicCamera camera;
+    private final Viewport viewport;
+    private final Player player;
+    private final GameCallback gameCallback;
+    private final Level level;
     private Array<Actor> actorBufferA = new Array<Actor>();
-    private Array<Actor> actorBufferB = new Array<Actor>();
-    private SpriteBatch batch;
-    private OrthographicCamera camera;
-    private Viewport viewport;
-    private Level level;
-    private Player player;
-    private GameCallback gameCallback;
 
     public GameScreen(final GameCallback gameCallback) {
         batch = new SpriteBatch();
@@ -44,12 +44,9 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
         //Setup viewport
         viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
 
-
         player = new Player();
         player.setPlayerCallback(this);
-
         level = new Level(player, this);
-
     }
 
     private void refresh(float delta) {

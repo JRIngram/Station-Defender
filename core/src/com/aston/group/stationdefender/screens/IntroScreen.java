@@ -28,16 +28,16 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * @author Jonathon Fitch
  */
 public class IntroScreen implements Screen {
-    private SpriteBatch batch;
-    private OrthographicCamera camera;
-    private Viewport viewport;
+    private final SpriteBatch batch;
+    private final OrthographicCamera camera;
+    private final Viewport viewport;
+    private final Stage stage;
+    private final BitmapFont font;
+    private final TextButton backgroundButton, instructionButton, playButton, exitButton;
+    private final TextButton[] buttons;
+    private final Texture texture;
     private IntroCallback introCallback;
-    private Stage stage;
-    private BitmapFont font;
-    private TextButton backgroundButton, instructionButton, playButton, exitButton;
     private float fadeElapsed = 0;
-    private TextButton[] buttons;
-    private Texture texture;
 
     /**
      * Construct a new IntroScreen

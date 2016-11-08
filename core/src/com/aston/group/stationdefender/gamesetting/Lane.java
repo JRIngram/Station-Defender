@@ -6,7 +6,6 @@ import com.aston.group.stationdefender.callbacks.UnitCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
@@ -19,19 +18,17 @@ import java.util.Iterator;
  * @author Jonathon Fitch
  * @author Twba Alshaghdari
  */
-public class Lane implements UnitCallback{
-
-    private ShapeRenderer shapeRenderer;
-
-    private int x, y, width, height;
-    private Array<Tile> tiles = new Array<Tile>();
-    private Array<Unit> units = new Array<Unit>();
-    private ProjectileFactory projectileFactory;
+public class Lane implements UnitCallback {
+    private final ShapeRenderer shapeRenderer;
+    private final int x, y, height;
+    private final Array<Tile> tiles = new Array<Tile>();
+    private final Array<Unit> units = new Array<Unit>();
+    private final ProjectileFactory projectileFactory;
+    private final Player player;
+    private int width;
     private boolean overrun;
     private boolean cleared;
     private int alienAmount;
-    private Player player;
-
     private long lastRenderTime;
 
     /**
@@ -68,7 +65,7 @@ public class Lane implements UnitCallback{
         }
         tiles.addAll(tile);
 
-        alienAmount = (int)(2 + (Math.random() * 10));
+        alienAmount = (int) (2 + (Math.random() * 10));
 
         lastRenderTime = System.currentTimeMillis();
 
@@ -85,7 +82,7 @@ public class Lane implements UnitCallback{
      */
     public void place(Unit unit, int x, int y) {
         for (int i = 0; i < tiles.size; i++) {
-            if(tiles.get(i).isColliding(x, y, 1, 1) && !isTileOccupied(i)){
+            if (tiles.get(i).isColliding(x, y, 1, 1) && !isTileOccupied(i)) {
                 unit.setX(tiles.get(i).getCenterX() - (unit.getWidth() / 2));
                 unit.setY(tiles.get(i).getCenterY() - (unit.getHeight() / 2));
                 units.add(unit);
@@ -175,7 +172,7 @@ public class Lane implements UnitCallback{
 
             for (int j = 0; j < units.size; j++) {
                 if (i != j) {
-                    if(units.get(i).isUnitAdjacent(units.get(j))){
+                    if (units.get(i).isUnitAdjacent(units.get(j))) {
                         isUnitAdjacent = true;
                         unit = units.get(j);
                         break;
@@ -192,7 +189,7 @@ public class Lane implements UnitCallback{
             units.get(i).setAdjacentActor(unit);
 
             //Check if aliens are near tower
-            if (units.get(i).isFacingLeft() && units.get(i).getX() < 120){
+            if (units.get(i).isFacingLeft() && units.get(i).getX() < 120) {
                 overrun = true;
             }
         }
@@ -208,8 +205,8 @@ public class Lane implements UnitCallback{
         }
 
         //Spawn New Aliens
-        if(System.currentTimeMillis() - lastRenderTime > 2000 + Math.random() * 3000){
-            if(alienAmount > 0) {
+        if (System.currentTimeMillis() - lastRenderTime > 2000 + Math.random() * 3000) {
+            if (alienAmount > 0) {
                 Alien alien = new Alien();
                 alien.setName("Alien");
                 alien.setX(getLastTileCenterX() - (alien.getWidth() / 2));
@@ -229,7 +226,7 @@ public class Lane implements UnitCallback{
                 if (units.get(j).isFacingLeft() && projectileFactory.getProjectiles().get(i).isColliding(units.get(j).getX(),
                         units.get(j).getY(), units.get(j).getWidth(), units.get(j).getHeight())) {
                     int damage = 50;
-                    if(units.get(j).getHealth() - damage <= 0){
+                    if (units.get(j).getHealth() - damage <= 0) {
                         player.addMoney(1);
                         player.addScore(10);
                     }
@@ -239,7 +236,7 @@ public class Lane implements UnitCallback{
         }
 
         //Check if lane is cleared
-        if(isLaneCleared() && alienAmount <= 0){
+        if (isLaneCleared() && alienAmount <= 0) {
             cleared = true;
         }
     }
@@ -257,9 +254,9 @@ public class Lane implements UnitCallback{
         }
     }
 
-    public boolean isLaneCleared(){
+    public boolean isLaneCleared() {
         for (int i = 0; i < units.size; i++) {
-            if(units.get(i).isFacingLeft()){
+            if (units.get(i).isFacingLeft()) {
                 return false;
             }
         }
@@ -284,13 +281,13 @@ public class Lane implements UnitCallback{
      * Check if an objects X & Y co-ordinates or width & height
      * overlaps the Lanes X & Y co-ordinates, or width & height
      *
-     * @param x The X co-ordinate of the object to check
-     * @param y The Y co-ordinate of the object to check
-     * @param width The width of the object to check
+     * @param x      The X co-ordinate of the object to check
+     * @param y      The Y co-ordinate of the object to check
+     * @param width  The width of the object to check
      * @param height The height of the object to check
      * @return true if the values overlap, false if the values do not overlap
      */
-    public boolean isColliding (int x, int y, int width, int height) {
+    public boolean isColliding(int x, int y, int width, int height) {
         return x + width > this.x && x < this.x + this.width && y + height > this.y && y < this.y + this.height;
     }
 

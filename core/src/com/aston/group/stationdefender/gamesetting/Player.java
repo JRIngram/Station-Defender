@@ -27,21 +27,19 @@ import com.badlogic.gdx.utils.Array;
  */
 public class Player implements InputProcessor {
 
+    //QuickSlots
+    private final Array<QuickSlot> quickSlots;
+    private final QuickSlotCallback quickSlotCallback;
+    //Graphics Variables
+    private final SpriteBatch batch;
+    private final BitmapFont font;
     //Player Properties
     private Item currentItem;
     private Inventory inventory;
     private int score;
     private int money;
     private PlayerCallback playerCallback;
-
-    //QuickSlots
-    private Array<QuickSlot> quickSlots;
     private int selectedSlot = 0;
-    private QuickSlotCallback quickSlotCallback;
-
-    //Graphics Variables
-    private SpriteBatch batch;
-    private BitmapFont font;
 
     /**
      * Construct a new Player
@@ -190,8 +188,8 @@ public class Player implements InputProcessor {
                     @Override
                     public void onUse(boolean placeable) {
                         if (playerCallback != null && placeable) {
-                            if(money > 20)
-                            playerCallback.placeActor(currentItem.getPlaceableActor(), screenX, screenY);
+                            if (money > 20)
+                                playerCallback.placeActor(currentItem.getPlaceableActor(), screenX, screenY);
                             money -= 20;
                         }
                     }
@@ -305,19 +303,19 @@ public class Player implements InputProcessor {
         this.money = money;
     }
 
-    public void addScore(int amount){
+    public void addScore(int amount) {
         this.score += amount;
     }
 
-    public void removeScore(int amount){
+    public void removeScore(int amount) {
         this.score -= amount;
     }
 
-    public void addMoney(int amount){
+    public void addMoney(int amount) {
         this.money += amount;
     }
 
-    public void removeMoney(int amount){
+    public void removeMoney(int amount) {
         this.money -= amount;
     }
 

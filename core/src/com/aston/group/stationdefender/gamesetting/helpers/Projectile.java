@@ -1,7 +1,6 @@
 package com.aston.group.stationdefender.gamesetting.helpers;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -13,13 +12,13 @@ import com.badlogic.gdx.utils.Pool;
  * @author Mohammed Foysal
  */
 public class Projectile implements Pool.Poolable {
+    private final ShapeRenderer shapeRenderer;
+    private final SpriteBatch batch;
+    private final Texture texture;
     protected int x, y, width, height;
     private boolean alive;
     private int damage;
     private int speed;
-    private ShapeRenderer shapeRenderer;
-    private SpriteBatch batch;
-    private Texture texture;
 
     /**
      * Construct a new Projectile with a default
@@ -68,7 +67,7 @@ public class Projectile implements Pool.Poolable {
      *
      * @param delta - The time in seconds since the last render.
      */
-    public void render(float delta){
+    public void render(float delta) {
         x += (speed * delta * 60);
 
         batch.begin();
@@ -83,9 +82,9 @@ public class Projectile implements Pool.Poolable {
      * Returns whether the Projectile is out of the screen bounds or not
      *
      * @return true if the Projectile is out of the screen bounds,
-     *          false if the Projectile if not out of the screen bounds
+     * false if the Projectile if not out of the screen bounds
      */
-    public boolean isOutOfScreen(){
+    public boolean isOutOfScreen() {
         return x > Gdx.graphics.getWidth() + 1 || x < -10;
     }
 
@@ -93,13 +92,13 @@ public class Projectile implements Pool.Poolable {
      * Check if an objects X & Y co-ordinates or width & height
      * overlaps the Projectiles X & Y co-ordinates, or width & height
      *
-     * @param x The X co-ordinate of the object to check
-     * @param y The Y co-ordinate of the object to check
-     * @param width The width of the object to check
+     * @param x      The X co-ordinate of the object to check
+     * @param y      The Y co-ordinate of the object to check
+     * @param width  The width of the object to check
      * @param height The height of the object to check
      * @return true if the values overlap, false if the values do not overlap
      */
-    public boolean isColliding (int x, int y, int width, int height) {
+    public boolean isColliding(int x, int y, int width, int height) {
         if (x + width > this.x && x < this.x + this.width && y + height > this.y && y < this.y + this.height) {
             alive = false;
             return true;

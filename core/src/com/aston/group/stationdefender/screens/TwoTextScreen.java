@@ -27,18 +27,18 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * @author Jonathon Fitch
  */
 public class TwoTextScreen implements Screen {
-    private SpriteBatch batch;
-    private OrthographicCamera camera;
-    private Viewport viewport;
+    private final SpriteBatch batch;
+    private final OrthographicCamera camera;
+    private final Viewport viewport;
+    private final Stage stage;
+    private final BitmapFont titleFont;
+    private final BitmapFont bodyFont;
+    private final TextButton backButton;
+    private final Texture texture;
     private TwoTextCallback twoTextCallback;
-    private Stage stage;
-    private BitmapFont titleFont;
-    private BitmapFont bodyFont;
-    private TextButton backButton;
     private float fadeElapsed = 0;
     private String title;
     private String body;
-    private Texture texture;
     private int titleX, titleY, bodyX, bodyY;
 
     /**

@@ -20,8 +20,8 @@ public class ProjectileFactory {
             return new Projectile();
         }
     };
+    private final Sound sound;
     private Array<Projectile> projectiles = new Array<Projectile>();
-    private Sound sound;
 
     /**
      * Construct a new ProjectileFactory
@@ -41,7 +41,7 @@ public class ProjectileFactory {
         Projectile projectile = projectilePool.obtain();
         projectile.init(x, y, speed);
         projectiles.add(projectile);
-        if (projectiles.size< 20)
+        if (projectiles.size < 20)
             sound.play(0.1f);
     }
 
@@ -88,7 +88,7 @@ public class ProjectileFactory {
     /**
      * Dispose of unused resources
      */
-    public void dispose(){
+    public void dispose() {
         sound.dispose();
     }
 }

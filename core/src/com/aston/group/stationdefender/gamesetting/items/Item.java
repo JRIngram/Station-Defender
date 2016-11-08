@@ -5,7 +5,6 @@ import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.gamesetting.Player;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 /**
  * Item class represents an in-game item that the player
@@ -15,6 +14,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  */
 public abstract class Item {
 
+    private final SpriteBatch batch;
     //Item Properties
     int id;
     String name;
@@ -25,8 +25,6 @@ public abstract class Item {
     private boolean collected;
     private boolean justSpawned;
     private int x, y, width, height;
-    private SpriteBatch batch;
-    private ShapeRenderer shapeRenderer;
     private int flareX, flareY;
 
     /**
@@ -34,8 +32,6 @@ public abstract class Item {
      */
     public Item() {
         batch = new SpriteBatch();
-        shapeRenderer = new ShapeRenderer();
-
         width = 32;
         height = 32;
     }
@@ -76,7 +72,7 @@ public abstract class Item {
     /**
      * Allows the player to use the Item
      *
-     * @param player The current Player of the game
+     * @param player       The current Player of the game
      * @param itemCallback The ItemCallBack associated with the Item
      */
     public abstract void useItem(Player player, ItemCallback itemCallback);

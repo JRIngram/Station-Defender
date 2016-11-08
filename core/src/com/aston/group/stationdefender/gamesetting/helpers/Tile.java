@@ -4,10 +4,8 @@ import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 /**
  * Tile class
@@ -16,12 +14,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  * @author Twba Al-shaghdari
  */
 public class Tile {
-    private int x, y, width, height;
+    private final int x, y, width, height;
+    private final SpriteBatch batch;
+    private final Texture texture;
     private Actor actor;
-    private SpriteBatch batch;
-    private Texture texture;
-    //DEBUG - Remove if not needed
-    private ShapeRenderer shapeRenderer;
 
     /**
      * Construct a new Tile with given X and Y co-ordinates
@@ -36,7 +32,6 @@ public class Tile {
         width = Constants.TILE_WIDTH;
         height = Constants.TILE_HEIGHT;
 
-        shapeRenderer = new ShapeRenderer();
         batch = new SpriteBatch();
         texture = new Texture(Gdx.files.internal("textures/tile.png"));
     }
@@ -45,13 +40,13 @@ public class Tile {
      * Check if an objects X & Y co-ordinates or width & height
      * overlaps the Tiles X & Y co-ordinates, or width & height
      *
-     * @param x The X co-ordinate of the object to check
-     * @param y The Y co-ordinate of the object to check
-     * @param width The width of the object to check
+     * @param x      The X co-ordinate of the object to check
+     * @param y      The Y co-ordinate of the object to check
+     * @param width  The width of the object to check
      * @param height The height of the object to check
      * @return true if the values overlap, false if the values do not overlap
      */
-    public boolean isColliding (int x, int y, int width, int height) {
+    public boolean isColliding(int x, int y, int width, int height) {
         return x + width > this.x && x < this.x + this.width && y + height > this.y && y < this.y + this.height;
     }
 
@@ -61,7 +56,7 @@ public class Tile {
      * @param unit The Unit to check the collision status
      * @return true if the Unit is colliding, false if the Unit is not colliding
      */
-    public boolean isColliding(Unit unit){
+    public boolean isColliding(Unit unit) {
         return isColliding(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
     }
 
@@ -79,7 +74,7 @@ public class Tile {
      *
      * @return The X co-ordinate of the center of the Tile
      */
-    public int getCenterX(){
+    public int getCenterX() {
         return x + (width / 2);
     }
 
@@ -88,7 +83,7 @@ public class Tile {
      *
      * @return The Y co-ordinate of the center of the Tile
      */
-    public int getCenterY(){
+    public int getCenterY() {
         return y + (height / 2);
     }
 

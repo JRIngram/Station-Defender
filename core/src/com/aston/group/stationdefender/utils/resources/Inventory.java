@@ -22,9 +22,8 @@ public interface Inventory {
      * Removes an Item from the Inventory
      *
      * @param item Item to be removed from the Inventory
-     * @return The Item removed
      */
-    boolean removeItem(Item item);
+    void removeItem(Item item);
 
     /**
      * Adds all given Items from the Inventory

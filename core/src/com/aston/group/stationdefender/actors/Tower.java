@@ -13,11 +13,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * @author Jonathon Fitch, Peter Holmes
  */
 public class Tower implements Actor {
-    private int height, width, x, y, health;
+    private final int height;
+    private final int width;
+    private final int x;
+    private final int y;
+    private final SpriteBatch batch;
+    private final Texture texture;
+    private int health;
     private boolean exists;
-    private SpriteBatch batch;
-    private Texture texture;
-    
+
 
     /**
      * Constructs a new Tower
@@ -44,7 +48,7 @@ public class Tower implements Actor {
         batch.draw(texture, x, y, width, height);
         batch.end();
     }
-    
+
     /**
      * Determines how the Tower acts when colliding with another unit.
      */
@@ -62,7 +66,7 @@ public class Tower implements Actor {
      * @param height The height of the object to check
      * @return true if the values overlap, false if the values do not overlap
      */
-    public boolean isColliding (int x, int y, int width, int height) {
+    public boolean isColliding(int x, int y, int width, int height) {
         if (x + width > this.x && x < this.x + this.width && y + height > this.y && y < this.y + this.height) {
             takeDamage(Constants.DEFAULT_DAMAGE);
             return true;
@@ -128,8 +132,8 @@ public class Tower implements Actor {
     public void takeDamage(double damage) {
         if ((health - damage) <= 0) {
             destroy();
-    	} else {
-    		health -= damage;
-    	}
+        } else {
+            health -= damage;
+        }
     }
 }

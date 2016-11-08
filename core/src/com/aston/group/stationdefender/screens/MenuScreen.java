@@ -19,11 +19,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * @author Jonathon Fitch
  */
 public class MenuScreen implements Screen {
-    private SpriteBatch batch;
-    private OrthographicCamera camera;
-    private Viewport viewport;
-    private FreeTypeFontGenerator fontGenerator;
-    private BitmapFont font;
+    private final SpriteBatch batch;
+    private final OrthographicCamera camera;
+    private final Viewport viewport;
+    private final FreeTypeFontGenerator fontGenerator;
+    private final BitmapFont font;
     private MenuCallback menuCallback;
 
     /**

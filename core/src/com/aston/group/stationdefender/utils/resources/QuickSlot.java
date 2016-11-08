@@ -16,13 +16,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * @author Mohammed Foysal
  */
 public class QuickSlot {
+    private final SpriteBatch batch;
+    private final TextureRegion trQuickSlot;
+    private final TextureRegion trQuickSlotHovered;
+    private final BitmapFont font;
     private int x, y, width, height;
     private boolean isSelected;
     private Item item;
-    private SpriteBatch batch;
-    private TextureRegion trQuickSlot;
-    private TextureRegion trQuickSlotHovered;
-    private BitmapFont font;
 
     /**
      * Construct a new QuickSlot
@@ -152,7 +152,7 @@ public class QuickSlot {
     }
 
     /**
-     * Sets the height of the Quickslot
+     * Sets the height of the QuickSlot
      *
      * @param height The height of the QuickSlot
      */
@@ -199,10 +199,10 @@ public class QuickSlot {
     /**
      * Checks whether the params collides with the QuickSlot box
      *
-     * @param x      The x to be compared with the quickslot
-     * @param y      The y to be compared with the quickslot
-     * @param width  The width to be compared with the quickslot
-     * @param height The height to be compared with the quickslot
+     * @param x      The x to be compared with the QuickSlot
+     * @param y      The y to be compared with the QuickSlot
+     * @param width  The width to be compared with the QuickSlot
+     * @param height The height to be compared with the QuickSlot
      * @return isColliding - returns true if params collide, false if not
      */
     public boolean isColliding(int x, int y, int width, int height) {

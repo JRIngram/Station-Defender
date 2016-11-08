@@ -286,7 +286,7 @@ public abstract class Unit implements Actor {
      *
      * @param unit The Unit to check whether Unit is adjacent to the current Unit
      * @return true if there is a Unit adjacent to the current Unit,
-     *          false if there is not a Unit adjacent to the current Unit
+     * false if there is not a Unit adjacent to the current Unit
      */
     public boolean isUnitAdjacent(Unit unit) {
         if (unit == this) return false;
@@ -328,7 +328,7 @@ public abstract class Unit implements Actor {
     /**
      * Sets the width and height of the Unit
      *
-     * @param width The width of the Unit
+     * @param width  The width of the Unit
      * @param height The height of the Unit
      */
     public void setWidthAndHeight(int width, int height) {

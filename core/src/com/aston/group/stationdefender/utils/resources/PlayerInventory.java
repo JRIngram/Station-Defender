@@ -9,7 +9,7 @@ import java.util.Iterator;
  * @author Mohammed Foysal
  */
 public class PlayerInventory implements Inventory {
-    private Array<Item> items;
+    private final Array<Item> items;
 
     /**
      * Construct a new PlayerInventory
@@ -40,10 +40,9 @@ public class PlayerInventory implements Inventory {
      * Removes an Item from the PlayerInventory
      *
      * @param item Item to be removed from the PlayerInventory
-     * @return The Item removed
      */
-    public boolean removeItem(Item item) {
-        return items.removeValue(item, true);
+    public void removeItem(Item item) {
+        items.removeValue(item, true);
     }
 
     /**

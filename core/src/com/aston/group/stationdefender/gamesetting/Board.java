@@ -13,9 +13,9 @@ import com.badlogic.gdx.utils.Array;
  * @author Twba Alshaghdari
  */
 public class Board {
-    private static int numberOfLanes = 4;
-    private static int numberOfTiles = 4;
-    private Array<Lane> lanes = new Array<Lane>();
+    private static final int numberOfLanes = 4;
+    private static final int numberOfTiles = 4;
+    private final Array<Lane> lanes = new Array<Lane>();
     private ProjectileFactory projectileFactory;
     private boolean hasWon;
     private boolean hasLost;
@@ -92,17 +92,13 @@ public class Board {
     /**
      * Place an actor at the given lane and tile. if there is already an actor
      * at that tile placing should not happen.
-     *
-     * @return true if the actor has been placed,
-     * false if the actor hasn't been placed in the tile
      **/
-    public boolean place(Unit unit, int x, int y) {
+    public void place(Unit unit, int x, int y) {
         for (Lane lane : lanes) {
             if (lane.isColliding(x, y, 1, 1)) {
                 lane.place(unit, x, y);
             }
         }
-        return true;
     }
 
     /**
@@ -129,16 +125,16 @@ public class Board {
                 hasLost = true;
         }
 
-        if(isAllLanesCleared()){
+        if (isAllLanesCleared()) {
             hasWon = true;
         }
     }
 
-    public boolean isAllLanesCleared(){
+    public boolean isAllLanesCleared() {
         boolean cleared = true;
 
         for (int i = 0; i < lanes.size; i++) {
-            if(!lanes.get(i).isCleared()){
+            if (!lanes.get(i).isCleared()) {
                 cleared = false;
             }
         }

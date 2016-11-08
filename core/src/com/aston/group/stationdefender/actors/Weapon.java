@@ -4,7 +4,6 @@ import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -17,6 +16,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  * @version 01/11/2016
  */
 public class Weapon extends Unit implements Actor {
+    private final SpriteBatch batch;
+    private final Texture texture;
     private boolean built;
     private double buildTime;
     private double remainingBuildTime;
@@ -25,8 +26,6 @@ public class Weapon extends Unit implements Actor {
     private ProjectileFactory projectileFactory;
     private ShapeRenderer shapeRenderer;
     private long lastTime;
-    private SpriteBatch batch;
-    private Texture texture;
 
     /**
      * Construct a new Weapon with default X and Y co-ordinates of '0'
@@ -49,11 +48,7 @@ public class Weapon extends Unit implements Actor {
         super(x, y);
         shapeRenderer = new ShapeRenderer();
         facingLeft = false;
-        if (facingLeft) {
-            speed = -100;
-        } else {
-            speed = 100;
-        }
+        speed = 100;
         health = Constants.WEAPON_HEALTH;
         batch = new SpriteBatch();
         texture = new Texture(Gdx.files.internal("textures/turret.png"));
@@ -98,15 +93,11 @@ public class Weapon extends Unit implements Actor {
     @Override
     public void render(float delta) {
         if (!isAdjacent()) {
-
             if (unitCallback != null && System.currentTimeMillis() - lastTime > 1000 + Math.random() * 4000) {
                 unitCallback.onFire(x + 40, y + 35, 20);
                 lastTime = System.currentTimeMillis();
             }
-        } else{
-
         }
-
         batch.begin();
         batch.draw(texture, x, y, width, height);
         batch.end();

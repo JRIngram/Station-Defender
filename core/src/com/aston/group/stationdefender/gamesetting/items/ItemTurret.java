@@ -18,7 +18,7 @@ public class ItemTurret extends Item {
 
     @Override
     public void useItem(Player player, ItemCallback itemCallback) {
-        if(player != null)
+        if (player != null)
             player.setMoney(player.getMoney() - 10);
 
         if (itemCallback != null)
