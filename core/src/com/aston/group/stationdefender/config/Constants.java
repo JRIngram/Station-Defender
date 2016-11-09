@@ -22,7 +22,17 @@ public interface Constants {
             "Exit"
     };
 
-    String BACKGROUND = "Background paragraph will go here";
+    String BACKGROUND = "During an era of peace, 2 centuries into the future humans are attacked\n " +
+            "on a space station by their worst fear. Aliens are trying to invade the space\n " +
+            "station and the battle has commenced. In order for the survival of the\n " +
+            "human race we must defend our most valued Command Centre,\n " +
+            "without this the security of our world will be compromised.\n " +
+            "Soldiers of various abilities have been brought to the front-line,\n " +
+            "equipped with different resources some effective at defense whilst others\n " +
+            "at attacking the extraterrestrial species.\n " +
+            "However the Aliens are not to be underestimated, attacking in\n " +
+            "numbers and with full force.\n\n" +
+            "Only with quick and precise strategic thinking can our world be saved!";
 
     String BACK = "Back";
 

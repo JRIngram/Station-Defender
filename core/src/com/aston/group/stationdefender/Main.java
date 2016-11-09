@@ -35,8 +35,8 @@ public class Main extends Game implements GameCallback, TwoTextCallback, IntroCa
         // Setup title and body text
         backgroundScreen.setTitle(Constants.MENU_ITEMS[0]);
         backgroundScreen.setBody(Constants.BACKGROUND);
-        backgroundScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 235);
-        backgroundScreen.setBodyY((Gdx.graphics.getHeight() / 2) + (100 - 60));
+        backgroundScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 500);
+        backgroundScreen.setBodyY((Gdx.graphics.getHeight() / 2) + (185));
         instructionScreen.setTitle(Constants.MENU_ITEMS[1]);
         instructionScreen.setBody(Constants.INSTRUCTIONS);
         instructionScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 190);
