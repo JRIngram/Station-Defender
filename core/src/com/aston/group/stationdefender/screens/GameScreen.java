@@ -104,13 +104,8 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
     }
 
     @Override
-    public void onWin() {
-        gameCallback.onWin(player.getScore(), player.getMoney());
-    }
-
-    @Override
-    public void onLost() {
-        gameCallback.onLost(player.getScore(), player.getMoney());
+    public void onWinLost(boolean won) {
+        gameCallback.onWinLost(won, player.getScore(), player.getMoney());
     }
 
     @Override

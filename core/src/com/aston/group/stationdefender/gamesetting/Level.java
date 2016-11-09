@@ -80,11 +80,11 @@ public class Level {
             board.render(delta);
 
             if (board.isHasLost()) {
-                levelCallback.onLost();
+                levelCallback.onWinLost(false);
             }
 
             if (board.isHasWon()) {
-                levelCallback.onWin();
+                levelCallback.onWinLost(true);
             }
         }
 
