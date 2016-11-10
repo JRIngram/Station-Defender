@@ -35,8 +35,8 @@ public class Level {
     public Level(Player player, int levelNumber, LevelCallback levelCallback) {
         this.levelNumber = levelNumber;
         this.levelCallback = levelCallback;
-        board = new Board(player);
         tower = new Tower(0, 100, 100, 400);
+        board = new Board(player, tower);
         batch = new SpriteBatch();
         texture = new Texture(Gdx.files.internal("textures/level-one-back.png"));
     }

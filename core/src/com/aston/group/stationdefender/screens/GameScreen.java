@@ -60,7 +60,6 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
         }
         actorBufferA.clear();
         actorBufferA = actorBufferB;
-
     }
 
     @Override

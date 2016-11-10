@@ -3,8 +3,11 @@ package com.aston.group.stationdefender.actors;
 import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 /**
  * Tower is the object which the Humans defend,
@@ -19,6 +22,7 @@ public class Tower implements Actor {
     private final int y;
     private final SpriteBatch batch;
     private final Texture texture;
+    private final BitmapFont font;
     private int health;
     private boolean exists;
 
@@ -35,6 +39,13 @@ public class Tower implements Actor {
         health = Constants.TOWER_HEALTH;
         texture = new Texture(Gdx.files.internal("textures/tower.png"));
         batch = new SpriteBatch();
+
+        //Font Init
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 16;
+        font = generator.generateFont(parameter);
+        generator.dispose();
     }
 
     /**
@@ -46,6 +57,10 @@ public class Tower implements Actor {
     public void render(float delta) {
         batch.begin();
         batch.draw(texture, x, y, width, height);
+        font.setColor(Color.BLACK);
+        font.draw(batch, "Health: " + health, (Gdx.graphics.getWidth() / 2) - 499, Gdx.graphics.getHeight() - 50);
+        font.setColor(Color.WHITE);
+        font.draw(batch, "Health: " + health, (Gdx.graphics.getWidth() / 2) - 500, Gdx.graphics.getHeight() - 50);
         batch.end();
     }
 
@@ -130,10 +145,12 @@ public class Tower implements Actor {
      * @param damage Causes the Unit's health to deplete.
      */
     public void takeDamage(double damage) {
-        if ((health - damage) <= 0) {
+        if ((health - damage) <= 0)
             destroy();
-        } else {
-            health -= damage;
-        }
+        health -= damage;
+    }
+
+    public int getHealth() {
+        return health;
     }
 }

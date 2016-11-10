@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.gamesetting;
 
 import com.aston.group.stationdefender.actors.Alien;
+import com.aston.group.stationdefender.actors.Tower;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.UnitCallback;
 import com.aston.group.stationdefender.config.Constants;
@@ -30,6 +31,7 @@ public class Lane implements UnitCallback {
     private boolean cleared;
     private int alienAmount;
     private long lastRenderTime;
+    private Tower tower;
 
     /**
      * Construct a new Lane with default
@@ -37,8 +39,8 @@ public class Lane implements UnitCallback {
      *
      * @param numberOfTiles The Number of tiles in the lane
      */
-    public Lane(Player player, int numberOfTiles) {
-        this(player, 0, 0, numberOfTiles);
+    public Lane(Player player, Tower tower, int numberOfTiles) {
+        this(player, tower, 0, 0, numberOfTiles);
     }
 
     /**
@@ -48,11 +50,12 @@ public class Lane implements UnitCallback {
      * @param y             The Y co-ordinate of the Lane
      * @param numberOfTiles The Number of tiles in the lane
      */
-    public Lane(Player player, int x, int y, int numberOfTiles) {
+    public Lane(Player player, Tower tower, int x, int y, int numberOfTiles) {
         this.x = x;
         this.y = y;
         this.height = Constants.TILE_HEIGHT;
         this.player = player;
+        this.tower = tower;
 
         Tile[] tile = new Tile[numberOfTiles - 1];
 
@@ -185,12 +188,14 @@ public class Lane implements UnitCallback {
             } else {
                 units.get(i).setIsAdjacent(false);
             }
-
             units.get(i).setAdjacentActor(unit);
 
             //Check if aliens are near tower
-            if (units.get(i).isFacingLeft() && units.get(i).getX() < 120) {
+            unit = units.get(i);
+            if (unit.isFacingLeft() && tower.isColliding(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight())) {
                 overrun = true;
+                unit.destroy();
+                units.removeIndex(i);
             }
         }
 

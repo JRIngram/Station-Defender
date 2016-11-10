@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.gamesetting;
 
 import com.aston.group.stationdefender.actors.Actor;
+import com.aston.group.stationdefender.actors.Tower;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
@@ -19,13 +20,13 @@ public class Board {
     private ProjectileFactory projectileFactory;
     private boolean hasWon;
     private boolean hasLost;
-    private Player player;
+    private Tower tower;
 
     /**
      * Construct a new Board with a default of 4 Lanes
      */
-    public Board(Player player) {
-        this(player, numberOfLanes, numberOfTiles);
+    public Board(Player player, Tower tower) {
+        this(player, tower, numberOfLanes, numberOfTiles);
     }
 
     /**
@@ -35,12 +36,12 @@ public class Board {
      * @param numberOfLanes The number of Lanes for the Board to have
      * @param numberOfTiles The number of Lanes for the Board to have
      */
-    public Board(Player player, int numberOfLanes, int numberOfTiles) {
+    public Board(Player player, Tower tower, int numberOfLanes, int numberOfTiles) {
+        this.tower = tower;
         int laneY = 120;
 
         for (int i = 0; i < numberOfLanes - 1; i++) {
-            lanes.add(new Lane(player, 100, laneY, Constants.TILE_AMOUNT));
-
+            lanes.add(new Lane(player, tower, 100, laneY, Constants.TILE_AMOUNT));
             laneY += (Constants.TILE_HEIGHT + (Constants.TILE_HEIGHT / 2));
         }
     }
@@ -121,8 +122,10 @@ public class Board {
         for (Lane lane : lanes) {
             lane.render(delta);
 
-            if (lane.isOverrun())
-                hasLost = true;
+            if (lane.isOverrun()) {
+                if (!tower.getExists())
+                    hasLost = true;
+            }
         }
 
         if (isAllLanesCleared()) {
