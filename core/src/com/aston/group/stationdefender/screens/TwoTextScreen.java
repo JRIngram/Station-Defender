@@ -65,6 +65,7 @@ public class TwoTextScreen implements Screen {
         bodyFont = fontGenerator.generateFont(params);
         params.size = 50;
         titleFont = fontGenerator.generateFont(params);
+        fontGenerator.dispose();
 
         //Buttons
         stage = new Stage();

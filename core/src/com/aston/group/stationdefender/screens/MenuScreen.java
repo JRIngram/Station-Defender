@@ -45,6 +45,7 @@ public class MenuScreen implements Screen {
         FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
         params.size = 50;
         font = fontGenerator.generateFont(params);
+        fontGenerator.dispose();
     }
 
     @Override

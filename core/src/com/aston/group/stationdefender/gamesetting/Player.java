@@ -76,11 +76,11 @@ public class Player implements InputProcessor {
             }
         };
 
-        //Font Init
+        //Initialise Font
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 16;
-        font = generator.generateFont(parameter);
+        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        params.size = 16;
+        font = generator.generateFont(params);
         generator.dispose();
     }
 
