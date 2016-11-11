@@ -303,6 +303,7 @@ public abstract class Unit implements Actor {
     /**
      * Checks if the Health of the Unit is less than 1.
      *
+     * @return true if health is above 0, false if health is 0 or below
      * @see #act()
      */
     public boolean checkZeroHealth() {

@@ -29,6 +29,11 @@ public class Tower implements Actor {
 
     /**
      * Constructs a new Tower
+     *
+     * @param x      The X co-ordinate of the Tower
+     * @param y      The Y co-ordinate of the Tower
+     * @param width  The width of the Tower
+     * @param height The height of the Tower
      */
     public Tower(int x, int y, int width, int height) {
         this.x = x;
@@ -72,8 +77,8 @@ public class Tower implements Actor {
     }
 
     /**
-     * Check if an objects X & Y co-ordinates or width & height
-     * overlaps the Towers X & Y co-ordinates, or width & height
+     * Check if an objects X &amp; Y co-ordinates or width &amp; height
+     * overlaps the Towers X &amp; Y co-ordinates, or width &amp; height
      *
      * @param x      The X co-ordinate of the object to check
      * @param y      The Y co-ordinate of the object to check

@@ -26,6 +26,9 @@ public class Level {
 
     /**
      * Construct a new Level with default level number of 1.
+     *
+     * @param player        The current Player
+     * @param levelCallback The LevelCallBack to be used for the Level
      */
     public Level(Player player, LevelCallback levelCallback) {
         this(player, 1, levelCallback);
@@ -34,7 +37,9 @@ public class Level {
     /**
      * Construct a new Level with a given level number.
      *
-     * @param levelNumber The number of the Level
+     * @param player        The current Player of the game
+     * @param levelNumber   The number of the Level
+     * @param levelCallback The LevelCallBack to be used for the Level
      */
     public Level(Player player, int levelNumber, LevelCallback levelCallback) {
         this.levelNumber = levelNumber;

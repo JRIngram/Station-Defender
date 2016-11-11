@@ -89,8 +89,8 @@ public class Projectile implements Pool.Poolable {
     }
 
     /**
-     * Check if an objects X & Y co-ordinates or width & height
-     * overlaps the Projectiles X & Y co-ordinates, or width & height
+     * Check if an objects X &amp; Y co-ordinates or width &amp; height
+     * overlaps the Projectiles X &amp; Y co-ordinates, or width &amp; height
      *
      * @param x      The X co-ordinate of the object to check
      * @param y      The Y co-ordinate of the object to check

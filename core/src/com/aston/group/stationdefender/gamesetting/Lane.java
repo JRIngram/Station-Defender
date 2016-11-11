@@ -37,6 +37,8 @@ public class Lane implements UnitCallback {
      * Construct a new Lane with default
      * X and Y co-ordinates of '0'
      *
+     * @param player        The current Player of the game
+     * @param tower         The current Tower on the Board
      * @param numberOfTiles The Number of tiles in the lane
      */
     public Lane(Player player, Tower tower, int numberOfTiles) {
@@ -46,6 +48,8 @@ public class Lane implements UnitCallback {
     /**
      * Construct a new Lane
      *
+     * @param player        The current Player of the game
+     * @param tower         The current Tower on the Board
      * @param x             The X co-ordinate of the Lane
      * @param y             The Y co-ordinate of the Lane
      * @param numberOfTiles The Number of tiles in the lane
@@ -283,8 +287,8 @@ public class Lane implements UnitCallback {
     }
 
     /**
-     * Check if an objects X & Y co-ordinates or width & height
-     * overlaps the Lanes X & Y co-ordinates, or width & height
+     * Check if an objects X &amp; Y co-ordinates or width &amp; height
+     * overlaps the Lanes X &amp; Y co-ordinates, or width &amp; height
      *
      * @param x      The X co-ordinate of the object to check
      * @param y      The Y co-ordinate of the object to check

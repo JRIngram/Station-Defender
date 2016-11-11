@@ -24,6 +24,9 @@ public class Board {
 
     /**
      * Construct a new Board with a default of 4 Lanes
+     *
+     * @param player The current Player
+     * @param tower  The current Tower on the Board
      */
     public Board(Player player, Tower tower) {
         this(player, tower, numberOfLanes, numberOfTiles);
@@ -33,6 +36,8 @@ public class Board {
      * Construct a new Board with a given number of Lanes each lane will have
      * the same number of Tiles.
      *
+     * @param player        The current Player
+     * @param tower         The current Tower on the Board
      * @param numberOfLanes The number of Lanes for the Board to have
      * @param numberOfTiles The number of Lanes for the Board to have
      */
@@ -93,6 +98,10 @@ public class Board {
     /**
      * Place an actor at the given lane and tile. if there is already an actor
      * at that tile placing should not happen.
+     *
+     * @param unit The Unit to be placed
+     * @param x    The X co-ordinate the place the Unit
+     * @param y    The Y co-ordinate of the Unit
      **/
     public void place(Unit unit, int x, int y) {
         for (Lane lane : lanes) {
@@ -108,6 +117,7 @@ public class Board {
      *
      * @param laneNo The index of the lane the entity is in
      * @param tileNo The index of the tile the entity is in
+     * @return The Actor at the specific lane and tile
      **/
     public Actor getActorAt(int laneNo, int tileNo) {
         return lanes.get(laneNo).getTile(tileNo).getActor();
