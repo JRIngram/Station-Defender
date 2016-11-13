@@ -150,9 +150,11 @@ public class Tower implements Actor {
      * @param damage Causes the Unit's health to deplete.
      */
     public void takeDamage(double damage) {
-        if ((health - damage) <= 0)
+        if ((health - damage) <= 0) {
             destroy();
-        health -= damage;
+            health = 0;
+        } else
+            health -= damage;
     }
 
     public int getHealth() {

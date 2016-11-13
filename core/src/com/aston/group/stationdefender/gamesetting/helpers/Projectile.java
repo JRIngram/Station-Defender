@@ -15,7 +15,7 @@ public class Projectile implements Pool.Poolable {
     private final ShapeRenderer shapeRenderer;
     private final SpriteBatch batch;
     private final Texture texture;
-    protected int x, y, width, height;
+    private int x, y, width, height;
     private boolean alive;
     private int damage;
     private int speed;

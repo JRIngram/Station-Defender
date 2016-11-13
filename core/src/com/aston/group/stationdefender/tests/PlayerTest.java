@@ -11,12 +11,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public class PlayerTest extends Game {
     private SpriteBatch batch;
-    private Player player;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
-        player = new Player();
+        Player player = new Player();
     }
 
     @Override

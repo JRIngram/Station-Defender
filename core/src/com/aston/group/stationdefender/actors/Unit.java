@@ -16,19 +16,19 @@ public abstract class Unit implements Actor {
     /**
      * Unit's position on the X-Axis
      */
-    protected int x;
+    int x;
     /**
      * Unit's position on the Y-Axis
      */
-    protected int y;
+    int y;
     /**
      * Unit's width.
      */
-    protected int width;
+    int width;
     /**
      * Unit's height
      */
-    protected int height;
+    int height;
     /**
      * Checks if the Unit is adjacent to any other unit.
      * This information is retrieved from the Board.
@@ -121,7 +121,6 @@ public abstract class Unit implements Actor {
         isAdjacent = false;
         adjacentActor = null;
         exists = false;
-        health = Constants.UNIT_HEALTH;
     }
 
     /**
@@ -232,7 +231,11 @@ public abstract class Unit implements Actor {
      * @param damage Causes the Unit's health to deplete.
      */
     public void takeDamage(double damage) {
-        health -= damage;
+        if ((health - damage) <= 0) {
+            destroy();
+            health = 0;
+        } else
+            health -= damage;
     }
 
     /**

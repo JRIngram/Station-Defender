@@ -17,10 +17,10 @@ public class Board {
     private static final int numberOfLanes = 4;
     private static final int numberOfTiles = 4;
     private final Array<Lane> lanes = new Array<Lane>();
+    private final Tower tower;
     private ProjectileFactory projectileFactory;
     private boolean hasWon;
     private boolean hasLost;
-    private Tower tower;
 
     /**
      * Construct a new Board with a default of 4 Lanes

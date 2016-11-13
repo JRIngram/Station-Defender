@@ -26,12 +26,12 @@ public class Lane implements UnitCallback {
     private final Array<Unit> units = new Array<Unit>();
     private final ProjectileFactory projectileFactory;
     private final Player player;
+    private final Tower tower;
     private int width;
     private boolean overrun;
     private boolean cleared;
     private int alienAmount;
     private long lastRenderTime;
-    private Tower tower;
 
     /**
      * Construct a new Lane with default
