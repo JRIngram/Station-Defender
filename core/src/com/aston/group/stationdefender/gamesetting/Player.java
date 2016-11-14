@@ -82,7 +82,7 @@ public class Player implements InputProcessor {
         font = generator.generateFont(params);
         generator.dispose();
 
-        if(quickSlots != null && quickSlots.size > 0)
+        if (quickSlots != null && quickSlots.size > 0)
             currentItem = quickSlots.get(0).getItem();
     }
 

@@ -4,7 +4,6 @@ import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -99,9 +98,9 @@ public class Tile {
      * @param delta - The time in seconds since the last render.
      */
     public void render(float delta) {
-        if(isColliding(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY(), 1, 1)){
+        if (isColliding(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY(), 1, 1)) {
             hovered = true;
-        }else{
+        } else {
             hovered = false;
         }
 
@@ -110,7 +109,7 @@ public class Tile {
         batch.end();
 
 
-        if(hovered){
+        if (hovered) {
             Gdx.gl.glEnable(Gdx.gl20.GL_BLEND);
             Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
             shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
