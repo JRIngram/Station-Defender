@@ -53,7 +53,6 @@ public class Player implements InputProcessor {
 
         inventory.addItem(new ItemCredit());
 
-        currentItem = new ItemCredit();
 
         //Quick Slots
         quickSlots = new Array<QuickSlot>();
@@ -82,6 +81,9 @@ public class Player implements InputProcessor {
         params.size = 16;
         font = generator.generateFont(params);
         generator.dispose();
+
+        if(quickSlots != null && quickSlots.size > 0)
+            currentItem = quickSlots.get(0).getItem();
     }
 
     /**
