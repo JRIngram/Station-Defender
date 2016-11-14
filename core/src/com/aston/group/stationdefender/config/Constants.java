@@ -48,4 +48,8 @@ public interface Constants {
     int UNIT_HEALTH = 100;
     int WEAPON_HEALTH = 100;
     int DEFAULT_DAMAGE = 100;
+
+    int START_MONEY = 50;
+    int MONEY_REGENERATION = 1;
+    int ADD_SCORE_AMOUNT = 10;
 }

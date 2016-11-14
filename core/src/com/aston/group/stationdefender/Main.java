@@ -70,6 +70,9 @@ public class Main extends Game implements GameCallback, TwoTextCallback, IntroCa
         super.dispose();
     }
 
+    /**
+     * Disposes of any existing GameScreen then create a new one
+     */
     private void initGame() {
         if (gameScreen != null)
             gameScreen.dispose();

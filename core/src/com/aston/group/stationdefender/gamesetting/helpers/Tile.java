@@ -20,7 +20,6 @@ public class Tile {
     private final SpriteBatch batch;
     private final Texture texture;
     private Actor actor;
-    private boolean hovered = true;
     private ShapeRenderer shapeRenderer;
 
     /**
@@ -98,25 +97,20 @@ public class Tile {
      * @param delta - The time in seconds since the last render.
      */
     public void render(float delta) {
-        if (isColliding(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY(), 1, 1)) {
-            hovered = true;
-        } else {
-            hovered = false;
-        }
+        boolean hovered = isColliding(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY(), 1, 1);
 
         batch.begin();
         batch.draw(texture, x, y, width, height);
         batch.end();
 
-
         if (hovered) {
-            Gdx.gl.glEnable(Gdx.gl20.GL_BLEND);
+            Gdx.gl.glEnable(GL20.GL_BLEND);
             Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
             shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
             shapeRenderer.setColor(222, 222, 222, 0.35f);
             shapeRenderer.rect(x, y, width, height);
             shapeRenderer.end();
-            Gdx.gl.glDisable(Gdx.gl20.GL_BLEND);
+            Gdx.gl.glDisable(GL20.GL_BLEND);
         }
     }
 

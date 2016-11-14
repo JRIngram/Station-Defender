@@ -22,7 +22,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
  * TwoTextScreen is a class that creates a screen holding a title text,
- * a body of text and a back button.
+ * a body of text, a back button and an optional continue button.
  *
  * @author Jonathon Fitch
  */
@@ -216,18 +216,38 @@ public class TwoTextScreen implements Screen {
         batch.begin();
     }
 
+    /**
+     * Sets the X co-ordinate of the Title text
+     *
+     * @param x The X co-ordinate of the Title text
+     */
     public void setTitleX(int x) {
         this.titleX = x;
     }
 
+    /**
+     * Sets the Y co-ordinate of the Title text
+     *
+     * @param y The Y co-ordinate of the Title text
+     */
     public void setTitleY(int y) {
         this.titleY = y;
     }
 
+    /**
+     * Sets the X co-ordinate of the Body text
+     *
+     * @param x The X co-ordinate of the Body text
+     */
     public void setBodyX(int x) {
         this.bodyX = x;
     }
 
+    /**
+     * Sets the Y co-ordinate of the Body text
+     *
+     * @param y The Y co-ordinate of the Body text
+     */
     public void setBodyY(int y) {
         this.bodyY = y;
     }

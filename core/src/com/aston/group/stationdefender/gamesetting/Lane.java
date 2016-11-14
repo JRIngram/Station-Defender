@@ -236,8 +236,8 @@ public class Lane implements UnitCallback {
                         units.get(j).getY(), units.get(j).getWidth(), units.get(j).getHeight())) {
                     int damage = 50;
                     if (units.get(j).getHealth() - damage <= 0) {
-                        player.addMoney(1);
-                        player.addScore(10);
+                        player.addMoney(Constants.MONEY_REGENERATION);
+                        player.addScore(Constants.ADD_SCORE_AMOUNT);
                     }
                     units.get(j).takeDamage(damage);
                 }

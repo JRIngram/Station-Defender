@@ -33,7 +33,7 @@ public class ItemCredit extends Item {
      */
     @Override
     public void useItem(Player player, ItemCallback itemCallback) {
-        player.setMoney(player.getMoney() + value);
+        player.addMoney(value);
 
         if (itemCallback != null)
             itemCallback.onUse(placeable);

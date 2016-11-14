@@ -8,10 +8,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 public class ItemTurret extends Item {
+    private int cost;
 
     public ItemTurret() {
         id = 2;
         name = "Turret";
+        cost = 10;
         itemTexture = new Texture(Gdx.files.internal("textures/turret.png"));
         placeable = true;
     }
@@ -19,7 +21,7 @@ public class ItemTurret extends Item {
     @Override
     public void useItem(Player player, ItemCallback itemCallback) {
         if (player != null)
-            player.setMoney(player.getMoney() - 10);
+            player.removeMoney(cost);
 
         if (itemCallback != null)
             itemCallback.onUse(placeable);

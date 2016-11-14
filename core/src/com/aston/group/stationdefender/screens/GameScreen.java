@@ -32,6 +32,12 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
     private final Level level;
     private Array<Actor> actorBufferA = new Array<Actor>();
 
+    /**
+     * Create a new GameScreen with a specified GameCallBack and LevelNumber
+     *
+     * @param gameCallback The GameCallBAck to be used for the GameScreen
+     * @param levelNumber  The Level Number for the game
+     */
     public GameScreen(final GameCallback gameCallback, int levelNumber) {
         batch = new SpriteBatch();
         this.gameCallback = gameCallback;

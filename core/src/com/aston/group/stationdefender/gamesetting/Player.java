@@ -3,6 +3,7 @@ package com.aston.group.stationdefender.gamesetting;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
+import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.gamesetting.items.ItemBlank;
 import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
@@ -49,7 +50,7 @@ public class Player implements InputProcessor {
 
         inventory = new PlayerInventory();
         score = 0;
-        money = 50;
+        money = Constants.START_MONEY;
 
         inventory.addItem(new ItemCredit());
 
@@ -82,7 +83,7 @@ public class Player implements InputProcessor {
         font = generator.generateFont(params);
         generator.dispose();
 
-        if (quickSlots != null && quickSlots.size > 0)
+        if (quickSlots.size > 0)
             currentItem = quickSlots.get(0).getItem();
     }
 
@@ -192,7 +193,6 @@ public class Player implements InputProcessor {
                         if (playerCallback != null && placeable) {
                             if (money > 20)
                                 playerCallback.placeActor(currentItem.getPlaceableActor(), screenX, screenY);
-                            money -= 20;
                         }
                     }
                 });
