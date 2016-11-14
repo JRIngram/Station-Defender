@@ -36,6 +36,8 @@ public interface Constants {
 
     String BACK = "Back";
 
+    String CONTINUE = "Continue";
+
     String INSTRUCTIONS = "Instruction text will go here";
 
     int TILE_WIDTH = 80;

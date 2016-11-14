@@ -32,7 +32,7 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
     private final Level level;
     private Array<Actor> actorBufferA = new Array<Actor>();
 
-    public GameScreen(final GameCallback gameCallback) {
+    public GameScreen(final GameCallback gameCallback, int levelNumber) {
         batch = new SpriteBatch();
         this.gameCallback = gameCallback;
 
@@ -46,7 +46,7 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
 
         player = new Player();
         player.setPlayerCallback(this);
-        level = new Level(player, this);
+        level = new Level(player, this, levelNumber);
     }
 
     private void refresh(float delta) {

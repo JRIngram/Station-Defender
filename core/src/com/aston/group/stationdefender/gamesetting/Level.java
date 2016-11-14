@@ -31,17 +31,17 @@ public class Level {
      * @param levelCallback The LevelCallBack to be used for the Level
      */
     public Level(Player player, LevelCallback levelCallback) {
-        this(player, 1, levelCallback);
+        this(player, levelCallback, 1);
     }
 
     /**
      * Construct a new Level with a given level number.
      *
      * @param player        The current Player of the game
-     * @param levelNumber   The number of the Level
      * @param levelCallback The LevelCallBack to be used for the Level
+     * @param levelNumber   The number of the Level
      */
-    public Level(Player player, int levelNumber, LevelCallback levelCallback) {
+    public Level(Player player, LevelCallback levelCallback, int levelNumber) {
         this.levelNumber = levelNumber;
         this.levelCallback = levelCallback;
         tower = new Tower(0, 100, 100, 400);

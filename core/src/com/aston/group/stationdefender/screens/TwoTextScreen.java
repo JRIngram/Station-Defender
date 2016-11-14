@@ -35,6 +35,8 @@ public class TwoTextScreen implements Screen {
     private final BitmapFont bodyFont;
     private final TextButton backButton;
     private final Texture texture;
+    private final boolean continueBool;
+    private TextButton continueButton;
     private TwoTextCallback twoTextCallback;
     private float fadeElapsed = 0;
     private String title;
@@ -45,7 +47,8 @@ public class TwoTextScreen implements Screen {
      * Constructor sets the camera, viewpoint and
      * initializes the font and button(s).
      */
-    public TwoTextScreen() {
+    public TwoTextScreen(boolean continueBool) {
+        this.continueBool = continueBool;
         batch = new SpriteBatch();
 
         //Setup camera
@@ -75,17 +78,29 @@ public class TwoTextScreen implements Screen {
         backButton.setColor(0, 0, 0, 0);
         backButton.setWidth(400);
         backButton.setHeight(50);
+        if (continueBool) {
+            continueButton = new TextButton(Constants.CONTINUE, textButtonStyle);
+            continueButton.setColor(0, 0, 0, 0);
+            continueButton.setWidth(400);
+            continueButton.setHeight(50);
+            stage.addActor(continueButton);
+            continueButton.setPosition((Gdx.graphics.getWidth() / 2) - 210, (Gdx.graphics.getHeight() / 2) - 175);
+        }
         stage.addActor(backButton);
         ChangeListener buttonListener = new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 if (actor.equals(backButton)) {
                     twoTextCallback.onBack();
+                } else if (actor.equals(continueButton)) {
+                    twoTextCallback.onContinue();
                 }
             }
         };
         backButton.addListener(buttonListener);
         backButton.setPosition(-150, (Gdx.graphics.getHeight()) - 60);
+        if (continueBool)
+            continueButton.addListener(buttonListener);
         texture = new Texture(Gdx.files.internal("textures/back.jpg"));
         titleX = (Gdx.graphics.getWidth() / 2) - 150;
         titleY = Gdx.graphics.getHeight() - 25;
@@ -126,6 +141,8 @@ public class TwoTextScreen implements Screen {
         batch.begin();
         titleFont.setColor(1, 1, 1, fade);
         backButton.setColor(1, 1, 1, fade);
+        if (continueBool)
+            continueButton.setColor(1, 1, 1, fade);
         batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         titleFont.draw(batch, title, titleX, titleY);
         restartBatch();

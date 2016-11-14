@@ -23,13 +23,15 @@ public class Main extends Game implements GameCallback, TwoTextCallback, IntroCa
     private TwoTextScreen instructionScreen;
     private MenuScreen menuScreen;
     private GameScreen gameScreen;
+    private int levelNumber;
 
     @Override
     public void create() {
-        backgroundScreen = new TwoTextScreen();
-        instructionScreen = new TwoTextScreen();
+        backgroundScreen = new TwoTextScreen(false);
+        instructionScreen = new TwoTextScreen(false);
         introScreen = new IntroScreen();
         menuScreen = new MenuScreen();
+        levelNumber = 1;
         initGame();
 
         // Setup title and body text
@@ -69,17 +71,21 @@ public class Main extends Game implements GameCallback, TwoTextCallback, IntroCa
     private void initGame() {
         if (gameScreen != null)
             gameScreen.dispose();
-        gameScreen = new GameScreen(this);
+        gameScreen = new GameScreen(this, levelNumber);
     }
 
     @Override
     public void onWinLost(boolean won, int score, int money) {
+        TwoTextScreen twoTextScreen;
         String title;
-        if (won)
+        if (won) {
             title = "YOU WON";
-        else
+            twoTextScreen = new TwoTextScreen(true);
+            levelNumber++;
+        } else {
             title = "YOU LOST";
-        TwoTextScreen twoTextScreen = new TwoTextScreen();
+            twoTextScreen = new TwoTextScreen(false);
+        }
         twoTextScreen.setTitle(title);
         twoTextScreen.setBody("Score: " + score + " - Money: £" + money);
         twoTextScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 125);
@@ -97,6 +103,12 @@ public class Main extends Game implements GameCallback, TwoTextCallback, IntroCa
     @Override
     public void onBack() {
         setScreen(introScreen);
+    }
+
+    @Override
+    public void onContinue() {
+        initGame();
+        setScreen(gameScreen);
     }
 
     @Override
