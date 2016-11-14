@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.utils.SoundManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -127,11 +128,8 @@ public class Alien extends Unit {
     @Override
     public void destroy() {
         //TODO: Play explosion animation
-        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/Explosion.mp3"));
-        sound.play();
-        sound.dispose();
+        SoundManager.getInstance().playExplosion();
         exists = false;
-        batch.dispose();
     }
 
     /**
