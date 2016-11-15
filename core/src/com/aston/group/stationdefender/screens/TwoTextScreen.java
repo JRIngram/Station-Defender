@@ -46,6 +46,9 @@ public class TwoTextScreen implements Screen {
     /**
      * Constructor sets the camera, viewpoint and
      * initializes the font and button(s).
+     *
+     * @param continueBool true if the continue button should be displayed.
+     *                     False if the continue button should not be displayed.
      */
     public TwoTextScreen(boolean continueBool) {
         this.continueBool = continueBool;

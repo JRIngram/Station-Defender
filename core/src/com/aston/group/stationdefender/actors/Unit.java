@@ -12,65 +12,21 @@ import java.util.Random;
  * @version 01/11/2016
  */
 public abstract class Unit implements Actor {
-
-    /**
-     * Unit's position on the X-Axis
-     */
-    int x;
-    /**
-     * Unit's position on the Y-Axis
-     */
-    int y;
-    /**
-     * Unit's width.
-     */
-    int width;
-    /**
-     * Unit's height
-     */
-    int height;
-    /**
-     * Checks if the Unit is adjacent to any other unit.
-     * This information is retrieved from the Board.
-     */
-    boolean isAdjacent;
-    /**
-     * How many tiles it can move per "tick".
-     */
-    double speed;
-    /**
-     * The Unit that this Unit is adjacent to.
-     */
-    Actor adjacentActor;
-    /**
-     * Whether the Unit is alive or dead.
-     */
-    boolean exists;
-    /**
-     * Whether the Unit is facing left or not
-     */
-    boolean facingLeft;
-    /**
-     * How much damage the Unit can take before being destroyed.
-     */
-    double health;
-    UnitCallback unitCallback;
-    /**
-     * Name of the type of unit.
-     */
-    private String name;
-    /**
-     * How much damage each successful hit causes.
-     */
-    private double damage;
-    /**
-     * How many times the unit fires per "tick".
-     */
-    private double rateOfFire;
-    /**
-     * How many tiles forward the Unit can fire.
-     */
-    private double range;
+    int x; //Unit's position on the X-Axis
+    int y; //Unit's position on the Y-Axis
+    int width; //Unit's width
+    int height; //Unit's height
+    boolean isAdjacent; //Checks if the Unit is adjacent to any other unit.  This information is retrieved from the Board.
+    double speed; //How many tiles it can move per "tick".
+    Actor adjacentActor; //The Unit that this Unit is adjacent to.
+    boolean exists; //Whether the Unit is alive or dead.
+    boolean facingLeft; //Whether the Unit is facing left or not
+    double health; //How much damage the Unit can take before being destroyed.
+    UnitCallback unitCallback; //The UnitCallBack used for the Unit
+    private String name; //Name of the type of unit.
+    private double damage; //How much damage each successful hit causes.
+    private double rateOfFire; //How many times the unit fires per "tick".
+    private double range; //How many tiles forward the Unit can fire.
 
     /**
      * Construct a new Unit
