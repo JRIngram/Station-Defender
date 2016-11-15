@@ -21,6 +21,7 @@ public abstract class Item {
     boolean placeable;
     //Rendering
     Texture itemTexture;
+    int cost;
     private boolean usable;
     private boolean collected;
     private boolean justSpawned;
@@ -34,6 +35,7 @@ public abstract class Item {
         batch = new SpriteBatch();
         width = 32;
         height = 32;
+        cost = 0;
     }
 
     /**
@@ -51,6 +53,7 @@ public abstract class Item {
 
         width = 32;
         height = 32;
+        cost = 0;
 
         batch = new SpriteBatch();
     }
@@ -296,6 +299,15 @@ public abstract class Item {
      */
     public void setPlaceable(boolean placeable) {
         this.placeable = placeable;
+    }
+
+    /**
+     * Returns the value of the Item
+     *
+     * @return The value of the Item
+     */
+    public int getCost() {
+        return cost;
     }
 
     /**

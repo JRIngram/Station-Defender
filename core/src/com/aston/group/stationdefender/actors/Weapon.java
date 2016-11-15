@@ -130,7 +130,6 @@ public class Weapon extends Unit implements Actor {
         Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/Explosion.mp3"));
         sound.play();
         sound.dispose();
-        System.out.println("UNIT DESTROYED - FILLER BEFORE IMPLEMENTATION.");
         exists = false;
     }
 

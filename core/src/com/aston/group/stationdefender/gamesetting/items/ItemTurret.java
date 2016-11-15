@@ -8,7 +8,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 public class ItemTurret extends Item {
-    private int cost;
 
     public ItemTurret() {
         id = 2;

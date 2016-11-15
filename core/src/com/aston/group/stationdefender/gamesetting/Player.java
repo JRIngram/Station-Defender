@@ -186,13 +186,12 @@ public class Player implements InputProcessor {
     @Override
     public boolean touchUp(final int screenX, final int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
-            if (currentItem != null) {
+            if (currentItem != null && money >= currentItem.getCost()) {
                 currentItem.useItem(this, new ItemCallback() {
                     @Override
                     public void onUse(boolean placeable) {
                         if (playerCallback != null && placeable) {
-                            if (money > 20)
-                                playerCallback.placeActor(currentItem.getPlaceableActor(), screenX, screenY);
+                            playerCallback.placeActor(currentItem.getPlaceableActor(), screenX, screenY);
                         }
                     }
                 });

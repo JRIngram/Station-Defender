@@ -19,8 +19,8 @@ public class Tile {
     private final int x, y, width, height;
     private final SpriteBatch batch;
     private final Texture texture;
+    private final ShapeRenderer shapeRenderer;
     private Actor actor;
-    private ShapeRenderer shapeRenderer;
 
     /**
      * Construct a new Tile with given X and Y co-ordinates
