@@ -8,12 +8,13 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class WeaponTest {
+public class WeaponTest extends GameTest {
     private Weapon testWep;
     private Alien adjacentAlien;
 
     @Before
     public void setUp() {
+
         testWep = new Weapon("Weapon", 0, 2, 2, 10, 1, 10, 10, 200, 200, 0.0d, 100, 100);
         adjacentAlien = new Alien("Alien", 0, 5, 2, 5, 1, 200, 200, 100, 100);
     }
