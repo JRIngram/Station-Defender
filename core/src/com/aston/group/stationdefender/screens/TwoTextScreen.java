@@ -82,6 +82,7 @@ public class TwoTextScreen implements Screen {
         backButton.setWidth(400);
         backButton.setHeight(50);
         if (continueBool) {
+            textButtonStyle.font = bodyFont;
             continueButton = new TextButton(Constants.CONTINUE, textButtonStyle);
             continueButton.setColor(0, 0, 0, 0);
             continueButton.setWidth(400);
@@ -108,7 +109,7 @@ public class TwoTextScreen implements Screen {
         titleX = (Gdx.graphics.getWidth() / 2) - 150;
         titleY = Gdx.graphics.getHeight() - 25;
         bodyX = (Gdx.graphics.getWidth() / 2) - 235;
-        bodyY = (Gdx.graphics.getHeight() / 2) + (100 - 60);
+        bodyY = (Gdx.graphics.getHeight() / 2) + 40;
     }
 
     /**

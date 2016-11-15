@@ -25,6 +25,7 @@ public class Main extends Game implements GameCallback, TwoTextCallback, IntroCa
     private MenuScreen menuScreen;
     private GameScreen gameScreen;
     private int levelNumber;
+    private int totalScore;
 
     @Override
     public void create() {
@@ -33,6 +34,7 @@ public class Main extends Game implements GameCallback, TwoTextCallback, IntroCa
         introScreen = new IntroScreen();
         menuScreen = new MenuScreen();
         levelNumber = 1;
+        totalScore = 0;
         new SoundManager();
         initGame();
 
@@ -91,12 +93,16 @@ public class Main extends Game implements GameCallback, TwoTextCallback, IntroCa
             title = "YOU LOST";
             twoTextScreen = new TwoTextScreen(false);
         }
+        totalScore += score;
         twoTextScreen.setTitle(title);
-        twoTextScreen.setBody("Score: " + score + " - Money: £" + money);
+        twoTextScreen.setBody("Level Score: " + score + "\nMoney: £" + money + "\n\nTotal Score: " + totalScore);
         twoTextScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 125);
         twoTextScreen.setTitleY(Gdx.graphics.getHeight() - 25);
-        twoTextScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 150);
+        twoTextScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 110);
+        twoTextScreen.setBodyY((Gdx.graphics.getHeight() / 2) + 75);
         twoTextScreen.setTwoTextCallback(this);
+        if (!won)
+            totalScore = 0;
         setScreen(twoTextScreen);
     }
 

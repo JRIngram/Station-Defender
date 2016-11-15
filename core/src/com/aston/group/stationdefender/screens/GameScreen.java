@@ -39,8 +39,8 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
      * @param levelNumber  The Level Number for the game
      */
     public GameScreen(final GameCallback gameCallback, int levelNumber) {
-        batch = new SpriteBatch();
         this.gameCallback = gameCallback;
+        batch = new SpriteBatch();
 
         //Setup camera
         camera = new OrthographicCamera();
