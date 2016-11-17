@@ -14,14 +14,11 @@ public class PlayerTest extends GdxTestRunner {
 
     @Test
     public void testConstructors() {
-        Gdx.app.postRunnable(new Runnable() {
-            @Override
-            public void run() {
-                SpriteBatch batch = new SpriteBatch();
-                Player player = new Player();
-                assertNotNull(batch);
-                assertNotNull(player);
-            }
+        Gdx.app.postRunnable(() -> {
+            SpriteBatch batch = new SpriteBatch();
+            Player player = new Player();
+            assertNotNull(batch);
+            assertNotNull(player);
         });
     }
 }

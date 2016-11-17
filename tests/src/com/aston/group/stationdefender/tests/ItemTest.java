@@ -14,18 +14,15 @@ public class ItemTest extends GdxTestRunner {
 
     @Test
     public void testConstructor() {
-        Gdx.app.postRunnable(new Runnable() {
-            @Override
-            public void run() {
-                SpriteBatch batch = new SpriteBatch();
-                ItemCredit itemCredit = new ItemCredit();
-                assertNotNull(batch);
-                assertNotNull(itemCredit);
+        Gdx.app.postRunnable(() -> {
+            SpriteBatch batch = new SpriteBatch();
+            ItemCredit itemCredit = new ItemCredit();
+            assertNotNull(batch);
+            assertNotNull(itemCredit);
 
-                //Default items are set to 32x32, but for this test they're increased
-                itemCredit.setWidth(256);
-                itemCredit.setHeight(256);
-            }
+            //Default items are set to 32x32, but for this test they're increased
+            itemCredit.setWidth(256);
+            itemCredit.setHeight(256);
         });
     }
 }
