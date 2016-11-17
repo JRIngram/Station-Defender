@@ -6,12 +6,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
-public class TextureTest extends GameTest {
+public class TextureTest extends GdxTestRunner {
 
     @Test
     public void testTexture() {
         Texture texture = new Texture(512, 512, Pixmap.Format.RGB888);
         assertNotNull(texture);
     }
-
 }
