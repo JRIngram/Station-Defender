@@ -22,8 +22,8 @@ import java.util.Iterator;
 public class Lane implements UnitCallback {
     private final ShapeRenderer shapeRenderer;
     private final int x, y, height;
-    private final Array<Tile> tiles = new Array<Tile>();
-    private final Array<Unit> units = new Array<Unit>();
+    private final Array<Tile> tiles = new Array<>();
+    private final Array<Unit> units = new Array<>();
     private final ProjectileFactory projectileFactory;
     private final Player player;
     private final Tower tower;

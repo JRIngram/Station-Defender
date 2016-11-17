@@ -37,12 +37,7 @@ public class SoundManager {
         }
         if (music != null) {
             music.setLooping(true);
-            music.setOnCompletionListener(new Music.OnCompletionListener() {
-                @Override
-                public void onCompletion(Music music) {
-                    music.dispose();
-                }
-            });
+            music.setOnCompletionListener(Music::dispose);
         }
     }
 }

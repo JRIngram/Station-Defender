@@ -15,7 +15,7 @@ public class PlayerInventory implements Inventory {
      * Construct a new PlayerInventory
      */
     public PlayerInventory() {
-        items = new Array<Item>();
+        items = new Array<>();
     }
 
     /**
@@ -114,7 +114,7 @@ public class PlayerInventory implements Inventory {
      */
     @Override
     public Array<Item> getAllItemsById(int id) {
-        Array<Item> items = new Array<Item>();
+        Array<Item> items = new Array<>();
         for (int i = 0; i < items.size; i++) {
             if (items.get(i) != null && items.get(i).getId() == id) {
                 items.add(items.get(i));

@@ -23,14 +23,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * @author Mohammad Foysal
  */
 public class GameScreen implements Screen, PlayerCallback, LevelCallback {
-    private final Array<Actor> actorBufferB = new Array<Actor>();
+    private final Array<Actor> actorBufferB = new Array<>();
     private final SpriteBatch batch;
     private final OrthographicCamera camera;
     private final Viewport viewport;
     private final Player player;
     private final GameCallback gameCallback;
     private final Level level;
-    private Array<Actor> actorBufferA = new Array<Actor>();
+    private Array<Actor> actorBufferA = new Array<>();
 
     /**
      * Create a new GameScreen with a specified GameCallBack and LevelNumber

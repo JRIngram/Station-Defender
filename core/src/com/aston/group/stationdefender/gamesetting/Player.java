@@ -1,6 +1,5 @@
 package com.aston.group.stationdefender.gamesetting;
 
-import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.config.Constants;
@@ -56,7 +55,7 @@ public class Player implements InputProcessor {
 
 
         //Quick Slots
-        quickSlots = new Array<QuickSlot>();
+        quickSlots = new Array<>();
         int slotX = 0;
         for (int i = 0; i < 8; i++) {
             QuickSlot quickSlot = new QuickSlot(slotX, 0, 48, 48);
@@ -69,12 +68,7 @@ public class Player implements InputProcessor {
             slotX += 48;
         }
 
-        quickSlotCallback = new QuickSlotCallback() {
-            @Override
-            public void onSelectedItemChanged(Item item) {
-                currentItem = item;
-            }
-        };
+        quickSlotCallback = item -> currentItem = item;
 
         //Initialise Font
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
@@ -187,12 +181,9 @@ public class Player implements InputProcessor {
     public boolean touchUp(final int screenX, final int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
             if (currentItem != null && money >= currentItem.getCost()) {
-                currentItem.useItem(this, new ItemCallback() {
-                    @Override
-                    public void onUse(boolean placeable) {
-                        if (playerCallback != null && placeable) {
-                            playerCallback.placeActor(currentItem.getPlaceableActor(), screenX, screenY);
-                        }
+                currentItem.useItem(this, placeable -> {
+                    if (playerCallback != null && placeable) {
+                        playerCallback.placeActor(currentItem.getPlaceableActor(), screenX, screenY);
                     }
                 });
             }
@@ -304,7 +295,7 @@ public class Player implements InputProcessor {
         this.money = money;
     }
 
-    public void addScore(int amount) {
+    void addScore(int amount) {
         this.score += amount;
     }
 

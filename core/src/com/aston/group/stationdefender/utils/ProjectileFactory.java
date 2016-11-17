@@ -21,7 +21,7 @@ public class ProjectileFactory {
         }
     };
     private final Sound sound;
-    private Array<Projectile> projectiles = new Array<Projectile>();
+    private Array<Projectile> projectiles = new Array<>();
 
     /**
      * Construct a new ProjectileFactory

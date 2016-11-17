@@ -16,7 +16,7 @@ import com.badlogic.gdx.utils.Array;
 public class Board {
     private static final int numberOfLanes = 4;
     private static final int numberOfTiles = 4;
-    private final Array<Lane> lanes = new Array<Lane>();
+    private final Array<Lane> lanes = new Array<>();
     private final Tower tower;
     private ProjectileFactory projectileFactory;
     private boolean hasWon;
