@@ -58,8 +58,6 @@ project(":core") {
 }
 
 project(":tests") {
-    sourceSets.test.java.srcDirs = ["src/"]
-
     dependencies {
         compile project(":core")
         compile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
