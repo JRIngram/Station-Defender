@@ -49,8 +49,8 @@ public class Alien extends Unit {
      * @param width      The width of the Alien
      * @param height     The height of the Alien
      */
-    public Alien(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
-        super(name, speed, damage, rateOfFire, health, range, x, y, width, height);
+    public Alien(String name, double speed, double damage, double rateOfFire, double health, double range, double chanceToHit, int x, int y, int width, int height) {
+        super(name, speed, damage, rateOfFire, health, range, chanceToHit, x, y, width, height);
         batch = new SpriteBatch();
 
         //Setup camera
@@ -82,7 +82,7 @@ public class Alien extends Unit {
     public void act(float delta) {
         if (!checkZeroHealth()) {
             if (isAdjacent) {
-                adjacentActor.takeDamage(fire(5.0));
+                adjacentActor.takeDamage(fire());
             } else {
                 move(delta);
             }

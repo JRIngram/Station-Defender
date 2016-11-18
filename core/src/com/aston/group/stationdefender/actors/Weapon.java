@@ -60,9 +60,9 @@ public class Weapon extends Unit {
      * @param cost          The cost of the Weapon
      * @param costToUpgrade THe cost to upgrade to the Weapon
      */
-    public Weapon(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height,
+    public Weapon(String name, double speed, double damage, double rateOfFire, double health, double range, double chanceToHit, int x, int y, int width, int height,
                   double buildTime, int cost, int costToUpgrade) {
-        super(name, speed, damage, rateOfFire, health, range, x, y, width, height);
+        super(name, speed, damage, rateOfFire, health, range, chanceToHit, x, y, width, height);
         this.buildTime = buildTime;
         this.cost = cost;
         this.costToUpgrade = costToUpgrade;
@@ -92,7 +92,7 @@ public class Weapon extends Unit {
                     lastTime = System.currentTimeMillis();
                 }
             } else {
-                adjacentActor.takeDamage(fire(5.0));
+                adjacentActor.takeDamage(fire());
             }
         } else {
             decrementBuildTimer();

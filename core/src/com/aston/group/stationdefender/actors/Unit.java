@@ -34,6 +34,7 @@ public abstract class Unit implements Actor {
     private boolean exists; //Whether the Unit is alive or dead.
     private double health; //How much damage the Unit can take before being destroyed.
     private String name; //Name of the type of unit.
+    private double chanceToHit; //Chance of a hit
 
     /**
      * Construct a new Unit with given name, speed, damage, rateOfFile, health, range, x co-ordinate, y co-ordinate,
@@ -50,7 +51,7 @@ public abstract class Unit implements Actor {
      * @param width      The width of the Unit
      * @param height     The height of the Unit
      */
-    Unit(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
+    Unit(String name, double speed, double damage, double rateOfFire, double health, double range, double chanceToHit, int x, int y, int width, int height) {
         this.name = name;
         this.speed = speed;
         this.damage = damage;
@@ -61,6 +62,7 @@ public abstract class Unit implements Actor {
         this.y = y;
         this.width = width;
         this.height = height;
+        this.chanceToHit = chanceToHit;
         isAdjacent = false;
         adjacentActor = null;
         exists = false;
@@ -247,14 +249,13 @@ public abstract class Unit implements Actor {
     /**
      * Makes the Unit fire a Projectile using a Weapon
      *
-     * @param chanceOfHitting percentange chance of Unit hitting its target, per shot.
      * @return The total damage done by the number of fires
      */
-    public double fire(double chanceOfHitting) {
+    public double fire() {
         Random rng = new Random();
         int hit = 0;
         for (int i = 0; i < rateOfFire; i++) {
-            if (chanceOfHitting <= rng.nextInt(10)) {
+            if (chanceToHit <= rng.nextInt(10)) {
                 hit++;
             }
         }
