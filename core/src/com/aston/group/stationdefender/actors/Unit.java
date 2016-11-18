@@ -364,6 +364,15 @@ public abstract class Unit implements Actor {
     }
 
     /**
+     * Returns the likelihood of a Unit hitting its target, per shot.
+     *
+     * @return The likelihood of a Unit hitting its target, per shot
+     */
+    public double getChanceToHit(){
+        return chanceToHit;
+    }
+
+    /**
      * Render the particle effect
      *
      * @param delta The time in seconds since the last render
