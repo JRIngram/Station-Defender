@@ -82,7 +82,7 @@ public class Alien extends Unit {
     public void act(float delta) {
         if (!checkZeroHealth()) {
             if (isAdjacent) {
-                adjacentActor.takeDamage(fire());
+                adjacentActor.takeDamage(fire(5.0));
             } else {
                 move(delta);
             }

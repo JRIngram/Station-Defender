@@ -92,7 +92,7 @@ public class Weapon extends Unit {
                     lastTime = System.currentTimeMillis();
                 }
             } else {
-                adjacentActor.takeDamage(fire());
+                adjacentActor.takeDamage(fire(5.0));
             }
         } else {
             decrementBuildTimer();
