@@ -247,13 +247,14 @@ public abstract class Unit implements Actor {
     /**
      * Makes the Unit fire a Projectile using a Weapon
      *
+     * @param chanceOfHitting percentange chance of Unit hitting its target, per shot.
      * @return The total damage done by the number of fires
      */
-    public double fire() {
+    public double fire(double chanceOfHitting) {
         Random rng = new Random();
         int hit = 0;
         for (int i = 0; i < rateOfFire; i++) {
-            if (5 == rng.nextInt(10)) {
+            if (chanceOfHitting <= rng.nextInt(10)) {
                 hit++;
             }
         }
