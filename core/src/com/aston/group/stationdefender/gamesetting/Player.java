@@ -7,6 +7,7 @@ import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.gamesetting.items.ItemBlank;
 import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
 import com.aston.group.stationdefender.gamesetting.items.ItemTurret;
+import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.resources.Inventory;
 import com.aston.group.stationdefender.utils.resources.PlayerInventory;
 import com.aston.group.stationdefender.utils.resources.QuickSlot;
@@ -183,7 +184,7 @@ public class Player implements InputProcessor {
             if (currentItem != null && money >= currentItem.getCost()) {
                 currentItem.useItem(this, placeable -> {
                     if (playerCallback != null && placeable) {
-                        playerCallback.placeActor(currentItem.getPlaceableActor(), screenX, screenY);
+                        playerCallback.placeActor(currentItem.getPlaceableActor(), MouseInput.getX(), MouseInput.getY());
                     }
                 });
             }

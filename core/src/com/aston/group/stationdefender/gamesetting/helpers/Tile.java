@@ -3,6 +3,7 @@ package com.aston.group.stationdefender.gamesetting.helpers;
 import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.utils.MouseInput;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -97,7 +98,7 @@ public class Tile {
      * @param delta - The time in seconds since the last render.
      */
     public void render(float delta) {
-        boolean hovered = isColliding(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY(), 1, 1);
+        boolean hovered = isColliding(MouseInput.getX(), MouseInput.getY(), 1, 1);
 
         batch.begin();
         batch.draw(texture, x, y, width, height);
