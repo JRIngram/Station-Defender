@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
-public class TextureTest extends GdxTestRunner {
+public class TextureTest {
 
     @Test
     public void testTexture() {

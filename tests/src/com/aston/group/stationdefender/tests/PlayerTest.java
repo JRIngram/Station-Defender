@@ -10,15 +10,13 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author Jamie Ingram
  */
-public class PlayerTest extends GdxTestRunner {
+public class PlayerTest {
 
     @Test
     public void testConstructors() {
-        Gdx.app.postRunnable(() -> {
-            SpriteBatch batch = new SpriteBatch();
-            Player player = new Player();
-            assertNotNull(batch);
-            assertNotNull(player);
-        });
+        SpriteBatch batch = new SpriteBatch();
+        Player player = new Player();
+        assertNotNull(batch);
+        assertNotNull(player);
     }
 }

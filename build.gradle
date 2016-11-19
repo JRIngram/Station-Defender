@@ -65,6 +65,8 @@ project(":tests") {
         compile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
         compile "junit:junit:$jUnitVersion"
         compile "org.mockito:mockito-core:$mockitoVersion"
+        compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+
     }
 }
 
