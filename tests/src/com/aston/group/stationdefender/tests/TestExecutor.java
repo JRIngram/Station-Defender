@@ -44,6 +44,7 @@ public class TestExecutor {
                 performTest();
 
                 Gdx.app.exit();
+                System.exit(0);
             }
 
             @Override
