@@ -8,5 +8,5 @@ package com.aston.group.stationdefender.callbacks;
 public interface GameCallback {
     void onWinLost(boolean won, int score, int money);
 
-    void onPaused();
+    void onPause();
 }

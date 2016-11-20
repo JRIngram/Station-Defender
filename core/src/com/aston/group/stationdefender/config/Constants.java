@@ -38,6 +38,8 @@ public interface Constants {
 
     String CONTINUE = "Continue";
 
+    String MENU = "Menu";
+
     String INSTRUCTIONS = "Instruction text will go here";
 
     int TILE_WIDTH = 80;

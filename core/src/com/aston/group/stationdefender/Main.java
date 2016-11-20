@@ -107,7 +107,7 @@ public class Main extends Game implements GameCallback, TwoTextCallback, IntroCa
     }
 
     @Override
-    public void onPaused() {
+    public void onPause() {
         setScreen(menuScreen);
     }
 

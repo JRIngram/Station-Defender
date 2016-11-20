@@ -13,11 +13,11 @@ public class MouseInput {
         MouseInput.position = position;
     }
 
-    public static int getX(){
+    public static int getX() {
         return (int) position.x;
     }
 
-    public static int getY(){
+    public static int getY() {
         return (int) position.y;
     }
 }

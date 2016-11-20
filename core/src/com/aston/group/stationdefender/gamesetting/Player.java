@@ -18,6 +18,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -34,6 +36,8 @@ public class Player implements InputProcessor {
     //Graphics Variables
     private final SpriteBatch batch;
     private final BitmapFont font;
+    private final Stage stage;
+    private final TextButton menuButton;
     //Player Properties
     private Item currentItem;
     private Inventory inventory;
@@ -47,13 +51,10 @@ public class Player implements InputProcessor {
      */
     public Player() {
         batch = new SpriteBatch();
-
         inventory = new PlayerInventory();
         score = 0;
         money = Constants.START_MONEY;
-
         inventory.addItem(new ItemCredit());
-
 
         //Quick Slots
         quickSlots = new Array<>();
@@ -68,18 +69,29 @@ public class Player implements InputProcessor {
             quickSlots.add(quickSlot);
             slotX += 48;
         }
-
         quickSlotCallback = item -> currentItem = item;
+        if (quickSlots.size > 0)
+            currentItem = quickSlots.get(0).getItem();
 
         //Initialise Font
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
         params.size = 16;
         font = generator.generateFont(params);
+        params.size = 22;
+        BitmapFont buttonFont = generator.generateFont(params);
         generator.dispose();
 
-        if (quickSlots.size > 0)
-            currentItem = quickSlots.get(0).getItem();
+        //Buttons
+        stage = new Stage();
+        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+        textButtonStyle.font = buttonFont;
+        menuButton = new TextButton(Constants.MENU, textButtonStyle);
+        menuButton.setColor(0, 0, 0, 0);
+        menuButton.setWidth(400);
+        menuButton.setHeight(50);
+        stage.addActor(menuButton);
+        menuButton.setPosition((Gdx.graphics.getWidth() / 2) + 200, Gdx.graphics.getHeight() - 80);
     }
 
     /**
@@ -111,6 +123,7 @@ public class Player implements InputProcessor {
 
         //Render Player Stats
         batch.begin();
+        menuButton.setColor(1, 1, 1, 1);
         font.setColor(Color.BLACK);
         font.draw(batch, "Score: " + score, Gdx.graphics.getWidth() - 99, 60);
         font.draw(batch, "Money: " + money, Gdx.graphics.getWidth() - 99, 30);
@@ -118,7 +131,9 @@ public class Player implements InputProcessor {
         font.draw(batch, "Score: " + score, Gdx.graphics.getWidth() - 100, 60);
         font.draw(batch, "Money: " + money, Gdx.graphics.getWidth() - 100, 30);
         batch.end();
-
+        batch.begin();
+        stage.draw();
+        batch.end();
     }
 
     /**
@@ -139,6 +154,8 @@ public class Player implements InputProcessor {
     @Override
     public boolean keyUp(int keycode) {
         switch (keycode) {
+            case Input.Keys.ESCAPE:
+                playerCallback.onPause();
             case Input.Keys.NUM_1:
                 selectedSlot = 0;
                 break;
@@ -187,6 +204,9 @@ public class Player implements InputProcessor {
                         playerCallback.placeActor(currentItem.getPlaceableActor(), MouseInput.getX(), MouseInput.getY());
                     }
                 });
+            }
+            if (isColliding((int) menuButton.getX(), (int) menuButton.getY(), (int) menuButton.getWidth(), (int) menuButton.getHeight())) {
+                playerCallback.onPause();
             }
         }
         return true;
@@ -346,5 +366,19 @@ public class Player implements InputProcessor {
      */
     public void setPlayerCallback(PlayerCallback playerCallback) {
         this.playerCallback = playerCallback;
+    }
+
+    /**
+     * Check if an objects X &amp; Y co-ordinates or width &amp; height
+     * overlaps the Towers X &amp; Y co-ordinates, or width &amp; height
+     *
+     * @param x      The X co-ordinate of the object to check
+     * @param y      The Y co-ordinate of the object to check
+     * @param width  The width of the object to check
+     * @param height The height of the object to check
+     * @return true if the values overlap, false if the values do not overlap
+     */
+    private boolean isColliding(int x, int y, int width, int height) {
+        return x + width > MouseInput.getX() && x < MouseInput.getX() && y + height > MouseInput.getY() && y < MouseInput.getY();
     }
 }

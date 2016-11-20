@@ -14,7 +14,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -91,8 +90,6 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
         refresh(delta);
         level.render(delta);
         player.render(delta);
-
-
     }
 
     @Override
@@ -126,5 +123,10 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
     public void placeActor(Actor actor, int x, int y) {
         //TODO: Change Actor to Unit
         level.getBoard().place(new Weapon(x, y), x, y);
+    }
+
+    @Override
+    public void onPause() {
+        gameCallback.onPause();
     }
 }
