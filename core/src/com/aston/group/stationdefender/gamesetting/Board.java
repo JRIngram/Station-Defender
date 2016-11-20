@@ -22,8 +22,8 @@ public class Board {
      * Construct a new Board with a given number of Lanes each lane will have
      * the same number of Tiles.
      *
-     * @param player        The current Player
-     * @param tower         The current Tower on the Board
+     * @param player The current Player
+     * @param tower  The current Tower on the Board
      */
     public Board(Player player, Tower tower) {
         this.tower = tower;
@@ -45,7 +45,9 @@ public class Board {
     }
 
     /**
-     * Adds a Lane to the Board
+     * Returns all the Lanes in an Array
+     *
+     * @return An Array of all the Lanes
      */
     public Array<Lane> getAllLanes() {
         return lanes;

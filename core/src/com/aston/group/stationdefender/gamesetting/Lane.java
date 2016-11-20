@@ -62,11 +62,11 @@ public class Lane implements UnitCallback {
         this.player = player;
         this.tower = tower;
 
-        Tile[] tile = new Tile[numberOfTiles - 1];
+        Tile[] tile = new Tile[numberOfTiles];
 
         int tileX = x;
 
-        for (int i = 0; i < numberOfTiles - 1; i++) {
+        for (int i = 0; i < numberOfTiles; i++) {
             tile[i] = new Tile(tileX, y);
             tileX += Constants.TILE_WIDTH;
             width += Constants.TILE_WIDTH;
@@ -123,6 +123,22 @@ public class Lane implements UnitCallback {
      */
     public Tile getTile(int index) {
         return tiles.get(index);
+    }
+
+    /**
+     * Returns all the Lanes in an Array
+     *
+     * @return An Array of all the Lanes
+     */
+    public Array<Tile> getAllTiles() {
+        return tiles;
+    }
+
+    /**
+     * Empty the Lane of Tiles
+     **/
+    public void clear() {
+        tiles.clear();
     }
 
     /**

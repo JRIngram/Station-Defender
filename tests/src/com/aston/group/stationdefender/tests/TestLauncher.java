@@ -12,6 +12,7 @@ public class TestLauncher {
             AlienTest.class,
             BoardTest.class,
             ItemTest.class,
+            LaneTest.class,
             PlayerTest.class,
             TextureTest.class,
             TileTest.class,
