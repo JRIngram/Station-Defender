@@ -27,11 +27,11 @@ public class Board {
      */
     public Board(Player player, Tower tower) {
         this.tower = tower;
-        int laneY = 120;
+        int laneY = 110;
 
         for (int i = 0; i < Constants.LANE_AMOUNT; i++) {
             lanes.add(new Lane(player, tower, 100, laneY, Constants.TILE_AMOUNT));
-            laneY += (Constants.TILE_HEIGHT + (Constants.TILE_HEIGHT / 2));
+            laneY += (Constants.TILE_HEIGHT + (Constants.TILE_HEIGHT / 4));
         }
     }
 

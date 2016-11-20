@@ -45,7 +45,7 @@ public interface Constants {
     int TILE_WIDTH = 80;
     int TILE_HEIGHT = 80;
     int TILE_AMOUNT = 11;
-    int LANE_AMOUNT = 3;
+    int LANE_AMOUNT = 4;
 
     int TOWER_HEALTH = 1000;
     int UNIT_HEALTH = 100;
