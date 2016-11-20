@@ -1,5 +1,4 @@
-package com.aston.group.stationdefender.tests;
-
+package com.aston.group.stationdefender.tests.utils;
 
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.SoundManager;
@@ -13,19 +12,14 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class TestExecutor {
-
-    private static final String TAG = "TestExecutor";
-
     private ArrayList<Class<?>> tests = new ArrayList<>();
-
     private Computer computer;
     private JUnitCore jUnitCore;
 
-
-    public TestExecutor(ArrayList<Class<?>> tests) {
+    public TestExecutor(List<Class<?>> tests) {
         this.tests.addAll(tests);
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.title = Constants.GAME_NAME;
@@ -38,7 +32,6 @@ public class TestExecutor {
                 new SoundManager();
 
                 computer = new Computer();
-
                 jUnitCore = new JUnitCore();
 
                 performTest();
@@ -74,33 +67,20 @@ public class TestExecutor {
         }, config);
     }
 
-    public void addTest(Class<?> test) {
-        tests.add(test);
-    }
-
-    public void addTests(Class<?>... test) {
-        tests.addAll(Arrays.asList(test));
-    }
-
-    public void performTest() {
-
+    private void performTest() {
         for (Class<?> cl : tests) {
             Result result = jUnitCore.run(computer, cl);
-
             printResult(result);
         }
-
     }
 
-    public void printResult(Result result) {
+    private void printResult(Result result) {
         if (result.getFailureCount() == 0) {
             System.out.println(printGreen("All tests passed"));
         } else {
             System.out.println("Failures: " + result.getFailureCount());
         }
-
-        for (Failure failure : result.getFailures()
-                ) {
+        for (Failure failure : result.getFailures()) {
             System.out.println(printRed(failure.getTrace()));
         }
     }
@@ -112,5 +92,4 @@ public class TestExecutor {
     private String printGreen(String text) {
         return "\u001B[32m" + text + "\u001B[0m";
     }
-
 }

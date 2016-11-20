@@ -1,4 +1,4 @@
-package com.aston.group.stationdefender.tests;
+package com.aston.group.stationdefender.tests.tests;
 
 import com.aston.group.stationdefender.actors.Alien;
 import com.aston.group.stationdefender.actors.Weapon;

@@ -1,4 +1,4 @@
-package com.aston.group.stationdefender.tests;
+package com.aston.group.stationdefender.tests.tests;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;

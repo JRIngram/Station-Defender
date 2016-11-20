@@ -1,4 +1,4 @@
-package com.aston.group.stationdefender.tests;
+package com.aston.group.stationdefender.tests.tests;
 
 import com.aston.group.stationdefender.actors.Alien;
 import com.aston.group.stationdefender.actors.Weapon;
@@ -14,7 +14,7 @@ public class WeaponTest {
 
     @Before
     public void setUp() {
-        testWep = new Weapon("Weapon", 0, 2, 2, 10, 1, 10, 10, 200, 200, 0.0d, 100, 100);
+        testWep = new Weapon("Weapon", 0, 2, 2, 10, 1, 10, 10, 200, 200, 10.0, 100, 25);
         adjacentAlien = new Alien("Alien", 0, 5, 2, 5, 1, 200, 200, 100, 100);
     }
 
@@ -22,9 +22,9 @@ public class WeaponTest {
     public void testConstructor() {
         assertEquals("Weapon", testWep.getName());
         assertEquals(0, testWep.getSpeed(), 0);
-        assertEquals(1.5, testWep.getDamage(), 0);
-        assertEquals(3, testWep.getRateOfFire(), 0);
-        assertEquals(5, testWep.getHealth(), 0);
+        assertEquals(2, testWep.getDamage(), 0);
+        assertEquals(2, testWep.getRateOfFire(), 0);
+        assertEquals(10, testWep.getHealth(), 0);
         assertEquals(1, testWep.getRange(), 0);
         assertEquals(10.0, testWep.getBuildTime(), 0);
         assertEquals(100, testWep.getCost(), 0);
@@ -53,7 +53,7 @@ public class WeaponTest {
 
     @Test
     public void testDamageAndCheckHealth() {
-        for (int i = 5; i > 0; i--) {
+        for (int i = 10; i > 0; i--) {
             assertEquals(i, testWep.getHealth(), 0);
             assertEquals(false, testWep.checkZeroHealth());
             testWep.takeDamage(1);

@@ -1,4 +1,4 @@
-package com.aston.group.stationdefender.tests;
+package com.aston.group.stationdefender.tests.tests;
 
 import com.aston.group.stationdefender.actors.Weapon;
 import org.junit.Assert;
@@ -9,7 +9,6 @@ public class StandardTest {
 
     @Before
     public void setUp() {
-
     }
 
     @Test
@@ -29,5 +28,4 @@ public class StandardTest {
         int num = 0;
         Assert.assertEquals(num, 5);
     }
-
 }

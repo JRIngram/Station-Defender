@@ -1,7 +1,6 @@
-package com.aston.group.stationdefender.tests;
+package com.aston.group.stationdefender.tests.tests;
 
 import com.aston.group.stationdefender.gamesetting.Player;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.junit.Test;
 
