@@ -12,7 +12,6 @@ public class TestLauncher {
             AlienTest.class,
             ItemTest.class,
             PlayerTest.class,
-            StandardTest.class,
             TextureTest.class,
             WeaponTest.class
     ));

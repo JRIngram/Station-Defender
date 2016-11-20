@@ -2,10 +2,12 @@ package com.aston.group.stationdefender.tests.utils;
 
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.SoundManager;
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import org.junit.AfterClass;
 import org.junit.runner.Computer;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
@@ -15,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestExecutor {
-    private ArrayList<Class<?>> tests = new ArrayList<>();
+    private List<Class<?>> tests = new ArrayList<>();
     private Computer computer;
     private JUnitCore jUnitCore;
 
     public TestExecutor(List<Class<?>> tests) {
-        this.tests.addAll(tests);
+        this.tests = tests;
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.title = Constants.GAME_NAME;
         config.width = 200;
@@ -37,7 +39,6 @@ public class TestExecutor {
                 performTest();
 
                 Gdx.app.exit();
-                System.exit(0);
             }
 
             @Override
