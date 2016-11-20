@@ -119,5 +119,8 @@ public class Tile {
      * Dispose of unused resources
      */
     public void dispose() {
+        batch.dispose();
+        shapeRenderer.dispose();
+        texture.dispose();
     }
 }

@@ -13,6 +13,7 @@ public class TestLauncher {
             ItemTest.class,
             PlayerTest.class,
             TextureTest.class,
+            TileTest.class,
             WeaponTest.class
     ));
 
