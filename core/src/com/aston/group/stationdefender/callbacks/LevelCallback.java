@@ -6,5 +6,11 @@ package com.aston.group.stationdefender.callbacks;
  * @author Mohammed Foysal
  */
 public interface LevelCallback {
+
+    /**
+     * The win/lost situation callback
+     *
+     * @param won Whether the Player has won the game or not
+     */
     void onWinLost(boolean won);
 }

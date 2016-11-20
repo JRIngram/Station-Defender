@@ -157,6 +157,11 @@ public class Tower implements Actor {
             health -= damage;
     }
 
+    /**
+     * Returns the health of the Tower
+     *
+     * @return The health of the Tower
+     */
     public int getHealth() {
         return health;
     }

@@ -57,6 +57,11 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
         level = new Level(player, this, levelNumber);
     }
 
+    /**
+     * Refresh all Actors to see if they exist and render them if they do
+     *
+     * @param delta The time in seconds since the last render
+     */
     private void refresh(float delta) {
         for (Actor a : actorBufferA) {
             a.render(delta);

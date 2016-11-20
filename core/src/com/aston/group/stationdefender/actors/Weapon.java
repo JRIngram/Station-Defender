@@ -6,7 +6,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 /**
  * Weapon is a class that represents a weapon object
@@ -24,7 +23,6 @@ public class Weapon extends Unit implements Actor {
     private int cost;
     private int costToUpgrade;
     private ProjectileFactory projectileFactory;
-    private ShapeRenderer shapeRenderer;
     private long lastTime;
 
     /**
@@ -46,7 +44,6 @@ public class Weapon extends Unit implements Actor {
      */
     public Weapon(int x, int y) {
         super(x, y);
-        shapeRenderer = new ShapeRenderer();
         facingLeft = false;
         speed = 100;
         health = Constants.WEAPON_HEALTH;
@@ -80,7 +77,6 @@ public class Weapon extends Unit implements Actor {
         this.costToUpgrade = costToUpgrade;
         remainingBuildTime = buildTime;
         built = false;
-        shapeRenderer = new ShapeRenderer();
         batch = new SpriteBatch();
         texture = new Texture(Gdx.files.internal("textures/turret.png"));
     }

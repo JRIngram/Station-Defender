@@ -6,7 +6,16 @@ package com.aston.group.stationdefender.callbacks;
  * @author Jonathon Fitch
  */
 public interface MenuCallback {
+
+    /**
+     * The callback to continue the game whether the Player left off
+     *
+     * @param refresh Whether to dump the current GameScreen or not
+     */
     void onPlay(boolean refresh);
 
+    /**
+     * The callback to exit the game
+     */
     void onExit();
 }

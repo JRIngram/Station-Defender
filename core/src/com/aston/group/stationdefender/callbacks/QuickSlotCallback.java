@@ -9,5 +9,11 @@ import com.aston.group.stationdefender.gamesetting.items.Item;
  * @author Mohammed Foysal
  */
 public interface QuickSlotCallback {
+
+    /**
+     * The callback to change the selected Item
+     *
+     * @param item The Item to be selected
+     */
     void onSelectedItemChanged(Item item);
 }

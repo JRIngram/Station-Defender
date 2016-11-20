@@ -340,18 +340,38 @@ public class Lane implements UnitCallback {
         //Todo dispose units
     }
 
+    /**
+     * Returns whether a Lane is overrun with Aliens or not
+     *
+     * @return true if a Lane is overrun with Aliens, false if the Lane is not overrun by Aliens
+     */
     public boolean isOverrun() {
         return overrun;
     }
 
+    /**
+     * Sets whether a Lane is overrun by Aliens or not
+     *
+     * @param overrun Whether a Lane is overrun by Aliens or not
+     */
     public void setOverrun(boolean overrun) {
         this.overrun = overrun;
     }
 
+    /**
+     * Returns whether a Lane is cleared or not and there are no more Aliens onscreen
+     *
+     * @return true if a Lane is cleared, false if a Lane is not cleared
+     */
     public boolean isCleared() {
         return cleared;
     }
 
+    /**
+     * Sets whether a Lane is cleared or not and there are no more Aliens onscreen
+     *
+     * @param cleared Whether a Lane is cleared or not and there are no more Aliens onscreen
+     */
     public void setCleared(boolean cleared) {
         this.cleared = cleared;
     }

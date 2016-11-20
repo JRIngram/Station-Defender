@@ -146,6 +146,11 @@ public class MenuScreen implements Screen {
         batch.dispose();
     }
 
+    /**
+     * Sets the MenuCallBack to be used for the MenuScreen
+     *
+     * @param menuCallback The MenuCallBack to be used for the MenuScreen
+     */
     public void setMenuCallback(MenuCallback menuCallback) {
         this.menuCallback = menuCallback;
     }
