@@ -25,7 +25,7 @@ public class Board {
      * @param player        The current Player
      * @param tower         The current Tower on the Board
      */
-    Board(Player player, Tower tower) {
+    public Board(Player player, Tower tower) {
         this.tower = tower;
         int laneY = 120;
 
@@ -42,6 +42,13 @@ public class Board {
      */
     public void addLane(Lane lane) {
         lanes.add(lane);
+    }
+
+    /**
+     * Adds a Lane to the Board
+     */
+    public Array<Lane> getAllLanes() {
+        return lanes;
     }
 
     /**
@@ -154,7 +161,7 @@ public class Board {
      *
      * @return true if the Player has won, false if the Player has not won
      */
-    boolean isHasWon() {
+    public boolean isHasWon() {
         return hasWon;
     }
 
@@ -163,7 +170,7 @@ public class Board {
      *
      * @return true if the Player has lost, false if the Player has not lost
      */
-    boolean isHasLost() {
+    public boolean isHasLost() {
         return hasLost;
     }
 }
