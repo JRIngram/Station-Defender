@@ -165,7 +165,7 @@ public class Lane implements UnitCallback {
         for (Tile tile : tiles) {
             tile.render(delta);
         }
-        //w Units
+        //Units
         for (int i = 0; i < units.size; i++) {
             units.get(i).render(delta);
             units.get(i).setUnitCallback(this);

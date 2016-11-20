@@ -19,7 +19,6 @@ public class MouseInput {
     }
 
     public static int getY(){
-        System.out.println(position.y);
         return (int) position.y;
     }
 
