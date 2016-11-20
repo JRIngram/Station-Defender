@@ -23,8 +23,10 @@ public class TestExecutor {
         this.tests = tests;
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.title = Constants.GAME_NAME;
-        config.width = 200;
-        config.height = 200;
+        config.width = 1;
+        config.height = 1;
+        config.x = 0;
+        config.y = 0;
         new LwjglApplication(new ApplicationAdapter() {
             @Override
             public void create() {
