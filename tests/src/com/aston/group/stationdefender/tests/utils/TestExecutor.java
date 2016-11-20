@@ -2,12 +2,10 @@ package com.aston.group.stationdefender.tests.utils;
 
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.SoundManager;
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import org.junit.AfterClass;
 import org.junit.runner.Computer;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
@@ -71,18 +69,18 @@ public class TestExecutor {
     private void performTest() {
         for (Class<?> cl : tests) {
             Result result = jUnitCore.run(computer, cl);
-            printResult(result);
+            printResult(cl, result);
         }
     }
 
-    private void printResult(Result result) {
+    private void printResult(Class<?> cl, Result result) {
         if (result.getFailureCount() == 0) {
-            System.out.println(printGreen("All tests passed"));
+            System.out.println(printGreen(cl.getSimpleName() + " - All tests passed"));
         } else {
-            System.out.println("Failures: " + result.getFailureCount());
+            System.out.println(cl.getSimpleName() + " - Failures: " + result.getFailureCount());
         }
         for (Failure failure : result.getFailures()) {
-            System.out.println(printRed(failure.getTrace()));
+            System.out.println(printRed(cl.getSimpleName() + " - " + failure.getTrace()));
         }
     }
 
