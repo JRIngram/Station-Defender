@@ -205,7 +205,7 @@ public class Player implements InputProcessor {
                     }
                 });
             }
-            if (isColliding((int) menuButton.getX(), (int) menuButton.getY(), (int) menuButton.getWidth(), (int) menuButton.getHeight())) {
+            if (MouseInput.isColliding((int) menuButton.getX(), (int) menuButton.getY(), (int) menuButton.getWidth(), (int) menuButton.getHeight())) {
                 playerCallback.onPause();
             }
         }
@@ -316,18 +316,38 @@ public class Player implements InputProcessor {
         this.money = money;
     }
 
+    /**
+     * Adds a specific number to the Player's score total
+     *
+     * @param amount The amount of money to be added to the Player's score total
+     */
     void addScore(int amount) {
         this.score += amount;
     }
 
+    /**
+     * Remove a specific number from the Player's score total
+     *
+     * @param amount The amount of money to be removed from the Player's score total
+     */
     public void removeScore(int amount) {
         this.score -= amount;
     }
 
+    /**
+     * Add a specific amount of money to the Player's money total
+     *
+     * @param amount The amount of money to be added to the money Player's total
+     */
     public void addMoney(int amount) {
         this.money += amount;
     }
 
+    /**
+     * Remove a specific amount of money from the Player's money total
+     *
+     * @param amount The amount of money to be removed from the Player's money total
+     */
     public void removeMoney(int amount) {
         this.money -= amount;
     }
@@ -366,19 +386,5 @@ public class Player implements InputProcessor {
      */
     public void setPlayerCallback(PlayerCallback playerCallback) {
         this.playerCallback = playerCallback;
-    }
-
-    /**
-     * Check if an objects X &amp; Y co-ordinates or width &amp; height
-     * overlaps the Towers X &amp; Y co-ordinates, or width &amp; height
-     *
-     * @param x      The X co-ordinate of the object to check
-     * @param y      The Y co-ordinate of the object to check
-     * @param width  The width of the object to check
-     * @param height The height of the object to check
-     * @return true if the values overlap, false if the values do not overlap
-     */
-    private boolean isColliding(int x, int y, int width, int height) {
-        return x + width > MouseInput.getX() && x < MouseInput.getX() && y + height > MouseInput.getY() && y < MouseInput.getY();
     }
 }
