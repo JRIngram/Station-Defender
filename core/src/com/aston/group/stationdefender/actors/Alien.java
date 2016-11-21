@@ -2,16 +2,12 @@ package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.SoundManager;
-import com.aston.group.stationdefender.utils.indicators.DamageIndicatorManager;
+import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-
-import java.util.ArrayList;
 
 /**
  * Superclass for different Alien types.
@@ -23,7 +19,7 @@ public class Alien extends Unit {
     private final Texture texture;
     private final SpriteBatch batch;
     private final OrthographicCamera camera;
-    private DamageIndicatorManager damageIndicator;
+    private IndicatorManager damageIndicator;
 
     /**
      * Construct a new Alien with default X and Y co-ordinates of '0'
@@ -54,7 +50,7 @@ public class Alien extends Unit {
         width = 100;
         height = 38;
 
-        damageIndicator = new DamageIndicatorManager();
+        damageIndicator = new IndicatorManager();
     }
 
     /**
@@ -83,7 +79,7 @@ public class Alien extends Unit {
 
         texture = new Texture(Gdx.files.internal("textures/enemy.png"));
 
-        damageIndicator = new DamageIndicatorManager();
+        damageIndicator = new IndicatorManager();
     }
 
     /**
@@ -117,8 +113,8 @@ public class Alien extends Unit {
     @Override
     public void takeDamage(double damage) {
         super.takeDamage(damage);
-//        System.out.println("Took Damage");
-        damageIndicator.addIndicator((int)damage);
+//        System.out.println("Took Indicator");
+        damageIndicator.addIndicator((int)damage, Color.RED);
     }
 
     /**
