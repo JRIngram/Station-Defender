@@ -2,8 +2,10 @@ package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
+import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -23,6 +25,7 @@ public class Weapon extends Unit implements Actor {
     private int cost;
     private int costToUpgrade;
     private ProjectileFactory projectileFactory;
+    private IndicatorManager indicatorManager;
     private long lastTime;
 
     /**
@@ -34,6 +37,7 @@ public class Weapon extends Unit implements Actor {
         setName("Weapon");
         batch = new SpriteBatch();
         texture = new Texture(Gdx.files.internal("textures/turret.png"));
+        indicatorManager = new IndicatorManager();
     }
 
     /**
@@ -49,6 +53,7 @@ public class Weapon extends Unit implements Actor {
         health = Constants.WEAPON_HEALTH;
         batch = new SpriteBatch();
         texture = new Texture(Gdx.files.internal("textures/turret.png"));
+        indicatorManager = new IndicatorManager();
     }
 
     /**
@@ -78,6 +83,7 @@ public class Weapon extends Unit implements Actor {
         remainingBuildTime = buildTime;
         built = false;
         batch = new SpriteBatch();
+        indicatorManager = new IndicatorManager();
         texture = new Texture(Gdx.files.internal("textures/turret.png"));
     }
 
@@ -115,6 +121,12 @@ public class Weapon extends Unit implements Actor {
         } else {
             destroy();
         }
+    }
+
+    @Override
+    public void takeDamage(double damage) {
+        super.takeDamage(damage);
+        indicatorManager.addIndicator((int) damage, Color.RED);
     }
 
     /**
