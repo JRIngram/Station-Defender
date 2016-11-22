@@ -91,11 +91,6 @@ public class MenuScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
     }
 
-    /**
-     * Render the MenuScreen.
-     *
-     * @param delta - The time in seconds since the last render.
-     */
     @Override
     public void render(float delta) {
         //render
@@ -136,9 +131,6 @@ public class MenuScreen implements Screen {
     public void hide() {
     }
 
-    /**
-     * Dispose of unused resources
-     */
     @Override
     public void dispose() {
         fontGenerator.dispose();

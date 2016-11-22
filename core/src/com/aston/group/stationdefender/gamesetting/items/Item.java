@@ -13,7 +13,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * @author Mohammed Foysal
  */
 public abstract class Item {
-
     private final SpriteBatch batch;
     //Item Properties
     int id;

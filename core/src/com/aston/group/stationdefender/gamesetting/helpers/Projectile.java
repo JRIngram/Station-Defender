@@ -49,10 +49,6 @@ public class Projectile implements Pool.Poolable {
         alive = true;
     }
 
-    /**
-     * Reset the X, Y, width, height, speed and alive parameters
-     * of the Projectile
-     */
     @Override
     public void reset() {
         x = 0;

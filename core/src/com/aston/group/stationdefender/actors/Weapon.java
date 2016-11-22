@@ -87,11 +87,6 @@ public class Weapon extends Unit implements Actor {
         texture = new Texture(Gdx.files.internal("textures/turret.png"));
     }
 
-    /**
-     * Render the Weapon.
-     *
-     * @param delta - The time in seconds since the last render.
-     */
     @Override
     public void render(float delta) {
         if (!isAdjacent()) {
@@ -105,9 +100,6 @@ public class Weapon extends Unit implements Actor {
         batch.end();
     }
 
-    /**
-     * The main method which determines how the weapon acts.
-     */
     @Override
     public void act() {
         if (!checkZeroHealth() && built) {
@@ -129,9 +121,6 @@ public class Weapon extends Unit implements Actor {
         indicatorManager.addIndicator((int) damage, Color.RED);
     }
 
-    /**
-     * Plays an explosion sound and animation.
-     */
     @Override
     public void destroy() {
         //TODO: Play explosion animation

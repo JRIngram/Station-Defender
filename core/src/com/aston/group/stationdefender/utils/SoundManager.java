@@ -25,6 +25,8 @@ public class SoundManager {
 
     /**
      * Play the sound matching a given ID
+     *
+     * @param id The id number of the sound to play
      */
     public void playSound(int id) {
         Music music = null;

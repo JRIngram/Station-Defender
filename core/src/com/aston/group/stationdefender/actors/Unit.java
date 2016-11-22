@@ -88,19 +88,9 @@ public abstract class Unit implements Actor {
         return damage;
     }
 
-    /**
-     * Render the Unit.
-     *
-     * @param delta - The time in seconds since the last render.
-     */
     @Override
     public abstract void render(float delta);
 
-    /**
-     * Returns the existence state of the Unit.
-     *
-     * @return true if the Unit exits, false if not
-     */
     @Override
     public boolean getExists() {
         return exists;
@@ -115,15 +105,9 @@ public abstract class Unit implements Actor {
         this.exists = exists;
     }
 
-    /**
-     * Abstract method for each Unit, the main method which determines how the unit acts.
-     */
     @Override
     public abstract void act();
 
-    /**
-     * Abstract method for each unit, destroys the unit.
-     */
     @Override
     public abstract void destroy();
 

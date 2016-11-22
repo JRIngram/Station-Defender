@@ -82,11 +82,6 @@ public class Alien extends Unit {
         damageIndicator = new IndicatorManager();
     }
 
-    /**
-     * Render the Alien.
-     *
-     * @param delta - The time in seconds since the last render.
-     */
     @Override
     public void render(float delta) {
         batch.setProjectionMatrix(camera.projection);
@@ -116,9 +111,6 @@ public class Alien extends Unit {
         damageIndicator.addIndicator((int) damage, Color.RED);
     }
 
-    /**
-     * The main method which determines how the Alien acts.
-     */
     @Override
     public void act() {
         if (!checkZeroHealth()) {
@@ -136,9 +128,6 @@ public class Alien extends Unit {
         }
     }
 
-    /**
-     * Plays an explosion sound and animation.
-     */
     @Override
     public void destroy() {
         //TODO: Play explosion animation

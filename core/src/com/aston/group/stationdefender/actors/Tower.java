@@ -53,11 +53,6 @@ public class Tower implements Actor {
         generator.dispose();
     }
 
-    /**
-     * Render the Tower.
-     *
-     * @param delta - The time in seconds since the last render.
-     */
     @Override
     public void render(float delta) {
         batch.begin();
@@ -69,9 +64,6 @@ public class Tower implements Actor {
         batch.end();
     }
 
-    /**
-     * Determines how the Tower acts when colliding with another unit.
-     */
     @Override
     public void act() {
     }
@@ -107,11 +99,6 @@ public class Tower implements Actor {
         exists = false;
     }
 
-    /**
-     * Returns the existence state of the Unit.
-     *
-     * @return true if the Unit exits, false if not
-     */
     @Override
     public boolean getExists() {
         return exists;

@@ -317,13 +317,6 @@ public class Lane implements UnitCallback {
         return x + width > this.x && x < this.x + this.width && y + height > this.y && y < this.y + this.height;
     }
 
-    /**
-     * The action to be taken when firing the Projectile
-     *
-     * @param x     The initial X co-ordinate of the Projectile
-     * @param y     The initial Y co-ordinate of the Projectile
-     * @param speed The speed of the Projectile
-     */
     @Override
     public void onFire(int x, int y, int speed) {
         projectileFactory.shootBullet(x, y, speed);

@@ -112,19 +112,11 @@ public class TwoTextScreen implements Screen {
         bodyY = (Gdx.graphics.getHeight() / 2) + 40;
     }
 
-    /**
-     * Show the TwoTextScreen as the main screen
-     */
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
     }
 
-    /**
-     * Render the TwoTextScreen.
-     *
-     * @param delta - The time in seconds since the last render.
-     */
     @Override
     public void render(float delta) {
         // fade in animation
@@ -176,9 +168,6 @@ public class TwoTextScreen implements Screen {
     public void hide() {
     }
 
-    /**
-     * Dispose of unused resources
-     */
     @Override
     public void dispose() {
         stage.dispose();
