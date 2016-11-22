@@ -1,24 +1,30 @@
 package com.aston.group.stationdefender.utils.indicators;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
 
-import java.util.ArrayList;
-import java.util.ListIterator;
+import java.util.Iterator;
 
+/**
+ * This is a manager class for Indicators
+ *
+ * @author Mohammad Foysal
+ */
 public class IndicatorManager {
-
+    private final SpriteBatch batch;
+    private final BitmapFont font;
+    private final Array<Indicator> indicators = new Array<>();
     private int x, y;
-    private SpriteBatch batch;
-    private BitmapFont font;
-    private ArrayList<Indicator> indicators = new ArrayList<>();
 
+    /**
+     * Create a new IndicatorManager
+     */
     public IndicatorManager() {
         batch = new SpriteBatch();
 
@@ -29,195 +35,294 @@ public class IndicatorManager {
         font = fontGenerator.generateFont(params);
     }
 
-    public void addIndicator(int damage){
-        indicators.add(new Indicator(damage, x, y, x, y + 100, Color.WHITE));
-    }
-
-    public void addIndicator(int damage, Color color){
+    /**
+     * Add a new Indicator with a specified damage and colour
+     *
+     * @param damage The damage to be displayed on the Indicator
+     * @param color  The colour the Indicator will appear in
+     */
+    public void addIndicator(int damage, Color color) {
         indicators.add(new Indicator(damage, x, y, x, y + 100, color));
     }
 
-    public void render(float delta, int x, int y){
+    /**
+     * Render the Indicator on screen
+     *
+     * @param delta The time in seconds since the last render
+     * @param x     The X co-ordinate of the Indicator
+     * @param y     The Y co-ordinate of the Indicator
+     */
+    public void render(float delta, int x, int y) {
         this.x = x;
         this.y = y;
 
-        float fadeInTime = .2f;
-
-        ListIterator<Indicator> it = indicators.listIterator();
-        while(it.hasNext()){
+        Iterator<Indicator> it = indicators.iterator();
+        while (it.hasNext()) {
             Indicator indicator = it.next();
             indicator.setXElapsed(indicator.getXElapsed() + delta);
             indicator.setYElapsed(indicator.getYElapsed() + delta);
             indicator.setFadeElapsed(indicator.getFadeElapsed() + delta);
-//            fade = Interpolation.fade.apply((indicator.getFadeElapsed() - 1f) / fadeInTime);
-            indicator.setX((int)Interpolation.linear.apply(indicator.getStartX(), indicator.getDestX(), MathUtils.clamp(indicator.getXElapsed() , 0, 1)));
-            indicator.setY((int)Interpolation.linear.apply(indicator.getStartY(), indicator.getDestY(), MathUtils.clamp(indicator.getYElapsed() , 0, 1)));
+            indicator.setX((int) Interpolation.linear.apply(indicator.getStartX(), indicator.getDestX(), MathUtils.clamp(indicator.getXElapsed(), 0, 1)));
+            indicator.setY((int) Interpolation.linear.apply(indicator.getStartY(), indicator.getDestY(), MathUtils.clamp(indicator.getYElapsed(), 0, 1)));
 
             batch.begin();
             font.setColor(indicator.getColor());
-            font.draw(batch, indicator.getDamageText(), x + indicator.getX(), y + indicator.getY() );
+            font.draw(batch, indicator.getDamageText(), x + indicator.getX(), y + indicator.getY());
             batch.end();
 
-            if(System.currentTimeMillis() - indicator.getTimeDisplayed() > 5000 || indicator.getY() == indicator.getDestY())
+            if (System.currentTimeMillis() - indicator.getTimeDisplayed() > 5000 || indicator.getY() == indicator.getDestY())
                 it.remove();
-
         }
-
-//        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-//            //todo DEBUG remove this
-//            addIndicator(100);
-//        }
-
     }
 
+    /**
+     * Returns the X co-ordinate of the Unit
+     *
+     * @return The X co-ordinate of the Unit
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Sets the X co-ordinate of the Unit
+     *
+     * @param x The X co-ordinate of the Unit
+     */
     public void setX(int x) {
         this.x = x;
     }
 
+    /**
+     * Returns the Y co-ordinate of the Unit
+     *
+     * @return The Y co-ordinate of the Unit
+     */
     public int getY() {
         return y;
     }
 
+    /**
+     * Sets the Y co-ordinate of the Unit
+     *
+     * @param y The Y co-ordinate of the Unit
+     */
     public void setY(int y) {
         this.y = y;
     }
 
-    private class Indicator {
+    /**
+     * Dispose of unneeded assets
+     */
+    public void dispose() {
+        batch.dispose();
+        font.dispose();
+    }
 
-        private int damage;
+    /**
+     * This class is a private inner class that holds the Indicator object
+     *
+     * @author Mohammad Foysal
+     */
+    private class Indicator {
+        private final int damage;
+        private final int startX;
+        private final int startY;
+        private final long timeDisplayed;
         private int x, y;
-        private int startX, startY;
         private int destX, destY;
         private float fadeElapsed = 0;
         private float yElapsed = 0;
         private float xElapsed = 0;
-        private long timeDisplayed;
         private Color color;
 
-        public Indicator(int damage, int x, int y, int destX, int destY, Color color) {
+        /**
+         * Create a new Indicator object
+         *
+         * @param damage The damage to be displayed on the Indicator
+         * @param x      The X co-ordinate of the Indicator
+         * @param y      The Y co-ordinate of the Indicator
+         * @param destX  The destination X co-ordinate of the Indicator
+         * @param destY  The destination Y co-ordinate of the Indicator
+         * @param color  The colour of the Indicator
+         */
+        Indicator(int damage, int x, int y, int destX, int destY, Color color) {
             this.damage = damage;
             this.color = color;
-            this.x = 0;
-            this.y = 0;
+            this.x = x;
+            this.y = y;
             this.destX = destX;
             this.destY = destY;
             startX = 0;
             startY = 0;
             this.destX = (int) (Math.random() * 50);
             this.destY = (int) (Math.random() * 50);
-            this.destX *= Math.floor(Math.random()*2) == 1 ? 1 : -1;
-            this.destY *= Math.floor(Math.random()*2) == 1 ? 1 : -1;
+            this.destX *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
+            this.destY *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
             timeDisplayed = System.currentTimeMillis();
         }
 
-        public int getDamage() {
-            return damage;
-        }
-
-        public void setDamage(int damage) {
-            this.damage = damage;
-        }
-
+        /**
+         * Returns the X co-ordinate of the Unit
+         *
+         * @return The X co-ordinate of the Unit
+         */
         public int getX() {
             return x;
         }
 
+        /**
+         * Sets the X co-ordinate of the Unit
+         *
+         * @param x The X co-ordinate of the Unit
+         */
         public void setX(int x) {
             this.x = x;
         }
 
+        /**
+         * Returns the Y co-ordinate of the Unit
+         *
+         * @return The Y co-ordinate of the Unit
+         */
         public int getY() {
             return y;
         }
 
+        /**
+         * Sets the Y co-ordinate of the Unit
+         *
+         * @param y The Y co-ordinate of the Unit
+         */
         public void setY(int y) {
             this.y = y;
         }
 
-        public int getDestX() {
+        /**
+         * Returns the destination X co-ordinate of the Unit
+         *
+         * @return The destination X co-ordinate of the Unit
+         */
+        int getDestX() {
             return destX;
         }
 
-        public void setDestX(int destX) {
-            this.destX = destX;
-        }
-
-        public int getDestY() {
+        /**
+         * Returns the destination Y co-ordinate of the Unit
+         *
+         * @return The destination Y co-ordinate of the Unit
+         */
+        int getDestY() {
             return destY;
         }
 
-        public void setDestY(int destY) {
-            this.destY = destY;
-        }
-
-        public String getDamageText(){
+        /**
+         * Returns the damage text of the Indicator
+         *
+         * @return The damage text of the Indicator
+         */
+        String getDamageText() {
             return "-" + damage;
         }
 
-        public float getFadeElapsed() {
+        /**
+         * Returns the fade elapsed time
+         *
+         * @return The fade elapsed time
+         */
+        float getFadeElapsed() {
             return fadeElapsed;
         }
 
-        public void setFadeElapsed(float fadeElapsed) {
+        /**
+         * Sets the fade elapsed time
+         *
+         * @param fadeElapsed The fade elapsed time to be set
+         */
+        void setFadeElapsed(float fadeElapsed) {
             this.fadeElapsed = fadeElapsed;
         }
 
-        public float getYElapsed() {
+        /**
+         * Returns the elapsed Y co-ordinate of the Indicator
+         *
+         * @return The elapsed Y co-ordinate of the Indicator
+         */
+        float getYElapsed() {
             return yElapsed;
         }
 
-
-        public void setYElapsed(float yElapsed) {
+        /**
+         * Sets the elapsed Y co-ordinate of the Indicator
+         *
+         * @param yElapsed The elapsed Y co-ordinate of the Indicator to be set
+         */
+        void setYElapsed(float yElapsed) {
             this.yElapsed = yElapsed;
         }
 
-        public float getXElapsed() {
+        /**
+         * Returns the elapsed X co-ordinate of the Indicator
+         *
+         * @return The elapsed X co-ordinate of the Indicator
+         */
+
+        float getXElapsed() {
             return xElapsed;
         }
 
-        public void setXElapsed(float xElapsed) {
+        /**
+         * Sets the elapsed X co-ordinate of the Indicator
+         *
+         * @param xElapsed The elapsed X co-ordinate of the Indicator to be set
+         */
+        void setXElapsed(float xElapsed) {
             this.xElapsed = xElapsed;
         }
 
-        public long getTimeDisplayed() {
+        /**
+         * Returns the time that the Indicator was displayed
+         *
+         * @return The time that the Indicator was displayed
+         */
+        long getTimeDisplayed() {
             return timeDisplayed;
         }
 
-        public void setTimeDisplayed(long timeDisplayed) {
-            this.timeDisplayed = timeDisplayed;
-        }
-
-        public int getStartX() {
+        /**
+         * Returns the start X co-ordinate of the Indicator
+         *
+         * @return The start X co-ordinate of the Indicator
+         */
+        int getStartX() {
             return startX;
         }
 
-        public void setStartX(int startX) {
-            this.startX = startX;
-        }
-
-        public int getStartY() {
+        /**
+         * Returns the start Y co-ordinate of the Indicator
+         *
+         * @return The start Y co-ordinate of the Indicator
+         */
+        int getStartY() {
             return startY;
         }
 
-        public void setStartY(int startY) {
-            this.startY = startY;
-        }
-
-        public Color getColor() {
+        /**
+         * Returns the colour of the Indicator
+         *
+         * @return The colour of the Indicator
+         */
+        Color getColor() {
             return color;
         }
 
+        /**
+         * Sets the colour of the Indicator
+         *
+         * @param color The colour to set the Indicator
+         */
         public void setColor(Color color) {
             this.color = color;
         }
     }
-
-    public void dispose(){
-
-    }
-
 }

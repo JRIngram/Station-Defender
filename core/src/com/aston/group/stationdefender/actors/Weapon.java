@@ -19,13 +19,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Weapon extends Unit implements Actor {
     private final SpriteBatch batch;
     private final Texture texture;
+    private final IndicatorManager indicatorManager;
     private boolean built;
     private double buildTime;
     private double remainingBuildTime;
     private int cost;
     private int costToUpgrade;
     private ProjectileFactory projectileFactory;
-    private IndicatorManager indicatorManager;
     private long lastTime;
 
     /**

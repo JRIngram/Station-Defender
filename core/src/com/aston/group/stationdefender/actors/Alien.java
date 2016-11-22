@@ -19,7 +19,7 @@ public class Alien extends Unit {
     private final Texture texture;
     private final SpriteBatch batch;
     private final OrthographicCamera camera;
-    private IndicatorManager damageIndicator;
+    private final IndicatorManager damageIndicator;
 
     /**
      * Construct a new Alien with default X and Y co-ordinates of '0'
@@ -113,8 +113,7 @@ public class Alien extends Unit {
     @Override
     public void takeDamage(double damage) {
         super.takeDamage(damage);
-//        System.out.println("Took Indicator");
-        damageIndicator.addIndicator((int)damage, Color.RED);
+        damageIndicator.addIndicator((int) damage, Color.RED);
     }
 
     /**
