@@ -9,7 +9,6 @@ import com.aston.group.stationdefender.screens.GameScreen;
 import com.aston.group.stationdefender.screens.IntroScreen;
 import com.aston.group.stationdefender.screens.MenuScreen;
 import com.aston.group.stationdefender.screens.TwoTextScreen;
-import com.aston.group.stationdefender.utils.SoundManager;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
@@ -35,7 +34,6 @@ public class Main extends Game implements GameCallback, TwoTextCallback, IntroCa
         menuScreen = new MenuScreen();
         levelNumber = 1;
         totalScore = 0;
-        new SoundManager();
         initGame();
 
         // Setup title and body text

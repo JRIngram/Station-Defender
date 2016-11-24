@@ -131,7 +131,7 @@ public class Alien extends Unit {
     @Override
     public void destroy() {
         //TODO: Play explosion animation
-        SoundManager.getInstance().playSound(1);
+        SoundManager.getInstance().playSound(3);
         exists = false;
     }
 
