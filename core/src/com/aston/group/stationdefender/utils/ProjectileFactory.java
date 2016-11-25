@@ -33,9 +33,9 @@ public class ProjectileFactory {
      * @param y     The initial Y co-ordinate of the bullet
      * @param speed The speed of the bullet
      */
-    public void shootBullet(int x, int y, int speed) {
+    public void shootBullet(int x, int y, double speed, double damage) {
         Projectile projectile = projectilePool.obtain();
-        projectile.init(x, y, speed);
+        projectile.init(x, y, speed, damage);
         projectiles.add(projectile);
         if (projectiles.size < 20)
             SoundManager.getInstance().playSound(2);

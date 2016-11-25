@@ -20,11 +20,11 @@ public class Weapon extends Unit implements Actor {
     private final SpriteBatch batch;
     private final Texture texture;
     private final IndicatorManager indicatorManager;
+    private final double buildTime;
+    private final int cost;
+    private final int costToUpgrade;
     private boolean built;
-    private double buildTime;
     private double remainingBuildTime;
-    private int cost;
-    private int costToUpgrade;
     private ProjectileFactory projectileFactory;
     private long lastTime;
 
@@ -32,12 +32,7 @@ public class Weapon extends Unit implements Actor {
      * Construct a new Weapon with default X and Y co-ordinates of '0'
      */
     public Weapon() {
-        x = 0;
-        y = 0;
-        setName("Weapon");
-        batch = new SpriteBatch();
-        texture = new Texture(Gdx.files.internal("textures/turret.png"));
-        indicatorManager = new IndicatorManager();
+        this(0, 0);
     }
 
     /**
@@ -47,13 +42,7 @@ public class Weapon extends Unit implements Actor {
      * @param y The Y co-ordinate to give the Weapon
      */
     public Weapon(int x, int y) {
-        super(x, y);
-        facingLeft = false;
-        speed = 100;
-        health = Constants.WEAPON_HEALTH;
-        batch = new SpriteBatch();
-        texture = new Texture(Gdx.files.internal("textures/turret.png"));
-        indicatorManager = new IndicatorManager();
+        this("Weapon", 50, 50, 2, Constants.WEAPON_HEALTH, 12, x, y, 60, 60, 5, 10, 10);
     }
 
     /**
@@ -82,6 +71,7 @@ public class Weapon extends Unit implements Actor {
         this.costToUpgrade = costToUpgrade;
         remainingBuildTime = buildTime;
         built = false;
+        facingLeft = false;
         batch = new SpriteBatch();
         indicatorManager = new IndicatorManager();
         texture = new Texture(Gdx.files.internal("textures/turret.png"));
@@ -91,7 +81,7 @@ public class Weapon extends Unit implements Actor {
     public void render(float delta) {
         if (!isAdjacent()) {
             if (unitCallback != null && System.currentTimeMillis() - lastTime > 1000 + Math.random() * 4000) {
-                unitCallback.onFire(x + 40, y + 35, 20);
+                unitCallback.onFire(x + 40, y + 35, speed, getDamage());
                 lastTime = System.currentTimeMillis();
             }
         }

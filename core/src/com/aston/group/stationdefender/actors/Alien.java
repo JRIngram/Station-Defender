@@ -35,22 +35,7 @@ public class Alien extends Unit {
      * @param y The Y co-ordinate to give the Alien
      */
     public Alien(int x, int y) {
-        super(x, y);
-        batch = new SpriteBatch();
-
-        //Setup camera
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        camera.update();
-
-        texture = new Texture(Gdx.files.internal("textures/enemy.png"));
-        facingLeft = true;
-        speed = -100;
-
-        width = 100;
-        height = 38;
-
-        damageIndicator = new IndicatorManager();
+        this("Alien", -100, 50, 5, Constants.UNIT_HEALTH, 12, x, y, 100, 38);
     }
 
     /**
@@ -78,8 +63,9 @@ public class Alien extends Unit {
         camera.update();
 
         texture = new Texture(Gdx.files.internal("textures/enemy.png"));
-
         damageIndicator = new IndicatorManager();
+
+        facingLeft = true;
     }
 
     @Override

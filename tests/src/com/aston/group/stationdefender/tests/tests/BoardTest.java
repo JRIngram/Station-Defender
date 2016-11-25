@@ -44,7 +44,7 @@ public class BoardTest {
     public void testAddLane() {
         Array<Lane> lanes = board.getAllLanes();
         assertEquals(numberOfLanes, lanes.size);
-        board.addLane(new Lane(player, tower, 12));
+        board.addLane(new Lane(player, tower, 0, 0, 12));
         lanes = board.getAllLanes();
         assertEquals(numberOfLanes + 1, lanes.size);
     }
@@ -56,7 +56,11 @@ public class BoardTest {
         board.removeLaneByIndex(1);
         lanes = board.getAllLanes();
         assertEquals(numberOfLanes - 1, lanes.size);
-        Lane lane = new Lane(player, tower, 12);
+        board.removeLaneByIndex(2);
+        lanes = board.getAllLanes();
+        assertEquals(numberOfLanes - 2, lanes.size);
+        Lane lane = new Lane(player, tower, 0, 0, 12);
+        board.addLane(lane);
         board.addLane(lane);
         lanes = board.getAllLanes();
         assertEquals(numberOfLanes, lanes.size);

@@ -15,10 +15,13 @@ public class Projectile implements Pool.Poolable {
     private final ShapeRenderer shapeRenderer;
     private final SpriteBatch batch;
     private final Texture texture;
-    private int x, y, width, height;
+    private int x;
+    private int y;
+    private int width;
+    private int height;
     private boolean alive;
-    private int damage;
-    private int speed;
+    private double damage;
+    private double speed;
 
     /**
      * Construct a new Projectile with a default
@@ -40,12 +43,13 @@ public class Projectile implements Pool.Poolable {
      * @param y     The initial Y co-ordinate of the Projectile
      * @param speed The speed of the Projectile
      */
-    public void init(int x, int y, int speed) {
+    public void init(int x, int y, double speed, double damage) {
         this.x = x;
         this.y = y;
+        this.speed = speed;
+        this.damage = damage;
         width = 10;
         height = 8;
-        this.speed = speed;
         alive = true;
     }
 
@@ -80,7 +84,7 @@ public class Projectile implements Pool.Poolable {
      * @return true if the Projectile is out of the screen bounds,
      * false if the Projectile if not out of the screen bounds
      */
-    public boolean isOutOfScreen() {
+    private boolean isOutOfScreen() {
         return x > Gdx.graphics.getWidth() + 1 || x < -10;
     }
 
@@ -115,7 +119,7 @@ public class Projectile implements Pool.Poolable {
      *
      * @return The X co-ordinate of the Projectile
      */
-    public int getX() {
+    public double getX() {
         return x;
     }
 
@@ -205,7 +209,7 @@ public class Projectile implements Pool.Poolable {
      *
      * @return The damage of the Projectile
      */
-    public int getDamage() {
+    public double getDamage() {
         return damage;
     }
 
@@ -223,7 +227,7 @@ public class Projectile implements Pool.Poolable {
      *
      * @return The speed of the Projectile
      */
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
@@ -232,7 +236,7 @@ public class Projectile implements Pool.Poolable {
      *
      * @param speed The speed of the Projectile
      */
-    public void setSpeed(int speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 }

@@ -25,16 +25,6 @@ public class Level {
     private Board board;
 
     /**
-     * Construct a new Level with default level number of 1.
-     *
-     * @param player        The current Player
-     * @param levelCallback The LevelCallBack to be used for the Level
-     */
-    public Level(Player player, LevelCallback levelCallback) {
-        this(player, levelCallback, 1);
-    }
-
-    /**
      * Construct a new Level with a given level number.
      *
      * @param player        The current Player of the game

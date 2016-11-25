@@ -1,7 +1,6 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.callbacks.UnitCallback;
-import com.aston.group.stationdefender.config.Constants;
 
 import java.util.Random;
 
@@ -12,41 +11,21 @@ import java.util.Random;
  * @version 01/11/2016
  */
 public abstract class Unit implements Actor {
+    final double speed; //How many tiles it can move per "tick".
+    private final double damage; //How much damage each successful hit causes.
+    private final double rateOfFire; //How many times the unit fires per "tick".
+    private final double range; //How many tiles forward the Unit can fire.
     int x; //Unit's position on the X-Axis
     int y; //Unit's position on the Y-Axis
     int width; //Unit's width
     int height; //Unit's height
     boolean isAdjacent; //Checks if the Unit is adjacent to any other unit.  This information is retrieved from the Board.
-    double speed; //How many tiles it can move per "tick".
     Actor adjacentActor; //The Unit that this Unit is adjacent to.
     boolean exists; //Whether the Unit is alive or dead.
     boolean facingLeft; //Whether the Unit is facing left or not
-    double health; //How much damage the Unit can take before being destroyed.
     UnitCallback unitCallback; //The UnitCallBack used for the Unit
+    private double health; //How much damage the Unit can take before being destroyed.
     private String name; //Name of the type of unit.
-    private double damage; //How much damage each successful hit causes.
-    private double rateOfFire; //How many times the unit fires per "tick".
-    private double range; //How many tiles forward the Unit can fire.
-
-    /**
-     * Construct a new Unit
-     */
-    public Unit() {
-    }
-
-    /**
-     * Construct a new Unit with given X and Y co-ordinates
-     *
-     * @param x The X co-ordinate to give the Unit
-     * @param y The Y co-ordinate to give the Unit
-     */
-    public Unit(int x, int y) {
-        this.x = x;
-        this.y = y;
-        width = 60;
-        height = 60;
-        health = Constants.UNIT_HEALTH;
-    }
 
     /**
      * Construct a new Unit with given name, speed, damage, rateOfFile, health, range, x co-ordinate, y co-ordinate,

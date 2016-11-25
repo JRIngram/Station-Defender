@@ -7,8 +7,6 @@ import com.aston.group.stationdefender.callbacks.UnitCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Iterator;
@@ -20,7 +18,6 @@ import java.util.Iterator;
  * @author Twba Alshaghdari
  */
 public class Lane implements UnitCallback {
-    private final ShapeRenderer shapeRenderer;
     private final int x, y, height;
     private final Array<Tile> tiles = new Array<>();
     private final Array<Unit> units = new Array<>();
@@ -32,19 +29,6 @@ public class Lane implements UnitCallback {
     private boolean cleared;
     private int alienAmount;
     private long lastRenderTime;
-
-    /**
-     * Construct a new Lane with default
-     * X and Y co-ordinates of '0'
-     *
-     * @param player        The current Player of the game
-     * @param tower         The current Tower on the Board
-     * @param numberOfTiles The Number of tiles in the lane
-     */
-    public Lane(Player player, Tower tower, int numberOfTiles) {
-        this(player, tower, 0, 0, numberOfTiles);
-    }
-
 
     /**
      * Construct a new Lane
@@ -74,10 +58,8 @@ public class Lane implements UnitCallback {
         tiles.addAll(tile);
 
         alienAmount = (int) (2 + (Math.random() * 10));
-
         lastRenderTime = System.currentTimeMillis();
 
-        shapeRenderer = new ShapeRenderer();
         projectileFactory = new ProjectileFactory();
     }
 
@@ -174,11 +156,6 @@ public class Lane implements UnitCallback {
      * @param delta - The time in seconds since the last render.
      */
     public void render(float delta) {
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(Color.YELLOW);
-        shapeRenderer.rect(x, y, width, height);
-        shapeRenderer.end();
-
         for (Tile tile : tiles) {
             tile.render(delta);
         }
@@ -231,10 +208,9 @@ public class Lane implements UnitCallback {
         }
 
         //Spawn New Aliens
-        if (System.currentTimeMillis() - lastRenderTime > 2000 + Math.random() * 3000) {
+        if (System.currentTimeMillis() - lastRenderTime > 2200 + Math.random() * 3000) {
             if (alienAmount > 0) {
                 Alien alien = new Alien();
-                alien.setName("Alien");
                 alien.setX(getLastTileCenterX() - (alien.getWidth() / 2));
                 alien.setY(getLastTileCenterY() - (alien.getHeight() / 2));
 
@@ -251,7 +227,7 @@ public class Lane implements UnitCallback {
             for (int j = 0; j < units.size; j++) {
                 if (units.get(j).isFacingLeft() && projectileFactory.getProjectiles().get(i).isColliding(units.get(j).getX(),
                         units.get(j).getY(), units.get(j).getWidth(), units.get(j).getHeight())) {
-                    int damage = 50;
+                    double damage = projectileFactory.getProjectiles().get(i).getDamage();
                     if (units.get(j).getHealth() - damage <= 0) {
                         player.addMoney(Constants.MONEY_REGENERATION);
                         player.addScore(Constants.ADD_SCORE_AMOUNT);
@@ -286,7 +262,6 @@ public class Lane implements UnitCallback {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -318,8 +293,8 @@ public class Lane implements UnitCallback {
     }
 
     @Override
-    public void onFire(int x, int y, int speed) {
-        projectileFactory.shootBullet(x, y, speed);
+    public void onFire(int x, int y, double speed, double damage) {
+        projectileFactory.shootBullet(x, y, speed, damage);
     }
 
     /**

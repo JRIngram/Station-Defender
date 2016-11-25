@@ -16,8 +16,8 @@ public class ItemBlank extends Item {
      * Construct a new ItemBlack
      */
     public ItemBlank() {
+        super("Unknown Item", false, false);
         id = 0;
-        name = "Unknown Item";
     }
 
     @Override

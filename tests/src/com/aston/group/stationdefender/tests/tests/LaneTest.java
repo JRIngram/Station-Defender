@@ -19,7 +19,7 @@ public class LaneTest {
     public void setUp() {
         Player player = new Player();
         Tower tower = new Tower(1, 1, 50, 50);
-        lane = new Lane(player, tower, numberOfTiles);
+        lane = new Lane(player, tower, 0, 0, numberOfTiles);
     }
 
     @Test

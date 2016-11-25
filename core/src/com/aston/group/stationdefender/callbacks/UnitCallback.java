@@ -14,5 +14,5 @@ public interface UnitCallback {
      * @param y     The Y co-ordinate of the Weapon
      * @param speed The speed of the Weapon
      */
-    void onFire(int x, int y, int speed);
+    void onFire(int x, int y, double speed, double damage);
 }
