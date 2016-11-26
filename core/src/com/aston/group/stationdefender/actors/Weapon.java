@@ -3,7 +3,7 @@ package com.aston.group.stationdefender.actors;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.aston.group.stationdefender.utils.SoundManager;
-import com.badlogic.gdx.Gdx;
+import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -70,7 +70,7 @@ public class Weapon extends Unit implements Actor {
         built = false;
         facingLeft = false;
         batch = new SpriteBatch();
-        texture = new Texture(Gdx.files.internal("textures/turret.png"));
+        texture = TextureManager.getInstance().loadTexture(8);
     }
 
     @Override

@@ -3,8 +3,7 @@ package com.aston.group.stationdefender.gamesetting.items;
 import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.gamesetting.Player;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
+import com.aston.group.stationdefender.utils.TextureManager;
 
 /**
  * ItemCredit is the in-game currency used.
@@ -20,7 +19,7 @@ public class ItemCredit extends Item {
     public ItemCredit() {
         id = 1;
         name = "Credits";
-        itemTexture = new Texture(Gdx.files.internal("textures/item-credits.png"));
+        texture = TextureManager.getInstance().loadTexture(10);
         value = 10;
         placeable = true;
     }

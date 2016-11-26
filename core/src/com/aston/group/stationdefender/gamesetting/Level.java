@@ -2,6 +2,7 @@ package com.aston.group.stationdefender.gamesetting;
 
 import com.aston.group.stationdefender.actors.Tower;
 import com.aston.group.stationdefender.callbacks.LevelCallback;
+import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -37,7 +38,7 @@ public class Level {
         tower = new Tower(0, 100, 100, 400);
         board = new Board(player, tower);
         batch = new SpriteBatch();
-        texture = new Texture(Gdx.files.internal("textures/level-one-back.png"));
+        texture = TextureManager.getInstance().loadTexture(3);
 
         //Initialise Font
         FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));

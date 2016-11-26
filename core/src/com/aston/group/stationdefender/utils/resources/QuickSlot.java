@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.utils.resources;
 
 import com.aston.group.stationdefender.gamesetting.items.Item;
+import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -38,11 +39,9 @@ public class QuickSlot {
         this.width = width;
         this.height = height;
         batch = new SpriteBatch();
-
-        Texture textureQuickSlot = new Texture(Gdx.files.internal("data/uiskin.png"));
-        trQuickSlot = new TextureRegion(textureQuickSlot, 78, 29, 20, 20);
-        trQuickSlotHovered = new TextureRegion(textureQuickSlot, 57, 29, 20, 20);
-
+        Texture texture = TextureManager.getInstance().loadTexture(5);
+        trQuickSlot = new TextureRegion(texture, 78, 29, 20, 20);
+        trQuickSlotHovered = new TextureRegion(texture, 57, 29, 20, 20);
         font = new BitmapFont();
     }
 

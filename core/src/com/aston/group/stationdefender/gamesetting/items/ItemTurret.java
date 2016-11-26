@@ -4,8 +4,7 @@ import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.Weapon;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.gamesetting.Player;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
+import com.aston.group.stationdefender.utils.TextureManager;
 
 public class ItemTurret extends Item {
 
@@ -16,7 +15,7 @@ public class ItemTurret extends Item {
         id = 2;
         name = "Turret";
         cost = 10;
-        itemTexture = new Texture(Gdx.files.internal("textures/turret.png"));
+        texture = TextureManager.getInstance().loadTexture(11);
         placeable = true;
     }
 

@@ -2,6 +2,7 @@ package com.aston.group.stationdefender.screens;
 
 import com.aston.group.stationdefender.callbacks.TwoTextCallback;
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -105,7 +106,7 @@ public class TwoTextScreen implements Screen {
         backButton.setPosition(-150, (Gdx.graphics.getHeight()) - 60);
         if (continueBool)
             continueButton.addListener(buttonListener);
-        texture = new Texture(Gdx.files.internal("textures/back.jpg"));
+        texture = TextureManager.getInstance().loadTexture(2);
         titleX = (Gdx.graphics.getWidth() / 2) - 150;
         titleY = Gdx.graphics.getHeight() - 25;
         bodyX = (Gdx.graphics.getWidth() / 2) - 235;

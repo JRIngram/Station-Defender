@@ -2,6 +2,7 @@ package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.SoundManager;
+import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -41,7 +42,7 @@ public class Tower implements Actor {
         this.height = height;
         exists = true;
         health = Constants.TOWER_HEALTH;
-        texture = new Texture(Gdx.files.internal("textures/tower.png"));
+        texture = TextureManager.getInstance().loadTexture(6);
         batch = new SpriteBatch();
 
         //Initialise Font

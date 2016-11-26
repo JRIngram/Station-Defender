@@ -2,7 +2,7 @@ package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.SoundManager;
-import com.badlogic.gdx.Gdx;
+import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -59,8 +59,7 @@ public class Alien extends Unit {
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         camera.update();
 
-        texture = new Texture(Gdx.files.internal("textures/enemy.png"));
-
+        texture = TextureManager.getInstance().loadTexture(7);
         facingLeft = true;
     }
 

@@ -1,9 +1,9 @@
 package com.aston.group.stationdefender.gamesetting.helpers;
 
+import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Pool;
 
 /**
@@ -12,7 +12,6 @@ import com.badlogic.gdx.utils.Pool;
  * @author Mohammed Foysal
  */
 public class Projectile implements Pool.Poolable {
-    private final ShapeRenderer shapeRenderer;
     private final SpriteBatch batch;
     private final Texture texture;
     private int x;
@@ -31,9 +30,8 @@ public class Projectile implements Pool.Poolable {
         x = 0;
         y = 0;
         alive = false;
-        shapeRenderer = new ShapeRenderer();
         batch = new SpriteBatch();
-        texture = new Texture(Gdx.files.internal("textures/projectile.png"));
+        texture = TextureManager.getInstance().loadTexture(9);
     }
 
     /**
@@ -106,7 +104,6 @@ public class Projectile implements Pool.Poolable {
      * Dispose of unused assets
      */
     public void dispose() {
-        shapeRenderer.dispose();
     }
 
     /**

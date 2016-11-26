@@ -4,6 +4,7 @@ import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.MouseInput;
+import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -36,7 +37,7 @@ public class Tile {
         height = Constants.TILE_HEIGHT;
 
         batch = new SpriteBatch();
-        texture = new Texture(Gdx.files.internal("textures/tile.png"));
+        texture = TextureManager.getInstance().loadTexture(4);
         shapeRenderer = new ShapeRenderer();
     }
 

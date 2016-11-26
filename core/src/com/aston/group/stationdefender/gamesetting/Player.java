@@ -29,16 +29,12 @@ import com.badlogic.gdx.utils.Array;
  * @author Mohammed Foysal
  */
 public class Player implements InputProcessor {
-
-    //QuickSlots
     private final Array<QuickSlot> quickSlots;
     private final QuickSlotCallback quickSlotCallback;
-    //Graphics Variables
     private final SpriteBatch batch;
     private final BitmapFont font;
     private final Stage stage;
     private final TextButton menuButton;
-    //Player Properties
     private Item currentItem;
     private Inventory inventory;
     private int score;

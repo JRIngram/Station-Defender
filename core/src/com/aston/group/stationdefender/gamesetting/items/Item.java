@@ -14,12 +14,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public abstract class Item {
     private final SpriteBatch batch;
-    //Item Properties
     int id;
     String name;
     boolean placeable;
-    //Rendering
-    Texture itemTexture;
+    Texture texture;
     int cost;
     private boolean usable;
     private boolean collected;
@@ -64,9 +62,9 @@ public abstract class Item {
      */
     public void render(float delta) {
         //TODO: add specular effect
-        if (itemTexture != null) {
+        if (texture != null) {
             batch.begin();
-            batch.draw(itemTexture, x, y, width, height);
+            batch.draw(texture, x, y, width, height);
             batch.end();
         }
     }
@@ -179,17 +177,17 @@ public abstract class Item {
      *
      * @return The Texture of the Item
      */
-    public Texture getItemTexture() {
-        return itemTexture;
+    public Texture getTexture() {
+        return texture;
     }
 
     /**
      * Sets the Texture of the Item
      *
-     * @param itemTexture The Texture of the Item
+     * @param texture The Texture of the Item
      */
-    public void setItemTexture(Texture itemTexture) {
-        this.itemTexture = itemTexture;
+    public void setTexture(Texture texture) {
+        this.texture = texture;
     }
 
     /**

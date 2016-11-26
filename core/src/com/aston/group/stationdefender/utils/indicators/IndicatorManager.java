@@ -129,12 +129,12 @@ public class IndicatorManager {
         private final int startX;
         private final int startY;
         private final long timeDisplayed;
+        private final Color color;
         private int x, y;
         private int destX, destY;
         private float fadeElapsed = 0;
         private float yElapsed = 0;
         private float xElapsed = 0;
-        private Color color;
 
         /**
          * Create a new Indicator object

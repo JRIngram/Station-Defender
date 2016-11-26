@@ -2,6 +2,7 @@ package com.aston.group.stationdefender.screens;
 
 import com.aston.group.stationdefender.callbacks.IntroCallback;
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Cursor;
@@ -93,7 +94,7 @@ public class IntroScreen implements Screen {
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].setPosition((Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + (100 - 60 * i));
         }
-        texture = new Texture(Gdx.files.internal("textures/intro-back.jpg"));
+        texture = TextureManager.getInstance().loadTexture(1);
     }
 
     @Override
