@@ -15,9 +15,11 @@ public class TestLauncher {
             LaneTest.class,
             LevelTest.class,
             PlayerTest.class,
+            RapidFireUnits.class,
             TextureTest.class,
             TileTest.class,
             WeaponTest.class
+            
     ));
 
     private TestLauncher() {
