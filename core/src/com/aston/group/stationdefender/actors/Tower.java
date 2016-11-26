@@ -1,8 +1,8 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.utils.SoundManager;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -25,7 +25,6 @@ public class Tower implements Actor {
     private final BitmapFont font;
     private int health;
     private boolean exists;
-
 
     /**
      * Constructs a new Tower
@@ -79,12 +78,7 @@ public class Tower implements Actor {
      * @return true if the values overlap, false if the values do not overlap
      */
     public boolean isColliding(int x, int y, int width, int height) {
-        if (x + width > this.x && x < this.x + this.width && y + height > this.y && y < this.y + this.height) {
-            takeDamage(Constants.DEFAULT_DAMAGE);
-            return true;
-        } else {
-            return false;
-        }
+        return x + width > this.x && x < this.x + this.width && y + height > this.y && y < this.y + this.height;
     }
 
     /**
@@ -93,10 +87,8 @@ public class Tower implements Actor {
     @Override
     public void destroy() {
         //TODO: Play explosion animation
-        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/Explosion.mp3"));
-        sound.play();
-        sound.dispose();
         exists = false;
+        SoundManager.getInstance().playSound(3);
     }
 
     @Override

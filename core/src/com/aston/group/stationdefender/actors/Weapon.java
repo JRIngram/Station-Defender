@@ -2,10 +2,8 @@ package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
-import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
+import com.aston.group.stationdefender.utils.SoundManager;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -19,7 +17,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Weapon extends Unit implements Actor {
     private final SpriteBatch batch;
     private final Texture texture;
-    private final IndicatorManager indicatorManager;
     private final double buildTime;
     private final int cost;
     private final int costToUpgrade;
@@ -73,7 +70,6 @@ public class Weapon extends Unit implements Actor {
         built = false;
         facingLeft = false;
         batch = new SpriteBatch();
-        indicatorManager = new IndicatorManager();
         texture = new Texture(Gdx.files.internal("textures/turret.png"));
     }
 
@@ -106,18 +102,10 @@ public class Weapon extends Unit implements Actor {
     }
 
     @Override
-    public void takeDamage(double damage) {
-        super.takeDamage(damage);
-        indicatorManager.addIndicator((int) damage, Color.RED);
-    }
-
-    @Override
     public void destroy() {
-        //TODO: Play explosion animation
-        Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/Explosion.mp3"));
-        sound.play();
-        sound.dispose();
         exists = false;
+        SoundManager.getInstance().playSound(3);
+        //TODO: Play explosion animation
     }
 
     /**

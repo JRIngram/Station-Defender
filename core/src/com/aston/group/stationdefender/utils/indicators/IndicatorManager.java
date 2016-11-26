@@ -315,14 +315,5 @@ public class IndicatorManager {
         Color getColor() {
             return color;
         }
-
-        /**
-         * Sets the colour of the Indicator
-         *
-         * @param color The colour to set the Indicator
-         */
-        public void setColor(Color color) {
-            this.color = color;
-        }
     }
 }

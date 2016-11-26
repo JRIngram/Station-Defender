@@ -1,6 +1,8 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.callbacks.UnitCallback;
+import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
+import com.badlogic.gdx.graphics.Color;
 
 import java.util.Random;
 
@@ -12,6 +14,7 @@ import java.util.Random;
  */
 public abstract class Unit implements Actor {
     final double speed; //How many tiles it can move per "tick".
+    final IndicatorManager indicatorManager;
     private final double damage; //How much damage each successful hit causes.
     private final double rateOfFire; //How many times the unit fires per "tick".
     private final double range; //How many tiles forward the Unit can fire.
@@ -42,7 +45,7 @@ public abstract class Unit implements Actor {
      * @param width      The width of the Unit
      * @param height     The height of the Unit
      */
-    public Unit(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
+    Unit(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
         this.name = name;
         this.speed = speed;
         this.damage = damage;
@@ -56,6 +59,7 @@ public abstract class Unit implements Actor {
         isAdjacent = false;
         adjacentActor = null;
         exists = false;
+        indicatorManager = new IndicatorManager();
     }
 
     /**
@@ -73,15 +77,6 @@ public abstract class Unit implements Actor {
     @Override
     public boolean getExists() {
         return exists;
-    }
-
-    /**
-     * Sets the existence state of the Unit.
-     *
-     * @param exists The existence state of the Unit
-     */
-    public void setExists(boolean exists) {
-        this.exists = exists;
     }
 
     @Override
@@ -155,6 +150,7 @@ public abstract class Unit implements Actor {
             health = 0;
         } else
             health -= damage;
+        indicatorManager.addIndicator((int) damage, Color.RED);
     }
 
     /**

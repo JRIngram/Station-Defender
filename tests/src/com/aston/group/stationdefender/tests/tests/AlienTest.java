@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class AlienTest {
@@ -20,6 +21,8 @@ public class AlienTest {
 
     @Test
     public void testConstructor() {
+        Alien a = new Alien(0, 0);
+        assertNotNull(a);
         assertEquals("Alien", alien.getName());
         assertEquals(1, alien.getSpeed(), 0);
         assertEquals(3, alien.getDamage(), 0);

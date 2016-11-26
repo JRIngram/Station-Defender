@@ -2,9 +2,7 @@ package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.SoundManager;
-import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,7 +17,6 @@ public class Alien extends Unit {
     private final Texture texture;
     private final SpriteBatch batch;
     private final OrthographicCamera camera;
-    private final IndicatorManager damageIndicator;
 
     /**
      * Construct a new Alien with default X and Y co-ordinates of '0'
@@ -63,7 +60,6 @@ public class Alien extends Unit {
         camera.update();
 
         texture = new Texture(Gdx.files.internal("textures/enemy.png"));
-        damageIndicator = new IndicatorManager();
 
         facingLeft = true;
     }
@@ -87,14 +83,7 @@ public class Alien extends Unit {
                 getAdjacentActor().takeDamage(200);
             }
         }
-
-        damageIndicator.render(delta, x, y);
-    }
-
-    @Override
-    public void takeDamage(double damage) {
-        super.takeDamage(damage);
-        damageIndicator.addIndicator((int) damage, Color.RED);
+        indicatorManager.render(delta, x, y);
     }
 
     @Override
@@ -116,9 +105,9 @@ public class Alien extends Unit {
 
     @Override
     public void destroy() {
-        //TODO: Play explosion animation
-        SoundManager.getInstance().playSound(3);
         exists = false;
+        SoundManager.getInstance().playSound(3);
+        //TODO: Play explosion animation
     }
 
     /**

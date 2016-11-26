@@ -32,7 +32,6 @@ public class Tile {
     public Tile(int x, int y) {
         this.x = x;
         this.y = y;
-
         width = Constants.TILE_WIDTH;
         height = Constants.TILE_HEIGHT;
 
@@ -94,10 +93,8 @@ public class Tile {
 
     /**
      * Render the Tile.
-     *
-     * @param delta - The time in seconds since the last render.
      */
-    public void render(float delta) {
+    public void render() {
         boolean hovered = isColliding(MouseInput.getX(), MouseInput.getY(), 1, 1);
 
         batch.begin();
