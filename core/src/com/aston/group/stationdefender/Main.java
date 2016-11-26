@@ -1,7 +1,6 @@
 package com.aston.group.stationdefender;
 
 import com.aston.group.stationdefender.callbacks.GameCallback;
-import com.aston.group.stationdefender.callbacks.IntroCallback;
 import com.aston.group.stationdefender.callbacks.MenuCallback;
 import com.aston.group.stationdefender.callbacks.TwoTextCallback;
 import com.aston.group.stationdefender.config.Constants;
@@ -17,7 +16,7 @@ import com.badlogic.gdx.Gdx;
  *
  * @author Jonathon Fitch
  */
-public class Main extends Game implements GameCallback, TwoTextCallback, IntroCallback, MenuCallback {
+public class Main extends Game implements GameCallback, TwoTextCallback, MenuCallback {
     private IntroScreen introScreen;
     private TwoTextScreen backgroundScreen;
     private TwoTextScreen instructionScreen;
@@ -47,7 +46,7 @@ public class Main extends Game implements GameCallback, TwoTextCallback, IntroCa
         instructionScreen.setBodyY((Gdx.graphics.getHeight() / 2) + (100 - 60));
 
         // Setup callbacks
-        introScreen.setIntroCallback(this);
+        introScreen.setMenuCallback(this);
         backgroundScreen.setTwoTextCallback(this);
         instructionScreen.setTwoTextCallback(this);
         menuScreen.setMenuCallback(this);

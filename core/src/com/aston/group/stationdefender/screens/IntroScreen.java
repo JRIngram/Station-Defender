@@ -1,6 +1,6 @@
 package com.aston.group.stationdefender.screens;
 
-import com.aston.group.stationdefender.callbacks.IntroCallback;
+import com.aston.group.stationdefender.callbacks.MenuCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
@@ -37,7 +37,7 @@ public class IntroScreen implements Screen {
     private final TextButton backgroundButton, instructionButton, playButton, exitButton;
     private final TextButton[] buttons;
     private final Texture texture;
-    private IntroCallback introCallback;
+    private MenuCallback menuCallback;
     private float fadeElapsed = 0;
 
     /**
@@ -79,13 +79,13 @@ public class IntroScreen implements Screen {
                 public void changed(ChangeEvent event, Actor actor) {
                     Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                     if (actor.equals(backgroundButton)) {
-                        introCallback.onDisplayBackground();
+                        menuCallback.onDisplayBackground();
                     } else if (actor.equals(instructionButton)) {
-                        introCallback.onDisplayInstructions();
+                        menuCallback.onDisplayInstructions();
                     } else if (actor.equals(playButton)) {
-                        introCallback.onPlay(true);
+                        menuCallback.onPlay(true);
                     } else if (actor.equals(exitButton)) {
-                        introCallback.onExit();
+                        menuCallback.onExit();
                     }
                 }
             };
@@ -156,7 +156,7 @@ public class IntroScreen implements Screen {
         batch.dispose();
     }
 
-    public void setIntroCallback(IntroCallback introCallback) {
-        this.introCallback = introCallback;
+    public void setMenuCallback(MenuCallback menuCallback) {
+        this.menuCallback = menuCallback;
     }
 }
