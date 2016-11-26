@@ -39,7 +39,7 @@ public class Weapon extends Unit {
      * @param y The Y co-ordinate to give the Weapon
      */
     public Weapon(int x, int y) {
-        this("Weapon", 50, Constants.DEFAULT_DAMAGE, 10.0, Constants.WEAPON_HEALTH, 12, x, y, 60, 60, 1.5, 10, 10);
+        this("Weapon", 50, Constants.DEFAULT_DAMAGE, 10.0, Constants.WEAPON_HEALTH, 12, 5.0, x, y, 60, 60, 1.5, 10, 10);
     }
 
     /**

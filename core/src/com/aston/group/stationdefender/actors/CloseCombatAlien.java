@@ -2,10 +2,10 @@ package com.aston.group.stationdefender.actors;
 
 /**
  * Fast Alien with slow, but high damage.
- * @author IngramJ
  *
+ * @author IngramJ
  */
-public class CloseCombatAlien extends Alien{
+public class CloseCombatAlien extends Alien {
 	
 	public CloseCombatAlien(int x, int y){
 		super(x, y);

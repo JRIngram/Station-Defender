@@ -3,7 +3,7 @@ package com.aston.group.stationdefender.actors;
 public class CloseCombatWeapon extends Weapon {
 	
 	public CloseCombatWeapon(int x, int y){
-		
+		super(x, y);
 	}
 	
 	public CloseCombatWeapon(int x, int y, int width, int height){

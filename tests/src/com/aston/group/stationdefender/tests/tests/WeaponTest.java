@@ -15,8 +15,8 @@ public class WeaponTest {
 
     @Before
     public void setUp() {
-        testWep = new Weapon("Weapon", 0, 2, 2, 10, 1, 10, 10, 200, 200, 2.0, 100, 25);
-        adjacentAlien = new Alien("Alien", 0, 5, 2, 5, 1, 200, 200, 100, 100);
+        testWep = new Weapon("Weapon", 0, 2, 2, 10, 1, 5.0, 10, 10, 200, 200, 2.0, 100, 25);
+        adjacentAlien = new Alien("Alien", 0, 5, 2, 5, 1, 5.0, 200, 200, 100, 100);
     }
 
     @Test
@@ -73,8 +73,8 @@ public class WeaponTest {
 
     @Test
     public void testAdjacent() {
-        testWep = new Weapon("Weapon", 0, 2, 2, 10, 1, 10, 10, 200, 200, 0.0d, 100, 100);
-        Weapon adjacentWeapon = new Weapon("AdjWeapon", 0, 2, 2, 10, 1, 10, 10, 200, 200, 0.0d, 100, 100);
+        testWep = new Weapon("Weapon", 0, 2, 2, 10, 1, 5.0, 10, 10, 200, 200, 0.0d, 100, 100);
+        Weapon adjacentWeapon = new Weapon("AdjWeapon", 0, 2, 2, 10, 1, 5.0, 10, 10, 200, 200, 0.0d, 100, 100);
         assertEquals(false, testWep.isAdjacent());
         assertEquals(null, testWep.getAdjacentActor());
         testWep.setAdjacentActor(adjacentWeapon);
