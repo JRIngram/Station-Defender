@@ -38,7 +38,8 @@ public class TextureManager {
     /**
      * Load the texture matching a given ID
      *
-     * @param id The id number of the texture to load
+     * @param id The ID number of the texture to load
+     * @return The texture matching the ID
      */
     public Texture loadTexture(int id) {
         Texture texture = null;
@@ -79,11 +80,18 @@ public class TextureManager {
         return texture;
     }
 
+    /**
+     * Load the animation matching a given ID
+     *
+     * @param id The ID number of the animation to load
+     * @return The animation matching the given ID
+     */
     public ParticleEffect loadParticleEffect(int id) {
         ParticleEffect particleEffect = new ParticleEffect();
         switch (id) {
             case EXPLOSION_ANIMATION:
                 particleEffect.load(Gdx.files.internal("textures/explosion.animation"), Gdx.files.internal(""));
+                break;
         }
         return particleEffect;
     }
