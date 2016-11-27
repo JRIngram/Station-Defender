@@ -2,6 +2,7 @@ package com.aston.group.stationdefender.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 
 /**
  * This class manages texture loading for the game
@@ -20,6 +21,7 @@ public class TextureManager {
     private static final int DEFAULT_PROJECTILE_TEXTURE = 9;
     private static final int ITEM_CREDIT_TEXTURE = 10;
     private static final int ITEM_TURRET_TEXTURE = 11;
+    private static final int EXPLOSION_ANIMATION = 1;
     private static TextureManager instance;
 
     /**
@@ -75,5 +77,14 @@ public class TextureManager {
                 texture = new Texture(Gdx.files.internal("textures/turret.png"));
         }
         return texture;
+    }
+
+    public ParticleEffect loadParticleEffect(int id) {
+        ParticleEffect particleEffect = new ParticleEffect();
+        switch (id) {
+            case EXPLOSION_ANIMATION:
+                particleEffect.load(Gdx.files.internal("textures/explosion.animation"), Gdx.files.internal(""));
+        }
+        return particleEffect;
     }
 }

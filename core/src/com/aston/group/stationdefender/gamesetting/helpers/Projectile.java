@@ -104,6 +104,8 @@ public class Projectile implements Pool.Poolable {
      * Dispose of unused assets
      */
     public void dispose() {
+        batch.dispose();
+        texture.dispose();
     }
 
     /**

@@ -2,7 +2,6 @@ package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
-import com.aston.group.stationdefender.utils.SoundManager;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * @author Jamie Ingram
  * @version 01/11/2016
  */
-public class Weapon extends Unit implements Actor {
+public class Weapon extends Unit {
     private final SpriteBatch batch;
     private final Texture texture;
     private final double buildTime;
@@ -82,6 +81,7 @@ public class Weapon extends Unit implements Actor {
             }
         }
         batch.begin();
+        renderParticleEffect(delta, batch);
         batch.draw(texture, x, y, width, height);
         batch.end();
     }
@@ -99,13 +99,6 @@ public class Weapon extends Unit implements Actor {
         } else {
             destroy();
         }
-    }
-
-    @Override
-    public void destroy() {
-        exists = false;
-        SoundManager.getInstance().playSound(3);
-        //TODO: Play explosion animation
     }
 
     /**

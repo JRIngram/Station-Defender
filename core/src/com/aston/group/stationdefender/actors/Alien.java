@@ -1,7 +1,6 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
-import com.aston.group.stationdefender.utils.SoundManager;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -68,6 +67,7 @@ public class Alien extends Unit {
         batch.setProjectionMatrix(camera.projection);
         batch.setTransformMatrix(camera.view);
         batch.begin();
+        renderParticleEffect(delta, batch);
         if (!isAdjacent())
             batch.setColor(1f, 1f, 1f, 1f);
         else
@@ -100,13 +100,6 @@ public class Alien extends Unit {
         } else {
             destroy();
         }
-    }
-
-    @Override
-    public void destroy() {
-        exists = false;
-        SoundManager.getInstance().playSound(3);
-        //TODO: Play explosion animation
     }
 
     /**

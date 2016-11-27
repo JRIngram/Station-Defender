@@ -1,8 +1,12 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.callbacks.UnitCallback;
+import com.aston.group.stationdefender.utils.SoundManager;
+import com.aston.group.stationdefender.utils.TextureManager;
 import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Random;
 
@@ -24,9 +28,10 @@ public abstract class Unit implements Actor {
     int height; //Unit's height
     boolean isAdjacent; //Checks if the Unit is adjacent to any other unit.  This information is retrieved from the Board.
     Actor adjacentActor; //The Unit that this Unit is adjacent to.
-    boolean exists; //Whether the Unit is alive or dead.
     boolean facingLeft; //Whether the Unit is facing left or not
     UnitCallback unitCallback; //The UnitCallBack used for the Unit
+    private ParticleEffect particleEffect;
+    private boolean exists; //Whether the Unit is alive or dead.
     private double health; //How much damage the Unit can take before being destroyed.
     private String name; //Name of the type of unit.
 
@@ -83,7 +88,13 @@ public abstract class Unit implements Actor {
     public abstract void act();
 
     @Override
-    public abstract void destroy();
+    public void destroy() {
+        exists = false;
+        SoundManager.getInstance().playSound(3);
+        particleEffect = TextureManager.getInstance().loadParticleEffect(1);
+        particleEffect.getEmitters().first().setPosition(x, y);
+        particleEffect.start();
+    }
 
     /**
      * Method for getting the name of the Unit.
@@ -343,5 +354,15 @@ public abstract class Unit implements Actor {
      */
     public void setUnitCallback(UnitCallback unitCallback) {
         this.unitCallback = unitCallback;
+    }
+
+    void renderParticleEffect(float delta, SpriteBatch batch) {
+        if (particleEffect != null) {
+            particleEffect.update(delta);
+            particleEffect.setPosition(x, y);
+            particleEffect.draw(batch);
+            if (particleEffect.isComplete())
+                particleEffect.dispose();
+        }
     }
 }

@@ -80,10 +80,4 @@ public class ProjectileFactory {
     public void setProjectiles(Array<Projectile> projectiles) {
         this.projectiles = projectiles;
     }
-
-    /**
-     * Dispose of unused resources
-     */
-    public void dispose() {
-    }
 }

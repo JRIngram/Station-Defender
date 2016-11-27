@@ -59,16 +59,6 @@ public class Main extends Game implements GameCallback, TwoTextCallback, MenuCal
         }
     }
 
-    @Override
-    public void render() {
-        super.render();
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
-    }
-
     /**
      * Disposes of any existing GameScreen then create a new one
      */
