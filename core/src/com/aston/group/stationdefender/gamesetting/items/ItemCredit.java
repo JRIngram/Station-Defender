@@ -19,7 +19,7 @@ public class ItemCredit extends Item {
     public ItemCredit() {
         id = 1;
         name = "Credits";
-        texture = TextureManager.getInstance().loadTexture(10);
+        texture = TextureManager.INSTANCE.loadTexture(10);
         value = 10;
         placeable = true;
     }

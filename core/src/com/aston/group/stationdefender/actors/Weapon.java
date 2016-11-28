@@ -69,7 +69,7 @@ public class Weapon extends Unit {
         built = false;
         facingLeft = false;
         batch = new SpriteBatch();
-        texture = TextureManager.getInstance().loadTexture(8);
+        texture = TextureManager.INSTANCE.loadTexture(8);
     }
 
     @Override

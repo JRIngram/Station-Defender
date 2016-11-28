@@ -94,7 +94,7 @@ public class IntroScreen implements Screen {
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].setPosition((Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + (100 - 60 * i));
         }
-        texture = TextureManager.getInstance().loadTexture(1);
+        texture = TextureManager.INSTANCE.loadTexture(1);
     }
 
     @Override

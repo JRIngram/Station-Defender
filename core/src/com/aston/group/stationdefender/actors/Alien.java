@@ -58,7 +58,7 @@ public class Alien extends Unit {
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         camera.update();
 
-        texture = TextureManager.getInstance().loadTexture(7);
+        texture = TextureManager.INSTANCE.loadTexture(7);
         facingLeft = true;
     }
 

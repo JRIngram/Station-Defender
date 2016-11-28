@@ -4,26 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
 /**
- * This class manages sound playing for the game
+ * This enum manages sound playing for the game
  *
  * @author Mohammed Foysal
  */
-public class SoundManager {
+public enum SoundManager {
+    INSTANCE;
     private static final int BACKGROUND_MUSIC_ID = 1;
     private static final int GUN_SHOT_SOUND_ID = 2;
     private static final int EXPLOSION_SOUND_ID = 3;
-    private static SoundManager instance;
-
-    /**
-     * Returns an instance of the SoundManager
-     *
-     * @return Returns an instance of the SoundManager
-     */
-    public static SoundManager getInstance() {
-        if (instance == null)
-            instance = new SoundManager();
-        return instance;
-    }
 
     /**
      * Play the sound matching a given ID
@@ -44,8 +33,8 @@ public class SoundManager {
                 volume = 0.05f;
                 break;
             case EXPLOSION_SOUND_ID:
-                volume = 0.1f;
                 music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Explosion.mp3"));
+                volume = 0.1f;
                 break;
         }
         if (music != null) {

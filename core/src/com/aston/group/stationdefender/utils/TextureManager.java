@@ -5,11 +5,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 
 /**
- * This class manages texture loading for the game
+ * This enum manages texture loading for the game
  *
  * @author Jonathon Fitch
  */
-public class TextureManager {
+public enum TextureManager {
+    INSTANCE;
     private static final int BACKGROUND_TITLE_TEXTURE = 1;
     private static final int BACKGROUND_TEXTURE = 2;
     private static final int LEVEL_TEXTURE = 3;
@@ -22,18 +23,6 @@ public class TextureManager {
     private static final int ITEM_CREDIT_TEXTURE = 10;
     private static final int ITEM_TURRET_TEXTURE = 11;
     private static final int EXPLOSION_ANIMATION = 1;
-    private static TextureManager instance;
-
-    /**
-     * Returns an instance of the TextureManager
-     *
-     * @return Returns an instance of the TextureManager
-     */
-    public static TextureManager getInstance() {
-        if (instance == null)
-            instance = new TextureManager();
-        return instance;
-    }
 
     /**
      * Load the texture matching a given ID

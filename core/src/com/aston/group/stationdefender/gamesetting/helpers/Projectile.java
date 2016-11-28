@@ -31,7 +31,7 @@ public class Projectile implements Pool.Poolable {
         y = 0;
         alive = false;
         batch = new SpriteBatch();
-        texture = TextureManager.getInstance().loadTexture(9);
+        texture = TextureManager.INSTANCE.loadTexture(9);
     }
 
     /**

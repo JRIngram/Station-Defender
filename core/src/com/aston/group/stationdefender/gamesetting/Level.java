@@ -38,7 +38,7 @@ public class Level {
         tower = new Tower(0, 100, 100, 400);
         board = new Board(player, tower);
         batch = new SpriteBatch();
-        texture = TextureManager.getInstance().loadTexture(3);
+        texture = TextureManager.INSTANCE.loadTexture(3);
 
         //Initialise Font
         FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));

@@ -37,7 +37,7 @@ public class Tile {
         height = Constants.TILE_HEIGHT;
 
         batch = new SpriteBatch();
-        texture = TextureManager.getInstance().loadTexture(4);
+        texture = TextureManager.INSTANCE.loadTexture(4);
         shapeRenderer = new ShapeRenderer();
     }
 

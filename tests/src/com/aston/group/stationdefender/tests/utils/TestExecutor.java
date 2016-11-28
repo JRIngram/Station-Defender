@@ -32,7 +32,6 @@ public class TestExecutor {
             @Override
             public void create() {
                 super.create();
-                new SoundManager();
 
                 computer = new Computer();
                 jUnitCore = new JUnitCore();

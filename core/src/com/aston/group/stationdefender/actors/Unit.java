@@ -90,8 +90,8 @@ public abstract class Unit implements Actor {
     @Override
     public void destroy() {
         exists = false;
-        SoundManager.getInstance().playSound(3);
-        particleEffect = TextureManager.getInstance().loadParticleEffect(1);
+        SoundManager.INSTANCE.playSound(3);
+        particleEffect = TextureManager.INSTANCE.loadParticleEffect(1);
         particleEffect.getEmitters().first().setPosition(x, y);
         particleEffect.start();
     }

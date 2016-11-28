@@ -106,7 +106,7 @@ public class TwoTextScreen implements Screen {
         backButton.setPosition(-150, (Gdx.graphics.getHeight()) - 60);
         if (continueBool)
             continueButton.addListener(buttonListener);
-        texture = TextureManager.getInstance().loadTexture(2);
+        texture = TextureManager.INSTANCE.loadTexture(2);
         titleX = (Gdx.graphics.getWidth() / 2) - 150;
         titleY = Gdx.graphics.getHeight() - 25;
         bodyX = (Gdx.graphics.getWidth() / 2) - 235;

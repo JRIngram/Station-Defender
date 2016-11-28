@@ -42,7 +42,7 @@ public class Tower implements Actor {
         this.height = height;
         exists = true;
         health = Constants.TOWER_HEALTH;
-        texture = TextureManager.getInstance().loadTexture(6);
+        texture = TextureManager.INSTANCE.loadTexture(6);
         batch = new SpriteBatch();
 
         //Initialise Font
@@ -89,7 +89,7 @@ public class Tower implements Actor {
     public void destroy() {
         //TODO: Play explosion animation
         exists = false;
-        SoundManager.getInstance().playSound(3);
+        SoundManager.INSTANCE.playSound(3);
     }
 
     @Override
