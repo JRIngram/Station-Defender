@@ -201,6 +201,13 @@ public class Player implements InputProcessor {
                     }
                 });
             }
+            for (int i = 0; i < quickSlots.size; i++) {
+                QuickSlot quickSlot = quickSlots.get(i);
+                if (MouseInput.isColliding(quickSlot.getX(), quickSlot.getY(), quickSlot.getWidth(), quickSlot.getHeight())) {
+                    selectedSlot = i;
+                    quickSlotCallback.onSelectedItemChanged(quickSlots.get(selectedSlot).getItem());
+                }
+            }
             if (MouseInput.isColliding((int) menuButton.getX(), (int) menuButton.getY(), (int) menuButton.getWidth(), (int) menuButton.getHeight())) {
                 playerCallback.onPause();
             }
@@ -346,33 +353,6 @@ public class Player implements InputProcessor {
      */
     public void removeMoney(int amount) {
         this.money -= amount;
-    }
-
-    /**
-     * Returns the Player's current Item
-     *
-     * @return The Player's current Item
-     */
-    public Item getCurrentItem() {
-        return currentItem;
-    }
-
-    /**
-     * Sets the Player's current Item
-     *
-     * @param currentItem The Item to set as the Player's current Item
-     */
-    public void setCurrentItem(Item currentItem) {
-        this.currentItem = currentItem;
-    }
-
-    /**
-     * Returns the PlayerCallback used for the Player
-     *
-     * @return The PlayerCallback being used for the Player
-     */
-    public PlayerCallback getPlayerCallback() {
-        return playerCallback;
     }
 
     /**

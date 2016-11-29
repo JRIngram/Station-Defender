@@ -158,9 +158,9 @@ public class Lane implements UnitCallback {
             tile.render();
         }
         //Units
-        for (int i = 0; i < units.size; i++) {
-            units.get(i).render(delta);
-            units.get(i).setUnitCallback(this);
+        for (Unit unit : units) {
+            unit.render(delta);
+            unit.setUnitCallback(this);
         }
 
         //Check if Units are adjacent. if they are, share the adjacent actor with each other

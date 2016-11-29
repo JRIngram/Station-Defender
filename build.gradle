@@ -25,7 +25,6 @@ allprojects {
         ashleyVersion = '1.7.0'
         aiVersion = '1.8.0'
         jUnitVersion = '4.12'
-        mockitoVersion = '2.2.17'
     }
 
     repositories {
