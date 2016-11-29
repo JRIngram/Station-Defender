@@ -18,6 +18,8 @@ public interface Actor {
 
     /**
      * Makes the Actor act
+     *
+     * @param delta - The time in seconds since the last render.
      */
     void act(float delta);
 

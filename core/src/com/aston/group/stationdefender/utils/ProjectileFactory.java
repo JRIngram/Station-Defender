@@ -32,6 +32,7 @@ public class ProjectileFactory {
      * @param x     The initial X co-ordinate of the bullet
      * @param y     The initial Y co-ordinate of the bullet
      * @param speed The speed of the bullet
+     * @param damage The damage of the bullet
      */
     public void shootBullet(int x, int y, double speed, double damage) {
         Projectile projectile = projectilePool.obtain();
