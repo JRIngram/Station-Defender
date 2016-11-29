@@ -82,7 +82,7 @@ public abstract class Item {
      *
      * @return An Actor that can be placed on the Board, null if the Actor cannot be placed on the Board
      */
-    public abstract Actor getPlaceableActor(int x, int y);
+    public abstract Actor getPlaceableActor();
 
     /**
      * Changes the collected state of the Item to show it

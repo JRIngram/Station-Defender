@@ -197,7 +197,7 @@ public class Player implements InputProcessor {
             if (currentItem != null && money >= currentItem.getCost()) {
                 currentItem.useItem(this, placeable -> {
                     if (playerCallback != null && placeable) {
-                        playerCallback.placeActor(currentItem.getPlaceableActor(MouseInput.getX(), MouseInput.getY()), MouseInput.getX(), MouseInput.getY());
+                        playerCallback.placeActor(currentItem.getPlaceableActor(), MouseInput.getX(), MouseInput.getY());
                     }
                 });
             }

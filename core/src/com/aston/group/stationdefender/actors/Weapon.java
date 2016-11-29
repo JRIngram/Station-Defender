@@ -5,6 +5,7 @@ import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.TimeUtils;
 
 /**
  * Weapon is a class that represents a weapon object
@@ -23,6 +24,7 @@ public class Weapon extends Unit {
     private double remainingBuildTime;
     private ProjectileFactory projectileFactory;
     private long lastTime;
+    private long startTime;
 
     /**
      * Construct a new Weapon with default X and Y co-ordinates of '0'
@@ -38,7 +40,7 @@ public class Weapon extends Unit {
      * @param y The Y co-ordinate to give the Weapon
      */
     public Weapon(int x, int y) {
-        this("Weapon", 50, 50, 2, Constants.WEAPON_HEALTH, 12, x, y, 60, 60, 5, 10, 10);
+        this("Weapon", 50, 50, 10.0, Constants.WEAPON_HEALTH, 12, x, y, 60, 60, 1.5, 10, 10);
     }
 
     /**
@@ -70,6 +72,7 @@ public class Weapon extends Unit {
         facingLeft = false;
         batch = new SpriteBatch();
         texture = TextureManager.INSTANCE.loadTexture(8);
+        startTime = TimeUtils.millis();
     }
 
     @Override
@@ -85,9 +88,9 @@ public class Weapon extends Unit {
     public void act(float delta) {
         if (built && !checkZeroHealth()) {
             if (!isAdjacent) {
-                if (unitCallback != null && System.currentTimeMillis() - lastTime > 1000 + Math.random() * 4000) {
+                if (unitCallback != null && TimeUtils.timeSinceMillis(lastTime) >= (10000 / rateOfFire)) {
                     unitCallback.onFire(x + 40, y + 35, speed, getDamage());
-                    lastTime = System.currentTimeMillis();
+                    lastTime = TimeUtils.millis();
                 }
             } else {
                 adjacentActor.takeDamage(fire());
@@ -101,11 +104,14 @@ public class Weapon extends Unit {
      * Decrements the build timer by 1. If afterwards the build timer equals 0 then built is set to true.
      */
     public void decrementBuildTimer() {
-        if (remainingBuildTime > 0) {
-            remainingBuildTime--;
-        }
-        if (remainingBuildTime == 0) {
-            built = true;
+        if (TimeUtils.timeSinceMillis(startTime) >= 500) {
+            if (remainingBuildTime > 0) {
+                remainingBuildTime -= 0.5;
+            }
+            if (remainingBuildTime <= 0) {
+                built = true;
+            }
+            startTime = TimeUtils.millis();
         }
     }
 
