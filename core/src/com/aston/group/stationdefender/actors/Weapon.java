@@ -101,7 +101,9 @@ public class Weapon extends Unit {
     }
 
     /**
-     * Decrements the build timer by 1. If afterwards the build timer equals 0 then built is set to true.
+     * Decrements the build timer by 0.5
+     * if the time since the last call to the method is greater than or equal to 500 milliseconds.
+     * If afterwards the build timer is less than or equal to 0 then built is set to true.
      */
     public void decrementBuildTimer() {
         if (TimeUtils.timeSinceMillis(startTime) >= 500) {
