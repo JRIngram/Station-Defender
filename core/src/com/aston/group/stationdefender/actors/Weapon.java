@@ -5,7 +5,6 @@ import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.TimeUtils;
 
 /**
  * Weapon is a class that represents a weapon object
@@ -72,7 +71,7 @@ public class Weapon extends Unit {
         facingLeft = false;
         batch = new SpriteBatch();
         texture = TextureManager.INSTANCE.loadTexture(8);
-        startTime = TimeUtils.millis();
+        startTime = System.currentTimeMillis();
     }
 
     @Override
@@ -88,9 +87,9 @@ public class Weapon extends Unit {
     public void act(float delta) {
         if (built && !checkZeroHealth()) {
             if (!isAdjacent) {
-                if (unitCallback != null && TimeUtils.timeSinceMillis(lastTime) >= (10000 / rateOfFire)) {
+                if (unitCallback != null && System.currentTimeMillis() - lastTime >= (10000 / rateOfFire)) {
                     unitCallback.onFire(x + 40, y + 35, speed, getDamage());
-                    lastTime = TimeUtils.millis();
+                    lastTime = System.currentTimeMillis();
                 }
             } else {
                 adjacentActor.takeDamage(fire());
@@ -106,14 +105,14 @@ public class Weapon extends Unit {
      * If afterwards the build timer is less than or equal to 0 then built is set to true.
      */
     public void decrementBuildTimer() {
-        if (TimeUtils.timeSinceMillis(startTime) >= 500) {
+        if (System.currentTimeMillis() - startTime >= 500) {
             if (remainingBuildTime > 0) {
                 remainingBuildTime -= 0.5;
             }
             if (remainingBuildTime <= 0) {
                 built = true;
             }
-            startTime = TimeUtils.millis();
+            startTime = System.currentTimeMillis();
         }
     }
 

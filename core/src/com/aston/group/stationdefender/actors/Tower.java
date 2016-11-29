@@ -57,6 +57,7 @@ public class Tower implements Actor {
 
     @Override
     public void render(float delta) {
+        batch.begin();
         if (particleEffect != null) {
             particleEffect.update(delta);
             particleEffect.setPosition(x, y);
@@ -64,7 +65,6 @@ public class Tower implements Actor {
             if (particleEffect.isComplete())
                 particleEffect.dispose();
         }
-        batch.begin();
         batch.draw(texture, x, y, width, height);
         font.setColor(Color.BLACK);
         font.draw(batch, "Health: " + health, (Gdx.graphics.getWidth() / 2) - 499, Gdx.graphics.getHeight() - 50);
