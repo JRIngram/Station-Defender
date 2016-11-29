@@ -29,7 +29,7 @@ public class ItemTurret extends Item {
     }
 
     @Override
-    public Actor getPlaceableActor() {
-        return new Weapon();
+    public Actor getPlaceableActor(int x, int y) {
+        return new Weapon(x, y);
     }
 }

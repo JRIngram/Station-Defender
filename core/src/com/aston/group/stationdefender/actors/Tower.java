@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
@@ -26,6 +27,7 @@ public class Tower implements Actor {
     private final BitmapFont font;
     private int health;
     private boolean exists;
+    private ParticleEffect particleEffect;
 
     /**
      * Constructs a new Tower
@@ -55,6 +57,13 @@ public class Tower implements Actor {
 
     @Override
     public void render(float delta) {
+        if (particleEffect != null) {
+            particleEffect.update(delta);
+            particleEffect.setPosition(x, y);
+            particleEffect.draw(batch);
+            if (particleEffect.isComplete())
+                particleEffect.dispose();
+        }
         batch.begin();
         batch.draw(texture, x, y, width, height);
         font.setColor(Color.BLACK);
@@ -65,7 +74,7 @@ public class Tower implements Actor {
     }
 
     @Override
-    public void act() {
+    public void act(float delta) {
     }
 
     /**
@@ -87,9 +96,11 @@ public class Tower implements Actor {
      */
     @Override
     public void destroy() {
-        //TODO: Play explosion animation
         exists = false;
         SoundManager.INSTANCE.playSound(3);
+        particleEffect = TextureManager.INSTANCE.loadParticleEffect(1);
+        particleEffect.getEmitters().first().setPosition(x, y);
+        particleEffect.start();
     }
 
     @Override

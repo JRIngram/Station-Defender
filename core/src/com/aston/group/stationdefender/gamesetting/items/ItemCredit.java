@@ -33,7 +33,7 @@ public class ItemCredit extends Item {
     }
 
     @Override
-    public Actor getPlaceableActor() {
+    public Actor getPlaceableActor(int x, int y) {
         return null;
     }
 

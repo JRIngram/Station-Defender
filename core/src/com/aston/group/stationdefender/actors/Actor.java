@@ -19,7 +19,7 @@ public interface Actor {
     /**
      * Makes the Actor act
      */
-    void act();
+    void act(float delta);
 
     /**
      * Destroys the Actor

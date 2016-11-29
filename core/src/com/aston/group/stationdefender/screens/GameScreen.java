@@ -1,7 +1,7 @@
 package com.aston.group.stationdefender.screens;
 
 import com.aston.group.stationdefender.actors.Actor;
-import com.aston.group.stationdefender.actors.Weapon;
+import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.GameCallback;
 import com.aston.group.stationdefender.callbacks.LevelCallback;
 import com.aston.group.stationdefender.callbacks.PlayerCallback;
@@ -127,7 +127,7 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
     @Override
     public void placeActor(Actor actor, int x, int y) {
         //TODO: Change Actor to Unit
-        level.getBoard().place(new Weapon(x, y), x, y);
+        level.getBoard().place((Unit) actor, x, y);
     }
 
     @Override

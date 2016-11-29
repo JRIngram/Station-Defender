@@ -28,7 +28,7 @@ public abstract class Item {
     /**
      * Construct a new Item
      */
-    public Item() {
+    Item() {
         batch = new SpriteBatch();
         width = 32;
         height = 32;
@@ -43,7 +43,7 @@ public abstract class Item {
      * @param usable    Whether the Item is usable or not
      * @param collected Whether the Item has been collected or not
      */
-    public Item(String name, boolean usable, boolean collected) {
+    Item(String name, boolean usable, boolean collected) {
         this.name = name;
         this.usable = usable;
         this.collected = collected;
@@ -82,7 +82,7 @@ public abstract class Item {
      *
      * @return An Actor that can be placed on the Board, null if the Actor cannot be placed on the Board
      */
-    public abstract Actor getPlaceableActor();
+    public abstract Actor getPlaceableActor(int x, int y);
 
     /**
      * Changes the collected state of the Item to show it

@@ -69,7 +69,7 @@ public class AlienTest {
         assertEquals(10, adjacentWep.getHealth(), 0);
         alien.setAdjacentActor(adjacentWep);
         assertEquals(adjacentWep, alien.getAdjacentActor());
-        alien.act();
+        alien.act(0.1f);
         assertTrue((adjacentWep.getHealth() <= 10));
     }
 }

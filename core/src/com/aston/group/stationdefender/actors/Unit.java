@@ -85,7 +85,7 @@ public abstract class Unit implements Actor {
     }
 
     @Override
-    public abstract void act();
+    public abstract void act(float delta);
 
     @Override
     public void destroy() {
@@ -233,7 +233,7 @@ public abstract class Unit implements Actor {
      * Checks if the Health of the Unit is less than 1.
      *
      * @return true if health is above 0, false if health is 0 or below
-     * @see #act()
+     * @see #act(float delta)
      */
     public boolean checkZeroHealth() {
         return health < 1;

@@ -74,19 +74,12 @@ public class Alien extends Unit {
             batch.setColor(.5f, .5f, .5f, 1f);
         batch.draw(texture, x, y, width, height);
         batch.end();
-
-        if (!isAdjacent()) {
-            x += (speed * delta);
-        } else {
-            if (getAdjacentActor() != null && !((Unit) getAdjacentActor()).isFacingLeft()) {
-                getAdjacentActor().takeDamage(200);
-            }
-        }
+        act(delta);
         indicatorManager.render(delta, x, y);
     }
 
     @Override
-    public void act() {
+    public void act(float delta) {
         if (!checkZeroHealth()) {
             if (isAdjacent) {
                 try {
@@ -95,7 +88,7 @@ public class Alien extends Unit {
                     System.out.println("Null values are not allowed");
                 }
             } else {
-                move(speed);
+                move(delta);
             }
         } else {
             destroy();
@@ -105,9 +98,15 @@ public class Alien extends Unit {
     /**
      * Moves the Alien from the left side of the lane to the right
      *
-     * @param speed Distance the Alien moves.
+     * @param delta The time in seconds since the last move
      */
-    public void move(double speed) {
-        //TODO IMPLEMENT
+    private void move(float delta) {
+        if (!isAdjacent()) {
+            x += (speed * delta);
+        } else {
+            if (getAdjacentActor() != null && !((Unit) getAdjacentActor()).isFacingLeft()) {
+                getAdjacentActor().takeDamage(200);
+            }
+        }
     }
 }

@@ -96,7 +96,7 @@ public class WeaponTest {
         }
         testWep.decrementBuildTimer();
         assertEquals(true, testWep.getBuilt());
-        testWep.act();
+        testWep.act(0.1f);
         assertTrue((adjacentAlien.getHealth() <= 5));
     }
 }

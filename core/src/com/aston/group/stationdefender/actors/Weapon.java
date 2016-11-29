@@ -74,30 +74,26 @@ public class Weapon extends Unit {
 
     @Override
     public void render(float delta) {
-        if (!isAdjacent()) {
-            if (unitCallback != null && System.currentTimeMillis() - lastTime > 1000 + Math.random() * 4000) {
-                unitCallback.onFire(x + 40, y + 35, speed, getDamage());
-                lastTime = System.currentTimeMillis();
-            }
-        }
         batch.begin();
         renderParticleEffect(delta, batch);
         batch.draw(texture, x, y, width, height);
         batch.end();
+        act(delta);
     }
 
     @Override
-    public void act() {
-        if (!checkZeroHealth() && built) {
-            if (isAdjacent) {
-                try {
-                    adjacentActor.takeDamage(fire());
-                } catch (Exception e) {
-                    System.out.println("Null values are not allowed");
+    public void act(float delta) {
+        if (built && !checkZeroHealth()) {
+            if (!isAdjacent) {
+                if (unitCallback != null && System.currentTimeMillis() - lastTime > 1000 + Math.random() * 4000) {
+                    unitCallback.onFire(x + 40, y + 35, speed, getDamage());
+                    lastTime = System.currentTimeMillis();
                 }
+            } else {
+                adjacentActor.takeDamage(fire());
             }
         } else {
-            destroy();
+            decrementBuildTimer();
         }
     }
 
