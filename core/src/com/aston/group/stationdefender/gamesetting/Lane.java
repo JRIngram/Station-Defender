@@ -7,7 +7,10 @@ import com.aston.group.stationdefender.callbacks.UnitCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.helpers.Projectile;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
+import com.aston.group.stationdefender.gamesetting.items.Item;
+import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
+import com.aston.group.stationdefender.utils.resources.ItemFactory;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Iterator;
@@ -23,6 +26,7 @@ public class Lane implements UnitCallback {
     private final int x, y, height;
     private final Array<Tile> tiles = new Array<>();
     private final Array<Unit> units = new Array<>();
+    private final Array<Item> itemDrops = new Array<>();
     private final ProjectileFactory projectileFactory;
     private final LaneCallback laneCallback;
     private int width;
@@ -192,6 +196,9 @@ public class Lane implements UnitCallback {
         Iterator<Unit> unitsIterator = units.iterator();
         while (unitsIterator.hasNext()) {
             Unit unit = unitsIterator.next();
+            if(!unit.getExists()){
+                dropItem(ItemFactory.getItemByChance(), unit.getX(), unit.getY());
+            }
             if (unit.getHealth() <= 0) {
                 unitsIterator.remove();
             }
@@ -232,6 +239,11 @@ public class Lane implements UnitCallback {
         //Check if lane is cleared
         if (isLaneCleared() && alienAmount <= 0) {
             cleared = true;
+        }
+
+        //Render item drops
+        for (int i = 0; i < itemDrops.size; i++) {
+            itemDrops.get(i).render(delta);
         }
     }
 
@@ -280,6 +292,26 @@ public class Lane implements UnitCallback {
     @Override
     public void onFire(int x, int y, double speed, double damage) {
         projectileFactory.shootBullet(x, y, speed, damage);
+    }
+
+    public void dropItem(Item item, int x, int y){
+        if(item != null) {
+            item.setX(x);
+            item.setY(y);
+            item.setJustSpawned(true);
+            itemDrops.add(item);
+        }
+    }
+
+    public void pickItem(int index){
+        if(itemDrops.get(index) != null && player != null) {
+            player.collectItem(itemDrops.get(index));
+            itemDrops.removeIndex(index);
+        }
+    }
+
+    public void removeItem(int index){
+        itemDrops.removeIndex(index);
     }
 
     /**
