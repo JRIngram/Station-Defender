@@ -368,7 +368,7 @@ public abstract class Unit implements Actor {
      *
      * @return The likelihood of a Unit hitting its target, per shot
      */
-    public double getChanceToHit(){
+    public double getChanceToHit() {
         return chanceToHit;
     }
 

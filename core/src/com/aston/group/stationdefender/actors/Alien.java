@@ -103,7 +103,7 @@ public class Alien extends Unit {
      *
      * @param delta The time in seconds since the last move
      */
-    private void move(float delta) {
+    void move(float delta) {
         if (!isAdjacent()) {
             x += (speed * delta);
         } else {
