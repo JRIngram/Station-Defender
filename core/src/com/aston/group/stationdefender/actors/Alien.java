@@ -31,7 +31,7 @@ public class Alien extends Unit {
      * @param y The Y co-ordinate to give the Alien
      */
     public Alien(int x, int y) {
-        this("Alien", -100, 50, 5, Constants.UNIT_HEALTH, 12, x, y, 100, 38);
+        this("Alien", -100, Constants.DEFAULT_DAMAGE, 5, Constants.UNIT_HEALTH, 12, x, y, 100, 38);
     }
 
     /**
@@ -101,7 +101,7 @@ public class Alien extends Unit {
             x += (speed * delta);
         } else {
             if (getAdjacentActor() != null && !((Unit) getAdjacentActor()).isFacingLeft()) {
-                getAdjacentActor().takeDamage(200);
+                getAdjacentActor().takeDamage(getDamage());
             }
         }
     }

@@ -2,7 +2,6 @@ package com.aston.group.stationdefender.tests.utils;
 
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.tests.TestLauncher;
-import com.aston.group.stationdefender.utils.SoundManager;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;

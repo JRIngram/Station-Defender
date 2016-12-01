@@ -50,7 +50,7 @@ public interface Constants {
     int TOWER_HEALTH = 1000;
     int UNIT_HEALTH = 100;
     int WEAPON_HEALTH = 100;
-    int DEFAULT_DAMAGE = 100;
+    int DEFAULT_DAMAGE = 50;
 
     int START_MONEY = 50;
     int MONEY_REGENERATION = 1;
