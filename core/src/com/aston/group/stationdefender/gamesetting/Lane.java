@@ -3,6 +3,7 @@ package com.aston.group.stationdefender.gamesetting;
 import com.aston.group.stationdefender.actors.Alien;
 import com.aston.group.stationdefender.actors.Tower;
 import com.aston.group.stationdefender.actors.Unit;
+import com.aston.group.stationdefender.callbacks.LaneCallback;
 import com.aston.group.stationdefender.callbacks.UnitCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.helpers.Projectile;
@@ -23,8 +24,8 @@ public class Lane implements UnitCallback {
     private final Array<Tile> tiles = new Array<>();
     private final Array<Unit> units = new Array<>();
     private final ProjectileFactory projectileFactory;
-    private final Player player;
     private final Tower tower;
+    private final LaneCallback laneCallback;
     private int width;
     private boolean overrun;
     private boolean cleared;
@@ -34,17 +35,16 @@ public class Lane implements UnitCallback {
     /**
      * Construct a new Lane
      *
-     * @param player        The current Player of the game
      * @param tower         The current Tower on the Board
      * @param x             The X co-ordinate of the Lane
      * @param y             The Y co-ordinate of the Lane
      * @param numberOfTiles The Number of tiles in the lane
      */
-    public Lane(Player player, Tower tower, int x, int y, int numberOfTiles) {
+    public Lane(LaneCallback laneCallback, Tower tower, int x, int y, int numberOfTiles) {
+        this.laneCallback = laneCallback;
         this.x = x;
         this.y = y;
         this.height = Constants.TILE_HEIGHT;
-        this.player = player;
         this.tower = tower;
 
         Tile[] tile = new Tile[numberOfTiles];
@@ -228,8 +228,8 @@ public class Lane implements UnitCallback {
                     projectile.setAlive(false);
                     double damage = projectile.getDamage();
                     if (units.get(j).getHealth() - damage <= 0) {
-                        player.addMoney(Constants.MONEY_REGENERATION);
-                        player.addScore(Constants.ADD_SCORE_AMOUNT);
+                        laneCallback.addMoney(Constants.MONEY_REGENERATION);
+                        laneCallback.addScore(Constants.ADD_SCORE_AMOUNT);
                     }
                     units.get(j).takeDamage(damage);
                 }

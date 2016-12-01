@@ -331,7 +331,7 @@ public class Player implements InputProcessor {
      *
      * @param amount The amount of money to be added to the Player's score total
      */
-    void addScore(int amount) {
+    public void addScore(int amount) {
         this.score += amount;
     }
 

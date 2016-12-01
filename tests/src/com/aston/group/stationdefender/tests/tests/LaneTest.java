@@ -3,7 +3,6 @@ package com.aston.group.stationdefender.tests.tests;
 import com.aston.group.stationdefender.actors.Tower;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.Lane;
-import com.aston.group.stationdefender.gamesetting.Player;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
 import com.badlogic.gdx.utils.Array;
 import org.junit.Before;
@@ -17,9 +16,8 @@ public class LaneTest {
 
     @Before
     public void setUp() {
-        Player player = new Player();
         Tower tower = new Tower(1, 1, 50, 50);
-        lane = new Lane(player, tower, 0, 0, numberOfTiles);
+        lane = new Lane(null, tower, 0, 0, numberOfTiles);
     }
 
     @Test

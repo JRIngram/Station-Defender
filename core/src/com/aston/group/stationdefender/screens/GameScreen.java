@@ -51,7 +51,7 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
 
         player = new Player();
         player.setPlayerCallback(this);
-        level = new Level(player, this, levelNumber);
+        level = new Level(this, levelNumber);
     }
 
     @Override
@@ -100,6 +100,16 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
     @Override
     public void onWinLost(boolean won) {
         gameCallback.onWinLost(won, player.getScore(), player.getMoney());
+    }
+
+    @Override
+    public void addMoney(int money) {
+        player.addMoney(money);
+    }
+
+    @Override
+    public void addScore(int score) {
+        player.addScore(score);
     }
 
     @Override

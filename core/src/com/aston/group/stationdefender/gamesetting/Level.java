@@ -3,6 +3,7 @@ package com.aston.group.stationdefender.gamesetting;
 import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.Tower;
 import com.aston.group.stationdefender.actors.Unit;
+import com.aston.group.stationdefender.callbacks.LaneCallback;
 import com.aston.group.stationdefender.callbacks.LevelCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.TextureManager;
@@ -19,7 +20,7 @@ import com.badlogic.gdx.utils.Array;
  *
  * @author Jonathon Fitch
  */
-public class Level {
+public class Level implements LaneCallback {
     private final SpriteBatch batch;
     private final Texture texture;
     private final LevelCallback levelCallback;
@@ -33,11 +34,10 @@ public class Level {
     /**
      * Construct a new Level with a given level number.
      *
-     * @param player        The current Player of the game
      * @param levelCallback The LevelCallBack to be used for the Level
      * @param levelNumber   The number of the Level
      */
-    public Level(Player player, LevelCallback levelCallback, int levelNumber) {
+    public Level(LevelCallback levelCallback, int levelNumber) {
         this.levelNumber = levelNumber;
         this.levelCallback = levelCallback;
         tower = new Tower(0, 100, 100, 400);
@@ -47,7 +47,7 @@ public class Level {
         int laneY = 110;
 
         for (int i = 0; i < Constants.LANE_AMOUNT; i++) {
-            lanes.add(new Lane(player, tower, 100, laneY, Constants.TILE_AMOUNT));
+            lanes.add(new Lane(this, tower, 100, laneY, Constants.TILE_AMOUNT));
             laneY += (Constants.TILE_HEIGHT + (Constants.TILE_HEIGHT / 4));
         }
 
@@ -80,15 +80,13 @@ public class Level {
                     hasLost = true;
             }
         }
-        if (isAllLanesCleared()) {
+
+        if (isAllLanesCleared())
             hasWon = true;
-        }
-        if (hasLost) {
+        if (hasLost)
             levelCallback.onWinLost(false);
-        }
-        if (hasWon) {
+        if (hasWon)
             levelCallback.onWinLost(hasWon);
-        }
 
         if (tower != null)
             tower.render(delta);
@@ -215,5 +213,15 @@ public class Level {
      */
     public boolean isHasLost() {
         return hasLost;
+    }
+
+    @Override
+    public void addMoney(int money) {
+        levelCallback.addMoney(money);
+    }
+
+    @Override
+    public void addScore(int score) {
+        levelCallback.addScore(score);
     }
 }

@@ -4,7 +4,6 @@ import com.aston.group.stationdefender.actors.Tower;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.Lane;
 import com.aston.group.stationdefender.gamesetting.Level;
-import com.aston.group.stationdefender.gamesetting.Player;
 import com.badlogic.gdx.utils.Array;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,15 +13,13 @@ import static org.junit.Assert.assertFalse;
 
 public class LevelTest {
     private final int numberOfLanes = Constants.LANE_AMOUNT;
-    private Player player;
     private Tower tower;
     private Level level;
 
     @Before
     public void setUp() {
-        player = new Player();
         tower = new Tower(1, 1, 50, 50);
-        level = new Level(player, null, 1);
+        level = new Level(null, 1);
     }
 
     @Test
@@ -44,7 +41,7 @@ public class LevelTest {
     public void testAddLane() {
         Array<Lane> lanes = level.getAllLanes();
         assertEquals(numberOfLanes, lanes.size);
-        level.addLane(new Lane(player, tower, 0, 0, 12));
+        level.addLane(new Lane(null, tower, 0, 0, 12));
         lanes = level.getAllLanes();
         assertEquals(numberOfLanes + 1, lanes.size);
     }
@@ -59,7 +56,7 @@ public class LevelTest {
         level.removeLaneByIndex(2);
         lanes = level.getAllLanes();
         assertEquals(numberOfLanes - 2, lanes.size);
-        Lane lane = new Lane(player, tower, 0, 0, 12);
+        Lane lane = new Lane(null, tower, 0, 0, 12);
         level.addLane(lane);
         level.addLane(lane);
         lanes = level.getAllLanes();
