@@ -38,11 +38,11 @@ public class IndicatorManager {
     /**
      * Add a new Indicator with a specified damage and colour
      *
-     * @param damage The damage to be displayed on the Indicator
+     * @param text The damage to be displayed on the Indicator
      * @param color  The colour the Indicator will appear in
      */
-    public void addIndicator(int damage, Color color) {
-        indicators.add(new Indicator(damage, x, y, x, y + 100, color));
+    public void addIndicator(String text, Color color) {
+        indicators.add(new Indicator(text, x, y, x, y + 100, color));
     }
 
     /**
@@ -67,7 +67,7 @@ public class IndicatorManager {
 
             batch.begin();
             font.setColor(indicator.getColor());
-            font.draw(batch, indicator.getDamageText(), x + indicator.getX(), y + indicator.getY());
+            font.draw(batch, indicator.getText(), x + indicator.getX(), y + indicator.getY());
             batch.end();
 
             if (System.currentTimeMillis() - indicator.getTimeDisplayed() > 5000 || indicator.getY() == indicator.getDestY())
@@ -125,7 +125,7 @@ public class IndicatorManager {
      * @author Mohammad Foysal
      */
     private class Indicator {
-        private final int damage;
+        private final String text;
         private final int startX;
         private final int startY;
         private final long timeDisplayed;
@@ -139,15 +139,15 @@ public class IndicatorManager {
         /**
          * Create a new Indicator object
          *
-         * @param damage The damage to be displayed on the Indicator
+         * @param text The damage to be displayed on the Indicator
          * @param x      The X co-ordinate of the Indicator
          * @param y      The Y co-ordinate of the Indicator
          * @param destX  The destination X co-ordinate of the Indicator
          * @param destY  The destination Y co-ordinate of the Indicator
          * @param color  The colour of the Indicator
          */
-        Indicator(int damage, int x, int y, int destX, int destY, Color color) {
-            this.damage = damage;
+        Indicator(String text, int x, int y, int destX, int destY, Color color) {
+            this.text = text;
             this.color = color;
             this.x = x;
             this.y = y;
@@ -221,8 +221,8 @@ public class IndicatorManager {
          *
          * @return The damage text of the Indicator
          */
-        String getDamageText() {
-            return "-" + damage;
+        String getText() {
+            return text;
         }
 
         /**

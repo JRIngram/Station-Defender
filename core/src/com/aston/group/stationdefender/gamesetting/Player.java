@@ -8,6 +8,7 @@ import com.aston.group.stationdefender.gamesetting.items.ItemBlank;
 import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
 import com.aston.group.stationdefender.gamesetting.items.ItemTurret;
 import com.aston.group.stationdefender.utils.MouseInput;
+import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
 import com.aston.group.stationdefender.utils.resources.Inventory;
 import com.aston.group.stationdefender.utils.resources.PlayerInventory;
 import com.aston.group.stationdefender.utils.resources.QuickSlot;
@@ -41,6 +42,7 @@ public class Player implements InputProcessor {
     private int money;
     private PlayerCallback playerCallback;
     private int selectedSlot = 0;
+    private IndicatorManager moneyIndicator;
 
     /**
      * Construct a new Player
@@ -88,6 +90,8 @@ public class Player implements InputProcessor {
         menuButton.setHeight(50);
         stage.addActor(menuButton);
         menuButton.setPosition((Gdx.graphics.getWidth() / 2) + 200, Gdx.graphics.getHeight() - 80);
+
+        moneyIndicator = new IndicatorManager();
     }
 
     /**
@@ -127,6 +131,9 @@ public class Player implements InputProcessor {
         font.draw(batch, "Score: " + score, Gdx.graphics.getWidth() - 100, 60);
         font.draw(batch, "Money: " + money, Gdx.graphics.getWidth() - 100, 30);
         batch.end();
+
+        moneyIndicator.render(delta, Gdx.graphics.getWidth() - 50, 30);
+
         batch.begin();
         stage.draw();
         batch.end();
@@ -344,6 +351,7 @@ public class Player implements InputProcessor {
      */
     public void addMoney(int amount) {
         this.money += amount;
+        moneyIndicator.addIndicator("+" + Integer.toString(amount), Color.YELLOW);
     }
 
     /**
