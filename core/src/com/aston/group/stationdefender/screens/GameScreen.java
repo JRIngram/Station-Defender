@@ -95,6 +95,8 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
     @Override
     public void dispose() {
         batch.dispose();
+        level.dispose();
+        player.dispose();
     }
 
     @Override

@@ -91,6 +91,13 @@ public class Alien extends Unit {
         }
     }
 
+    @Override
+    public void dispose() {
+        super.dispose();
+        texture.dispose();
+        batch.dispose();
+    }
+
     /**
      * Moves the Alien from the left side of the lane to the right
      *

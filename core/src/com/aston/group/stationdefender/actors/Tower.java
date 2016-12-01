@@ -104,6 +104,12 @@ public class Tower implements Actor {
     }
 
     @Override
+    public void dispose() {
+        texture.dispose();
+        batch.dispose();
+    }
+
+    @Override
     public boolean getExists() {
         return exists;
     }

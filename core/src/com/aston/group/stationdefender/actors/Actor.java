@@ -41,4 +41,6 @@ public interface Actor {
      * @param damage Causes the Unit's health to deplete.
      */
     void takeDamage(double damage);
+
+    void dispose();
 }

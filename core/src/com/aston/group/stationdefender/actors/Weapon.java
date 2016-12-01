@@ -99,6 +99,13 @@ public class Weapon extends Unit {
         }
     }
 
+    @Override
+    public void dispose() {
+        super.dispose();
+        texture.dispose();
+        batch.dispose();
+    }
+
     /**
      * Decrements the build timer by 0.5
      * if the time since the last call to the method is greater than or equal to 500 milliseconds.

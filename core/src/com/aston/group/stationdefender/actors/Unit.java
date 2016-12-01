@@ -96,6 +96,12 @@ public abstract class Unit implements Actor {
         particleEffect.start();
     }
 
+    @Override
+    public void dispose() {
+        particleEffect.dispose();
+        indicatorManager.dispose();
+    }
+
     /**
      * Method for getting the name of the Unit.
      *

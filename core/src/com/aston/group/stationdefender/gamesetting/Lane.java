@@ -299,7 +299,9 @@ public class Lane implements UnitCallback {
         for (Tile tile : tiles) {
             tile.dispose();
         }
-        //Todo dispose units
+        for (Unit unit : units) {
+            unit.dispose();
+        }
     }
 
     /**
