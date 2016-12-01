@@ -9,4 +9,8 @@ public interface LaneCallback {
     void addMoney(int money);
 
     void addScore(int score);
+
+    void towerTakeDamage(double damage);
+
+    boolean isTowerColliding(int x, int y, int width, int height);
 }

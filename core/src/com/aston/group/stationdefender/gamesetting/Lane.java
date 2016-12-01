@@ -1,7 +1,6 @@
 package com.aston.group.stationdefender.gamesetting;
 
 import com.aston.group.stationdefender.actors.Alien;
-import com.aston.group.stationdefender.actors.Tower;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.LaneCallback;
 import com.aston.group.stationdefender.callbacks.UnitCallback;
@@ -24,7 +23,6 @@ public class Lane implements UnitCallback {
     private final Array<Tile> tiles = new Array<>();
     private final Array<Unit> units = new Array<>();
     private final ProjectileFactory projectileFactory;
-    private final Tower tower;
     private final LaneCallback laneCallback;
     private int width;
     private boolean overrun;
@@ -35,17 +33,15 @@ public class Lane implements UnitCallback {
     /**
      * Construct a new Lane
      *
-     * @param tower         The current Tower on the Board
      * @param x             The X co-ordinate of the Lane
      * @param y             The Y co-ordinate of the Lane
      * @param numberOfTiles The Number of tiles in the lane
      */
-    public Lane(LaneCallback laneCallback, Tower tower, int x, int y, int numberOfTiles) {
+    public Lane(LaneCallback laneCallback, int x, int y, int numberOfTiles) {
         this.laneCallback = laneCallback;
         this.x = x;
         this.y = y;
         this.height = Constants.TILE_HEIGHT;
-        this.tower = tower;
 
         Tile[] tile = new Tile[numberOfTiles];
         int tileX = x;
@@ -187,8 +183,8 @@ public class Lane implements UnitCallback {
 
             //Check if aliens are near tower
             unit = units.get(i);
-            if (unit.isFacingLeft() && tower.isColliding(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight())) {
-                tower.takeDamage(unit.getDamage());
+            if (unit.isFacingLeft() && laneCallback.isTowerColliding(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight())) {
+                laneCallback.towerTakeDamage(unit.getDamage());
                 overrun = true;
                 unit.destroy();
                 units.removeIndex(i);

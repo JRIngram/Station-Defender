@@ -47,7 +47,7 @@ public class Level implements LaneCallback {
         int laneY = 110;
 
         for (int i = 0; i < Constants.LANE_AMOUNT; i++) {
-            lanes.add(new Lane(this, tower, 100, laneY, Constants.TILE_AMOUNT));
+            lanes.add(new Lane(this, 100, laneY, Constants.TILE_AMOUNT));
             laneY += (Constants.TILE_HEIGHT + (Constants.TILE_HEIGHT / 4));
         }
 
@@ -223,5 +223,15 @@ public class Level implements LaneCallback {
     @Override
     public void addScore(int score) {
         levelCallback.addScore(score);
+    }
+
+    @Override
+    public void towerTakeDamage(double damage) {
+        tower.takeDamage(damage);
+    }
+
+    @Override
+    public boolean isTowerColliding(int x, int y, int width, int height) {
+        return tower.isColliding(x, y, width, height);
     }
 }

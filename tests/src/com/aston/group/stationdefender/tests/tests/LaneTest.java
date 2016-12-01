@@ -1,6 +1,5 @@
 package com.aston.group.stationdefender.tests.tests;
 
-import com.aston.group.stationdefender.actors.Tower;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.Lane;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
@@ -16,8 +15,7 @@ public class LaneTest {
 
     @Before
     public void setUp() {
-        Tower tower = new Tower(1, 1, 50, 50);
-        lane = new Lane(null, tower, 0, 0, numberOfTiles);
+        lane = new Lane(null, 0, 0, numberOfTiles);
     }
 
     @Test
