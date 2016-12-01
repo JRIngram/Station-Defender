@@ -10,9 +10,9 @@ import java.util.List;
 public class TestLauncher {
     private static final List<Class<?>> tests = new ArrayList<>(Arrays.asList(
             AlienTest.class,
-            BoardTest.class,
             ItemTest.class,
             LaneTest.class,
+            LevelTest.class,
             PlayerTest.class,
             TextureTest.class,
             TileTest.class,

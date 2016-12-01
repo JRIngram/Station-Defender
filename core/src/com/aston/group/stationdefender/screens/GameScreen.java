@@ -105,7 +105,7 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
     @Override
     public void placeActor(Actor actor, int x, int y) {
         //TODO: Change Actor to Unit
-        level.getBoard().place((Unit) actor, x, y);
+        level.place((Unit) actor, x, y);
     }
 
     @Override

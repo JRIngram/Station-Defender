@@ -1,7 +1,10 @@
 package com.aston.group.stationdefender.gamesetting;
 
+import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.Tower;
+import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.LevelCallback;
+import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -9,6 +12,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * Skeleton Level class
@@ -20,10 +24,11 @@ public class Level {
     private final Texture texture;
     private final LevelCallback levelCallback;
     private final BitmapFont font;
+    private final Array<Lane> lanes = new Array<>();
     private int levelNumber;
     private Tower tower;
-    //Todo - remove Board - lanes and units can be on Level, not inside a board
-    private Board board;
+    private boolean hasWon;
+    private boolean hasLost;
 
     /**
      * Construct a new Level with a given level number.
@@ -36,9 +41,15 @@ public class Level {
         this.levelNumber = levelNumber;
         this.levelCallback = levelCallback;
         tower = new Tower(0, 100, 100, 400);
-        board = new Board(player, tower);
         batch = new SpriteBatch();
         texture = TextureManager.INSTANCE.loadTexture(3);
+
+        int laneY = 110;
+
+        for (int i = 0; i < Constants.LANE_AMOUNT; i++) {
+            lanes.add(new Lane(player, tower, 100, laneY, Constants.TILE_AMOUNT));
+            laneY += (Constants.TILE_HEIGHT + (Constants.TILE_HEIGHT / 4));
+        }
 
         //Initialise Font
         FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
@@ -46,31 +57,6 @@ public class Level {
         params.size = 50;
         font = fontGenerator.generateFont(params);
         fontGenerator.dispose();
-    }
-
-    /**
-     * Increments the level number by 1.
-     */
-    public void incrementLevel() {
-        levelNumber++;
-    }
-
-    /**
-     * Returns the current level number
-     *
-     * @return The number of the Level
-     */
-    public int getLevel() {
-        return levelNumber;
-    }
-
-    /**
-     * Sets the current level number
-     *
-     * @param level The number of the level
-     */
-    public void setLevel(int level) {
-        levelNumber = level;
     }
 
     /**
@@ -87,14 +73,21 @@ public class Level {
         font.draw(batch, "Level " + levelNumber, (Gdx.graphics.getWidth() / 2) - 85, Gdx.graphics.getHeight() - 25);
         batch.end();
 
-        if (board != null) {
-            board.render(delta);
-            if (board.isHasLost()) {
-                levelCallback.onWinLost(false);
+        for (Lane lane : lanes) {
+            lane.render(delta);
+            if (lane.isOverrun()) {
+                if (!tower.getExists())
+                    hasLost = true;
             }
-            if (board.isHasWon()) {
-                levelCallback.onWinLost(true);
-            }
+        }
+        if (isAllLanesCleared()) {
+            hasWon = true;
+        }
+        if (hasLost) {
+            levelCallback.onWinLost(false);
+        }
+        if (hasWon) {
+            levelCallback.onWinLost(hasWon);
         }
 
         if (tower != null)
@@ -102,63 +95,125 @@ public class Level {
     }
 
     /**
-     * Returns the level number
+     * Adds a Lane to the Board
      *
-     * @return the level number
+     * @param lane The Lane to add to the Board
      */
-    public int getLevelNumber() {
-        return levelNumber;
+    public void addLane(Lane lane) {
+        lanes.add(lane);
     }
 
     /**
-     * Sets the level number
+     * Returns all the Lanes in an Array
      *
-     * @param levelNumber The number of the level
+     * @return An Array of all the Lanes
      */
-    public void setLevelNumber(int levelNumber) {
-        this.levelNumber = levelNumber;
+    public Array<Lane> getAllLanes() {
+        return lanes;
     }
 
     /**
-     * Returns the Tower object in the Level
+     * Removes a Lane from the Board by lane number
      *
-     * @return The Tower object in the Level
+     * @param index The Lane number to remove from the Board
      */
-    public Tower getTower() {
-        return tower;
+    public void removeLaneByIndex(int index) {
+        lanes.removeIndex(index - 1);
     }
 
     /**
-     * Sets the Tower object to be used in the Level
+     * Removes a Lane from the Board by Lane Object
      *
-     * @param tower The Tower object to be used in the Level
+     * @param lane The Lane Object to be removed from the Board
      */
-    public void setTower(Tower tower) {
-        this.tower = tower;
+    public void removeLaneByObject(Lane lane) {
+        lanes.removeValue(lane, true);
     }
 
     /**
-     * Returns the Board object used in the Level
+     * Returns a Lane by the specific Lane number
      *
-     * @return The Board object used in the Level
+     * @param index The lane number of the lane to get
+     * @return The lane of the specific lane number
      */
-    public Board getBoard() {
-        return board;
+    public Lane getLane(int index) {
+        return lanes.get(index - 1);
     }
 
     /**
-     * Sets the Board object to be used in the Level
+     * Empty the board
+     **/
+    public void clear() {
+        lanes.clear();
+    }
+
+    /**
+     * Place an actor at the given lane and tile. if there is already an actor
+     * at that tile placing should not happen.
      *
-     * @param board The Board object to be used in the Level
+     * @param unit The Unit to be placed
+     * @param x    The X co-ordinate the place the Unit
+     * @param y    The Y co-ordinate of the Unit
+     **/
+    public void place(Unit unit, int x, int y) {
+        for (Lane lane : lanes) {
+            if (lane.isColliding(x, y, 1, 1)) {
+                lane.place(unit, x, y);
+            }
+        }
+    }
+
+    /**
+     * Place an entity at the given lane and tile. if there is already an entity
+     * at that tile it will be lost.
+     *
+     * @param laneNo The index of the lane the entity is in
+     * @param tileNo The index of the tile the entity is in
+     * @return The Actor at the specific lane and tile
+     **/
+    public Actor getActorAt(int laneNo, int tileNo) {
+        return lanes.get(laneNo).getTile(tileNo).getActor();
+    }
+
+    /**
+     * Returns whether all the lanes are clear or not
+     *
+     * @return true if all the lanes are cleared, false if any of the lanes are not cleared
      */
-    public void setBoard(Board board) {
-        this.board = board;
+    private boolean isAllLanesCleared() {
+        boolean cleared = true;
+        for (int i = 0; i < lanes.size; i++) {
+            if (!lanes.get(i).isCleared()) {
+                cleared = false;
+            }
+        }
+        return cleared;
     }
 
     /**
      * Dispose of unused resources
      */
     public void dispose() {
-        board.dispose();
+        for (Lane lane : lanes) {
+            lane.dispose();
+        }
+    }
+
+    /**
+     * Returns whether the Player has won the game or not
+     *
+     * @return true if the Player has won, false if the Player has not won
+     */
+    public boolean isHasWon() {
+        return hasWon;
+    }
+
+    /**
+     * Returns whether the Player has lost the game or not
+     *
+     * @return true if the Player has lost, false if the Player has not lost
+     */
+    public boolean isHasLost() {
+        return hasLost;
     }
 }
