@@ -3,6 +3,7 @@ package com.aston.group.stationdefender.gamesetting.items;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.engine.GameEngine;
+import com.aston.group.stationdefender.utils.MouseInput;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -13,6 +14,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * @author Mohammed Foysal
  */
 public abstract class Item {
+
+    interface ItemInputListener{
+        void onClick();
+    }
+
     private final SpriteBatch batch;
     int id;
     boolean placeable;
@@ -57,6 +63,10 @@ public abstract class Item {
             batch.begin();
             batch.draw(texture, x, y, width, height);
             batch.end();
+        }
+
+        if(MouseInput.isColliding(x, y, width, height) && isJustSpawned()){
+            System.out.println("Intersecting");
         }
     }
 

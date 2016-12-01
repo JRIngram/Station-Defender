@@ -47,7 +47,7 @@ public interface Constants {
     int TILE_AMOUNT = 11;
     int LANE_AMOUNT = 4;
 
-    int TOWER_HEALTH = 1000;
+    int TOWER_HEALTH = 400;
     int UNIT_HEALTH = 100;
     int WEAPON_HEALTH = 100;
     int DEFAULT_DAMAGE = 50;
