@@ -2,6 +2,7 @@ package com.aston.group.stationdefender.tests.tests;
 
 import com.aston.group.stationdefender.actors.Alien;
 import com.aston.group.stationdefender.actors.Weapon;
+import com.aston.group.stationdefender.tests.utils.ThreadSleep;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,14 +42,14 @@ public class WeaponTest {
         assertEquals(2.0, testWep.getRemainingBuildTime(), 0);
 
         for (int i = 2; i > 1; i--) {
-            threadSleep();
-            threadSleep();
+            ThreadSleep.threadSleep(testWep);
+            ThreadSleep.threadSleep(testWep);
             assertEquals(false, testWep.getBuilt());
         }
 
         assertEquals(1.0, testWep.getRemainingBuildTime(), 0);
-        threadSleep();
-        threadSleep();
+        ThreadSleep.threadSleep(testWep);
+        ThreadSleep.threadSleep(testWep);
         assertEquals(true, testWep.getBuilt());
         assertEquals(0.0, testWep.getRemainingBuildTime(), 0);
     }
@@ -93,23 +94,14 @@ public class WeaponTest {
         testWep.setAdjacentActor(adjacentAlien);
         assertEquals(adjacentAlien, testWep.getAdjacentActor());
         for (int i = 2; i > 1; i--) {
-            threadSleep();
-            threadSleep();
+            ThreadSleep.threadSleep(testWep);
+            ThreadSleep.threadSleep(testWep);
             assertEquals(false, testWep.getBuilt());
         }
-        threadSleep();
-        threadSleep();
+        ThreadSleep.threadSleep(testWep);
+        ThreadSleep.threadSleep(testWep);
         assertEquals(true, testWep.getBuilt());
         testWep.act(0.1f);
         assertTrue((adjacentAlien.getHealth() <= 5));
-    }
-
-    private void threadSleep() {
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        testWep.decrementBuildTimer();
     }
 }

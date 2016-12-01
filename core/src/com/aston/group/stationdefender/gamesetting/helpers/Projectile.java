@@ -37,9 +37,9 @@ public class Projectile implements Pool.Poolable {
     /**
      * Initiate the Projectile moving
      *
-     * @param x     The initial X co-ordinate of the Projectile
-     * @param y     The initial Y co-ordinate of the Projectile
-     * @param speed The speed of the Projectile
+     * @param x      The initial X co-ordinate of the Projectile
+     * @param y      The initial Y co-ordinate of the Projectile
+     * @param speed  The speed of the Projectile
      * @param damage The damage of the Projectile
      */
     public void init(int x, int y, double speed, double damage) {

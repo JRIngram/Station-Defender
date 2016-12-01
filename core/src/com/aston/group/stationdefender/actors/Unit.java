@@ -161,7 +161,7 @@ public abstract class Unit implements Actor {
             health = 0;
         } else
             health -= damage;
-        indicatorManager.addIndicator("-" + Integer.toString((int)damage), Color.RED);
+        indicatorManager.addIndicator("-" + Integer.toString((int) damage), Color.RED);
     }
 
     /**

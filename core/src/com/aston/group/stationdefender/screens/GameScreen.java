@@ -15,7 +15,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -25,14 +24,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * @author Mohammad Foysal
  */
 public class GameScreen implements Screen, PlayerCallback, LevelCallback {
-    private final Array<Actor> actorBufferB = new Array<>();
     private final SpriteBatch batch;
     private final OrthographicCamera camera;
     private final Viewport viewport;
     private final Player player;
     private final GameCallback gameCallback;
     private final Level level;
-    private Array<Actor> actorBufferA = new Array<>();
 
     /**
      * Create a new GameScreen with a specified GameCallBack and LevelNumber
@@ -57,24 +54,6 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
         level = new Level(player, this, levelNumber);
     }
 
-    /**
-     * Refresh all Actors to see if they exist and render them if they do
-     *
-     * @param delta The time in seconds since the last render
-     */
-    private void refresh(float delta) {
-        for (Actor a : actorBufferA) {
-            a.render(delta);
-        }
-        for (Actor a : actorBufferA) {
-            if (a.getExists()) {
-                actorBufferB.add(a);
-            }
-        }
-        actorBufferA.clear();
-        actorBufferA = actorBufferB;
-    }
-
     @Override
     public void show() {
         Gdx.input.setInputProcessor(player);
@@ -92,7 +71,6 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
         vector2 = viewport.unproject(vector2);
         MouseInput.setPosition(vector2);
 
-        refresh(delta);
         level.render(delta);
         player.render(delta);
     }

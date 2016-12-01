@@ -38,8 +38,8 @@ public class IndicatorManager {
     /**
      * Add a new Indicator with a specified damage and colour
      *
-     * @param text The damage to be displayed on the Indicator
-     * @param color  The colour the Indicator will appear in
+     * @param text  The damage to be displayed on the Indicator
+     * @param color The colour the Indicator will appear in
      */
     public void addIndicator(String text, Color color) {
         indicators.add(new Indicator(text, x, y, x, y + 100, color));
@@ -139,12 +139,12 @@ public class IndicatorManager {
         /**
          * Create a new Indicator object
          *
-         * @param text The damage to be displayed on the Indicator
-         * @param x      The X co-ordinate of the Indicator
-         * @param y      The Y co-ordinate of the Indicator
-         * @param destX  The destination X co-ordinate of the Indicator
-         * @param destY  The destination Y co-ordinate of the Indicator
-         * @param color  The colour of the Indicator
+         * @param text  The damage to be displayed on the Indicator
+         * @param x     The X co-ordinate of the Indicator
+         * @param y     The Y co-ordinate of the Indicator
+         * @param destX The destination X co-ordinate of the Indicator
+         * @param destY The destination Y co-ordinate of the Indicator
+         * @param color The colour of the Indicator
          */
         Indicator(String text, int x, int y, int destX, int destY, Color color) {
             this.text = text;
