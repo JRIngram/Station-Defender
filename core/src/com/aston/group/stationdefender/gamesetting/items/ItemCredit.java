@@ -2,7 +2,6 @@ package com.aston.group.stationdefender.gamesetting.items;
 
 import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
-import com.aston.group.stationdefender.gamesetting.Player;
 import com.aston.group.stationdefender.utils.TextureManager;
 
 /**
@@ -11,7 +10,6 @@ import com.aston.group.stationdefender.utils.TextureManager;
  * @author Mohammed Foysal
  */
 public class ItemCredit extends Item {
-    private int value;
 
     /**
      * Construct a new ItemCredit
@@ -25,9 +23,7 @@ public class ItemCredit extends Item {
     }
 
     @Override
-    public void useItem(Player player, ItemCallback itemCallback) {
-        player.addMoney(value);
-
+    public void useItem(ItemCallback itemCallback) {
         if (itemCallback != null)
             itemCallback.onUse(placeable);
     }
@@ -35,23 +31,5 @@ public class ItemCredit extends Item {
     @Override
     public Actor getPlaceableActor() {
         return null;
-    }
-
-    /**
-     * Returns the value of the Item
-     *
-     * @return The value of the Item
-     */
-    public int getValue() {
-        return value;
-    }
-
-    /**
-     * Sets the value of the Item
-     *
-     * @param value The value of the Item
-     */
-    public void setValue(int value) {
-        this.value = value;
     }
 }

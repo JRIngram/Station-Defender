@@ -2,7 +2,6 @@ package com.aston.group.stationdefender.gamesetting.items;
 
 import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
-import com.aston.group.stationdefender.gamesetting.Player;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -19,6 +18,7 @@ public abstract class Item {
     boolean placeable;
     Texture texture;
     int cost;
+    int value;
     private boolean usable;
     private boolean collected;
     private boolean justSpawned;
@@ -33,6 +33,7 @@ public abstract class Item {
         width = 32;
         height = 32;
         cost = 0;
+        value = 0;
     }
 
     /**
@@ -51,6 +52,7 @@ public abstract class Item {
         width = 32;
         height = 32;
         cost = 0;
+        value = 0;
 
         batch = new SpriteBatch();
     }
@@ -72,10 +74,9 @@ public abstract class Item {
     /**
      * Allows the player to use the Item
      *
-     * @param player       The current Player of the game
      * @param itemCallback The ItemCallBack associated with the Item
      */
-    public abstract void useItem(Player player, ItemCallback itemCallback);
+    public abstract void useItem(ItemCallback itemCallback);
 
     /**
      * Abstract method to return whether the Item can be placed on the Board
@@ -299,12 +300,21 @@ public abstract class Item {
     }
 
     /**
+     * Returns the cost of the Item
+     *
+     * @return The cost of the Item
+     */
+    public int getCost() {
+        return cost;
+    }
+
+    /**
      * Returns the value of the Item
      *
      * @return The value of the Item
      */
-    public int getCost() {
-        return cost;
+    public int getValue() {
+        return value;
     }
 
     /**

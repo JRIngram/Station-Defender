@@ -202,9 +202,15 @@ public class Player implements InputProcessor {
     public boolean touchUp(final int screenX, final int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
             if (currentItem != null && money >= currentItem.getCost()) {
-                currentItem.useItem(this, placeable -> {
-                    if (playerCallback != null && placeable) {
-                        playerCallback.placeActor(currentItem.getPlaceableActor(), MouseInput.getX(), MouseInput.getY());
+                currentItem.useItem(placeable -> {
+                    if (placeable) {
+                        if (playerCallback.placeActor(currentItem.getPlaceableActor(), MouseInput.getX(), MouseInput.getY())) {
+                            removeMoney(currentItem.getCost());
+                            addMoney(currentItem.getValue());
+                        }
+                    } else {
+                        removeMoney(currentItem.getCost());
+                        addMoney(currentItem.getValue());
                     }
                 });
             }

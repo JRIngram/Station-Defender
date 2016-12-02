@@ -64,14 +64,16 @@ public class Lane implements UnitCallback {
      * @param x    The X co-ordinate of the Tile
      * @param y    The Y co-ordinate of the Tile
      */
-    void place(Unit unit, int x, int y) {
+    boolean place(Unit unit, int x, int y) {
         for (int i = 0; i < tiles.size; i++) {
             if (tiles.get(i).isColliding(x, y, 1, 1) && !isTileOccupied(i)) {
                 unit.setX(tiles.get(i).getCenterX() - (unit.getWidth() / 2));
                 unit.setY(tiles.get(i).getCenterY() - (unit.getHeight() / 2));
                 units.add(unit);
+                return true;
             }
         }
+        return false;
     }
 
     /**

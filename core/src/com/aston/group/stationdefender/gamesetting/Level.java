@@ -153,12 +153,15 @@ public class Level implements LaneCallback {
      * @param x    The X co-ordinate the place the Unit
      * @param y    The Y co-ordinate of the Unit
      **/
-    public void place(Unit unit, int x, int y) {
+    public boolean place(Unit unit, int x, int y) {
+        boolean result = false;
         for (Lane lane : lanes) {
             if (lane.isColliding(x, y, 1, 1)) {
-                lane.place(unit, x, y);
+                if (lane.place(unit, x, y))
+                    result = true;
             }
         }
+        return result;
     }
 
     /**

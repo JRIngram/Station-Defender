@@ -16,7 +16,7 @@ public interface PlayerCallback {
      * @param x     The X co-ordinate to place the Actor
      * @param y     The Y co-ordinate to place the Actor
      */
-    void placeActor(Actor actor, int x, int y);
+    boolean placeActor(Actor actor, int x, int y);
 
     /**
      * The callback to pause the game

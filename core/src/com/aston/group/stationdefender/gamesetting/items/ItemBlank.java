@@ -2,7 +2,6 @@ package com.aston.group.stationdefender.gamesetting.items;
 
 import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
-import com.aston.group.stationdefender.gamesetting.Player;
 
 /**
  * ItemBlank represents a Blank Item with
@@ -21,7 +20,7 @@ public class ItemBlank extends Item {
     }
 
     @Override
-    public void useItem(Player player, ItemCallback itemCallback) {
+    public void useItem(ItemCallback itemCallback) {
     }
 
     @Override
