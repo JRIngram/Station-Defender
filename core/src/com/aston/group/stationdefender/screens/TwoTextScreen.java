@@ -2,6 +2,7 @@ package com.aston.group.stationdefender.screens;
 
 import com.aston.group.stationdefender.callbacks.TwoTextCallback;
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -10,8 +11,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -63,16 +62,9 @@ public class TwoTextScreen implements Screen {
         //Setup viewport
         viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
 
-        //Initialise Font
-        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
-        FreeTypeFontParameter params = new FreeTypeFontParameter();
-        params.size = 18;
-        BitmapFont buttonFont = fontGenerator.generateFont(params);
-        params.size = 30;
-        bodyFont = fontGenerator.generateFont(params);
-        params.size = 50;
-        titleFont = fontGenerator.generateFont(params);
-        fontGenerator.dispose();
+        bodyFont = FontManager.getFont(30);
+        titleFont = FontManager.getFont(50);
+        BitmapFont buttonFont = FontManager.getFont(18);
 
         //Buttons
         stage = new Stage();

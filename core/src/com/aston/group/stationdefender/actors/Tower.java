@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.SoundManager;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
@@ -9,7 +10,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 /**
  * Tower is the object which the Humans defend,
@@ -46,13 +46,7 @@ public class Tower implements Actor {
         health = Constants.TOWER_HEALTH;
         texture = TextureManager.INSTANCE.loadTexture(6);
         batch = new SpriteBatch();
-
-        //Initialise Font
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        params.size = 16;
-        font = generator.generateFont(params);
-        generator.dispose();
+        font = FontManager.getFont(16);
     }
 
     @Override

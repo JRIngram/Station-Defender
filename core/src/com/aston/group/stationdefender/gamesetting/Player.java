@@ -7,6 +7,7 @@ import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.gamesetting.items.ItemBlank;
 import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
 import com.aston.group.stationdefender.gamesetting.items.ItemTurret;
+import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
 import com.aston.group.stationdefender.utils.resources.Inventory;
@@ -18,7 +19,6 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Array;
@@ -71,14 +71,8 @@ public class Player implements InputProcessor {
         if (quickSlots.size > 0)
             currentItem = quickSlots.get(0).getItem();
 
-        //Initialise Font
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        params.size = 16;
-        font = generator.generateFont(params);
-        params.size = 22;
-        BitmapFont buttonFont = generator.generateFont(params);
-        generator.dispose();
+        font = FontManager.getFont(16);
+        BitmapFont buttonFont = FontManager.getFont(22);
 
         //Buttons
         stage = new Stage();

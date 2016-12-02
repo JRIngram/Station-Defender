@@ -1,10 +1,9 @@
 package com.aston.group.stationdefender.utils.indicators;
 
-import com.badlogic.gdx.Gdx;
+import com.aston.group.stationdefender.utils.FontManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
@@ -27,12 +26,7 @@ public class IndicatorManager {
      */
     public IndicatorManager() {
         batch = new SpriteBatch();
-
-        //Initialise Font
-        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        params.size = 18;
-        font = fontGenerator.generateFont(params);
+        font = FontManager.INSTANCE.getFont(18);
     }
 
     /**

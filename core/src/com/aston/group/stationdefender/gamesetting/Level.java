@@ -6,13 +6,13 @@ import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.LaneCallback;
 import com.aston.group.stationdefender.callbacks.LevelCallback;
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -51,12 +51,7 @@ public class Level implements LaneCallback {
             laneY += (Constants.TILE_HEIGHT + (Constants.TILE_HEIGHT / 4));
         }
 
-        //Initialise Font
-        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Roboto-Regular.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        params.size = 50;
-        font = fontGenerator.generateFont(params);
-        fontGenerator.dispose();
+        font = FontManager.getFont(50);
     }
 
     /**
