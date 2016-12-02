@@ -26,7 +26,7 @@ public abstract class Unit implements Actor {
     int y; //Unit's position on the Y-Axis
     int width; //Unit's width
     int height; //Unit's height
-    boolean isAdjacent; //Checks if the Unit is adjacent to any other unit.  This information is retrieved from the Board.
+    boolean isAdjacent; //Checks if the Unit is adjacent to any other unit.  This information is retrieved from the Level.
     Actor adjacentActor; //The Unit that this Unit is adjacent to.
     boolean facingLeft; //Whether the Unit is facing left or not
     UnitCallback unitCallback; //The UnitCallBack used for the Unit
@@ -362,6 +362,12 @@ public abstract class Unit implements Actor {
         this.unitCallback = unitCallback;
     }
 
+    /**
+     * Render the particle effect
+     *
+     * @param delta The time in seconds since the last render
+     * @param batch The SpriteBatch to render the particle effect on
+     */
     void renderParticleEffect(float delta, SpriteBatch batch) {
         if (particleEffect != null) {
             particleEffect.update(delta);

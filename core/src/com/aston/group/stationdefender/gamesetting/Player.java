@@ -36,13 +36,13 @@ public class Player implements InputProcessor {
     private final BitmapFont font;
     private final Stage stage;
     private final TextButton menuButton;
+    private final IndicatorManager moneyIndicator;
     private Item currentItem;
     private Inventory inventory;
     private int score;
     private int money;
     private PlayerCallback playerCallback;
     private int selectedSlot = 0;
-    private IndicatorManager moneyIndicator;
 
     /**
      * Construct a new Player
@@ -365,7 +365,7 @@ public class Player implements InputProcessor {
      *
      * @param amount The amount of money to be removed from the Player's money total
      */
-    public void removeMoney(int amount) {
+    private void removeMoney(int amount) {
         this.money -= amount;
     }
 

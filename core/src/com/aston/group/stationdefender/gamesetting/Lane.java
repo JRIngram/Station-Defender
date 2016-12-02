@@ -33,6 +33,7 @@ public class Lane implements UnitCallback {
     /**
      * Construct a new Lane
      *
+     * @param laneCallback  THe LaneCallback to be used for the Lane
      * @param x             The X co-ordinate of the Lane
      * @param y             The Y co-ordinate of the Lane
      * @param numberOfTiles The Number of tiles in the lane
@@ -120,27 +121,27 @@ public class Lane implements UnitCallback {
     }
 
     /**
-     * Adds a tile to the Board
+     * Adds a tile to the Level
      *
-     * @param tile The tile to add to the Board
+     * @param tile The tile to add to the Level
      */
     public void addTile(Tile tile) {
         tiles.add(tile);
     }
 
     /**
-     * Removes a tile from the Board by Tile number
+     * Removes a tile from the Level by Tile number
      *
-     * @param index The tile number to remove from the Board
+     * @param index The tile number to remove from the Level
      */
     public void removeTileByIndex(int index) {
         tiles.removeIndex(index);
     }
 
     /**
-     * Removes a tile from the Board by Tile Object
+     * Removes a tile from the Level by Tile Object
      *
-     * @param tile The tile Object to be removed from the Board
+     * @param tile The tile Object to be removed from the Level
      */
     public void removeTileByObject(Tile tile) {
         tiles.removeValue(tile, true);
@@ -223,7 +224,7 @@ public class Lane implements UnitCallback {
                 Projectile projectile = projectileFactory.getProjectiles().get(i);
                 if (units.get(j).isFacingLeft() && projectile.isColliding(units.get(j).getX(), units.get(j).getY(),
                         units.get(j).getWidth(), units.get(j).getHeight())) {
-                    projectile.setAlive(false);
+                    projectile.setDead();
                     double damage = projectile.getDamage();
                     if (units.get(j).getHealth() - damage <= 0) {
                         laneCallback.addMoney(Constants.MONEY_REGENERATION);
@@ -279,14 +280,12 @@ public class Lane implements UnitCallback {
      * Check if an objects X &amp; Y co-ordinates or width &amp; height
      * overlaps the Lanes X &amp; Y co-ordinates, or width &amp; height
      *
-     * @param x      The X co-ordinate of the object to check
-     * @param y      The Y co-ordinate of the object to check
-     * @param width  The width of the object to check
-     * @param height The height of the object to check
+     * @param x The X co-ordinate of the object to check
+     * @param y The Y co-ordinate of the object to check
      * @return true if the values overlap, false if the values do not overlap
      */
-    boolean isColliding(int x, int y, int width, int height) {
-        return x + width > this.x && x < this.x + this.width && y + height > this.y && y < this.y + this.height;
+    boolean isColliding(int x, int y) {
+        return x + 1 > this.x && x < this.x + this.width && y + 1 > this.y && y < this.y + this.height;
     }
 
     @Override

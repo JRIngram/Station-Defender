@@ -42,5 +42,8 @@ public interface Actor {
      */
     void takeDamage(double damage);
 
+    /**
+     * Dispose of unused resources
+     */
     void dispose();
 }

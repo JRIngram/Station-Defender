@@ -71,12 +71,15 @@ public class LaneTest {
         lane.removeTileByIndex(1);
         tiles = lane.getAllTiles();
         assertEquals(numberOfTiles - 1, tiles.size);
+        lane.removeTileByIndex(4);
+        tiles = lane.getAllTiles();
+        assertEquals(numberOfTiles - 2, tiles.size);
         Tile tile = new Tile(0, 0);
         lane.addTile(tile);
         tiles = lane.getAllTiles();
-        assertEquals(numberOfTiles, tiles.size);
+        assertEquals(numberOfTiles - 1, tiles.size);
         lane.removeTileByObject(tile);
         tiles = lane.getAllTiles();
-        assertEquals(numberOfTiles - 1, tiles.size);
+        assertEquals(numberOfTiles - 2, tiles.size);
     }
 }

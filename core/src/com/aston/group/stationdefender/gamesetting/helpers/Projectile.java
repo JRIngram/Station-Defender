@@ -192,11 +192,9 @@ public class Projectile implements Pool.Poolable {
 
     /**
      * Set whether the Projectile is alive or not
-     *
-     * @param alive Whether the Projectile is alive or not
      */
-    public void setAlive(boolean alive) {
-        this.alive = alive;
+    public void setDead() {
+        alive = false;
     }
 
     /**

@@ -79,9 +79,9 @@ public abstract class Item {
     public abstract void useItem(ItemCallback itemCallback);
 
     /**
-     * Abstract method to return whether the Item can be placed on the Board
+     * Abstract method to return whether the Item can be placed on the Level
      *
-     * @return A Unit that can be placed on the Level, null if the Unit cannot be placed on the Board
+     * @return A Unit that can be placed on the Level, null if the Unit cannot be placed on the Level
      */
     public abstract Unit getPlaceableUnit();
 
@@ -324,9 +324,6 @@ public abstract class Item {
      */
     @Override
     public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "Item{" + "id=" + id + ", name='" + name + '\'' + '}';
     }
 }

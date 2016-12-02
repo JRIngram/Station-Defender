@@ -26,8 +26,8 @@ public class Level implements LaneCallback {
     private final LevelCallback levelCallback;
     private final BitmapFont font;
     private final Array<Lane> lanes = new Array<>();
-    private int levelNumber;
-    private Tower tower;
+    private final int levelNumber;
+    private final Tower tower;
     private boolean hasWon;
     private boolean hasLost;
 
@@ -93,9 +93,9 @@ public class Level implements LaneCallback {
     }
 
     /**
-     * Adds a Lane to the Board
+     * Adds a Lane to the Level
      *
-     * @param lane The Lane to add to the Board
+     * @param lane The Lane to add to the Level
      */
     public void addLane(Lane lane) {
         lanes.add(lane);
@@ -111,18 +111,18 @@ public class Level implements LaneCallback {
     }
 
     /**
-     * Removes a Lane from the Board by lane number
+     * Removes a Lane from the Level by lane number
      *
-     * @param index The Lane number to remove from the Board
+     * @param index The Lane number to remove from the Level
      */
     public void removeLaneByIndex(int index) {
         lanes.removeIndex(index - 1);
     }
 
     /**
-     * Removes a Lane from the Board by Lane Object
+     * Removes a Lane from the Level by Lane Object
      *
-     * @param lane The Lane Object to be removed from the Board
+     * @param lane The Lane Object to be removed from the Level
      */
     public void removeLaneByObject(Lane lane) {
         lanes.removeValue(lane, true);
@@ -139,7 +139,7 @@ public class Level implements LaneCallback {
     }
 
     /**
-     * Empty the board
+     * Empty the Level
      **/
     public void clear() {
         lanes.clear();
@@ -152,11 +152,12 @@ public class Level implements LaneCallback {
      * @param unit The Unit to be placed
      * @param x    The X co-ordinate the place the Unit
      * @param y    The Y co-ordinate of the Unit
+     * @return true if the placement is successful, false if not
      **/
     public boolean place(Unit unit, int x, int y) {
         boolean result = false;
         for (Lane lane : lanes) {
-            if (lane.isColliding(x, y, 1, 1)) {
+            if (lane.isColliding(x, y)) {
                 if (lane.place(unit, x, y))
                     result = true;
             }
