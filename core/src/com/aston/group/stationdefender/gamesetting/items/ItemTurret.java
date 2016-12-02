@@ -1,6 +1,6 @@
 package com.aston.group.stationdefender.gamesetting.items;
 
-import com.aston.group.stationdefender.actors.Actor;
+import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.actors.Weapon;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
@@ -25,7 +25,7 @@ public class ItemTurret extends Item {
     }
 
     @Override
-    public Actor getPlaceableActor() {
+    public Unit getPlaceableUnit() {
         return new Weapon();
     }
 }

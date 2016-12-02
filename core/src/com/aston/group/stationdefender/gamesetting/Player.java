@@ -204,7 +204,7 @@ public class Player implements InputProcessor {
             if (currentItem != null && money >= currentItem.getCost()) {
                 currentItem.useItem(placeable -> {
                     if (placeable) {
-                        if (playerCallback.placeActor(currentItem.getPlaceableActor(), MouseInput.getX(), MouseInput.getY())) {
+                        if (playerCallback.placeUnit(currentItem.getPlaceableUnit(), MouseInput.getX(), MouseInput.getY())) {
                             removeMoney(currentItem.getCost());
                             addMoney(currentItem.getValue());
                         }
