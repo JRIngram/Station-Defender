@@ -2,6 +2,7 @@ package com.aston.group.stationdefender.gamesetting.helpers;
 
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
@@ -34,9 +35,9 @@ public class Tile {
         width = Constants.TILE_WIDTH;
         height = Constants.TILE_HEIGHT;
 
-        batch = new SpriteBatch();
+        batch = GameEngine.getBatch();
         texture = TextureManager.INSTANCE.loadTexture(4);
-        shapeRenderer = new ShapeRenderer();
+        shapeRenderer = GameEngine.getShapeRenderer();
     }
 
     /**

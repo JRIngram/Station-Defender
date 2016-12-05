@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender.utils.indicators;
 
+import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.FontManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -25,7 +26,7 @@ public class IndicatorManager {
      * Create a new IndicatorManager
      */
     public IndicatorManager() {
-        batch = new SpriteBatch();
+        batch = GameEngine.getBatch();
         font = FontManager.getFont(18);
     }
 

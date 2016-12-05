@@ -42,7 +42,7 @@ public abstract class Item {
         cost = 0;
         value = 0;
 
-        batch = new SpriteBatch();
+        batch = GameEngine.getBatch();
     }
 
     /**

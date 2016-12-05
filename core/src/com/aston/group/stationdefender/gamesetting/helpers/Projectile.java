@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender.gamesetting.helpers;
 
+import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -30,7 +31,7 @@ public class Projectile implements Pool.Poolable {
         x = 0;
         y = 0;
         alive = false;
-        batch = new SpriteBatch();
+        batch = GameEngine.getBatch();
         texture = TextureManager.INSTANCE.loadTexture(9);
     }
 

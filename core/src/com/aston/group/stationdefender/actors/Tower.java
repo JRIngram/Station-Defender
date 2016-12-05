@@ -2,6 +2,7 @@ package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.actors.helpers.ParticleEffectHelper;
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
@@ -42,7 +43,7 @@ public class Tower implements Actor {
         exists = true;
         health = Constants.TOWER_HEALTH;
         texture = TextureManager.INSTANCE.loadTexture(6);
-        batch = new SpriteBatch();
+        batch = GameEngine.getBatch();
         font = FontManager.getFont(16);
         particleEffectHelper = new ParticleEffectHelper();
     }

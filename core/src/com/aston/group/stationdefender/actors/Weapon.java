@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
@@ -69,7 +70,7 @@ public class Weapon extends Unit {
         remainingBuildTime = buildTime;
         built = false;
         facingLeft = false;
-        batch = new SpriteBatch();
+        batch = GameEngine.getBatch();
         texture = TextureManager.INSTANCE.loadTexture(8);
         startTime = System.currentTimeMillis();
     }

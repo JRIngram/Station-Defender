@@ -3,6 +3,7 @@ package com.aston.group.stationdefender.gamesetting;
 import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.gamesetting.items.ItemBlank;
 import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
@@ -48,7 +49,7 @@ public class Player implements InputProcessor {
      * Construct a new Player
      */
     public Player() {
-        batch = new SpriteBatch();
+        batch = GameEngine.getBatch();
         inventory = new PlayerInventory();
         score = 0;
         money = Constants.START_MONEY;

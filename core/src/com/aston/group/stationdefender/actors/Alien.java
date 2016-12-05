@@ -1,8 +1,8 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.TextureManager;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -15,7 +15,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Alien extends Unit {
     private final Texture texture;
     private final SpriteBatch batch;
-    private final OrthographicCamera camera;
 
     /**
      * Construct a new Alien with default X and Y co-ordinates of '0'
@@ -51,21 +50,13 @@ public class Alien extends Unit {
      */
     public Alien(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
         super(name, speed, damage, rateOfFire, health, range, x, y, width, height);
-        batch = new SpriteBatch();
-
-        //Setup camera
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        camera.update();
-
+        batch = GameEngine.getBatch();
         texture = TextureManager.INSTANCE.loadTexture(7);
         facingLeft = true;
     }
 
     @Override
     public void render(float delta) {
-        batch.setProjectionMatrix(camera.projection);
-        batch.setTransformMatrix(camera.view);
         batch.begin();
         renderParticleEffect(delta, batch);
         if (!isAdjacent())

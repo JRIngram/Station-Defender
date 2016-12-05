@@ -2,12 +2,12 @@ package com.aston.group.stationdefender.screens;
 
 import com.aston.group.stationdefender.callbacks.TwoTextCallback;
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,8 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Objects;
 
@@ -30,14 +28,13 @@ import java.util.Objects;
  */
 public class TwoTextScreen implements Screen {
     private final SpriteBatch batch;
-    private final OrthographicCamera camera;
-    private final Viewport viewport;
     private final Stage stage;
     private final BitmapFont titleFont;
     private final BitmapFont bodyFont;
     private final TextButton backButton;
     private final Texture texture;
     private final boolean continueBool;
+    private final GameEngine gameEngine;
     private TextButton continueButton;
     private TwoTextCallback twoTextCallback;
     private float fadeElapsed = 0;
@@ -54,15 +51,8 @@ public class TwoTextScreen implements Screen {
      */
     public TwoTextScreen(boolean continueBool) {
         this.continueBool = continueBool;
-        batch = new SpriteBatch();
-
-        //Setup camera
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        camera.update();
-
-        //Setup viewport
-        viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
+        gameEngine = GameEngine.INSTANCE;
+        batch = GameEngine.getBatch();
 
         bodyFont = FontManager.getFont(30);
         titleFont = FontManager.getFont(50);
@@ -121,12 +111,9 @@ public class TwoTextScreen implements Screen {
         float fade = Interpolation.fade.apply(fadeElapsed / fadeInTime);
         float fade2 = Interpolation.fade.apply((fadeElapsed - fadeDelay) / fadeInTime);
 
-        //render
-        batch.setProjectionMatrix(camera.projection);
-        batch.setTransformMatrix(camera.view);
-
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        gameEngine.render();
 
         // Draw things on screen
         batch.begin();
@@ -148,7 +135,7 @@ public class TwoTextScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height);
+        gameEngine.update(width, height);
     }
 
     @Override
@@ -166,6 +153,8 @@ public class TwoTextScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        bodyFont.dispose();
+        titleFont.dispose();
         batch.dispose();
     }
 

@@ -5,6 +5,7 @@ import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.LaneCallback;
 import com.aston.group.stationdefender.callbacks.LevelCallback;
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
@@ -40,7 +41,7 @@ public class Level implements LaneCallback {
         this.levelNumber = levelNumber;
         this.levelCallback = levelCallback;
         tower = new Tower(100, 100, 400);
-        batch = new SpriteBatch();
+        batch = GameEngine.getBatch();
         texture = TextureManager.INSTANCE.loadTexture(3);
         double difficulty = (2 + (levelNumber / 10)) * 10;
 
@@ -60,7 +61,7 @@ public class Level implements LaneCallback {
      */
     public void render(float delta) {
         batch.begin();
-        batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.draw(texture, 0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         font.setColor(Color.BLACK);
         font.draw(batch, "Level " + levelNumber, (Gdx.graphics.getWidth() / 2) - 85, Gdx.graphics.getHeight() - 25);
         font.setColor(Color.WHITE);

@@ -2,13 +2,13 @@ package com.aston.group.stationdefender.screens;
 
 import com.aston.group.stationdefender.callbacks.MenuCallback;
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,8 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Objects;
 
@@ -32,13 +30,12 @@ import java.util.Objects;
  */
 public class IntroScreen implements Screen {
     private final SpriteBatch batch;
-    private final OrthographicCamera camera;
-    private final Viewport viewport;
     private final Stage stage;
     private final BitmapFont font;
     private final TextButton backgroundButton, instructionButton, playButton, exitButton;
     private final TextButton[] buttons;
     private final Texture texture;
+    private final GameEngine gameEngine;
     private MenuCallback menuCallback;
     private float fadeElapsed = 0;
 
@@ -46,15 +43,8 @@ public class IntroScreen implements Screen {
      * Construct a new IntroScreen
      */
     public IntroScreen() {
-        batch = new SpriteBatch();
-
-        //Setup camera
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        camera.update();
-
-        //Setup viewport
-        viewport = new FitViewport(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, camera);
+        gameEngine = GameEngine.INSTANCE;
+        batch = GameEngine.getBatch();
 
         font = FontManager.getFont(50);
 
@@ -108,12 +98,9 @@ public class IntroScreen implements Screen {
         float fadeDelay = 0f;
         float fade = Interpolation.fade.apply((fadeElapsed - fadeDelay) / fadeInTime);
 
-        //render
-        batch.setProjectionMatrix(camera.projection);
-        batch.setTransformMatrix(camera.view);
-
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        gameEngine.render();
 
         batch.begin();
         batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -132,7 +119,7 @@ public class IntroScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height);
+        gameEngine.update(width, height);
     }
 
     @Override
