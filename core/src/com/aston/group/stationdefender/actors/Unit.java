@@ -98,7 +98,6 @@ public abstract class Unit implements Actor {
 
     @Override
     public void dispose() {
-        particleEffect.dispose();
         indicatorManager.dispose();
     }
 

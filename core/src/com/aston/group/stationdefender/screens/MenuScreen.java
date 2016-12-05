@@ -19,6 +19,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.Objects;
+
 /**
  * MenuScreen is the screen shown when pressing the menu button
  * from within the game.  It shows options such as play, exit, save etc.
@@ -67,9 +69,9 @@ public class MenuScreen implements Screen {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
                     Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
-                    if (actor.equals(playButton)) {
+                    if (Objects.equals(actor, playButton)) {
                         menuCallback.onPlay(false);
-                    } else if (actor.equals(exitButton)) {
+                    } else if (Objects.equals(actor, exitButton)) {
                         menuCallback.onExit();
                     }
                 }

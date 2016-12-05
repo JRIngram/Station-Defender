@@ -26,7 +26,7 @@ public class IndicatorManager {
      */
     public IndicatorManager() {
         batch = new SpriteBatch();
-        font = FontManager.INSTANCE.getFont(18);
+        font = FontManager.getFont(18);
     }
 
     /**

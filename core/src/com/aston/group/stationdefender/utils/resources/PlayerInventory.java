@@ -4,6 +4,7 @@ import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Iterator;
+import java.util.stream.IntStream;
 
 /**
  * @author Mohammed Foysal
@@ -61,12 +62,7 @@ public class PlayerInventory implements Inventory {
 
     @Override
     public void removeItemById(int id) {
-        for (int i = 0; i < items.size; i++) {
-            if (items.get(i) != null && items.get(i).getId() == id) {
-                items.removeIndex(i);
-                break;
-            }
-        }
+        IntStream.range(0, items.size).filter(i -> items.get(i) != null && items.get(i).getId() == id).findFirst().ifPresent(items::removeIndex);
     }
 
     @Override

@@ -20,6 +20,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.Objects;
+
 /**
  * TwoTextScreen is a class that creates a screen holding a title text,
  * a body of text, a back button and an optional continue button.
@@ -87,9 +89,9 @@ public class TwoTextScreen implements Screen {
         ChangeListener buttonListener = new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if (actor.equals(backButton)) {
+                if (Objects.equals(actor, backButton)) {
                     twoTextCallback.onBack();
-                } else if (actor.equals(continueButton)) {
+                } else if (Objects.equals(actor, continueButton)) {
                     twoTextCallback.onContinue();
                 }
             }

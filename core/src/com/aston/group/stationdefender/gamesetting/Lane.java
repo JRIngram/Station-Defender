@@ -11,6 +11,7 @@ import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Iterator;
+import java.util.stream.IntStream;
 
 /**
  * Lane class
@@ -84,14 +85,7 @@ public class Lane implements UnitCallback {
      * @return true if a Unit is on the Tile, false if a Unit is not on the Tile
      */
     private boolean isTileOccupied(int tileIndex) {
-        if (tiles.get(tileIndex) != null) {
-            for (int i = 0; i < units.size; i++) {
-                if (tiles.get(tileIndex).isColliding(units.get(i))) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return tiles.get(tileIndex) != null && IntStream.range(0, units.size).anyMatch(i -> tiles.get(tileIndex).isColliding(units.get(i)));
     }
 
     /**
@@ -255,12 +249,7 @@ public class Lane implements UnitCallback {
     }
 
     private boolean isLaneCleared() {
-        for (int i = 0; i < units.size; i++) {
-            if (units.get(i).isFacingLeft()) {
-                return false;
-            }
-        }
-        return true;
+        return IntStream.range(0, units.size).noneMatch(i -> units.get(i).isFacingLeft());
     }
 
     /**

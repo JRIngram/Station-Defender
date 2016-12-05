@@ -21,6 +21,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.Objects;
+
 /**
  * IntroScreen is the first screen shown in the game and contains
  * the game title and buttons that link to other screens such as the
@@ -74,13 +76,13 @@ public class IntroScreen implements Screen {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
                     Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
-                    if (actor.equals(backgroundButton)) {
+                    if (Objects.equals(actor, backgroundButton)) {
                         menuCallback.onDisplayBackground();
-                    } else if (actor.equals(instructionButton)) {
+                    } else if (Objects.equals(actor, instructionButton)) {
                         menuCallback.onDisplayInstructions();
-                    } else if (actor.equals(playButton)) {
+                    } else if (Objects.equals(actor, playButton)) {
                         menuCallback.onPlay(true);
-                    } else if (actor.equals(exitButton)) {
+                    } else if (Objects.equals(actor, exitButton)) {
                         menuCallback.onExit();
                     }
                 }
