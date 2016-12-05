@@ -34,7 +34,7 @@ public abstract class Unit implements Actor {
     private boolean exists; //Whether the Unit is alive or dead.
     private double health; //How much damage the Unit can take before being destroyed.
     private String name; //Name of the type of unit.
-    private double chanceToHit; //Chance of a hit
+    private final double chanceToHit; //Chance of a hit
 
     /**
      * Construct a new Unit with given name, speed, damage, rateOfFile, health, range, x co-ordinate, y co-ordinate,
