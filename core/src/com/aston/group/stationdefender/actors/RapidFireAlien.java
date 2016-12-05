@@ -1,5 +1,7 @@
 package com.aston.group.stationdefender.actors;
 
+import com.aston.group.stationdefender.config.Constants;
+
 /**
  * Fast Firing Alien with fast, but low damage.
  *
@@ -15,13 +17,13 @@ public class RapidFireAlien extends Alien {
     }
 
     public RapidFireAlien(int x, int y, int width, int height) {
-        super("Rapid Fire Alien", 2, 0.5, 10, 10, 2, 0.5, x, y, width, height);
+        super("Rapid Fire Alien", 2, 0.5, 10, Constants.UNIT_HEALTH, 2, 0.5, x, y, width, height);
         overloaded = false;
     }
 
     /**
-     * Similar to usual act method, but if the alien hits on all shots the alien "overloads" and cannot fire for the next call of act.
-     * No damage is dealt on this round,
+     * Similar to usual act method, but if the Weapon hits on all shots the Weapon "overloads" and cannot fire for the next call of act.
+     * No damage is dealt on this round.
      */
     @Override
     public void act(float delta) {

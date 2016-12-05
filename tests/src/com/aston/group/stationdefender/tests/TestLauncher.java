@@ -15,6 +15,7 @@ public class TestLauncher {
             LaneTest.class,
             LevelTest.class,
             PlayerTest.class,
+            RapidFireUnitsTest.class,
             TextureTest.class,
             TileTest.class,
             WeaponTest.class
