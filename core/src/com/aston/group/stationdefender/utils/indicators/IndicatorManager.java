@@ -74,7 +74,6 @@ public class IndicatorManager {
      * Dispose of unneeded assets
      */
     public void dispose() {
-        batch.dispose();
         font.dispose();
     }
 

@@ -86,7 +86,6 @@ public class Alien extends Unit {
     public void dispose() {
         super.dispose();
         texture.dispose();
-        batch.dispose();
     }
 
     /**

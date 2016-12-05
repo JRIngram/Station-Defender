@@ -138,7 +138,6 @@ public class Player implements InputProcessor {
      * Disposed of unused resources
      */
     public void dispose() {
-        batch.dispose();
         for (QuickSlot quickSlot : quickSlots) {
             quickSlot.dispose();
         }
