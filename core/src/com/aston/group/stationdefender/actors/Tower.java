@@ -1,14 +1,13 @@
 package com.aston.group.stationdefender.actors;
 
+import com.aston.group.stationdefender.actors.helpers.ParticleEffectHelper;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.FontManager;
-import com.aston.group.stationdefender.utils.SoundManager;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -25,9 +24,9 @@ public class Tower implements Actor {
     private final SpriteBatch batch;
     private final Texture texture;
     private final BitmapFont font;
+    private final ParticleEffectHelper particleEffectHelper;
     private int health;
     private boolean exists;
-    private ParticleEffect particleEffect;
 
     /**
      * Constructs a new Tower
@@ -45,18 +44,13 @@ public class Tower implements Actor {
         texture = TextureManager.INSTANCE.loadTexture(6);
         batch = new SpriteBatch();
         font = FontManager.getFont(16);
+        particleEffectHelper = new ParticleEffectHelper();
     }
 
     @Override
     public void render(float delta) {
         batch.begin();
-        if (particleEffect != null) {
-            particleEffect.update(delta);
-            particleEffect.setPosition(x, y);
-            particleEffect.draw(batch);
-            if (particleEffect.isComplete())
-                particleEffect.dispose();
-        }
+        particleEffectHelper.renderParticleEffect(delta, batch, x, y);
         batch.draw(texture, x, y, width, height);
         font.setColor(Color.BLACK);
         font.draw(batch, "Health: " + health, (Gdx.graphics.getWidth() / 2) - 499, Gdx.graphics.getHeight() - 50);
@@ -89,10 +83,7 @@ public class Tower implements Actor {
     @Override
     public void destroy() {
         exists = false;
-        SoundManager.INSTANCE.playSound(3);
-        particleEffect = TextureManager.INSTANCE.loadParticleEffect(1);
-        particleEffect.getEmitters().first().setPosition(x, y);
-        particleEffect.start();
+        particleEffectHelper.destroy(x, y);
     }
 
     @Override

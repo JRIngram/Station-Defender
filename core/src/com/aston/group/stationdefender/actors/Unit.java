@@ -1,11 +1,9 @@
 package com.aston.group.stationdefender.actors;
 
+import com.aston.group.stationdefender.actors.helpers.ParticleEffectHelper;
 import com.aston.group.stationdefender.callbacks.UnitCallback;
-import com.aston.group.stationdefender.utils.SoundManager;
-import com.aston.group.stationdefender.utils.TextureManager;
 import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Random;
@@ -25,13 +23,13 @@ public abstract class Unit implements Actor {
     private final double damage; //How much damage each successful hit causes.
     private final double range; //How many tiles forward the Unit can fire.
     private final String name; //Name of the type of unit.
+    private final ParticleEffectHelper particleEffectHelper;
     int x; //Unit's position on the X-Axis
     int y; //Unit's position on the Y-Axis
     boolean isAdjacent; //Checks if the Unit is adjacent to any other unit.  This information is retrieved from the Level.
     Actor adjacentActor; //The Unit that this Unit is adjacent to.
     boolean facingLeft; //Whether the Unit is facing left or not
     UnitCallback unitCallback; //The UnitCallBack used for the Unit
-    private ParticleEffect particleEffect;
     private boolean exists; //Whether the Unit is alive or dead.
     private double health; //How much damage the Unit can take before being destroyed.
 
@@ -65,6 +63,7 @@ public abstract class Unit implements Actor {
         adjacentActor = null;
         exists = false;
         indicatorManager = new IndicatorManager();
+        particleEffectHelper = new ParticleEffectHelper();
     }
 
     /**
@@ -90,10 +89,7 @@ public abstract class Unit implements Actor {
     @Override
     public void destroy() {
         exists = false;
-        SoundManager.INSTANCE.playSound(3);
-        particleEffect = TextureManager.INSTANCE.loadParticleEffect(1);
-        particleEffect.getEmitters().first().setPosition(x, y);
-        particleEffect.start();
+        particleEffectHelper.destroy(x, y);
     }
 
     @Override
@@ -330,12 +326,6 @@ public abstract class Unit implements Actor {
      * @param batch The SpriteBatch to render the particle effect on
      */
     void renderParticleEffect(float delta, SpriteBatch batch) {
-        if (particleEffect != null) {
-            particleEffect.update(delta);
-            particleEffect.setPosition(x, y);
-            particleEffect.draw(batch);
-            if (particleEffect.isComplete())
-                particleEffect.dispose();
-        }
+        particleEffectHelper.renderParticleEffect(delta, batch, x, y);
     }
 }
