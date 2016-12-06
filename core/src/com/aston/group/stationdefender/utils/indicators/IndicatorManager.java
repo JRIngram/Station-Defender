@@ -70,42 +70,6 @@ public class IndicatorManager {
     }
 
     /**
-     * Returns the X co-ordinate of the Unit
-     *
-     * @return The X co-ordinate of the Unit
-     */
-    public int getX() {
-        return x;
-    }
-
-    /**
-     * Sets the X co-ordinate of the Unit
-     *
-     * @param x The X co-ordinate of the Unit
-     */
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    /**
-     * Returns the Y co-ordinate of the Unit
-     *
-     * @return The Y co-ordinate of the Unit
-     */
-    public int getY() {
-        return y;
-    }
-
-    /**
-     * Sets the Y co-ordinate of the Unit
-     *
-     * @param y The Y co-ordinate of the Unit
-     */
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    /**
      * Dispose of unneeded assets
      */
     public void dispose() {

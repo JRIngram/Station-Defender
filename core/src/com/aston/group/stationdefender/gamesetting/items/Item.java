@@ -14,11 +14,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public abstract class Item {
     private final SpriteBatch batch;
     int id;
-    String name;
     boolean placeable;
     Texture texture;
     int cost;
     int value;
+    private String name;
     private boolean usable;
     private boolean collected;
     private boolean justSpawned;
@@ -26,28 +26,16 @@ public abstract class Item {
     private int flareX, flareY;
 
     /**
-     * Construct a new Item
-     */
-    Item() {
-        batch = new SpriteBatch();
-        width = 32;
-        height = 32;
-        cost = 0;
-        value = 0;
-    }
-
-    /**
      * Construct a new Item with a name and states that can be collected
      * and used
      *
-     * @param name      The name of the Item
-     * @param usable    Whether the Item is usable or not
-     * @param collected Whether the Item has been collected or not
+     * @param name   The name of the Item
+     * @param usable Whether the Item is usable or not
      */
-    Item(String name, boolean usable, boolean collected) {
+    Item(String name, boolean usable) {
         this.name = name;
         this.usable = usable;
-        this.collected = collected;
+        collected = false;
 
         width = 32;
         height = 32;

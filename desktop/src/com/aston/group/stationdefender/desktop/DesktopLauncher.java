@@ -11,7 +11,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
  * @author Jonathon Fitch
  */
 public class DesktopLauncher {
-    public static void main(String[] arg) {
+    public static void main(String... arg) {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.title = Constants.GAME_NAME;
         config.width = Constants.SCREEN_WIDTH;

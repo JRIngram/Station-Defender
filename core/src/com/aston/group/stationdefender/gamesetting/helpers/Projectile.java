@@ -214,22 +214,4 @@ public class Projectile implements Pool.Poolable {
     public void setDamage(int damage) {
         this.damage = damage;
     }
-
-    /**
-     * Returns the speed of the Projectile
-     *
-     * @return The speed of the Projectile
-     */
-    public double getSpeed() {
-        return speed;
-    }
-
-    /**
-     * Sets the speed of the Projectile
-     *
-     * @param speed The speed of the Projectile
-     */
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
 }

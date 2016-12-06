@@ -1,6 +1,5 @@
 package com.aston.group.stationdefender.gamesetting;
 
-import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.Tower;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.LaneCallback;
@@ -40,7 +39,7 @@ public class Level implements LaneCallback {
     public Level(LevelCallback levelCallback, int levelNumber) {
         this.levelNumber = levelNumber;
         this.levelCallback = levelCallback;
-        tower = new Tower(0, 100, 100, 400);
+        tower = new Tower(100, 100, 400);
         batch = new SpriteBatch();
         texture = TextureManager.INSTANCE.loadTexture(3);
 
@@ -158,18 +157,6 @@ public class Level implements LaneCallback {
             }
         }
         return result;
-    }
-
-    /**
-     * Place an entity at the given lane and tile. if there is already an entity
-     * at that tile it will be lost.
-     *
-     * @param laneNo The index of the lane the entity is in
-     * @param tileNo The index of the tile the entity is in
-     * @return The Actor at the specific lane and tile
-     **/
-    public Actor getActorAt(int laneNo, int tileNo) {
-        return lanes.get(laneNo).getTile(tileNo).getActor();
     }
 
     /**

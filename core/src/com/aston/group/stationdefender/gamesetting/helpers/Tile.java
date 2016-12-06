@@ -1,6 +1,5 @@
 package com.aston.group.stationdefender.gamesetting.helpers;
 
-import com.aston.group.stationdefender.actors.Actor;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.MouseInput;
@@ -22,7 +21,6 @@ public class Tile {
     private final SpriteBatch batch;
     private final Texture texture;
     private final ShapeRenderer shapeRenderer;
-    private Actor actor;
 
     /**
      * Construct a new Tile with given X and Y co-ordinates
@@ -63,15 +61,6 @@ public class Tile {
      */
     public boolean isColliding(Unit unit) {
         return isColliding(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight());
-    }
-
-    /**
-     * Return the actor at this tile.
-     *
-     * @return The actor at this tile.
-     **/
-    public Actor getActor() {
-        return actor;
     }
 
     /**

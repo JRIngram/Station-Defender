@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Tower implements Actor {
     private final int height;
     private final int width;
-    private final int x;
+    private final int x = 0;
     private final int y;
     private final SpriteBatch batch;
     private final Texture texture;
@@ -32,13 +32,11 @@ public class Tower implements Actor {
     /**
      * Constructs a new Tower
      *
-     * @param x      The X co-ordinate of the Tower
      * @param y      The Y co-ordinate of the Tower
      * @param width  The width of the Tower
      * @param height The height of the Tower
      */
-    public Tower(int x, int y, int width, int height) {
-        this.x = x;
+    public Tower(int y, int width, int height) {
         this.y = y;
         this.width = width;
         this.height = height;
@@ -109,33 +107,6 @@ public class Tower implements Actor {
     }
 
     /**
-     * Sets the existence state of the Unit.
-     *
-     * @param exists The existence state of the Unit
-     */
-    public void setExists(boolean exists) {
-        this.exists = exists;
-    }
-
-    /**
-     * Returns the height of the Tower
-     *
-     * @return The height of the Tower
-     */
-    public int getHeight() {
-        return height;
-    }
-
-    /**
-     * Returns the width of the Tower
-     *
-     * @return The width of the Tower
-     */
-    public int getWidth() {
-        return width;
-    }
-
-    /**
      * Causes the Units health to lower by the damage parameter.
      *
      * @param damage Causes the Unit's health to deplete.
@@ -146,14 +117,5 @@ public class Tower implements Actor {
             health = 0;
         } else
             health -= damage;
-    }
-
-    /**
-     * Returns the health of the Tower
-     *
-     * @return The health of the Tower
-     */
-    public int getHealth() {
-        return health;
     }
 }

@@ -111,8 +111,6 @@ public class PlayerInventory implements Inventory {
 
     @Override
     public String toString() {
-        return "PlayerInventory{" +
-                "items=" + items +
-                '}';
+        return "PlayerInventory{" + "items=" + items + "}";
     }
 }

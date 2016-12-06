@@ -20,12 +20,13 @@ public abstract class Unit implements Actor {
     final double speed; //How many tiles it can move per "tick".
     final IndicatorManager indicatorManager;
     final double rateOfFire; //How many times the unit fires per "tick".
+    final int width; //Unit's width
+    final int height; //Unit's height
     private final double damage; //How much damage each successful hit causes.
     private final double range; //How many tiles forward the Unit can fire.
+    private final String name; //Name of the type of unit.
     int x; //Unit's position on the X-Axis
     int y; //Unit's position on the Y-Axis
-    int width; //Unit's width
-    int height; //Unit's height
     boolean isAdjacent; //Checks if the Unit is adjacent to any other unit.  This information is retrieved from the Level.
     Actor adjacentActor; //The Unit that this Unit is adjacent to.
     boolean facingLeft; //Whether the Unit is facing left or not
@@ -33,7 +34,6 @@ public abstract class Unit implements Actor {
     private ParticleEffect particleEffect;
     private boolean exists; //Whether the Unit is alive or dead.
     private double health; //How much damage the Unit can take before being destroyed.
-    private String name; //Name of the type of unit.
 
     /**
      * Construct a new Unit with given name, speed, damage, rateOfFile, health, range, x co-ordinate, y co-ordinate,
@@ -108,15 +108,6 @@ public abstract class Unit implements Actor {
      */
     public String getName() {
         return name;
-    }
-
-    /**
-     * Method for setting the name of the Unit.
-     *
-     * @param name The name of the Unit.
-     */
-    public void setName(String name) {
-        this.name = name;
     }
 
     /**
@@ -261,17 +252,6 @@ public abstract class Unit implements Actor {
     }
 
     /**
-     * Sets the width and height of the Unit
-     *
-     * @param width  The width of the Unit
-     * @param height The height of the Unit
-     */
-    public void setWidthAndHeight(int width, int height) {
-        this.width = width;
-        this.height = height;
-    }
-
-    /**
      * Returns the height of the Unit
      *
      * @return The height of the Unit
@@ -332,24 +312,6 @@ public abstract class Unit implements Actor {
      */
     public boolean isFacingLeft() {
         return facingLeft;
-    }
-
-    /**
-     * Sets whether the Unit is facing left or not
-     *
-     * @param facingLeft Whether the Unit is facing left or not
-     */
-    public void setFacingLeft(boolean facingLeft) {
-        this.facingLeft = facingLeft;
-    }
-
-    /**
-     * Returns the UnitCallBack for the Unit
-     *
-     * @return The UnitCallBack for the Unit
-     */
-    public UnitCallback getUnitCallback() {
-        return unitCallback;
     }
 
     /**

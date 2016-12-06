@@ -15,8 +15,8 @@ public class ItemCredit extends Item {
      * Construct a new ItemCredit
      */
     public ItemCredit() {
+        super("Credits", false);
         id = 1;
-        name = "Credits";
         texture = TextureManager.INSTANCE.loadTexture(10);
         value = 10;
         placeable = true;

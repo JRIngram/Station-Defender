@@ -11,16 +11,13 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TestExecutor {
-    private List<Class<?>> tests = new ArrayList<>();
     private Computer computer;
     private JUnitCore jUnitCore;
 
     public TestExecutor() {
-        tests = TestLauncher.getTests();
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.title = Constants.GAME_NAME;
         config.width = 1;
@@ -31,22 +28,16 @@ public class TestExecutor {
             @Override
             public void create() {
                 super.create();
-
                 computer = new Computer();
                 jUnitCore = new JUnitCore();
-
-                performTest();
-
+                List<Class<?>> tests = TestLauncher.getTests();
+                for (Class<?> cl : tests) {
+                    Result result = jUnitCore.run(computer, cl);
+                    printResult(cl, result);
+                }
                 Gdx.app.exit();
             }
         }, config);
-    }
-
-    private void performTest() {
-        for (Class<?> cl : tests) {
-            Result result = jUnitCore.run(computer, cl);
-            printResult(cl, result);
-        }
     }
 
     private void printResult(Class<?> cl, Result result) {

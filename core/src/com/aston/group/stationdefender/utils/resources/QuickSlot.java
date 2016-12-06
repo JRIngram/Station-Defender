@@ -2,8 +2,8 @@ package com.aston.group.stationdefender.utils.resources;
 
 import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.utils.FontManager;
+import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.TextureManager;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -22,23 +22,20 @@ public class QuickSlot {
     private final TextureRegion trQuickSlot;
     private final TextureRegion trQuickSlotHovered;
     private final BitmapFont font;
-    private int x, y, width, height;
+    private final int x;
+    private final int y = 0;
+    private final int width = 48;
+    private final int height = 48;
     private boolean isSelected;
     private Item item;
 
     /**
      * Construct a new QuickSlot
      *
-     * @param x      The X co-ordinate of the QuickSlot
-     * @param y      The Y co-ordinate of the QuickSlot
-     * @param width  The width of the QuickSlot
-     * @param height The height of the QuickSlot
+     * @param x The X co-ordinate of the QuickSlot
      */
-    public QuickSlot(int x, int y, int width, int height) {
+    public QuickSlot(int x) {
         this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
         batch = new SpriteBatch();
         Texture texture = TextureManager.INSTANCE.loadTexture(5);
         trQuickSlot = new TextureRegion(texture, 78, 29, 20, 20);
@@ -72,10 +69,12 @@ public class QuickSlot {
         }
         batch.end();
 
-        if (isColliding(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY(), 1, 1)) {
+        if (isColliding(MouseInput.getX(), MouseInput.getY())) {
             batch.begin();
             font.setColor(Color.BLACK);
-            font.draw(batch, "Item Title", x, y + height + 20);
+            font.draw(batch, item.getName(), x - 1, y + height + 20);
+            font.setColor(Color.WHITE);
+            font.draw(batch, item.getName(), x, y + height + 20);
             batch.end();
         }
     }
@@ -98,30 +97,12 @@ public class QuickSlot {
     }
 
     /**
-     * Sets the X co-ordinate of the QuickSlot
-     *
-     * @param x The X co-ordinate of the QuickSlot
-     */
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    /**
      * Returns the Y co-ordinate value of the item.
      *
      * @return The Y co-ordinate value of the QuickSlot
      */
     public int getY() {
         return y;
-    }
-
-    /**
-     * Sets the Y co-ordinate of the item
-     *
-     * @param y The Y co-ordinate of the item
-     */
-    public void setY(int y) {
-        this.y = y;
     }
 
     /**
@@ -134,39 +115,12 @@ public class QuickSlot {
     }
 
     /**
-     * Sets the width of the QuickSlot
-     *
-     * @param width The width of the QuickSlot
-     */
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    /**
      * Returns the height of the QuickSlot
      *
      * @return The height of the QuickSlot
      */
     public int getHeight() {
         return height;
-    }
-
-    /**
-     * Sets the height of the QuickSlot
-     *
-     * @param height The height of the QuickSlot
-     */
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    /**
-     * Returns whether a QuickSlot is selected or not
-     *
-     * @return whether a QuickSlot is selected or not
-     */
-    public boolean isSelected() {
-        return isSelected;
     }
 
     /**
@@ -199,13 +153,11 @@ public class QuickSlot {
     /**
      * Checks whether the params collides with the QuickSlot box
      *
-     * @param x      The x to be compared with the QuickSlot
-     * @param y      The y to be compared with the QuickSlot
-     * @param width  The width to be compared with the QuickSlot
-     * @param height The height to be compared with the QuickSlot
+     * @param x The x to be compared with the QuickSlot
+     * @param y The y to be compared with the QuickSlot
      * @return isColliding - returns true if params collide, false if not
      */
-    private boolean isColliding(int x, int y, int width, int height) {
-        return x + width > this.x && x < this.x + this.width && y + height > this.y && y < this.y + this.height;
+    private boolean isColliding(int x, int y) {
+        return x + 1 > this.x && x < this.x + this.width && y + 1 > this.y && y < this.y + this.height;
     }
 }

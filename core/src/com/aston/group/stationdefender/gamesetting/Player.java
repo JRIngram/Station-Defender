@@ -58,7 +58,7 @@ public class Player implements InputProcessor {
         quickSlots = new Array<>();
         int slotX = 0;
         for (int i = 0; i < 8; i++) {
-            QuickSlot quickSlot = new QuickSlot(slotX, 0, 48, 48);
+            QuickSlot quickSlot = new QuickSlot(slotX);
             if (i == 0) {
                 quickSlot.setItem(new ItemTurret());
             } else {
@@ -96,8 +96,8 @@ public class Player implements InputProcessor {
     public void render(float delta) {
         //Render Player's current item (if any)
         if (currentItem != null) {
-            currentItem.setX(Gdx.input.getX() - (currentItem.getWidth() / 2));
-            currentItem.setY((Gdx.graphics.getHeight() - Gdx.input.getY()) - currentItem.getHeight() / 2);
+            currentItem.setX(MouseInput.getX());
+            currentItem.setY(MouseInput.getY());
             currentItem.render(delta);
         }
 

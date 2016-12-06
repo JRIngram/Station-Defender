@@ -15,7 +15,7 @@ public class ItemBlank extends Item {
      * Construct a new ItemBlack
      */
     public ItemBlank() {
-        super("Unknown Item", false, false);
+        super("Empty", false);
         id = 0;
     }
 

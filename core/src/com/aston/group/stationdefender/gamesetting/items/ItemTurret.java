@@ -11,8 +11,8 @@ public class ItemTurret extends Item {
      * Construct a new Turret Item
      */
     public ItemTurret() {
+        super("Turret", true);
         id = 2;
-        name = "Turret";
         cost = 10;
         texture = TextureManager.INSTANCE.loadTexture(11);
         placeable = true;

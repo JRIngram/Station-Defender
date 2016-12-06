@@ -11,15 +11,6 @@ public class MouseInput {
     private static Vector2 position;
 
     /**
-     * Returns the Vector2 position of the mouse
-     *
-     * @return The Vector2 position of the mouse
-     */
-    public static Vector2 getPosition() {
-        return position;
-    }
-
-    /**
      * Sets the Vector2 position of the mouse
      *
      * @param position The Vector2 position to set
