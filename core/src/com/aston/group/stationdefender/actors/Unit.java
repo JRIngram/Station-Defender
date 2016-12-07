@@ -31,7 +31,7 @@ public abstract class Unit implements Actor {
     boolean facingLeft; //Whether the Unit is facing left or not
     UnitCallback unitCallback; //The UnitCallBack used for the Unit
     private ParticleEffect particleEffect;
-    private boolean exists; //Whether the Unit is alive or dead.
+    protected boolean exists; //Whether the Unit is alive or dead.
     private double health; //How much damage the Unit can take before being destroyed.
     private String name; //Name of the type of unit.
     private final double chanceToHit; //Chance of a hit

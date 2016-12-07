@@ -46,6 +46,9 @@ public class RapidFireUnitsTest{
 		assertEquals(4.0, weapon.getY(), 0);
 		assertEquals(20, weapon.getWidth(), 0);
 		assertEquals(20, weapon.getHeight(), 0);
+		assertEquals(7.0, weapon.getBuildTime(), 0);
+		assertEquals(60, weapon.getCost(), 0);
+		assertEquals(25, weapon.getCostToUpgrade(), 0);
 	}
 	
 	@Test
@@ -72,6 +75,9 @@ public class RapidFireUnitsTest{
 	@Test
 	public void testWeaponOverload(){
 		weapon.setAdjacentActor(alien);
+		while(weapon.getRemainingBuildTime() > 0){
+			weapon.decrementBuildTimer();
+		}
 		assertEquals(false, weapon.getOverloaded());
 		for(int i = 1; i <= 10; i++){
 			System.out.print("Weapon Rapid Fire Overload Test Run: " + i);

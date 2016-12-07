@@ -19,10 +19,10 @@ public class Weapon extends Unit {
     private final double buildTime;
     private final int cost;
     private final int costToUpgrade;
-    private boolean built;
+    protected boolean built;
     private double remainingBuildTime;
     private ProjectileFactory projectileFactory;
-    private long lastTime;
+    protected long lastTime;
     private long startTime;
 
     /**
