@@ -17,8 +17,8 @@ public class Weapon extends Unit {
     private final SpriteBatch batch;
     private final Texture texture;
     private final double buildTime;
-    private final int cost;
-    private final int costToUpgrade;
+    private int cost;
+    private int costToUpgrade;
     protected boolean built;
     private double remainingBuildTime;
     private ProjectileFactory projectileFactory;
@@ -185,4 +185,23 @@ public class Weapon extends Unit {
     public void setProjectileFactory(ProjectileFactory projectileFactory) {
         this.projectileFactory = projectileFactory;
     }
+    
+    
+    /**
+     * Upgrades the weapon's damage by 10%, and increases cost to upgrade 25%.
+     */
+    public void upgradeWeapon(){
+    	//Sets new cost to upgrade;
+    	Double newUpgradeCost = Math.ceil((costToUpgrade * 1.25));
+    	costToUpgrade = newUpgradeCost.intValue();
+    	//Increase Weapon Damage by 10%
+    	damage = Math.ceil((damage * 1.1));
+    }
+        
 }
+    
+    
+    
+    
+    
+    

@@ -25,7 +25,7 @@ public class CloseCombatWeaponTest {
 	public void test() {
 		assertEquals("Close Combat Weapon", weapon.getName());
 		assertEquals(0, weapon.getSpeed(), 0);
-		assertEquals(5.0, weapon.getDamage(), 0);
+		assertEquals(50.0, weapon.getDamage(), 0);
 		assertEquals(2.0, weapon.getRateOfFire(), 0);
 		assertEquals(100.0, weapon.getHealth(), 0);
 		assertEquals(1.0, weapon.getRange(), 0);

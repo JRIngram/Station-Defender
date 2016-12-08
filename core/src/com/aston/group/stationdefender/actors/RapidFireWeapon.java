@@ -9,7 +9,7 @@ public class RapidFireWeapon extends Weapon {
     }
 
     public RapidFireWeapon(int x, int y, int width, int height, double buildTime, int cost, int costToUpgrade) {
-        super("Rapid Fire Weapon", 0, 0.5, 15, 10, 2, 0.5, x, y, width, height, 7.0, 60, 25);
+        super("Rapid Fire Weapon", 0, 5.0, 15, 10, 2, 0.5, x, y, width, height, 7.0, 60, 25);
         overloaded = false;
     }
 

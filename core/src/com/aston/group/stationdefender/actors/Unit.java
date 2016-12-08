@@ -20,7 +20,7 @@ public abstract class Unit implements Actor {
     final double speed; //How many tiles it can move per "tick".
     final IndicatorManager indicatorManager;
     final double rateOfFire; //How many times the unit fires per "tick".
-    private final double damage; //How much damage each successful hit causes.
+    protected double damage; //How much damage each successful hit causes.
     private final double range; //How many tiles forward the Unit can fire.
     int x; //Unit's position on the X-Axis
     int y; //Unit's position on the Y-Axis

@@ -17,6 +17,6 @@ public class CloseCombatAlien extends Alien {
     }
 
     public CloseCombatAlien(int x, int y, int width, int height) {
-        super("Close Combat Alien", 2, 6, 2, Constants.UNIT_HEALTH, 1, 7.0, x, y, width, height);
+        super("Close Combat Alien", 2, 60.0, 2, Constants.UNIT_HEALTH, 1, 7.0, x, y, width, height);
     }
 }

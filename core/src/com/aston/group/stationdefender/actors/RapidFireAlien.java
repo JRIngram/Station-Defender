@@ -17,7 +17,7 @@ public class RapidFireAlien extends Alien {
     }
 
     public RapidFireAlien(int x, int y, int width, int height) {
-        super("Rapid Fire Alien", 2, 0.5, 10, Constants.UNIT_HEALTH, 2, 0.5, x, y, width, height);
+        super("Rapid Fire Alien", 2, 5.0, 10, Constants.UNIT_HEALTH, 2, 0.5, x, y, width, height);
         overloaded = false;
     }
 

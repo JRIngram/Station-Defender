@@ -18,11 +18,14 @@ public class RapidFireUnitsTest{
 		weapon = new RapidFireWeapon(4,4,20,20, 10, 50, 25);
 	}
 	
+	/**
+	 * Tests the Constructor of the Rapid Fire Alien
+	 */
 	@Test
 	public void testAlienConstructor() {
 		assertEquals("Rapid Fire Alien", alien.getName());
 		assertEquals(2, alien.getSpeed(), 0);
-		assertEquals(0.5, alien.getDamage(), 0);
+		assertEquals(5.0, alien.getDamage(), 0);
 		assertEquals(10, alien.getRateOfFire(),0);
 		assertEquals(100, alien.getHealth(), 0);
 		assertEquals(2, alien.getRange(), 0);
@@ -33,11 +36,14 @@ public class RapidFireUnitsTest{
 		assertEquals(10, alien.getHeight());
 	}
 	
+	/**
+	 * Tests the Constructor of the Rapid Fire Weapon
+	 */
 	@Test
 	public void testWeaponConstructor(){
 		assertEquals("Rapid Fire Weapon", weapon.getName());
 		assertEquals(0, weapon.getSpeed(), 0);
-		assertEquals(0.5, weapon.getDamage(), 0);
+		assertEquals(5.0, weapon.getDamage(), 0);
 		assertEquals(15, weapon.getRateOfFire(), 0);
 		assertEquals(10, weapon.getHealth(), 0);
 		assertEquals(2, weapon.getRange(), 0);
@@ -51,6 +57,9 @@ public class RapidFireUnitsTest{
 		assertEquals(25, weapon.getCostToUpgrade(), 0);
 	}
 	
+	/**
+	 * Tests that the Alien Overloads if all shots hit.
+	 */
 	@Test
 	public void testAlienOverload(){
 		alien.setAdjacentActor(weapon);
