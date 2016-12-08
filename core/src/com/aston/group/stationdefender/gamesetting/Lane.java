@@ -9,8 +9,11 @@ import com.aston.group.stationdefender.gamesetting.helpers.Projectile;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
 import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
+import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.aston.group.stationdefender.utils.resources.ItemFactory;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Iterator;
@@ -244,6 +247,11 @@ public class Lane implements UnitCallback {
         //Render item drops
         for (int i = 0; i < itemDrops.size; i++) {
             itemDrops.get(i).render(delta);
+
+            if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && MouseInput.isColliding(itemDrops.get(i).getX(), itemDrops.get(i).getY(), itemDrops.get(i).getWidth(), itemDrops.get(i).getHeight())){
+                player.collectItem(itemDrops.get(i));
+                removeItem(i);
+            }
         }
     }
 
