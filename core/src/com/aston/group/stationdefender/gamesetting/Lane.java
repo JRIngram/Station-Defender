@@ -248,7 +248,7 @@ public class Lane implements UnitCallback {
         for (int i = 0; i < itemDrops.size; i++) {
             itemDrops.get(i).render(delta);
 
-            if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && MouseInput.isColliding(itemDrops.get(i).getX(), itemDrops.get(i).getY(), itemDrops.get(i).getWidth(), itemDrops.get(i).getHeight())){
+            if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && itemDrops.get(i).isJustSpawned() && MouseInput.isColliding(itemDrops.get(i).getX(), itemDrops.get(i).getY(), itemDrops.get(i).getWidth(), itemDrops.get(i).getHeight())){
                 player.collectItem(itemDrops.get(i));
                 removeItem(i);
             }

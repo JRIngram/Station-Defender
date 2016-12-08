@@ -66,7 +66,7 @@ public abstract class Item {
         }
 
         if(MouseInput.isColliding(x, y, width, height) && isJustSpawned()){
-            System.out.println("Intersecting");
+
         }
     }
 
