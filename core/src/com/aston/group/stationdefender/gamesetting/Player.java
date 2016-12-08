@@ -9,6 +9,7 @@ import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
 import com.aston.group.stationdefender.gamesetting.items.ItemTurret;
 import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.MouseInput;
+import com.aston.group.stationdefender.utils.hud.Hud;
 import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
 import com.aston.group.stationdefender.utils.resources.Inventory;
 import com.aston.group.stationdefender.utils.resources.PlayerInventory;
@@ -43,6 +44,7 @@ public class Player implements InputProcessor {
     private int money;
     private PlayerCallback playerCallback;
     private int selectedSlot = 0;
+    private Hud hud;
 
     /**
      * Construct a new Player
@@ -85,7 +87,11 @@ public class Player implements InputProcessor {
         stage.addActor(menuButton);
         menuButton.setPosition((Gdx.graphics.getWidth() / 2) + 200, Gdx.graphics.getHeight() - 80);
 
+        //Initialise Money Indicator
         moneyIndicator = new IndicatorManager();
+
+        //Initialise Hud
+        hud = new Hud();
     }
 
     /**
@@ -126,8 +132,13 @@ public class Player implements InputProcessor {
         font.draw(batch, "Money: " + money, Gdx.graphics.getWidth() - 100, 30);
         batch.end();
 
+        //Draw Money Indicators
         moneyIndicator.render(delta, Gdx.graphics.getWidth() - 50, 30);
 
+        //Draw HUD
+        hud.render(delta);
+
+        //Draw Stage
         batch.begin();
         stage.draw();
         batch.end();
@@ -141,6 +152,7 @@ public class Player implements InputProcessor {
         for (QuickSlot quickSlot : quickSlots) {
             quickSlot.dispose();
         }
+        hud.dispose();
     }
 
     @Override
@@ -195,19 +207,24 @@ public class Player implements InputProcessor {
     @Override
     public boolean touchUp(final int screenX, final int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
-            if (currentItem != null && money >= currentItem.getCost()) {
-                currentItem.useItem(placeable -> {
-                    if (placeable) {
-                        if (playerCallback.placeUnit(currentItem.getPlaceableUnit(), MouseInput.getX(), MouseInput.getY())) {
+            if(hud.isColliding()){
+
+            }else{
+                if (currentItem != null && money >= currentItem.getCost()) {
+                    currentItem.useItem(placeable -> {
+                        if (placeable) {
+                            if (playerCallback.placeUnit(currentItem.getPlaceableUnit(), MouseInput.getX(), MouseInput.getY())) {
+                                removeMoney(currentItem.getCost());
+                                addMoney(currentItem.getValue());
+                            }
+                        } else {
                             removeMoney(currentItem.getCost());
                             addMoney(currentItem.getValue());
                         }
-                    } else {
-                        removeMoney(currentItem.getCost());
-                        addMoney(currentItem.getValue());
-                    }
-                });
+                    });
+                }
             }
+
             for (int i = 0; i < quickSlots.size; i++) {
                 QuickSlot quickSlot = quickSlots.get(i);
                 if (MouseInput.isColliding(quickSlot.getX(), quickSlot.getY(), quickSlot.getWidth(), quickSlot.getHeight())) {
@@ -370,5 +387,13 @@ public class Player implements InputProcessor {
      */
     public void setPlayerCallback(PlayerCallback playerCallback) {
         this.playerCallback = playerCallback;
+    }
+
+    public Hud getHud() {
+        return hud;
+    }
+
+    public void setHud(Hud hud) {
+        this.hud = hud;
     }
 }

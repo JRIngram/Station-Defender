@@ -7,6 +7,7 @@ import com.aston.group.stationdefender.callbacks.UnitCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.helpers.Projectile;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
+import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.badlogic.gdx.utils.Array;
 
@@ -185,6 +186,11 @@ public class Lane implements UnitCallback {
                 overrun = true;
                 unit.destroy();
                 units.removeIndex(i);
+            }
+
+            //Check Mouse Collision
+            if(MouseInput.isColliding(units.get(i).getX(), units.get(i).getY(), units.get(i).getWidth(), units.get(i).getHeight())){
+
             }
         }
 
