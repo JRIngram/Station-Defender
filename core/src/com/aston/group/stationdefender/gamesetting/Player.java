@@ -97,8 +97,8 @@ public class Player implements InputProcessor {
     public void render(float delta) {
         //Render Player's current item (if any)
         if (currentItem != null) {
-            currentItem.setX(MouseInput.getX());
-            currentItem.setY(MouseInput.getY());
+            currentItem.setX(MouseInput.getX() - (currentItem.getWidth() / 2));
+            currentItem.setY(MouseInput.getY() - (currentItem.getHeight() / 2));
             currentItem.render(delta);
         }
 

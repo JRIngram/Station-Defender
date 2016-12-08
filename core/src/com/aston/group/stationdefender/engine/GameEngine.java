@@ -46,12 +46,17 @@ public enum GameEngine {
     }
 
     public void render() {
-        if (Gdx.input.isTouched()) {
-            mousePosition.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camera.translate(-(float) Gdx.input.getDeltaX(), (float) Gdx.input.getDeltaY(), 0);
-            mousePosition = camera.unproject(mousePosition);
-            MouseInput.getPosition().set(mousePosition.x, mousePosition.y);
-        }
+//        if (Gdx.input.isTouched()) {
+//            mousePosition.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+//            camera.translate(-(float) Gdx.input.getDeltaX(), (float) Gdx.input.getDeltaY(), 0);
+//            mousePosition = camera.unproject(mousePosition);
+//            MouseInput.getPosition().set(mousePosition.x, mousePosition.y);
+//        }
+
+        mousePosition.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+        mousePosition = camera.unproject(mousePosition);
+        MouseInput.getPosition().set(mousePosition.x, mousePosition.y);
+
         camera.update();
         shapeRenderer.setProjectionMatrix(camera.combined);
         batch.setProjectionMatrix(camera.combined);
