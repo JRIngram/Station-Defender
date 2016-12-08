@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender.gamesetting;
 
+import com.aston.group.stationdefender.actors.Weapon;
 import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.config.Constants;
@@ -20,6 +21,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Array;

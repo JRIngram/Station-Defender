@@ -10,13 +10,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public class HudContainer extends HudElement{
 
     private ShapeRenderer shapeRenderer;
-    protected String title;
-    private BitmapFont font;
-    private SpriteBatch batch;
+    protected BitmapFont font;
+    protected SpriteBatch batch;
 
     public HudContainer() {
-        x = 50;
-        y = 50;
         width = 400;
         height = 200;
         title = "Blank Container";
@@ -25,6 +22,12 @@ public class HudContainer extends HudElement{
         batch = new SpriteBatch();
 
         font = FontManager.getFont(16);
+    }
+
+    public HudContainer(int x, int y){
+        this();
+        this.x = x;
+        this.y = y;
     }
 
     @Override
@@ -54,5 +57,7 @@ public class HudContainer extends HudElement{
     public void dispose() {
         shapeRenderer.dispose();
     }
+
+
 
 }

@@ -3,7 +3,9 @@ package com.aston.group.stationdefender.utils.hud;
 public abstract class HudElement {
 
     protected int x, y, width, height;
+    protected String title;
     public HudCallback hudCallback;
+    protected Object object;
 
     public abstract void render(float delta);
     public abstract boolean isColliding();
@@ -47,5 +49,21 @@ public abstract class HudElement {
 
     public void setHudCallback(HudCallback hudCallback) {
         this.hudCallback = hudCallback;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Object getObject() {
+        return object;
+    }
+
+    public void setObject(Object object) {
+        this.object = object;
     }
 }

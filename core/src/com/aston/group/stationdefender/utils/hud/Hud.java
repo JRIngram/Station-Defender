@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class Hud {
 
+    private static Hud instance;
     private Stage stage;
     private Viewport viewport;
     private OrthographicCamera camera;
@@ -18,6 +19,8 @@ public class Hud {
     private ArrayList<HudElement> hudElements = new ArrayList<>();
 
     public Hud() {
+        instance = this;
+
         batch = new SpriteBatch();
 
         camera = new OrthographicCamera();
@@ -49,4 +52,23 @@ public class Hud {
         return false;
     }
 
+    public void addHudElement(HudElement hudElement){
+        hudElements.add(hudElement);
+    }
+
+    public void removeHudElement(HudElement hudElement){
+        hudElements.remove(hudElement);
+    }
+
+    public ArrayList<HudElement> getHudElements() {
+        return hudElements;
+    }
+
+    public void setHudElements(ArrayList<HudElement> hudElements) {
+        this.hudElements = hudElements;
+    }
+
+    public static Hud getInstance() {
+        return instance;
+    }
 }

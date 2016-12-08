@@ -1,8 +1,13 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.aston.group.stationdefender.utils.TextureManager;
+import com.aston.group.stationdefender.utils.hud.Hud;
+import com.aston.group.stationdefender.utils.hud.HudContainer;
+import com.aston.group.stationdefender.utils.hud.HudElement;
+import com.aston.group.stationdefender.utils.hud.HudWeapon;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -24,6 +29,7 @@ public class Weapon extends Unit {
     private ProjectileFactory projectileFactory;
     private long lastTime;
     private long startTime;
+    private HudElement hudElement;
 
     /**
      * Construct a new Weapon with default X and Y co-ordinates of '0'
@@ -81,6 +87,7 @@ public class Weapon extends Unit {
         batch.draw(texture, x, y, width, height);
         batch.end();
         act(delta);
+        checkInput();
     }
 
     @Override
@@ -96,6 +103,22 @@ public class Weapon extends Unit {
             }
         } else {
             decrementBuildTimer();
+        }
+    }
+
+    private void checkInput(){
+        if(MouseInput.isColliding(x, y, width, height)){
+            if(hudElement == null){
+                hudElement = new HudWeapon();
+                hudElement.setX(x);
+                hudElement.setY(y);
+                hudElement.setObject(this);
+                Hud.getInstance().addHudElement(hudElement);
+            }
+        }
+        else if(!Hud.getInstance().isColliding()){
+            Hud.getInstance().removeHudElement(hudElement);
+            hudElement = null;
         }
     }
 
