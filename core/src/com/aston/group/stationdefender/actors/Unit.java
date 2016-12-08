@@ -213,10 +213,10 @@ public abstract class Unit implements Actor {
         if (unit == this) return false;
 
         if (facingLeft) {
-            return unit.getX() + unit.getWidth() > this.x - (this.width + 5) && unit.getX() < this.x + this.width &&
+            return unit.getX() + unit.getWidth() > this.x && unit.getX() < this.x + this.width &&
                     y + height > this.y && y < this.y + this.height;
         } else {
-            return unit.getX() + unit.getWidth() > this.x && unit.getX() < this.x + (this.width * 2) + 5 &&
+            return unit.getX() + unit.getWidth() > this.x && unit.getX() < this.x + (this.width) &&
                     y + height > this.y && y < this.y + this.height;
         }
     }
