@@ -38,7 +38,7 @@ public class LevelTest {
     public void testAddLane() {
         Array<Lane> lanes = level.getAllLanes();
         assertEquals(numberOfLanes, lanes.size);
-        level.addLane(new Lane(null, 0, 0, 12));
+        level.addLane(new Lane(null, 0, 0, 12, 2 * 10));
         lanes = level.getAllLanes();
         assertEquals(numberOfLanes + 1, lanes.size);
     }
@@ -53,7 +53,7 @@ public class LevelTest {
         level.removeLaneByIndex(2);
         lanes = level.getAllLanes();
         assertEquals(numberOfLanes - 2, lanes.size);
-        Lane lane = new Lane(null, 0, 0, 12);
+        Lane lane = new Lane(null, 0, 0, 12, 2 * 10);
         level.addLane(lane);
         level.addLane(lane);
         lanes = level.getAllLanes();

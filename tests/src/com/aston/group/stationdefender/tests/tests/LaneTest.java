@@ -15,7 +15,7 @@ public class LaneTest {
 
     @Before
     public void setUp() {
-        lane = new Lane(null, 0, 0, numberOfTiles);
+        lane = new Lane(null, 0, 0, numberOfTiles, 2 * 10);
     }
 
     @Test
