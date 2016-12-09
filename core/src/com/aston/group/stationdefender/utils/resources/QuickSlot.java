@@ -72,7 +72,7 @@ public class QuickSlot {
         if (isColliding(MouseInput.getX(), MouseInput.getY())) {
             batch.begin();
             font.setColor(Color.BLACK);
-            font.draw(batch, item.getName(), x - 1, y + height + 20);
+            font.draw(batch, item.getName(), x, y + height + 19);
             font.setColor(Color.WHITE);
             font.draw(batch, item.getName(), x, y + height + 20);
             batch.end();

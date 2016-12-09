@@ -63,7 +63,7 @@ public class Level implements LaneCallback {
         batch.begin();
         batch.draw(texture, 0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         font.setColor(Color.BLACK);
-        font.draw(batch, "Level " + levelNumber, (Gdx.graphics.getWidth() / 2) - 85, Gdx.graphics.getHeight() - 25);
+        font.draw(batch, "Level " + levelNumber, (Gdx.graphics.getWidth() / 2) - 84, Gdx.graphics.getHeight() - 25);
         font.setColor(Color.WHITE);
         font.draw(batch, "Level " + levelNumber, (Gdx.graphics.getWidth() / 2) - 85, Gdx.graphics.getHeight() - 25);
         batch.end();
