@@ -42,11 +42,11 @@ public class Level implements LaneCallback {
         tower = new Tower(100, 100, 400);
         batch = new SpriteBatch();
         texture = TextureManager.INSTANCE.loadTexture(3);
+        double difficulty = (2 + (levelNumber / 10)) * 10;
 
         int laneY = 110;
-
         for (int i = 0; i < Constants.LANE_AMOUNT; i++) {
-            lanes.add(new Lane(this, 100, laneY, Constants.TILE_AMOUNT));
+            lanes.add(new Lane(this, 100, laneY, Constants.TILE_AMOUNT, difficulty));
             laneY += (Constants.TILE_HEIGHT + (Constants.TILE_HEIGHT / 4));
         }
 

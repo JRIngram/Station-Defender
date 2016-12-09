@@ -39,7 +39,7 @@ public class Lane implements UnitCallback {
      * @param y             The Y co-ordinate of the Lane
      * @param numberOfTiles The Number of tiles in the lane
      */
-    public Lane(LaneCallback laneCallback, int x, int y, int numberOfTiles) {
+    public Lane(LaneCallback laneCallback, int x, int y, int numberOfTiles, double difficulty) {
         this.laneCallback = laneCallback;
         this.x = x;
         this.y = y;
@@ -54,7 +54,7 @@ public class Lane implements UnitCallback {
         }
         tiles.addAll(tile);
 
-        alienAmount = (int) (2 + (Math.random() * 10));
+        alienAmount = (int) difficulty;
         lastRenderTime = System.currentTimeMillis();
         projectileFactory = new ProjectileFactory();
     }
