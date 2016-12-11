@@ -67,10 +67,10 @@ public class WeaponTest {
 
     @Test
     public void testFiring() {
-    	for(int i = 0; i < 1000; i++){
+        for (int i = 0; i < 1000; i++) {
             double damageDealt = testWep.fire();
             assertTrue((damageDealt >= 0) && (damageDealt <= 20));
-    	}
+        }
     }
 
     @Test
@@ -106,17 +106,17 @@ public class WeaponTest {
         testWep.act(0.1f);
         assertTrue((adjacentAlien.getHealth() <= 5));
     }
-    
+
     @Test
-    public void testUpgrade(){
+    public void testUpgrade() {
         assertEquals(10, testWep.getDamage(), 0);
         assertEquals(25, testWep.getCostToUpgrade(), 0);
         testWep.upgradeWeapon();
         assertEquals(11, testWep.getDamage(), 0);
         assertEquals(32, testWep.getCostToUpgrade(), 0);
-        for(int i = 0; i < 1000; i++){
+        for (int i = 0; i < 1000; i++) {
             double damageDealt = testWep.fire();
             assertTrue((damageDealt >= 0) && (damageDealt <= 22));
         }
-   }
+    }
 }

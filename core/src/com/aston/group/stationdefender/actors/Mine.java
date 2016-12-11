@@ -3,16 +3,15 @@ package com.aston.group.stationdefender.actors;
 import com.aston.group.stationdefender.config.Constants;
 
 public class Mine extends Weapon {
-	
-	public Mine(int x, int y){
-		super(x,y);
-	}
-	
-    public Mine(int x, int y, int width, int height) {
-    	super("Mine", 0, 100, 1, Constants.UNIT_HEALTH, 1, 0.9, x, y, width, height, 8.0, 80, 25);
-    	exists = true;
+
+    public Mine() {
+        this(0, 0);
     }
-    
+
+    public Mine(int x, int y) {
+        super("Mine", 0, 100, 1, Constants.UNIT_HEALTH, 1, 0.9, x, y, 60, 60, 8.0, 80, 25);
+    }
+
     @Override
     public void act(float delta) {
         if (built && !checkZeroHealth()) {

@@ -20,7 +20,7 @@ public abstract class Unit implements Actor {
     final double rateOfFire; //How many times the unit fires per "tick".
     final int width; //Unit's width
     final int height; //Unit's height
-    private final double damage; //How much damage each successful hit causes.
+    double damage; //How much damage each successful hit causes.
     private final double range; //How many tiles forward the Unit can fire.
     private final String name; //Name of the type of unit.
     private final ParticleEffectHelper particleEffectHelper;
@@ -63,7 +63,7 @@ public abstract class Unit implements Actor {
         this.chanceToHit = chanceToHit;
         isAdjacent = false;
         adjacentActor = null;
-        exists = false;
+        exists = true;
         indicatorManager = new IndicatorManager();
         particleEffectHelper = new ParticleEffectHelper();
     }

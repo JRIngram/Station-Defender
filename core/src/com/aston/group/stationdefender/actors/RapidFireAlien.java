@@ -23,7 +23,7 @@ public class RapidFireAlien extends Alien {
      * @param x The X co-ordinate to give the Alien
      * @param y The Y co-ordinate to give the Alien
      */
-    private RapidFireAlien(int x, int y) {
+    public RapidFireAlien(int x, int y) {
         super("Rapid Fire Alien", 2, 5.0, 10, Constants.UNIT_HEALTH, 2, 0.5, x, y, 100, 38);
     }
 

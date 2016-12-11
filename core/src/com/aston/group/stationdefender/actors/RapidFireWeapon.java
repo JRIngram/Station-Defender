@@ -24,7 +24,7 @@ public class RapidFireWeapon extends Weapon {
      * @param x The X co-ordinate to give the RapidFireWeapon
      * @param y The Y co-ordinate to give the RapidFireWeapon
      */
-    private RapidFireWeapon(int x, int y) {
+    public RapidFireWeapon(int x, int y) {
         super("Rapid Fire Weapon", 0, 5.0, 15.0, 10, 2, 0.5, x, y, 60, 60, 1.0, 60, 25);
     }
 
