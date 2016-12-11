@@ -32,6 +32,8 @@ public abstract class Unit implements Actor {
     UnitCallback unitCallback; //The UnitCallBack used for the Unit
     private boolean exists; //Whether the Unit is alive or dead.
     private double health; //How much damage the Unit can take before being destroyed.
+    private String name; //Name of the type of unit.
+    private final double chanceToHit; //Chance of a hit
 
     /**
      * Construct a new Unit with given name, speed, damage, rateOfFile, health, range, x co-ordinate, y co-ordinate,
@@ -48,7 +50,7 @@ public abstract class Unit implements Actor {
      * @param width      The width of the Unit
      * @param height     The height of the Unit
      */
-    Unit(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
+    Unit(String name, double speed, double damage, double rateOfFire, double health, double range, double chanceToHit, int x, int y, int width, int height) {
         this.name = name;
         this.speed = speed;
         this.damage = damage;
@@ -59,6 +61,7 @@ public abstract class Unit implements Actor {
         this.y = y;
         this.width = width;
         this.height = height;
+        this.chanceToHit = chanceToHit;
         isAdjacent = false;
         adjacentActor = null;
         exists = false;
@@ -240,7 +243,7 @@ public abstract class Unit implements Actor {
         Random rng = new Random();
         int hit = 0;
         for (int i = 0; i < rateOfFire; i++) {
-            if (5 == rng.nextInt(10)) {
+            if (chanceToHit <= rng.nextInt(10)) {
                 hit++;
             }
         }
@@ -317,6 +320,15 @@ public abstract class Unit implements Actor {
      */
     public void setUnitCallback(UnitCallback unitCallback) {
         this.unitCallback = unitCallback;
+    }
+
+    /**
+     * Returns the likelihood of a Unit hitting its target, per shot.
+     *
+     * @return The likelihood of a Unit hitting its target, per shot
+     */
+    public double getChanceToHit() {
+        return chanceToHit;
     }
 
     /**

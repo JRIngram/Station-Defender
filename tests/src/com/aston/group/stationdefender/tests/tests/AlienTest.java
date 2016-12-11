@@ -13,8 +13,8 @@ public class AlienTest {
 
     @Before
     public void setUp() {
-        adjacentWep = new Weapon("Weapon", 0, 2, 2, 10, 1, 10, 10, 100, 100, 0.0d, 100, 100);
-        alien = new Alien("Alien", 1, 3, 3, 15, 1, 100, 100, 100, 100);
+        adjacentWep = new Weapon("Weapon", 0, 2, 2, 10, 1, 5.0, 10, 10, 100, 100, 0.0d, 100, 100);
+        alien = new Alien("Alien", 1, 3, 3, 15, 1, 5.0, 100, 100, 100, 100);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class AlienTest {
 
     @Test
     public void testAdjacent() {
-        Alien adjacentAlien = new Alien("AdjAlien", 1, 3, 3, 15, 1, 10, 100, 100, 100);
+        Alien adjacentAlien = new Alien("AdjAlien", 1, 3, 3, 15, 1, 5.0, 10, 100, 100, 100);
         assertEquals(false, alien.isAdjacent());
         assertEquals(null, alien.getAdjacentActor());
         alien.setAdjacentActor(adjacentWep);

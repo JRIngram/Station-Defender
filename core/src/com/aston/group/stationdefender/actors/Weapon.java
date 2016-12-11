@@ -40,7 +40,7 @@ public class Weapon extends Unit {
      * @param y The Y co-ordinate to give the Weapon
      */
     public Weapon(int x, int y) {
-        this("Weapon", 50, Constants.DEFAULT_DAMAGE, 10.0, Constants.WEAPON_HEALTH, 12, x, y, 60, 60, 1.5, 10, 10);
+        this("Weapon", 50, Constants.DEFAULT_DAMAGE, 10.0, Constants.WEAPON_HEALTH, 12, 5.0, x, y, 60, 60, 1.5, 10, 10);
     }
 
     /**
@@ -61,9 +61,9 @@ public class Weapon extends Unit {
      * @param cost          The cost of the Weapon
      * @param costToUpgrade THe cost to upgrade to the Weapon
      */
-    public Weapon(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height,
+    public Weapon(String name, double speed, double damage, double rateOfFire, double health, double range, double chanceToHit, int x, int y, int width, int height,
                   double buildTime, int cost, int costToUpgrade) {
-        super(name, speed, damage, rateOfFire, health, range, x, y, width, height);
+        super(name, speed, damage, rateOfFire, health, range, chanceToHit, x, y, width, height);
         this.buildTime = buildTime;
         this.cost = cost;
         this.costToUpgrade = costToUpgrade;

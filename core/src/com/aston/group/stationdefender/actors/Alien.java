@@ -30,7 +30,7 @@ public class Alien extends Unit {
      * @param y The Y co-ordinate to give the Alien
      */
     public Alien(int x, int y) {
-        this("Alien", -100, Constants.DEFAULT_DAMAGE, 5, Constants.UNIT_HEALTH, 12, x, y, 100, 38);
+        this("Alien", -100, Constants.DEFAULT_DAMAGE, 5, Constants.UNIT_HEALTH, 5.0, 12, x, y, 100, 38);
     }
 
     /**
@@ -48,9 +48,10 @@ public class Alien extends Unit {
      * @param width      The width of the Alien
      * @param height     The height of the Alien
      */
-    public Alien(String name, double speed, double damage, double rateOfFire, double health, double range, int x, int y, int width, int height) {
-        super(name, speed, damage, rateOfFire, health, range, x, y, width, height);
+    public Alien(String name, double speed, double damage, double rateOfFire, double health, double range, double chanceToHit, int x, int y, int width, int height) {
+        super(name, speed, damage, rateOfFire, health, range, chanceToHit, x, y, width, height);
         batch = GameEngine.getBatch();
+
         texture = TextureManager.INSTANCE.loadTexture(7);
         facingLeft = true;
     }
@@ -93,7 +94,7 @@ public class Alien extends Unit {
      *
      * @param delta The time in seconds since the last move
      */
-    private void move(float delta) {
+    void move(float delta) {
         if (!isAdjacent()) {
             x += (speed * delta);
         } else {
