@@ -24,6 +24,7 @@ public abstract class Unit implements Actor {
     private final double range; //How many tiles forward the Unit can fire.
     private final String name; //Name of the type of unit.
     private final ParticleEffectHelper particleEffectHelper;
+    private final double chanceToHit; //Chance of a hit
     int x; //Unit's position on the X-Axis
     int y; //Unit's position on the Y-Axis
     boolean isAdjacent; //Checks if the Unit is adjacent to any other unit.  This information is retrieved from the Level.
@@ -32,8 +33,6 @@ public abstract class Unit implements Actor {
     UnitCallback unitCallback; //The UnitCallBack used for the Unit
     private boolean exists; //Whether the Unit is alive or dead.
     private double health; //How much damage the Unit can take before being destroyed.
-    private String name; //Name of the type of unit.
-    private final double chanceToHit; //Chance of a hit
 
     /**
      * Construct a new Unit with given name, speed, damage, rateOfFile, health, range, x co-ordinate, y co-ordinate,
@@ -339,5 +338,20 @@ public abstract class Unit implements Actor {
      */
     void renderParticleEffect(float delta, SpriteBatch batch) {
         particleEffectHelper.renderParticleEffect(delta, batch, x, y);
+    }
+
+    boolean rapidFireHelper() {
+        boolean result = false;
+        try {
+            double damageDealt = fire();
+            if ((damageDealt / getDamage()) == getRateOfFire()) {
+                result = true;
+            } else {
+                adjacentActor.takeDamage(damageDealt);
+            }
+        } catch (Exception e) {
+            System.out.println("Null values are not allowed");
+        }
+        return result;
     }
 }

@@ -6,17 +6,23 @@ package com.aston.group.stationdefender.actors;
  * @author IngramJ
  */
 public class RapidFireAlien extends Alien {
+    private boolean overloaded = false;
 
-    private boolean overloaded;
-
-    public RapidFireAlien(int x, int y) {
-        super(x, y);
-        overloaded = false;
+    /**
+     * Construct a new RapidFireAlien with default X and Y co-ordinates of '0'
+     */
+    public RapidFireAlien() {
+        this(0, 0);
     }
 
-    public RapidFireAlien(int x, int y, int width, int height) {
-        super("Rapid Fire Alien", 2, 0.5, 10, 10, 2, 0.5, x, y, width, height);
-        overloaded = false;
+    /**
+     * Construct a new RapidFireAlien with given X and Y co-ordinates
+     *
+     * @param x The X co-ordinate to give the Alien
+     * @param y The Y co-ordinate to give the Alien
+     */
+    private RapidFireAlien(int x, int y) {
+        super("Rapid Fire Alien", 2, 10, 10, 10, 2, 0.5, x, y, 100, 38);
     }
 
     /**
@@ -28,17 +34,7 @@ public class RapidFireAlien extends Alien {
         if (!checkZeroHealth()) {
             if (!overloaded) {
                 if (isAdjacent) {
-                    try {
-                        double damageDealt = fire();
-                        if ((damageDealt / getDamage()) == getRateOfFire()) {
-                            overloaded = true;
-                        } else {
-                            adjacentActor.takeDamage(damageDealt);
-                        }
-
-                    } catch (Exception e) {
-                        System.out.println("Null values are not allowed");
-                    }
+                    overloaded = rapidFireHelper();
                 } else {
                     move(delta);
                 }

@@ -1,16 +1,31 @@
 package com.aston.group.stationdefender.actors;
 
+/**
+ * RapidFireWeapon is a class that represents a RapidFireWeapon object
+ * that Humans (Unit) can arm themselves with and use to destroy Aliens.
+ * <p>
+ * This Weapon can overload and rapidly fire.
+ *
+ * @author Jamie Ingram
+ */
 public class RapidFireWeapon extends Weapon {
-    private boolean overloaded;
+    private boolean overloaded = false;
 
-    public RapidFireWeapon(int x, int y) {
-        super(x, y);
-        overloaded = false;
+    /**
+     * Construct a new RapidFireWeapon with default X and Y co-ordinates of '0'
+     */
+    public RapidFireWeapon() {
+        this(0, 0);
     }
 
-    public RapidFireWeapon(int x, int y, int width, int height, double buildTime, int cost, int costToUpgrade) {
-        super("Rapid Fire Weapon", 0, 0.5, 15, 10, 2, 0.5, x, y, width, height, buildTime, cost, costToUpgrade);
-        overloaded = false;
+    /**
+     * Construct a new RapidFireWeapon with given X and Y co-ordinates
+     *
+     * @param x The X co-ordinate to give the RapidFireWeapon
+     * @param y The Y co-ordinate to give the RapidFireWeapon
+     */
+    private RapidFireWeapon(int x, int y) {
+        super("Rapid Fire Weapon", 0, 10, 15.0, 10, 2, 0.5, x, y, 60, 60, 1.0, 5, 10);
     }
 
     /**
@@ -22,17 +37,7 @@ public class RapidFireWeapon extends Weapon {
         if (!checkZeroHealth()) {
             if (!overloaded) {
                 if (isAdjacent) {
-                    try {
-                        double damageDealt = fire();
-                        if ((damageDealt / getDamage()) == getRateOfFire()) {
-                            overloaded = true;
-                        } else {
-                            adjacentActor.takeDamage(damageDealt);
-                        }
-
-                    } catch (Exception e) {
-                        System.out.println("Null values are not allowed");
-                    }
+                    overloaded = rapidFireHelper();
                 }
             } else
                 overloaded = false;
