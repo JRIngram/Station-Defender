@@ -25,7 +25,7 @@ public class RapidFireWeapon extends Weapon {
      * @param y The Y co-ordinate to give the RapidFireWeapon
      */
     private RapidFireWeapon(int x, int y) {
-        super("Rapid Fire Weapon", 0, 10, 15.0, 10, 2, 0.5, x, y, 60, 60, 1.0, 5, 10);
+        super("Rapid Fire Weapon", 0, 5.0, 15.0, 10, 2, 0.5, x, y, 60, 60, 1.0, 60, 25);
     }
 
     /**
@@ -34,7 +34,7 @@ public class RapidFireWeapon extends Weapon {
      */
     @Override
     public void act(float delta) {
-        if (!checkZeroHealth()) {
+        if (!checkZeroHealth() && built) {
             if (!overloaded) {
                 if (isAdjacent) {
                     overloaded = rapidFireHelper();

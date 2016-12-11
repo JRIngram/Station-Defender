@@ -15,7 +15,7 @@ public class WeaponTest {
 
     @Before
     public void setUp() {
-        testWep = new Weapon("Weapon", 0, 2, 2, 10, 1, 5.0, 10, 10, 200, 200, 2.0, 100, 25);
+        testWep = new Weapon("Weapon", 0, 10, 2, 10, 1, 5.0, 10, 10, 200, 200, 2.0, 100, 25);
         adjacentAlien = new Alien("Alien", 0, 5, 2, 5, 1, 5.0, 200, 200, 100, 100);
     }
 
@@ -26,7 +26,7 @@ public class WeaponTest {
         assertEquals(0, weapon.getY());
         assertEquals("Weapon", testWep.getName());
         assertEquals(0, testWep.getSpeed(), 0);
-        assertEquals(2, testWep.getDamage(), 0);
+        assertEquals(10, testWep.getDamage(), 0);
         assertEquals(2, testWep.getRateOfFire(), 0);
         assertEquals(10, testWep.getHealth(), 0);
         assertEquals(1, testWep.getRange(), 0);
@@ -67,8 +67,10 @@ public class WeaponTest {
 
     @Test
     public void testFiring() {
-        double damageDealt = testWep.fire();
-        assertTrue((damageDealt >= 0) && (damageDealt <= 4.5));
+    	for(int i = 0; i < 1000; i++){
+            double damageDealt = testWep.fire();
+            assertTrue((damageDealt >= 0) && (damageDealt <= 20));
+    	}
     }
 
     @Test
@@ -104,4 +106,17 @@ public class WeaponTest {
         testWep.act(0.1f);
         assertTrue((adjacentAlien.getHealth() <= 5));
     }
+    
+    @Test
+    public void testUpgrade(){
+        assertEquals(10, testWep.getDamage(), 0);
+        assertEquals(25, testWep.getCostToUpgrade(), 0);
+        testWep.upgradeWeapon();
+        assertEquals(11, testWep.getDamage(), 0);
+        assertEquals(32, testWep.getCostToUpgrade(), 0);
+        for(int i = 0; i < 1000; i++){
+            double damageDealt = testWep.fire();
+            assertTrue((damageDealt >= 0) && (damageDealt <= 22));
+        }
+   }
 }

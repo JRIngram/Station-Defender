@@ -18,7 +18,7 @@ public class CloseCombatAlienTest {
     public void testConstructor() {
         assertEquals("Close Combat Alien", alien.getName());
         assertEquals(2.0, alien.getSpeed(), 0);
-        assertEquals(6.0, alien.getDamage(), 0);
+        assertEquals(60.0, alien.getDamage(), 0);
         assertEquals(100.0, alien.getHealth(), 0);
         assertEquals(7.0, alien.getChanceToHit(), 0);
     }

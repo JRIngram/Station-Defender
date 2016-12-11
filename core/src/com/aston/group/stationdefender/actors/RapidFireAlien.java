@@ -1,5 +1,7 @@
 package com.aston.group.stationdefender.actors;
 
+import com.aston.group.stationdefender.config.Constants;
+
 /**
  * Fast Firing Alien with fast, but low damage.
  *
@@ -22,7 +24,7 @@ public class RapidFireAlien extends Alien {
      * @param y The Y co-ordinate to give the Alien
      */
     private RapidFireAlien(int x, int y) {
-        super("Rapid Fire Alien", 2, 10, 10, 10, 2, 0.5, x, y, 100, 38);
+        super("Rapid Fire Alien", 2, 5.0, 10, Constants.UNIT_HEALTH, 2, 0.5, x, y, 100, 38);
     }
 
     /**
