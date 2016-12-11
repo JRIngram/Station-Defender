@@ -1,5 +1,7 @@
 package com.aston.group.stationdefender.config;
 
+import com.badlogic.gdx.graphics.Color;
+
 /**
  * This class is for constant known variables used throughout the game
  *
@@ -7,7 +9,7 @@ package com.aston.group.stationdefender.config;
  */
 public interface Constants {
 
-    boolean DEBUG = false;
+    boolean DEBUG = true;
 
     // 16/9 Aspect Ratio
     int SCREEN_WIDTH = 1024;
@@ -55,4 +57,8 @@ public interface Constants {
     int START_MONEY = 50;
     int MONEY_REGENERATION = 1;
     int ADD_SCORE_AMOUNT = 10;
+
+    Color primaryColor = Color.valueOf("#37474F");
+    Color primaryDarkColor = Color.valueOf("#263238");
+    Color accentColor = Color.valueOf("#f44336");
 }
