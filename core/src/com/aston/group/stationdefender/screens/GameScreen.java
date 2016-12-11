@@ -7,6 +7,7 @@ import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.gamesetting.Level;
 import com.aston.group.stationdefender.gamesetting.Player;
+import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.utils.MouseInput;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -92,6 +93,12 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
     @Override
     public void addScore(int score) {
         player.addScore(score);
+    }
+
+    @Override
+    public void collectItem(Item item) {
+        player.collectItem(item);
+        player.addMoney(item.getValue());
     }
 
     @Override

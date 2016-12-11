@@ -7,8 +7,8 @@ import com.aston.group.stationdefender.gamesetting.items.ItemTurret;
 
 public class ItemFactory {
 
-    public static Item getItem(Items items){
-        switch (items){
+    private static Item getItem(Items items) {
+        switch (items) {
             case CREDIT:
                 return new ItemCredit();
             case TURRET:
@@ -18,21 +18,18 @@ public class ItemFactory {
         }
     }
 
-    public static Item getRandomItem(){
+    private static Item getRandomItem() {
         int rand = (int) (Math.random() * (Items.values().length));
-
         return ItemFactory.getItem(Items.values()[rand]);
-
     }
 
-    public static Item getItemByChance(){
+    public static Item getItemByChance() {
         int rand = (int) (Math.random() * 100);
 
-        if(rand <= 25){
+        if (rand <= 25) {
             return ItemFactory.getRandomItem();
-        }else{
+        } else {
             return null;
         }
     }
-
 }

@@ -20,11 +20,11 @@ public abstract class Unit implements Actor {
     final double rateOfFire; //How many times the unit fires per "tick".
     final int width; //Unit's width
     final int height; //Unit's height
-    double damage; //How much damage each successful hit causes.
     private final double range; //How many tiles forward the Unit can fire.
     private final String name; //Name of the type of unit.
     private final ParticleEffectHelper particleEffectHelper;
     private final double chanceToHit; //Chance of a hit
+    double damage; //How much damage each successful hit causes.
     int x; //Unit's position on the X-Axis
     int y; //Unit's position on the Y-Axis
     boolean isAdjacent; //Checks if the Unit is adjacent to any other unit.  This information is retrieved from the Level.

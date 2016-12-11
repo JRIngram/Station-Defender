@@ -18,9 +18,9 @@ public class Weapon extends Unit {
     private final SpriteBatch batch;
     private final Texture texture;
     private final double buildTime;
+    private final int cost;
     boolean built;
     long lastTime;
-    private final int cost;
     private int costToUpgrade;
     private double remainingBuildTime;
     private ProjectileFactory projectileFactory;

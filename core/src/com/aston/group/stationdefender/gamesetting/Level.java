@@ -222,4 +222,9 @@ public class Level implements LaneCallback {
     public boolean isTowerColliding(int x, int y, int width, int height) {
         return tower.isColliding(x, y, width, height);
     }
+
+    @Override
+    public void collectItem(Item item) {
+        levelCallback.collectItem(item);
+    }
 }

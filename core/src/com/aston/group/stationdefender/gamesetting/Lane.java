@@ -8,7 +8,6 @@ import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.helpers.Projectile;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
 import com.aston.group.stationdefender.gamesetting.items.Item;
-import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
 import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.aston.group.stationdefender.utils.resources.ItemFactory;
@@ -199,7 +198,7 @@ public class Lane implements UnitCallback {
         Iterator<Unit> unitsIterator = units.iterator();
         while (unitsIterator.hasNext()) {
             Unit unit = unitsIterator.next();
-            if(!unit.getExists()){
+            if (!unit.getExists()) {
                 dropItem(ItemFactory.getItemByChance(), unit.getX(), unit.getY());
             }
             if (unit.getHealth() <= 0) {
@@ -248,8 +247,8 @@ public class Lane implements UnitCallback {
         for (int i = 0; i < itemDrops.size; i++) {
             itemDrops.get(i).render(delta);
 
-            if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && itemDrops.get(i).isJustSpawned() && MouseInput.isColliding(itemDrops.get(i).getX(), itemDrops.get(i).getY(), itemDrops.get(i).getWidth(), itemDrops.get(i).getHeight())){
-                player.collectItem(itemDrops.get(i));
+            if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && itemDrops.get(i).isJustSpawned() && MouseInput.isColliding(itemDrops.get(i).getX(), itemDrops.get(i).getY(), itemDrops.get(i).getWidth(), itemDrops.get(i).getHeight())) {
+                laneCallback.collectItem(itemDrops.get(i));
                 removeItem(i);
             }
         }
@@ -302,23 +301,16 @@ public class Lane implements UnitCallback {
         projectileFactory.shootBullet(x, y, speed, damage);
     }
 
-    public void dropItem(Item item, int x, int y){
-        if(item != null) {
+    private void dropItem(Item item, int x, int y) {
+        if (item != null) {
             item.setX(x);
             item.setY(y);
-            item.setJustSpawned(true);
+            item.setJustSpawned();
             itemDrops.add(item);
         }
     }
 
-    public void pickItem(int index){
-        if(itemDrops.get(index) != null && player != null) {
-            player.collectItem(itemDrops.get(index));
-            itemDrops.removeIndex(index);
-        }
-    }
-
-    public void removeItem(int index){
+    private void removeItem(int index) {
         itemDrops.removeIndex(index);
     }
 

@@ -1,5 +1,7 @@
 package com.aston.group.stationdefender.callbacks;
 
+import com.aston.group.stationdefender.gamesetting.items.Item;
+
 /**
  * LaneCallback is the callback class for Lane
  *
@@ -39,4 +41,6 @@ public interface LaneCallback {
      * @return true if the values overlap, false if the values do not overlap
      */
     boolean isTowerColliding(int x, int y, int width, int height);
+
+    void collectItem(Item item);
 }

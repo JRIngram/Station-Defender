@@ -1,5 +1,7 @@
 package com.aston.group.stationdefender.callbacks;
 
+import com.aston.group.stationdefender.gamesetting.items.Item;
+
 /**
  * LevelCallback is the callback class for Level
  *
@@ -27,4 +29,6 @@ public interface LevelCallback {
      * @param score The amount of points to add to the Player
      */
     void addScore(int score);
+
+    void collectItem(Item item);
 }
