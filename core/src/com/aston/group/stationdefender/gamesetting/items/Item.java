@@ -48,10 +48,8 @@ public abstract class Item {
 
     /**
      * Render the Item.
-     *
-     * @param delta - The time in seconds since the last render.
      */
-    public void render(float delta) {
+    public void render() {
         //TODO: add specular effect
         if (texture != null) {
             batch.begin();
@@ -151,15 +149,6 @@ public abstract class Item {
      */
     public boolean isCollected() {
         return collected;
-    }
-
-    /**
-     * Sets whether the Item has been collected or not
-     *
-     * @param collected Whether the Item has been collected or not
-     */
-    public void setCollected(boolean collected) {
-        this.collected = collected;
     }
 
     /**

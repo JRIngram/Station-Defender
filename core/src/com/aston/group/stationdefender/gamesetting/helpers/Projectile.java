@@ -103,86 +103,6 @@ public class Projectile implements Pool.Poolable {
     }
 
     /**
-     * Dispose of unused assets
-     */
-    public void dispose() {
-        batch.dispose();
-        texture.dispose();
-    }
-
-    /**
-     * Returns the X co-ordinate of the Projectile
-     *
-     * @return The X co-ordinate of the Projectile
-     */
-    public double getX() {
-        return x;
-    }
-
-    /**
-     * Sets the X co-ordinate of the Projectile
-     *
-     * @param x The X co-ordinate of the Projectile
-     */
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    /**
-     * Returns the Y co-ordinate of the Projectile
-     *
-     * @return The Y co-ordinate of the Projectile
-     */
-    public int getY() {
-        return y;
-    }
-
-    /**
-     * Sets the Y co-ordinate of the Projectile
-     *
-     * @param y The Y co-ordinate of the Projectile
-     */
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    /**
-     * Returns the width of the Projectile
-     *
-     * @return The width of the Projectile
-     */
-    public int getWidth() {
-        return width;
-    }
-
-    /**
-     * Sets the width of the Projectile
-     *
-     * @param width The width of the Projectile
-     */
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    /**
-     * Returns the height of the Projectile
-     *
-     * @return The height of the Projectile
-     */
-    public int getHeight() {
-        return height;
-    }
-
-    /**
-     * Sets the height of the Projectile
-     *
-     * @param height The height of the Projectile
-     */
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    /**
      * Returns whether the Projectile is alive or not
      *
      * @return true if the Projectile is alive, false if the Projectile is not alive
@@ -205,14 +125,5 @@ public class Projectile implements Pool.Poolable {
      */
     public double getDamage() {
         return damage;
-    }
-
-    /**
-     * Sets the damage of the Projectile
-     *
-     * @param damage The damage of the Projectile
-     */
-    public void setDamage(int damage) {
-        this.damage = damage;
     }
 }

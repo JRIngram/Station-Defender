@@ -2,8 +2,7 @@ package com.aston.group.stationdefender.utils.hud;
 
 import com.badlogic.gdx.utils.Array;
 
-public enum Hud {
-    INSTANCE;
+public class Hud {
     private static final Array<HudElement> hudElements = new Array<>();
 
     public static void render(float delta) {

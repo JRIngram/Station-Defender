@@ -56,11 +56,6 @@ public class PlayerInventory implements Inventory {
     }
 
     @Override
-    public void removeAllItems() {
-        items.clear();
-    }
-
-    @Override
     public void removeItemById(int id) {
         IntStream.range(0, items.size).filter(i -> items.get(i) != null && items.get(i).getId() == id).findFirst().ifPresent(items::removeIndex);
     }

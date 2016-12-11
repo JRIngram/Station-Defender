@@ -101,7 +101,7 @@ public class Player implements InputProcessor {
         if (currentItem != null) {
             currentItem.setX(MouseInput.getX() - (currentItem.getWidth() / 2));
             currentItem.setY(MouseInput.getY() - (currentItem.getHeight() / 2));
-            currentItem.render(delta);
+            currentItem.render();
         }
 
         //Render Quick Slots
@@ -265,30 +265,12 @@ public class Player implements InputProcessor {
     }
 
     /**
-     * Adds a list of Items to the Inventory
-     *
-     * @param items The Items to be added to the Inventory
-     */
-    public void collectItems(Array<Item> items) {
-        inventory.addAllItems(items);
-    }
-
-    /**
      * Removes an Item from the Inventory
      *
      * @param item The Item to remove from the Inventory
      */
     public void dropItem(Item item) {
         inventory.removeItem(item);
-    }
-
-    /**
-     * Returns the Player's Inventory
-     *
-     * @return The current Inventory
-     */
-    public Inventory getInventory() {
-        return inventory;
     }
 
     /**
@@ -310,30 +292,12 @@ public class Player implements InputProcessor {
     }
 
     /**
-     * Sets the Player's score
-     *
-     * @param score The Player's score
-     */
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    /**
      * Returns the amount of money the Player has
      *
      * @return The amount of money the Player has
      */
     public int getMoney() {
         return money;
-    }
-
-    /**
-     * Sets the amount of money the Player has
-     *
-     * @param money The amount of money the Player has
-     */
-    public void setMoney(int money) {
-        this.money = money;
     }
 
     /**

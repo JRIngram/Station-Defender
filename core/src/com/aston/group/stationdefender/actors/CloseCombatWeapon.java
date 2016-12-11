@@ -12,11 +12,11 @@ import com.aston.group.stationdefender.config.Constants;
  */
 public class CloseCombatWeapon extends Weapon {
 
-    public CloseCombatWeapon(int x, int y) {
-        super(x, y);
+    public CloseCombatWeapon() {
+        this(0, 0);
     }
 
-    public CloseCombatWeapon(int x, int y, int width, int height) {
-        super("Close Combat Weapon", 0, 50.0, 2.0, Constants.UNIT_HEALTH, 1.0, 7.0, x, y, width, height, 5.0, 50, 25);
+    private CloseCombatWeapon(int x, int y) {
+        super("Close Combat Weapon", 0, 50.0, 2.0, Constants.UNIT_HEALTH, 1.0, 7.0, x, y, 60, 60, 5.0, 50, 25);
     }
 }

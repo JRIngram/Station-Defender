@@ -26,18 +26,6 @@ public interface Inventory {
     void removeItem(Item item);
 
     /**
-     * Adds all given Items from the Inventory
-     *
-     * @param items ArrayList of Items to be added to the PlayerInventory
-     */
-    void addAllItems(Array<Item> items);
-
-    /**
-     * Removes all Items from the Inventory
-     */
-    void removeAllItems();
-
-    /**
      * Returns an Item at a specific number in the Inventory
      *
      * @param index The number of the queue to get the Item from
