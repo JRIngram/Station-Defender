@@ -6,7 +6,6 @@ import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.aston.group.stationdefender.utils.hud.Hud;
-import com.aston.group.stationdefender.utils.hud.HudContainer;
 import com.aston.group.stationdefender.utils.hud.HudElement;
 import com.aston.group.stationdefender.utils.hud.HudWeapon;
 import com.badlogic.gdx.graphics.Texture;
@@ -107,18 +106,17 @@ public class Weapon extends Unit {
         }
     }
 
-    private void checkInput(){
-        if(MouseInput.isColliding(x, y, width, height)){
-            if(hudElement == null){
+    private void checkInput() {
+        if (MouseInput.isColliding(x, y, width, height)) {
+            if (hudElement == null) {
                 hudElement = new HudWeapon();
                 hudElement.setX(x);
                 hudElement.setY(y);
                 hudElement.setObject(this);
-                Hud.getInstance().addHudElement(hudElement);
+                Hud.addHudElement(hudElement);
             }
-        }
-        else if(!Hud.getInstance().isColliding()){
-            Hud.getInstance().removeHudElement(hudElement);
+        } else if (Hud.isNotColliding()) {
+            Hud.removeHudElement(hudElement);
             hudElement = null;
         }
     }

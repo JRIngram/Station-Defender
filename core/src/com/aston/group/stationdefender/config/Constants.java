@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.Color;
  */
 public interface Constants {
 
-    boolean DEBUG = true;
+    boolean DEBUG = false;
 
     // 16/9 Aspect Ratio
     int SCREEN_WIDTH = 1024;
@@ -49,7 +49,7 @@ public interface Constants {
     int TILE_AMOUNT = 11;
     int LANE_AMOUNT = 4;
 
-    int TOWER_HEALTH = 400;
+    int TOWER_HEALTH = 1000;
     int UNIT_HEALTH = 100;
     int WEAPON_HEALTH = 100;
     int DEFAULT_DAMAGE = 50;

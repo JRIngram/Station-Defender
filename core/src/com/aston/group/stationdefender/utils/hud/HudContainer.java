@@ -1,33 +1,27 @@
 package com.aston.group.stationdefender.utils.hud;
 
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.MouseInput;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class HudContainer extends HudElement{
+public class HudContainer extends HudElement {
+    final BitmapFont font;
+    final SpriteBatch batch;
+    private final ShapeRenderer shapeRenderer;
 
-    private ShapeRenderer shapeRenderer;
-    protected BitmapFont font;
-    protected SpriteBatch batch;
-
-    public HudContainer() {
+    HudContainer(int x, int y) {
+        this.x = x;
+        this.y = y;
         width = 400;
         height = 200;
         title = "Blank Container";
-        shapeRenderer = new ShapeRenderer();
-
-        batch = new SpriteBatch();
-
+        shapeRenderer = GameEngine.getShapeRenderer();
+        batch = GameEngine.getBatch();
         font = FontManager.getFont(16);
-    }
-
-    public HudContainer(int x, int y){
-        this();
-        this.x = x;
-        this.y = y;
     }
 
     @Override
@@ -46,18 +40,6 @@ public class HudContainer extends HudElement{
 
     @Override
     public boolean isColliding() {
-        if(MouseInput.isColliding(x, y, width, height)){
-            return true;
-        }else{
-            return false;
-        }
+        return MouseInput.isColliding(x, y, width, height);
     }
-
-    @Override
-    public void dispose() {
-        shapeRenderer.dispose();
-    }
-
-
-
 }

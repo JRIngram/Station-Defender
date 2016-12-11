@@ -2,45 +2,35 @@ package com.aston.group.stationdefender.utils.hud;
 
 import com.aston.group.stationdefender.actors.Weapon;
 
-public class HudWeapon extends HudContainer{
-
+public class HudWeapon extends HudContainer {
     private Weapon weapon;
 
     public HudWeapon() {
-        super();
-        title = "Weapon";
-
-        if(weapon != null){
-            title = weapon.getName();
-        }
-
-        width = 150;
-        height = 160;
+        this(0, 0);
     }
 
-    public HudWeapon(int x, int y) {
-        this();
+    private HudWeapon(int x, int y) {
+        super(x, y);
         this.x = x;
         this.y = y;
+        title = "Weapon";
+        if (weapon != null) {
+            title = weapon.getName();
+        }
+        width = 150;
+        height = 160;
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
-
         batch.begin();
         font.draw(batch, "Damage: " + weapon.getDamage(), x + 5, (height + y) - 30);
-        batch.end();
-
-        batch.begin();
+        restartBatch();
         font.draw(batch, "Cost: " + weapon.getCost(), x + 5, (height + y) - 50);
-        batch.end();
-
-        batch.begin();
+        restartBatch();
         font.draw(batch, "Range: " + weapon.getRange(), x + 5, (height + y) - 70);
-        batch.end();
-
-        batch.begin();
+        restartBatch();
         font.draw(batch, "ROF: " + weapon.getRateOfFire(), x + 5, (height + y) - 90);
         batch.end();
     }
@@ -50,8 +40,8 @@ public class HudWeapon extends HudContainer{
         this.weapon = (Weapon) object;
     }
 
-    @Override
-    public void dispose() {
-        super.dispose();
+    private void restartBatch() {
+        batch.end();
+        batch.begin();
     }
 }
