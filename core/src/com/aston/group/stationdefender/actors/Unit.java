@@ -40,16 +40,17 @@ public abstract class Unit implements Actor {
      * Construct a new Unit with given name, speed, damage, rateOfFile, health, range, x co-ordinate, y co-ordinate,
      * width and height
      *
-     * @param name       The name of the Unit
-     * @param speed      The speed of the Unit
-     * @param damage     The damage the Unit inflicts
-     * @param rateOfFire The rate of fire of the Unit
-     * @param health     The health of the Unit
-     * @param range      The range of the Unit
-     * @param x          The X co-ordinate of the Unit
-     * @param y          The Y co-ordinate of the Unit
-     * @param width      The width of the Unit
-     * @param height     The height of the Unit
+     * @param name        The name of the Unit
+     * @param speed       The speed of the Unit
+     * @param damage      The damage the Unit inflicts
+     * @param rateOfFire  The rate of fire of the Unit
+     * @param health      The health of the Unit
+     * @param range       The range of the Unit
+     * @param chanceToHit The chance of the Weapon to score a hit
+     * @param x           The X co-ordinate of the Unit
+     * @param y           The Y co-ordinate of the Unit
+     * @param width       The width of the Unit
+     * @param height      The height of the Unit
      */
     Unit(String name, double speed, double damage, double rateOfFire, double health, double range, double chanceToHit, int x, int y, int width, int height) {
         this.name = name;
@@ -343,6 +344,11 @@ public abstract class Unit implements Actor {
         particleEffectHelper.renderParticleEffect(delta, batch, x, y);
     }
 
+    /**
+     * Helper method for the RapidFire classes
+     *
+     * @return true if the class should overload, false if it shouldn't
+     */
     boolean rapidFireHelper() {
         boolean result = false;
         try {
@@ -358,10 +364,20 @@ public abstract class Unit implements Actor {
         return result;
     }
 
+    /**
+     * Returns the Texture of the Unit
+     *
+     * @return The Texture of the Unit
+     */
     Texture getTexture() {
         return texture;
     }
 
+    /**
+     * Sets the Texture of the Unit
+     *
+     * @param texture The Texture of the Unit
+     */
     void setTexture(Texture texture) {
         this.texture = texture;
     }

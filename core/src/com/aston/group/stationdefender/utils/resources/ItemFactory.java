@@ -5,8 +5,19 @@ import com.aston.group.stationdefender.gamesetting.items.ItemBlank;
 import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
 import com.aston.group.stationdefender.gamesetting.items.ItemTurret;
 
+/**
+ * This class is responsible for handling what Items are created
+ *
+ * @author Mohammad Foysal
+ */
 public class ItemFactory {
 
+    /**
+     * Returns a new Item from the given list
+     *
+     * @param items The enum list of Items that can be created
+     * @return The new Item to be placed within a Lane
+     */
     private static Item getItem(Items items) {
         switch (items) {
             case CREDIT:
@@ -18,14 +29,23 @@ public class ItemFactory {
         }
     }
 
+    /**
+     * Returns a new Item at random
+     *
+     * @return The new Item to be placed within a Lane
+     */
     private static Item getRandomItem() {
         int rand = (int) (Math.random() * (Items.values().length));
         return ItemFactory.getItem(Items.values()[rand]);
     }
 
+    /**
+     * Return either a new Item or null at random
+     *
+     * @return A new Item at random or null if no Item is to be returned
+     */
     public static Item getItemByChance() {
         int rand = (int) (Math.random() * 100);
-
         if (rand <= 25) {
             return ItemFactory.getRandomItem();
         } else {

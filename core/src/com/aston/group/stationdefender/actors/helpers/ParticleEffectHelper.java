@@ -13,6 +13,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class ParticleEffectHelper {
     private ParticleEffect particleEffect;
 
+    /**
+     * Create the ParticleEffect starting at given X and Y co-ordinates
+     *
+     * @param x The start X co-ordinate of the ParticleEffect
+     * @param y The start Y co-ordinate of the ParticleEffect
+     */
     public void destroy(int x, int y) {
         SoundManager.INSTANCE.playSound(3);
         particleEffect = TextureManager.INSTANCE.loadParticleEffect(1);
@@ -25,6 +31,8 @@ public class ParticleEffectHelper {
      *
      * @param delta The time in seconds since the last render
      * @param batch The SpriteBatch to render the particle effect on
+     * @param x     The X co-ordinate to render the ParticleEffect at
+     * @param y     The Y co-ordinate to render the ParticleEffect at
      */
     public void renderParticleEffect(float delta, SpriteBatch batch, int x, int y) {
         if (particleEffect != null) {

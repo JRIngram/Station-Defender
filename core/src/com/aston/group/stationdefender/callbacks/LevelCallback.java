@@ -30,5 +30,10 @@ public interface LevelCallback {
      */
     void addScore(int score);
 
+    /**
+     * Callback to collect an Item
+     *
+     * @param item The Item to be collected
+     */
     void collectItem(Item item);
 }

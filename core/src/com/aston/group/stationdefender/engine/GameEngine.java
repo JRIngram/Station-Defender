@@ -10,6 +10,11 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+/**
+ * This enum is the controller for the camera
+ *
+ * @author Mohammad Foysal
+ */
 public enum GameEngine {
     INSTANCE;
     private static final SpriteBatch batch;
@@ -31,14 +36,27 @@ public enum GameEngine {
         mousePosition = new Vector3();
     }
 
+    /**
+     * Returns the SpriteBatch for the Game
+     *
+     * @return The SpriteBatch for the Game
+     */
     public static SpriteBatch getBatch() {
         return batch;
     }
 
+    /**
+     * Returns the ShapeRenderer for the Game
+     *
+     * @return The ShapeRenderer for the Game
+     */
     public static ShapeRenderer getShapeRenderer() {
         return shapeRenderer;
     }
 
+    /**
+     * Render the camera and set the properties for the ShapeRenderer and SpriteBatch
+     */
     public void render() {
         mousePosition.set(Gdx.input.getX(), Gdx.input.getY(), 0);
         mousePosition = camera.unproject(mousePosition);
@@ -48,6 +66,12 @@ public enum GameEngine {
         batch.setProjectionMatrix(camera.combined);
     }
 
+    /**
+     * Update the camera viewport
+     *
+     * @param width  The current width of the viewport
+     * @param height The current height of the viewport
+     */
     public void update(int width, int height) {
         viewport.update(width, height);
     }

@@ -2,13 +2,27 @@ package com.aston.group.stationdefender.utils.hud;
 
 import com.aston.group.stationdefender.actors.Weapon;
 
+/**
+ * HudWeapon is a HudElement specific to the Weapon objects
+ *
+ * @author Mohammad Foysal
+ */
 public class HudWeapon extends HudContainer {
     private Weapon weapon;
 
+    /**
+     * Creates a new HudWeapon with default X and Y co-ordinates of '0'
+     */
     public HudWeapon() {
         this(0, 0);
     }
 
+    /**
+     * Creates a new HudWeapon with given X and Y co-ordinates
+     *
+     * @param x The X co-ordinate of the HudWeapon
+     * @param y The Y co-ordinate of the HudWeapon
+     */
     private HudWeapon(int x, int y) {
         super(x, y);
         this.x = x;
@@ -40,6 +54,9 @@ public class HudWeapon extends HudContainer {
         this.weapon = (Weapon) object;
     }
 
+    /**
+     * Restarts the SpriteBatch to allow more objects to be drawn on the screen
+     */
     private void restartBatch() {
         batch.end();
         batch.begin();

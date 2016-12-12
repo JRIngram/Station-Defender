@@ -35,16 +35,17 @@ public class Alien extends Unit {
      * Construct a new Alien with given name, speed, damage, rateOfFile, health, range, x co-ordinate, y co-ordinate,
      * width and height
      *
-     * @param name       The name of the Alien
-     * @param speed      The speed of the Alien
-     * @param damage     The damage the Alien inflicts
-     * @param rateOfFire The rate of fire of the Alien
-     * @param health     The health of the Alien
-     * @param range      The range of the Alien
-     * @param x          The X co-ordinate of the Alien
-     * @param y          The Y co-ordinate of the Alien
-     * @param width      The width of the Alien
-     * @param height     The height of the Alien
+     * @param name        The name of the Alien
+     * @param speed       The speed of the Alien
+     * @param damage      The damage the Alien inflicts
+     * @param rateOfFire  The rate of fire of the Alien
+     * @param health      The health of the Alien
+     * @param range       The range of the Alien
+     * @param chanceToHit The chance of the Weapon to score a hit
+     * @param x           The X co-ordinate of the Alien
+     * @param y           The Y co-ordinate of the Alien
+     * @param width       The width of the Alien
+     * @param height      The height of the Alien
      */
     public Alien(String name, double speed, double damage, double rateOfFire, double health, double range, double chanceToHit, int x, int y, int width, int height) {
         super(name, speed, damage, rateOfFire, health, range, chanceToHit, x, y, width, height);

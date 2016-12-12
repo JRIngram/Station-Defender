@@ -12,10 +12,19 @@ import com.aston.group.stationdefender.config.Constants;
  */
 public class CloseCombatAlien extends Alien {
 
+    /**
+     * Create a new CloseCombatAlien with default X and Y co-ordinates of '0'
+     */
     public CloseCombatAlien() {
         this(0, 0);
     }
 
+    /**
+     * Create a new CloseCombatAlien with given X and Y co-ordinates
+     *
+     * @param x The X co-ordinate of the CloseCombatAlien
+     * @param y The Y co-ordinate of the CloseCombatAlien
+     */
     public CloseCombatAlien(int x, int y) {
         super("Close Combat Alien", 2, 60.0, 2, Constants.UNIT_HEALTH, 1, 7.0, x, y, 20, 20);
     }

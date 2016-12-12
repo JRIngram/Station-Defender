@@ -45,6 +45,7 @@ public class Lane implements UnitCallback {
      * @param x             The X co-ordinate of the Lane
      * @param y             The Y co-ordinate of the Lane
      * @param numberOfTiles The Number of tiles in the lane
+     * @param difficulty    The difficulty of the Level
      */
     public Lane(LaneCallback laneCallback, int x, int y, int numberOfTiles, double difficulty) {
         this.laneCallback = laneCallback;
@@ -72,6 +73,7 @@ public class Lane implements UnitCallback {
      * @param unit The Unit to place
      * @param x    The X co-ordinate of the Tile
      * @param y    The Y co-ordinate of the Tile
+     * @return True if the placement was successful, false if the placement was unsuccessful
      */
     boolean place(Unit unit, int x, int y) {
         for (int i = 0; i < tiles.size; i++) {
@@ -301,6 +303,13 @@ public class Lane implements UnitCallback {
         projectileFactory.shootBullet(x, y, speed, damage);
     }
 
+    /**
+     * Drop an Item on the Lane
+     *
+     * @param item The Item to drop
+     * @param x    The X co-ordinate to drop the Item
+     * @param y    The Y co-ordinate to drop the Item
+     */
     private void dropItem(Item item, int x, int y) {
         if (item != null) {
             item.setX(x);
@@ -310,6 +319,11 @@ public class Lane implements UnitCallback {
         }
     }
 
+    /**
+     * Remove an Item from the Lane
+     *
+     * @param index The index of the Item to be removed
+     */
     private void removeItem(int index) {
         itemDrops.removeIndex(index);
     }

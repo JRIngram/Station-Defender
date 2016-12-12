@@ -1,5 +1,10 @@
 package com.aston.group.stationdefender.actors.helpers;
 
+/**
+ * This enum contains a list of all the Units in the game.
+ *
+ * @author Mohammad Foysal
+ */
 public enum Units {
     ALIEN,
     CLOSE_COMBAT_ALIEN,

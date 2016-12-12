@@ -54,6 +54,7 @@ public class Weapon extends Unit {
      * @param rateOfFire    The rate of fire of the Weapon
      * @param health        The health of the Weapon
      * @param range         The range of the Weapon
+     * @param chanceToHit   The chance of the Weapon to score a hit
      * @param x             The X co-ordinate of the Weapon
      * @param y             The Y co-ordinate of the Weapon
      * @param width         The width of the Weapon
@@ -111,6 +112,10 @@ public class Weapon extends Unit {
         super.destroy();
     }
 
+    /**
+     * Checks whether the MouseInput is colliding with the Weapon.
+     * If it does then create a new HUD element for the Weapon
+     */
     private void checkInput() {
         if (MouseInput.isColliding(x, y, width, height)) {
             if (hudElement == null) {

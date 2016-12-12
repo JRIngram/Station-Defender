@@ -13,6 +13,12 @@ public class HudContainer extends HudElement {
     final SpriteBatch batch;
     private final ShapeRenderer shapeRenderer;
 
+    /**
+     * Create a new HudContainer at given X and Y co-ordinates
+     *
+     * @param x The X co-ordinate of the HudContainer
+     * @param y The Y co-ordinate of the HudContainer
+     */
     HudContainer(int x, int y) {
         this.x = x;
         this.y = y;

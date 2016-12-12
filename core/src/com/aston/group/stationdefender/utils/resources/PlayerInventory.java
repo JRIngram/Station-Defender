@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.stream.IntStream;
 
 /**
+ * PlayerInventory class is responsible for holding items in the Players' Inventory
+ *
  * @author Mohammed Foysal
  */
 public class PlayerInventory implements Inventory {
