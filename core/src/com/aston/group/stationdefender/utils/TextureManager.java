@@ -21,7 +21,10 @@ public enum TextureManager {
     private static final int DEFAULT_WEAPON_TEXTURE = 8;
     private static final int DEFAULT_PROJECTILE_TEXTURE = 9;
     private static final int ITEM_CREDIT_TEXTURE = 10;
-    private static final int ITEM_TURRET_TEXTURE = 11;
+    private static final int MINE_WEAPON_TEXTURE = 11;
+    private static final int RF_ALIEN_TEXTURE = 12;
+    private static final int RF_WEAPON_TEXTURE = 13;
+    private static final int KAMIKAZE_ALIEN_TEXTURE = 14;
     private static final int EXPLOSION_ANIMATION = 1;
 
     /**
@@ -63,8 +66,18 @@ public enum TextureManager {
             case ITEM_CREDIT_TEXTURE:
                 texture = new Texture(Gdx.files.internal("textures/item-credits.png"));
                 break;
-            case ITEM_TURRET_TEXTURE:
-                texture = new Texture(Gdx.files.internal("textures/turret.png"));
+            case MINE_WEAPON_TEXTURE:
+                texture = new Texture(Gdx.files.internal("textures/landmine.png"));
+                break;
+            case RF_ALIEN_TEXTURE:
+                texture = new Texture(Gdx.files.internal("textures/rf-enemy.png"));
+                break;
+            case RF_WEAPON_TEXTURE:
+                texture = new Texture(Gdx.files.internal("textures/rf-turret.png"));
+                break;
+            case KAMIKAZE_ALIEN_TEXTURE:
+                texture = new Texture(Gdx.files.internal("textures/rf-turret.png"));
+                break;
         }
         return texture;
     }

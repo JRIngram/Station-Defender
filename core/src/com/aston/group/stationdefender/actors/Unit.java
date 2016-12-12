@@ -4,6 +4,7 @@ import com.aston.group.stationdefender.actors.helpers.ParticleEffectHelper;
 import com.aston.group.stationdefender.callbacks.UnitCallback;
 import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Random;
@@ -33,7 +34,7 @@ public abstract class Unit implements Actor {
     UnitCallback unitCallback; //The UnitCallBack used for the Unit
     private boolean exists; //Whether the Unit is alive or dead.
     private double health; //How much damage the Unit can take before being destroyed.
-    private String texturePath;
+    private Texture texture;
 
     /**
      * Construct a new Unit with given name, speed, damage, rateOfFile, health, range, x co-ordinate, y co-ordinate,
@@ -98,6 +99,7 @@ public abstract class Unit implements Actor {
     @Override
     public void dispose() {
         indicatorManager.dispose();
+        texture.dispose();
     }
 
     /**
@@ -354,5 +356,13 @@ public abstract class Unit implements Actor {
             System.out.println("Null values are not allowed");
         }
         return result;
+    }
+
+    Texture getTexture() {
+        return texture;
+    }
+
+    void setTexture(Texture texture) {
+        this.texture = texture;
     }
 }

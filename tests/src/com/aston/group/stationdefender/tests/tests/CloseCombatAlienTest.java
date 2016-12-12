@@ -11,7 +11,7 @@ public class CloseCombatAlienTest {
 
     @Before
     public void setUp() {
-        alien = new CloseCombatAlien(0, 0);
+        alien = new CloseCombatAlien();
     }
 
     @Test
@@ -25,7 +25,7 @@ public class CloseCombatAlienTest {
 
     @Test
     public void testDamageAndCheckHealth() {
-        alien = new CloseCombatAlien(100, 100, 100, 100);
+        alien = new CloseCombatAlien(100, 100);
         assertEquals(100, (int) alien.getHealth());
         for (int i = 100; i > 0; i--) {
             assertEquals(i, alien.getHealth(), 0);

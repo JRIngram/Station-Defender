@@ -13,14 +13,10 @@ import com.aston.group.stationdefender.config.Constants;
 public class CloseCombatAlien extends Alien {
 
     public CloseCombatAlien() {
-
+        this(0, 0);
     }
 
     public CloseCombatAlien(int x, int y) {
-        this(x, y, 20, 20);
-    }
-
-    public CloseCombatAlien(int x, int y, int width, int height) {
-        super("Close Combat Alien", 2, 60.0, 2, Constants.UNIT_HEALTH, 1, 7.0, x, y, width, height);
+        super("Close Combat Alien", 2, 60.0, 2, Constants.UNIT_HEALTH, 1, 7.0, x, y, 20, 20);
     }
 }

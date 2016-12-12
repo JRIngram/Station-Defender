@@ -3,7 +3,6 @@ package com.aston.group.stationdefender.actors;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.TextureManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -13,7 +12,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * @version 01/11/2016
  */
 public class Alien extends Unit {
-    private final Texture texture;
     private final SpriteBatch batch;
 
     /**
@@ -52,7 +50,7 @@ public class Alien extends Unit {
         super(name, speed, damage, rateOfFire, health, range, chanceToHit, x, y, width, height);
         batch = GameEngine.getBatch();
 
-        texture = TextureManager.INSTANCE.loadTexture(7);
+        setTexture(TextureManager.INSTANCE.loadTexture(7));
         facingLeft = true;
     }
 
@@ -64,7 +62,7 @@ public class Alien extends Unit {
             batch.setColor(1f, 1f, 1f, 1f);
         else
             batch.setColor(.5f, .5f, .5f, 1f);
-        batch.draw(texture, x, y, width, height);
+        batch.draw(getTexture(), x, y, width, height);
         batch.end();
         act(delta);
         indicatorManager.render(delta, x, y);
@@ -81,12 +79,6 @@ public class Alien extends Unit {
         } else {
             destroy();
         }
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
-        texture.dispose();
     }
 
     /**

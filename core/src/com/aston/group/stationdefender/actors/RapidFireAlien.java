@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.utils.TextureManager;
 
 /**
  * Fast Firing Alien with fast, but low damage.
@@ -25,6 +26,7 @@ public class RapidFireAlien extends Alien {
      */
     public RapidFireAlien(int x, int y) {
         super("Rapid Fire Alien", 2, 5.0, 10, Constants.UNIT_HEALTH, 2, 0.5, x, y, 100, 38);
+        setTexture(TextureManager.INSTANCE.loadTexture(12));
     }
 
     /**

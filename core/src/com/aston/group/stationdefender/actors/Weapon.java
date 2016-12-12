@@ -7,7 +7,6 @@ import com.aston.group.stationdefender.utils.TextureManager;
 import com.aston.group.stationdefender.utils.hud.Hud;
 import com.aston.group.stationdefender.utils.hud.HudElement;
 import com.aston.group.stationdefender.utils.hud.HudWeapon;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -19,7 +18,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public class Weapon extends Unit {
     private final SpriteBatch batch;
-    private final Texture texture;
     private final double buildTime;
     private final int cost;
     boolean built;
@@ -74,7 +72,7 @@ public class Weapon extends Unit {
         built = false;
         facingLeft = false;
         batch = GameEngine.getBatch();
-        texture = TextureManager.INSTANCE.loadTexture(8);
+        setTexture(TextureManager.INSTANCE.loadTexture(8));
         startTime = System.currentTimeMillis();
     }
 
@@ -82,7 +80,7 @@ public class Weapon extends Unit {
     public void render(float delta) {
         batch.begin();
         renderParticleEffect(delta, batch);
-        batch.draw(texture, x, y, width, height);
+        batch.draw(getTexture(), x, y, width, height);
         batch.end();
         act(delta);
         checkInput();
@@ -102,7 +100,6 @@ public class Weapon extends Unit {
         } else {
             decrementBuildTimer();
         }
-
     }
 
     private void checkInput() {
@@ -118,12 +115,6 @@ public class Weapon extends Unit {
             Hud.removeHudElement(hudElement);
             hudElement = null;
         }
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
-        texture.dispose();
     }
 
     /**

@@ -1,7 +1,6 @@
 package com.aston.group.stationdefender.screens;
 
 import com.aston.group.stationdefender.actors.Unit;
-import com.aston.group.stationdefender.actors.Weapon;
 import com.aston.group.stationdefender.callbacks.GameCallback;
 import com.aston.group.stationdefender.callbacks.LevelCallback;
 import com.aston.group.stationdefender.callbacks.PlayerCallback;
@@ -10,7 +9,6 @@ import com.aston.group.stationdefender.gamesetting.Level;
 import com.aston.group.stationdefender.gamesetting.Player;
 import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.utils.MouseInput;
-import com.aston.group.stationdefender.utils.ParseUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;

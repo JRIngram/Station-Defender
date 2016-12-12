@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.actors;
 
 import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.utils.TextureManager;
 
 public class KamikazeAlien extends Alien {
 
@@ -10,6 +11,7 @@ public class KamikazeAlien extends Alien {
 
     public KamikazeAlien(int x, int y) {
         super("Kamikaze Alien", 4, 100, 1, Constants.UNIT_HEALTH, 1.0, 0.9, x, y, 100, 38);
+        setTexture(TextureManager.INSTANCE.loadTexture(14));
     }
 
     @Override
