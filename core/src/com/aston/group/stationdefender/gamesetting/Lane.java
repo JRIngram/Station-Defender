@@ -1,7 +1,8 @@
 package com.aston.group.stationdefender.gamesetting;
 
-import com.aston.group.stationdefender.actors.Alien;
 import com.aston.group.stationdefender.actors.Unit;
+import com.aston.group.stationdefender.actors.helpers.Units;
+import com.aston.group.stationdefender.actors.helpers.UnitFactory;
 import com.aston.group.stationdefender.callbacks.LaneCallback;
 import com.aston.group.stationdefender.callbacks.UnitCallback;
 import com.aston.group.stationdefender.config.Constants;
@@ -209,11 +210,11 @@ public class Lane implements UnitCallback {
         //Spawn New Aliens
         if (System.currentTimeMillis() - lastRenderTime > 2200 + Math.random() * 3000) {
             if (alienAmount > 0) {
-                Alien alien = new Alien();
-                alien.setX(getLastTileCenterX() - (alien.getWidth() / 2));
-                alien.setY(getLastTileCenterY() - (alien.getHeight() / 2));
+                Unit unit = UnitFactory.getEnemy(Units.ALIEN);
+                unit.setX(getLastTileCenterX() - (unit.getWidth() / 2));
+                unit.setY(getLastTileCenterY() - (unit.getHeight() / 2));
 
-                units.add(alien);
+                units.add(unit);
                 alienAmount--;
             }
             lastRenderTime = System.currentTimeMillis();

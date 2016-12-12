@@ -104,6 +104,7 @@ public class Weapon extends Unit {
         } else {
             decrementBuildTimer();
         }
+
     }
 
     private void checkInput() {

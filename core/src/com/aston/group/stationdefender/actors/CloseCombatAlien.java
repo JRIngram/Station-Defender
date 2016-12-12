@@ -12,6 +12,10 @@ import com.aston.group.stationdefender.config.Constants;
  */
 public class CloseCombatAlien extends Alien {
 
+    public CloseCombatAlien() {
+
+    }
+
     public CloseCombatAlien(int x, int y) {
         this(x, y, 20, 20);
     }

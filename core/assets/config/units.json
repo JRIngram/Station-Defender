@@ -1,0 +1,31 @@
+{
+  "close-combat-alien": {
+    "name": "Close Combat Alien",
+    "texture": "alien.png",
+    "width": 5,
+    "height": 2,
+    "damage": 50,
+    "health": 100,
+    "rof": 2,
+    "range": 20,
+    "speed": 10,
+    "hit_chance": 3,
+    "facing_left": true
+  },
+  "Weapon": {
+    "name": "Weapon",
+    "texture": "weapon.png",
+    "width": 5,
+    "height": 2,
+    "damage": 50,
+    "health": 100,
+    "rof": 2,
+    "range": 20,
+    "speed": 10,
+    "hit_chance": 3,
+    "facing_left": false,
+    "build_time": 4000,
+    "cost": 200,
+    "upgrade_cost": 100
+  }
+}

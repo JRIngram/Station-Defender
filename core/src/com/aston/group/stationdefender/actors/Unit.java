@@ -33,6 +33,7 @@ public abstract class Unit implements Actor {
     UnitCallback unitCallback; //The UnitCallBack used for the Unit
     private boolean exists; //Whether the Unit is alive or dead.
     private double health; //How much damage the Unit can take before being destroyed.
+    private String texturePath;
 
     /**
      * Construct a new Unit with given name, speed, damage, rateOfFile, health, range, x co-ordinate, y co-ordinate,
