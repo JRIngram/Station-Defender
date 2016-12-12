@@ -24,9 +24,9 @@ public enum SoundManager {
         float volume = 0.0f;
         switch (id) {
             case BACKGROUND_MUSIC_ID:
-                music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Background_Music.mp3"));
+                music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Background_Music.ogg"));
                 music.setLooping(true);
-                volume = 0.02f;
+                volume = 0.1f;
                 break;
             case GUN_SHOT_SOUND_ID:
                 music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Gun_Shot.mp3"));
@@ -34,7 +34,7 @@ public enum SoundManager {
                 break;
             case EXPLOSION_SOUND_ID:
                 music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Explosion.mp3"));
-                volume = 0.1f;
+                volume = 0.07f;
                 break;
         }
         if (music != null) {

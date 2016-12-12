@@ -8,6 +8,7 @@ import com.aston.group.stationdefender.screens.GameScreen;
 import com.aston.group.stationdefender.screens.IntroScreen;
 import com.aston.group.stationdefender.screens.MenuScreen;
 import com.aston.group.stationdefender.screens.TwoTextScreen;
+import com.aston.group.stationdefender.utils.SoundManager;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
@@ -57,6 +58,7 @@ public class Main extends Game implements GameCallback, TwoTextCallback, MenuCal
         } else {
             setScreen(gameScreen);
         }
+        SoundManager.INSTANCE.playSound(1);
     }
 
     /**
