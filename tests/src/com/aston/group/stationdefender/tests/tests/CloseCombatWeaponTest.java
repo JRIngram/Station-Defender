@@ -7,12 +7,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class CloseCombatWeaponTest {
-
     private CloseCombatWeapon weapon;
 
     @Before
     public void setUp() {
-        weapon = new CloseCombatWeapon(0, 0, 0, 0);
+        weapon = new CloseCombatWeapon();
     }
 
     /*String name, double speed, double damage, double rateOfFire, double health,
@@ -29,8 +28,8 @@ public class CloseCombatWeaponTest {
         assertEquals(7.0, weapon.getChanceToHit(), 0);
         assertEquals(0, weapon.getX(), 0);
         assertEquals(0, weapon.getY(), 0);
-        assertEquals(0, weapon.getWidth(), 0);
-        assertEquals(0, weapon.getHeight(), 0);
+        assertEquals(60, weapon.getWidth(), 0);
+        assertEquals(60, weapon.getHeight(), 0);
         assertEquals(5.0, weapon.getBuildTime(), 0);
         assertEquals(50.0, weapon.getCost(), 0);
         assertEquals(25.0, weapon.getCostToUpgrade(), 0);

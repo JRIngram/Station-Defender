@@ -49,9 +49,9 @@ public class RapidFireUnitsTest {
         assertEquals(0.5, weapon.getChanceToHit(), 0);
         assertEquals(4.0, weapon.getX(), 0);
         assertEquals(4.0, weapon.getY(), 0);
-        assertEquals(20, weapon.getWidth(), 0);
-        assertEquals(20, weapon.getHeight(), 0);
-        assertEquals(7.0, weapon.getBuildTime(), 0);
+        assertEquals(60, weapon.getWidth(), 0);
+        assertEquals(60, weapon.getHeight(), 0);
+        assertEquals(1.0, weapon.getBuildTime(), 0);
         assertEquals(60, weapon.getCost(), 0);
         assertEquals(25, weapon.getCostToUpgrade(), 0);
     }
@@ -64,9 +64,17 @@ public class RapidFireUnitsTest {
         alien.setAdjacentActor(weapon);
         assertEquals(false, alien.getOverloaded());
         for (int i = 1; i <= 10; i++) {
-            System.out.print("Alien Rapid Fire Overload Test Run: " + i);
             alien.setOverloaded(false);
             assertEquals(false, alien.getOverloaded());
+            while (!alien.getOverloaded()) {
+                alien.act(0.1f);
+                if (alien.getOverloaded()) {
+                    double wepHealth = weapon.getHealth();
+                    alien.act(0.1f);
+                    assertEquals(wepHealth, weapon.getHealth(), 0);
+                    alien.setOverloaded(true);
+                }
+            }
         }
     }
 
@@ -78,22 +86,16 @@ public class RapidFireUnitsTest {
         }
         assertEquals(false, weapon.getOverloaded());
         for (int i = 1; i <= 10; i++) {
-            System.out.print("Weapon Rapid Fire Overload Test Run: " + i);
             weapon.setOverloaded(false);
             assertEquals(false, weapon.getOverloaded());
-            overload();
-        }
-    }
-
-    private void overload() {
-        while (!alien.getOverloaded()) {
-            alien.act(0.1f);
-            if (alien.getOverloaded()) {
-                double wepHealth = weapon.getHealth();
-                alien.act(0.1f);
-                assertEquals(wepHealth, weapon.getHealth(), 0);
-                alien.setOverloaded(true);
-                System.out.println(":" + " pass.");
+            while (!weapon.getOverloaded()) {
+                weapon.act(0.1f);
+                if (weapon.getOverloaded()) {
+                    double alienHealth = alien.getHealth();
+                    weapon.act(0.1f);
+                    assertEquals(alienHealth, alien.getHealth(), 0);
+                    weapon.setOverloaded(true);
+                }
             }
         }
     }
