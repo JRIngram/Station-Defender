@@ -102,6 +102,15 @@ public class Weapon extends Unit {
         }
     }
 
+    @Override
+    public void destroy() {
+        if (hudElement != null) {
+            Hud.removeHudElement(hudElement);
+            hudElement = null;
+        }
+        super.destroy();
+    }
+
     private void checkInput() {
         if (MouseInput.isColliding(x, y, width, height)) {
             if (hudElement == null) {

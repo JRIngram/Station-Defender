@@ -245,7 +245,7 @@ public abstract class Unit implements Actor {
         Random rng = new Random();
         int hit = 0;
         for (int i = 0; i < rateOfFire; i++) {
-            if (chanceToHit <= rng.nextInt(10)) {
+            if (chanceToHit >= rng.nextInt(10)) {
                 hit++;
             }
         }
