@@ -3,7 +3,6 @@ package com.aston.group.stationdefender.actors;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.MouseInput;
-import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.aston.group.stationdefender.utils.hud.Hud;
 import com.aston.group.stationdefender.utils.hud.HudElement;
@@ -27,7 +26,6 @@ public class Weapon extends Unit {
     long lastTime;
     private int costToUpgrade;
     private double remainingBuildTime;
-    private ProjectileFactory projectileFactory;
     private long startTime;
     private HudElement hudElement;
 
@@ -188,24 +186,6 @@ public class Weapon extends Unit {
      */
     public boolean getBuilt() {
         return built;
-    }
-
-    /**
-     * Returns the ProjectileFactory used for the Weapon
-     *
-     * @return The ProjectileFactory used for the Weapon
-     */
-    public ProjectileFactory getProjectileFactory() {
-        return projectileFactory;
-    }
-
-    /**
-     * Sets the ProjectileFactory used for the Weapon
-     *
-     * @param projectileFactory The ProjectileFactory to be used for the Weapon
-     */
-    public void setProjectileFactory(ProjectileFactory projectileFactory) {
-        this.projectileFactory = projectileFactory;
     }
 
     /**

@@ -18,7 +18,7 @@ public class ProjectileFactory {
             return new Projectile();
         }
     };
-    private Array<Projectile> projectiles = new Array<>();
+    private final Array<Projectile> projectiles = new Array<>();
 
     /**
      * Construct a new ProjectileFactory
@@ -71,14 +71,5 @@ public class ProjectileFactory {
      */
     public Array<Projectile> getProjectiles() {
         return projectiles;
-    }
-
-    /**
-     * Sets a new Array of Projectiles to be the current projectiles
-     *
-     * @param projectiles The Array of Projectiles to be used
-     */
-    public void setProjectiles(Array<Projectile> projectiles) {
-        this.projectiles = projectiles;
     }
 }

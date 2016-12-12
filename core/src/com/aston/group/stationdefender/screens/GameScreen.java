@@ -100,6 +100,7 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
     @Override
     public void collectItem(Item item) {
         player.collectItem(item);
+        item.collect();
         player.addMoney(item.getValue());
     }
 

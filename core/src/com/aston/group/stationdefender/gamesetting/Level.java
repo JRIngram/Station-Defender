@@ -125,16 +125,6 @@ public class Level implements LaneCallback {
     }
 
     /**
-     * Returns a Lane by the specific Lane number
-     *
-     * @param index The lane number of the lane to get
-     * @return The lane of the specific lane number
-     */
-    public Lane getLane(int index) {
-        return lanes.get(index - 1);
-    }
-
-    /**
      * Empty the Level
      **/
     public void clear() {
