@@ -34,7 +34,7 @@ public class ItemFactory {
      *
      * @return The new Item to be placed within a Lane
      */
-    private static Item getRandomItem() {
+    public static Item getRandomItem() {
         int rand = (int) (Math.random() * (Items.values().length));
         return ItemFactory.getItem(Items.values()[rand]);
     }

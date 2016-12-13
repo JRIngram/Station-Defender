@@ -22,6 +22,8 @@ public class Tile {
     private final SpriteBatch batch;
     private final Texture texture;
     private final ShapeRenderer shapeRenderer;
+    private boolean hasItem;
+    private boolean invalid;
 
     /**
      * Construct a new Tile with given X and Y co-ordinates
@@ -38,6 +40,8 @@ public class Tile {
         batch = GameEngine.getBatch();
         texture = TextureManager.INSTANCE.loadTexture(4);
         shapeRenderer = GameEngine.getShapeRenderer();
+        hasItem = false;
+        invalid = false;
     }
 
     /**
@@ -96,7 +100,13 @@ public class Tile {
             Gdx.gl.glEnable(GL20.GL_BLEND);
             Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
             shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-            shapeRenderer.setColor(222, 222, 222, 0.35f);
+            if (hasItem) {
+                shapeRenderer.setColor(0, 255, 0, 0.35f);
+            } else if (invalid) {
+                shapeRenderer.setColor(255, 0, 0, 0.35f);
+            } else {
+                shapeRenderer.setColor(222, 222, 222, 0.35f);
+            }
             shapeRenderer.rect(x, y, width, height);
             shapeRenderer.end();
             Gdx.gl.glDisable(GL20.GL_BLEND);
@@ -108,5 +118,33 @@ public class Tile {
      */
     public void dispose() {
         texture.dispose();
+    }
+
+    /**
+     * @return the hasItem
+     */
+    public boolean isHasItem() {
+        return hasItem;
+    }
+
+    /**
+     * @param hasItem the hasItem to set
+     */
+    public void setHasItem(boolean hasItem) {
+        this.hasItem = hasItem;
+    }
+
+    /**
+     * @return the invalid
+     */
+    public boolean isInvalid() {
+        return invalid;
+    }
+
+    /**
+     * @param invalid the invalid to set
+     */
+    public void setInvalid(boolean invalid) {
+        this.invalid = invalid;
     }
 }

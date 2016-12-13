@@ -217,4 +217,13 @@ public class Level implements LaneCallback {
     public void collectItem(Item item) {
         levelCallback.collectItem(item);
     }
+
+    /**
+     * Returns the Level Number
+     *
+     * @return the levelNumber
+     */
+    public int getLevelNumber() {
+        return levelNumber;
+}
 }
