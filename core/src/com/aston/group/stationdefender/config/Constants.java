@@ -42,7 +42,10 @@ public interface Constants {
 
     String MENU = "Menu";
 
-    String INSTRUCTIONS = "Instruction text will go here";
+    String INSTRUCTIONS = "The aim of the game is to defend the command centre from the swarm \nof aliens abroad the space station." +
+            "To defend the station from the aliens\nyou can use a range of weapons which can be found in your inventory\nlocated on the bottom left." +
+            "\n\nUse your resources carefully as all weapons cost money to build.\n" +
+            "Once a weapon is selected place it on a tile on the board and start\ndefeating the aliens, the more aliens you kill the more money you receive\nto use on better weapons.";
 
     int TILE_WIDTH = 80;
     int TILE_HEIGHT = 80;

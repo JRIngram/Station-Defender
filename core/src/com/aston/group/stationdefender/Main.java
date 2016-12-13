@@ -43,8 +43,8 @@ public class Main extends Game implements GameCallback, TwoTextCallback, MenuCal
         backgroundScreen.setBodyY((Gdx.graphics.getHeight() / 2) + (185));
         instructionScreen.setTitle(Constants.MENU_ITEMS[1]);
         instructionScreen.setBody(Constants.INSTRUCTIONS);
-        instructionScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 190);
-        instructionScreen.setBodyY((Gdx.graphics.getHeight() / 2) + (100 - 60));
+        instructionScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 500);
+        instructionScreen.setBodyY((Gdx.graphics.getHeight() / 2) + (185));
 
         // Setup callbacks
         introScreen.setMenuCallback(this);
