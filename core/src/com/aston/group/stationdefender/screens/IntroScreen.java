@@ -32,6 +32,7 @@ public class IntroScreen implements Screen {
     private final SpriteBatch batch;
     private final Stage stage;
     private final BitmapFont font;
+    private final BitmapFont smallerFont;
     private final TextButton backgroundButton, instructionButton, playButton, exitButton;
     private final TextButton[] buttons;
     private final Texture texture;
@@ -47,6 +48,7 @@ public class IntroScreen implements Screen {
         batch = GameEngine.getBatch();
 
         font = FontManager.getFont(50);
+        smallerFont = FontManager.getFont(16);
 
         //Buttons
         stage = new Stage();
@@ -114,6 +116,10 @@ public class IntroScreen implements Screen {
             fade = Interpolation.fade.apply((fadeElapsed - (fadeDelay + i + 1f)) / fadeInTime);
             buttons[i].setColor(1, 1, 1, fade);
         }
+        batch.end();
+
+        batch.begin();
+        smallerFont.draw(batch, "v" + Constants.VERSION, 20, 30);
         batch.end();
     }
 
