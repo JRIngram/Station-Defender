@@ -62,4 +62,6 @@ public interface Inventory {
      * @param id The Item ID to remove all items by
      */
     void removeAllItemsById(int id);
+
+    Array<Item> getItems();
 }

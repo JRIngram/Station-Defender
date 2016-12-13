@@ -54,18 +54,14 @@ public class Player implements InputProcessor {
         inventory = new PlayerInventory();
         score = 0;
         money = Constants.START_MONEY;
-        inventory.addItem(new ItemCredit());
+        inventory.addItem(new ItemTurret());
 
         //Quick Slots
         quickSlots = new Array<>();
         int slotX = 0;
         for (int i = 0; i < 8; i++) {
             QuickSlot quickSlot = new QuickSlot(slotX);
-            if (i == 0) {
-                quickSlot.setItem(new ItemTurret());
-            } else {
-                quickSlot.setItem(new ItemBlank());
-            }
+            quickSlot.setItem(new ItemBlank());
             quickSlots.add(quickSlot);
             slotX += 48;
         }
@@ -89,6 +85,8 @@ public class Player implements InputProcessor {
 
         //Initialise Money Indicator
         moneyIndicator = new IndicatorManager();
+
+        updateQuickSlots();
     }
 
     /**
@@ -255,13 +253,29 @@ public class Player implements InputProcessor {
         return true;
     }
 
+    private void updateQuickSlots(){
+        for (int i = 0; i < quickSlots.size; i++) {
+            if(i < inventory.getItems().size && inventory.getItems().get(i) != null)
+                quickSlots.get(i).setItem(inventory.getItems().get(i));
+            else
+                quickSlots.get(i).setItem(new ItemBlank());
+        }
+
+        currentItem = quickSlots.get(0).getItem();
+    }
+
     /**
      * Adds an Item to the Inventory
      *
      * @param item The Item to be added to the Inventory
      */
     public void collectItem(Item item) {
-        inventory.addItem(item);
+        if(item instanceof ItemCredit){
+            money += item.getValue();
+        }else{
+            inventory.addItem(item);
+            updateQuickSlots();
+        }
     }
 
     /**
@@ -271,6 +285,7 @@ public class Player implements InputProcessor {
      */
     public void dropItem(Item item) {
         inventory.removeItem(item);
+        updateQuickSlots();
     }
 
     /**
@@ -280,6 +295,7 @@ public class Player implements InputProcessor {
      */
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+        updateQuickSlots();
     }
 
     /**

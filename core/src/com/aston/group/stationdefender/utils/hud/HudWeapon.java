@@ -32,7 +32,7 @@ public class HudWeapon extends HudContainer {
             title = weapon.getName();
         }
         width = 150;
-        height = 160;
+        height = 110;
     }
 
     @Override

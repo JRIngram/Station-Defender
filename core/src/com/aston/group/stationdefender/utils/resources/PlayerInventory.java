@@ -107,6 +107,11 @@ public class PlayerInventory implements Inventory {
     }
 
     @Override
+    public Array<Item> getItems() {
+        return items;
+    }
+
+    @Override
     public String toString() {
         return "PlayerInventory{" + "items=" + items + "}";
     }
