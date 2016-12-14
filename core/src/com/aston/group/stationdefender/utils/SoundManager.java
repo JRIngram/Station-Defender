@@ -30,11 +30,11 @@ public enum SoundManager {
                 break;
             case GUN_SHOT_SOUND_ID:
                 music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Gun_Shot.mp3"));
-                volume = 0.05f;
+                volume = 0.02f;
                 break;
             case EXPLOSION_SOUND_ID:
                 music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Explosion.mp3"));
-                volume = 0.07f;
+                volume = 0.02f;
                 break;
         }
         if (music != null) {
