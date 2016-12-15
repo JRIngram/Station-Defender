@@ -41,7 +41,7 @@ public class Level implements LaneCallback {
     public Level(LevelCallback levelCallback, int levelNumber) {
         this.levelNumber = levelNumber;
         this.levelCallback = levelCallback;
-        tower = new Tower(100, 125, 400);
+        tower = new Tower(100, 100, 400);
         batch = GameEngine.getBatch();
         texture = TextureManager.INSTANCE.loadTexture(3);
         double difficulty = (2 + (levelNumber / 10)) * 8;
