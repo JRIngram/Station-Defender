@@ -8,7 +8,7 @@ import com.aston.group.stationdefender.callbacks.UnitCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.helpers.Projectile;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
-import com.aston.group.stationdefender.gamesetting.items.*;
+import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.ProjectileFactory;
 import com.aston.group.stationdefender.utils.resources.ItemFactory;
@@ -38,8 +38,6 @@ public class Lane implements UnitCallback {
     private boolean cleared;
     private int alienAmount;
     private long lastRenderTime;
-    private int propForItem; //when it's value is high the propability to have item in the tile is low
-    private int propForInvalid; //when it's value is high the propability for the tile to be invalid is low
 
     /**
      * Construct a new Lane
@@ -58,16 +56,15 @@ public class Lane implements UnitCallback {
 
         Tile[] tile = new Tile[numberOfTiles];
         int tileX = x;
-        setPropForItem(2 * laneCallback.getLevelNumber());
-        setPropForInvalid(14 / laneCallback.getLevelNumber());
+        int itemTileProbability = 2 * laneCallback.getLevelNumber();
+        int invalidTileProbability = 6 / laneCallback.getLevelNumber();
         Random rand = new Random();
         for (int i = 0; i < numberOfTiles; i++) {
             tile[i] = new Tile(tileX, y);
 
-            //propForItem = 2;
-            //so the propability will be 1/propForItem
-            tile[i].setHasItem(rand.nextInt(propForItem) == 0);
-            tile[i].setInvalid(rand.nextInt(propForInvalid) == 0);
+            // Probability will be 1 / tileProbability
+            tile[i].setHasItem(rand.nextInt(itemTileProbability) == 0);
+            tile[i].setInvalid(rand.nextInt(invalidTileProbability) == 0);
             tileX += Constants.TILE_WIDTH;
             width += Constants.TILE_WIDTH;
         }
@@ -389,33 +386,5 @@ public class Lane implements UnitCallback {
      */
     public void setCleared(boolean cleared) {
         this.cleared = cleared;
-    }
-
-    /**
-     * @return the propForItem
-     */
-    public int getPropForItem() {
-        return propForItem;
-}
-
-    /**
-     * @param propForItem the propForItem to set
-     */
-    private void setPropForItem(int propForItem) {
-        this.propForItem = propForItem;
-    }
-
-    /**
-     * @return the propForInvalid
-     */
-    public int getPropForInvalid() {
-        return propForInvalid;
-    }
-
-    /**
-     * @param propForInvalid the propForInvalid to set
-     */
-    private void setPropForInvalid(int propForInvalid) {
-        this.propForInvalid = propForInvalid;
     }
 }

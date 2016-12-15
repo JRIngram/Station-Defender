@@ -225,5 +225,5 @@ public class Level implements LaneCallback {
      */
     public int getLevelNumber() {
         return levelNumber;
-}
+    }
 }
