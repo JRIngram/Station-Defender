@@ -100,10 +100,10 @@ public class Tile {
             Gdx.gl.glEnable(GL20.GL_BLEND);
             Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
             shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-            if (hasItem) {
-                shapeRenderer.setColor(0, 255, 0, 0.35f);
-            } else if (invalid) {
+            if (invalid) {
                 shapeRenderer.setColor(255, 0, 0, 0.35f);
+            } else if (hasItem) {
+                shapeRenderer.setColor(0, 255, 0, 0.35f);
             } else {
                 shapeRenderer.setColor(222, 222, 222, 0.35f);
             }
