@@ -243,19 +243,20 @@ public class Player implements InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         selectedSlot += amount;
-        if (selectedSlot > quickSlots.size - 1) {
+        if (selectedSlot > quickSlots.size - 1)
             selectedSlot = 0;
-        }
-        if (selectedSlot < 0) {
+        if (selectedSlot < 0)
             selectedSlot = quickSlots.size - 1;
-        }
         quickSlotCallback.onSelectedItemChanged(quickSlots.get(selectedSlot).getItem());
         return true;
     }
 
-    private void updateQuickSlots(){
+    /**
+     * Updates the QuickSlots with the Items in the Inventory
+     */
+    private void updateQuickSlots() {
         for (int i = 0; i < quickSlots.size; i++) {
-            if(i < inventory.getItems().size && inventory.getItems().get(i) != null)
+            if (i < inventory.getItems().size && inventory.getItems().get(i) != null)
                 quickSlots.get(i).setItem(inventory.getItems().get(i));
             else
                 quickSlots.get(i).setItem(new ItemBlank());
@@ -270,9 +271,9 @@ public class Player implements InputProcessor {
      * @param item The Item to be added to the Inventory
      */
     public void collectItem(Item item) {
-        if(item instanceof ItemCredit){
+        if (item instanceof ItemCredit) {
             money += item.getValue();
-        }else{
+        } else {
             inventory.addItem(item);
             updateQuickSlots();
         }
