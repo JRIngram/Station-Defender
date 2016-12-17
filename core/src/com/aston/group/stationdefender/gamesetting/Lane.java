@@ -281,6 +281,11 @@ public class Lane implements UnitCallback {
         }
     }
 
+    /**
+     * Returns whether the lane is cleared of Aliens or not
+     *
+     * @return True if the lane is cleared of Aliens, false if not
+     */
     private boolean isLaneCleared() {
         return IntStream.range(0, units.size).noneMatch(i -> units.get(i).isFacingLeft());
     }

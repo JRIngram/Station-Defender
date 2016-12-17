@@ -13,9 +13,11 @@ import static org.junit.Assert.assertFalse;
 public class LevelTest {
     private final int numberOfLanes = Constants.LANE_AMOUNT;
     private Level level;
+    private LaneTest laneTest;
 
     @Before
     public void setUp() {
+        laneTest = new LaneTest();
         level = new Level(null, 1);
     }
 
@@ -38,7 +40,7 @@ public class LevelTest {
     public void testAddLane() {
         Array<Lane> lanes = level.getAllLanes();
         assertEquals(numberOfLanes, lanes.size);
-        level.addLane(new Lane(null, 0, 0, 12, 2 * 10));
+        level.addLane(new Lane(laneTest, 0, 0, 12, 2 * 10));
         lanes = level.getAllLanes();
         assertEquals(numberOfLanes + 1, lanes.size);
     }
@@ -53,7 +55,7 @@ public class LevelTest {
         level.removeLaneByIndex(2);
         lanes = level.getAllLanes();
         assertEquals(numberOfLanes - 2, lanes.size);
-        Lane lane = new Lane(null, 0, 0, 12, 2 * 10);
+        Lane lane = new Lane(laneTest, 0, 0, 12, 2 * 10);
         level.addLane(lane);
         level.addLane(lane);
         lanes = level.getAllLanes();

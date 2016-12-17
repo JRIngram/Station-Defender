@@ -1,21 +1,23 @@
 package com.aston.group.stationdefender.tests.tests;
 
+import com.aston.group.stationdefender.callbacks.LaneCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.Lane;
 import com.aston.group.stationdefender.gamesetting.helpers.Tile;
+import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.badlogic.gdx.utils.Array;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class LaneTest {
+public class LaneTest implements LaneCallback {
     private final int numberOfTiles = Constants.TILE_AMOUNT;
     private Lane lane;
 
     @Before
     public void setUp() {
-        lane = new Lane(null, 0, 0, numberOfTiles, 2 * 10);
+        lane = new Lane(this, 0, 0, numberOfTiles, 2 * 10);
     }
 
     @Test
@@ -81,5 +83,35 @@ public class LaneTest {
         lane.removeTileByObject(tile);
         tiles = lane.getAllTiles();
         assertEquals(numberOfTiles - 2, tiles.size);
+    }
+
+    @Override
+    public void addMoney(int money) {
+    }
+
+    @Override
+    public void addScore(int score) {
+    }
+
+    @Override
+    public void towerTakeDamage(double damage) {
+    }
+
+    @Override
+    public boolean isTowerColliding(int x, int y, int width, int height) {
+        return false;
+    }
+
+    @Override
+    public void collectItem(Item item) {
+    }
+
+    @Override
+    public int getLevelNumber() {
+        return 1;
+    }
+
+    public LaneCallback getLaneCallback() {
+        return this;
     }
 }
