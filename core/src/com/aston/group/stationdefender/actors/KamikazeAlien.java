@@ -24,7 +24,7 @@ public class KamikazeAlien extends Alien {
      * @param y The Y co-ordinate of the KamikazeAlien
      */
     public KamikazeAlien(int x, int y) {
-        super("Kamikaze Alien", -1000, 100, 1, Constants.UNIT_HEALTH, 1.0, 0.9, x, y, 100, 38);
+        super("Kamikaze Alien", -150, 100, 1, Constants.UNIT_HEALTH, 1.0, 0.9, x, y, 100, 38);
         setTexture(TextureManager.INSTANCE.loadTexture(14));
     }
 
