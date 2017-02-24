@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.Color;
  */
 public interface Constants {
 
-    boolean DEBUG = false;
+    boolean DEBUG = true;
 
     // 16/9 Aspect Ratio
     int SCREEN_WIDTH = 1024;

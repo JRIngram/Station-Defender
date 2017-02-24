@@ -4,10 +4,7 @@ import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.engine.GameEngine;
-import com.aston.group.stationdefender.gamesetting.items.Item;
-import com.aston.group.stationdefender.gamesetting.items.ItemBlank;
-import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
-import com.aston.group.stationdefender.gamesetting.items.ItemTurret;
+import com.aston.group.stationdefender.gamesetting.items.*;
 import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.hud.Hud;
@@ -61,7 +58,8 @@ public class Player implements InputProcessor {
         int slotX = 0;
         for (int i = 0; i < 8; i++) {
             QuickSlot quickSlot = new QuickSlot(slotX);
-            quickSlot.setItem(new ItemBlank());
+            quickSlot.setItem(new ItemBlank()); //todo remove
+            quickSlot.setItemStack(new ItemStack<>(new ItemBlank()));
             quickSlots.add(quickSlot);
             slotX += 48;
         }
@@ -256,10 +254,13 @@ public class Player implements InputProcessor {
      */
     private void updateQuickSlots() {
         for (int i = 0; i < quickSlots.size; i++) {
-            if (i < inventory.getItems().size && inventory.getItems().get(i) != null)
-                quickSlots.get(i).setItem(inventory.getItems().get(i));
-            else
-                quickSlots.get(i).setItem(new ItemBlank());
+            if (i < inventory.getItems().size && inventory.getItems().get(i) != null) {
+                quickSlots.get(i).setItem(inventory.getItems().get(i)); //todo remove
+                quickSlots.get(i).setItemStack(new ItemStack<>(inventory.getItems().get(i)));
+            }else {
+                quickSlots.get(i).setItem(new ItemBlank()); //todo remove
+                quickSlots.get(i).setItemStack(new ItemStack<>(new ItemBlank()));
+            }
         }
 
         currentItem = quickSlots.get(0).getItem();

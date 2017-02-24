@@ -1,69 +1,157 @@
 package com.aston.group.stationdefender.gamesetting.items;
 
+import com.aston.group.stationdefender.engine.GameEngine;
+import com.aston.group.stationdefender.utils.FontManager;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * This class allows the Items to be stacked into a QuickSlot Inventory
  *
  * @author Mohammed Foysal
  */
-class ItemStack {
-    private static final int maxItems = 64;
-    private Item[] items = new Item[maxItems];
+public class ItemStack<T extends Item> implements Iterable<T>{
 
-    /**
-     * Construct a new ItemStack
-     */
-    public ItemStack() {
+    public ArrayList<T> items = new ArrayList<>();
+
+    private final int maxItems = 64;
+    private int x, y, width, height;
+    private SpriteBatch batch;
+    private BitmapFont font;
+
+    public ItemStack(T item) {
+        addItem(item);
+
+        init();
     }
 
-    /**
-     * Returns the maximum number of Items allowed in the ItemStack
-     *
-     * @return The maximum number of Items allowed in the ItemStack
-     */
-    public int getMaxItems() {
-        return maxItems;
+    public ItemStack(List<T> items) {
+        addItems(items);
+
+        init();
     }
 
-    /**
-     * Returns the Array of Items in the ItemStack
-     *
-     * @return The Array of Items in the ItemStack
-     */
-    public Item[] getItems() {
-        return items;
+    private void init(){
+        batch = GameEngine.getBatch();
+
+        font = FontManager.getFont(16);
+
+        width = 32;
+        height = 32;
     }
 
-    /**
-     * Sets the Array of Items to be in the ItemStack
-     *
-     * @param items The Array of Items to be set in the ItemStack
-     */
-    public void setItems(Item... items) {
-        this.items = items;
-    }
-
-    /**
-     * Returns the current number of Items in the ItemStack
-     *
-     * @return The current number of Items in the ItemStack
-     */
-    public int getCount() {
-        return items.length;
-    }
-
-    /**
-     * Adds an Item to the ItemStack if there are less than the max number
-     * of Items already in the stack
-     *
-     * @param item The Item to add to the Stack
-     * @return True if adding the Item was successful, false if not
-     */
-    public boolean addItem(Item item) {
-        if (items.length < maxItems) {
-            items[items.length] = item;
+    public boolean addItem(T item){
+        if(items.size() < maxItems) {
+            items.add(item);
             return true;
-        } else {
+        }else{
             return false;
         }
+    }
+
+    public boolean canAddItems(List<T> items) {
+        if(this.items.size() + items.size() <= maxItems) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean addItems(List<T> items){
+        if(canAddItems(items)) {
+            this.items.addAll(items);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public void removeItem(T item){
+        items.remove(item);
+    }
+
+    public T getItem(){
+        if(items.size() > 0)
+            return items.get(items.size() - 1);
+        else
+            return null;
+    }
+
+    public boolean isEmpty(){
+        if(items.size() == 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean isSingle(){
+        if(items.size() == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public void render(float delta){
+        if(!items.isEmpty() && items.get(0).getTexture() != null){
+            batch.begin();
+            batch.draw((items.get(0)).getTexture(), x, y, width, height);
+            batch.end();
+
+            //Draw number of items text
+            if(items.size() > 1){
+                batch.begin();
+                font.draw(batch, Integer.toString(items.size()), x + 20, y + 10);
+                batch.end();
+            }
+
+        }
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return items.iterator();
+    }
+
+    public int getMaxItems() {
+        return maxItems;
     }
 }
