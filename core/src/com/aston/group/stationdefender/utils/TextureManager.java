@@ -11,21 +11,21 @@ import com.badlogic.gdx.graphics.g2d.ParticleEffect;
  */
 public enum TextureManager {
     INSTANCE;
-    private static final int BACKGROUND_TITLE_TEXTURE = 1;
-    private static final int BACKGROUND_TEXTURE = 2;
-    private static final int LEVEL_TEXTURE = 3;
-    private static final int TILE_TEXTURE = 4;
-    private static final int QUICK_SLOT_TEXTURE = 5;
-    private static final int DEFAULT_TOWER_TEXTURE = 6;
-    private static final int DEFAULT_ALIEN_TEXTURE = 7;
-    private static final int DEFAULT_WEAPON_TEXTURE = 8;
-    private static final int DEFAULT_PROJECTILE_TEXTURE = 9;
-    private static final int ITEM_CREDIT_TEXTURE = 10;
-    private static final int MINE_WEAPON_TEXTURE = 11;
-    private static final int RF_ALIEN_TEXTURE = 12;
-    private static final int RF_WEAPON_TEXTURE = 13;
-    private static final int KAMIKAZE_ALIEN_TEXTURE = 14;
-    private static final int EXPLOSION_ANIMATION = 1;
+    public static final int BACKGROUND_TITLE_TEXTURE = 1;
+    public static final int BACKGROUND_TEXTURE = 2;
+    public static final int LEVEL_TEXTURE = 3;
+    public static final int TILE_TEXTURE = 4;
+    public static final int QUICK_SLOT_TEXTURE = 5;
+    public static final int DEFAULT_TOWER_TEXTURE = 6;
+    public static final int DEFAULT_ALIEN_TEXTURE = 7;
+    public static final int DEFAULT_WEAPON_TEXTURE = 8;
+    public static final int DEFAULT_PROJECTILE_TEXTURE = 9;
+    public static final int ITEM_CREDIT_TEXTURE = 10;
+    public static final int MINE_WEAPON_TEXTURE = 11;
+    public static final int RF_ALIEN_TEXTURE = 12;
+    public static final int RF_WEAPON_TEXTURE = 13;
+    public static final int KAMIKAZE_ALIEN_TEXTURE = 14;
+    public static final int EXPLOSION_ANIMATION = 1;
 
     /**
      * Load the texture matching a given ID
