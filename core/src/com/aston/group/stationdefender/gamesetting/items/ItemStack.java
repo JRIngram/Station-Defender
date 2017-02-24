@@ -90,6 +90,14 @@ public class ItemStack<T extends Item> implements Iterable<T>{
         }
     }
 
+    public boolean isFull(){
+        if(items.size() >= maxItems){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public boolean isSingle(){
         if(items.size() == 1){
             return true;

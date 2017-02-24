@@ -266,6 +266,17 @@ public class Player implements InputProcessor {
         currentItem = quickSlots.get(0).getItem();
     }
 
+    //Used to determine if an item can fit in an existing item stack or if a new one needs to be made
+    private boolean canUseExistingQuickSlot(Item item){
+        for (int i = 0; i < quickSlots.size; i++) {
+            if(quickSlots.get(i).getItemStack().getItem().getClass().equals(item.getClass()) && !quickSlots.get(i).getItemStack().isFull()){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Adds an Item to the Inventory
      *
