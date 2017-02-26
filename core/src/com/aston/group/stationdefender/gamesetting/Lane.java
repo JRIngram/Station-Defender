@@ -224,7 +224,7 @@ public class Lane implements UnitCallback {
         //Spawn New Aliens
         if (System.currentTimeMillis() - lastRenderTime > 2200 + Math.random() * 3000) {
             if (alienAmount > 0) {
-                Unit unit = UnitFactory.getEnemy(Units.ALIEN);
+                Unit unit = UnitFactory.getRandomEnemy();
                 unit.setX(getLastTileCenterX() - (unit.getWidth() / 2));
                 unit.setY(getLastTileCenterY() - (unit.getHeight() / 2));
 
