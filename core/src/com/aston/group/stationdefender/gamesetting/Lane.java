@@ -57,7 +57,7 @@ public class Lane implements UnitCallback {
         Tile[] tile = new Tile[numberOfTiles];
         int tileX = x;
         int itemTileProbability = 2 * laneCallback.getLevelNumber();
-        int invalidTileProbability = 6 / laneCallback.getLevelNumber();
+        int invalidTileProbability = 14 / laneCallback.getLevelNumber();
         Random rand = new Random();
         for (int i = 0; i < numberOfTiles; i++) {
             tile[i] = new Tile(tileX, y);
