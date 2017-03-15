@@ -66,4 +66,6 @@ public interface Constants {
     Color accentColor = Color.valueOf("#f44336");
 
     float VERSION = 1.1f;
+
+    String prefs = "PREFS";
 }

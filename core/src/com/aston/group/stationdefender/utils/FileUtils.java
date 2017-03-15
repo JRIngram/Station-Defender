@@ -1,14 +1,26 @@
 package com.aston.group.stationdefender.utils;
 
+import com.aston.group.stationdefender.config.Constants;
+import com.aston.group.stationdefender.gamesetting.items.Item;
+import com.aston.group.stationdefender.gamesetting.items.ItemTurret;
+import com.aston.group.stationdefender.utils.resources.StackableInventory;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.Json;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
 
 /**
  * FileUtils class is responsible for reading the configuration JSON files
  *
  * @author Mohammed Foysal
  */
-class FileUtils {
+public class FileUtils {
 
     /**
      * Returns the String of Units in the units configuration JSON file
@@ -19,4 +31,90 @@ class FileUtils {
         FileHandle fileHandle = Gdx.files.internal("config/units.json");
         return fileHandle.readString();
     }
+
+    public interface LevelInfoCallback{
+        void onLoaded(int score, int money, int levelNumber, ArrayList<Item> items);
+    }
+
+    public static void saveLevel(int score, int money, int levelNumber, StackableInventory inventory){
+
+        //PLAYER PARAMS
+        JsonObject playerObject = new JsonObject();
+        playerObject.addProperty("score", score);
+        playerObject.addProperty("money", money);
+
+        JsonArray items = new JsonArray();
+
+        for (int i = 0; i < inventory.getItemStacks().size(); i++) {
+
+            JsonObject stackObject = new JsonObject();
+            stackObject.addProperty("id", inventory.getItemStacks().get(i).getItem().getId());
+            stackObject.addProperty("name", inventory.getItemStacks().get(i).getItem().getName());
+
+            items.add(stackObject);
+
+        }
+
+        playerObject.add("items", items);
+
+        //LEVEL PARAMS
+        JsonObject levelObject = new JsonObject();
+        levelObject.addProperty("number", levelNumber);
+
+
+        JsonObject dataObject = new JsonObject();
+        dataObject.add("level", levelObject);
+        dataObject.add("player", playerObject);
+
+        //Save
+        Preferences prefs = Gdx.app.getPreferences(Constants.prefs);
+
+        prefs.putString("level", dataObject.toString());
+
+        prefs.flush();
+
+    }
+
+    public static void loadLevel(LevelInfoCallback levelInfoCallback){
+
+        Gson gson = new Gson();
+
+        Preferences prefs = Gdx.app.getPreferences(Constants.prefs);
+
+        JsonElement element = gson.fromJson(prefs.getString("level", ""), JsonElement.class);
+
+        //Parse data
+        if(element != null && !element.isJsonNull() && element.isJsonObject()){
+
+            JsonObject dataObject = element.getAsJsonObject();
+
+            JsonObject levelObject = dataObject.get("level").getAsJsonObject();
+            JsonObject playerObject = dataObject.get("player").getAsJsonObject();
+
+            int levelNumber = levelObject.get("number").getAsInt();
+            int money = playerObject.get("money").getAsInt();
+            int score = playerObject.get("score").getAsInt();
+
+            ArrayList<Item> items = new ArrayList<>();
+
+            JsonArray jsonItems = playerObject.get("items").getAsJsonArray();
+
+            for (int i = 0; i < jsonItems.size(); i++) {
+
+                JsonObject itemObject = new JsonObject();
+                int id = itemObject.get("id").getAsInt();
+                String name = itemObject.get("name").getAsString();
+
+                //todo Create new items and add to arraylist
+
+            }
+
+            if(levelInfoCallback != null){
+                levelInfoCallback.onLoaded(score, money, levelNumber, items);
+            }
+
+        }
+
+    }
+
 }
