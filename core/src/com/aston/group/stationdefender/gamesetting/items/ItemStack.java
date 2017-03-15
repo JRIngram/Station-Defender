@@ -122,6 +122,10 @@ public class ItemStack<T extends Item> implements Iterable<T>{
         }
     }
 
+    public int getCount(){
+        return items.size();
+    }
+
     public int getX() {
         return x;
     }
