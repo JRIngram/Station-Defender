@@ -18,15 +18,15 @@ public class UnitFactory {
     public static Unit getEnemy(Units units) {
         switch (units) {
             case ALIEN:
-                return new Alien();
+                return new Alien(0,0);
             case CLOSE_COMBAT_ALIEN:
-                return new CloseCombatAlien();
+                return new CloseCombatAlien(0,0);
             case KAMIKAZE:
-                return new KamikazeAlien();
+                return new KamikazeAlien(0,0);
             case RAPID_FIRE_ALIEN:
-                return new RapidFireAlien();
+                return new RapidFireAlien(0,0);
             default:
-                return new Alien();
+                return new Alien(0,0);
         }
     }
 

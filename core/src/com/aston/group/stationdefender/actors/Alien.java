@@ -28,7 +28,7 @@ public class Alien extends Unit {
      * @param y The Y co-ordinate to give the Alien
      */
     public Alien(int x, int y) {
-        this("Alien", -100, Constants.DEFAULT_DAMAGE, 5, Constants.UNIT_HEALTH, 5.0, 12, x, y, 100, 38);
+        this("Alien", -120, Constants.DEFAULT_DAMAGE, 5, Constants.UNIT_HEALTH, 5.0, 12, x, y, 100, 38);
     }
 
     /**
