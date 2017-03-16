@@ -71,7 +71,7 @@ public class QuickSlot {
         if(itemStack != null){
             itemStack.setX(x + (width / 5));
             itemStack.setY(y + (width / 6));
-            itemStack.render(delta);
+            itemStack.render();
         }
 
         if (isColliding(MouseInput.getX(), MouseInput.getY())) {
@@ -155,10 +155,20 @@ public class QuickSlot {
         this.item = item;
     }
 
+    /**
+     * Returns the ItemStack used in the QuickSlot Inventory
+     *
+     * @return The ItemStack used in the QuickSlot Inventory
+     */
     public ItemStack getItemStack() {
         return itemStack;
     }
 
+    /**
+     * Sets the ItemStack used in the QuickSlot Inventory
+     *
+     * @param itemStack The ItemStack to be used in the QuickSlot Inventory
+     */
     public void setItemStack(ItemStack itemStack) {
         this.itemStack = itemStack;
     }

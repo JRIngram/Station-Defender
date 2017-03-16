@@ -63,5 +63,10 @@ public interface Inventory {
      */
     void removeAllItemsById(int id);
 
+    /**
+     * Returns the array of Items in the ItemStack
+     *
+     * @return The array of Items in the ItemStack
+     */
     Array<Item> getItems();
 }

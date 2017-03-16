@@ -121,28 +121,36 @@ public class Tile {
     }
 
     /**
-     * @return the hasItem
+     * Return whether the Tile has an item placed on it
+     *
+     * @return Whether the Tile has an item placed on it
      */
     public boolean isHasItem() {
         return hasItem;
     }
 
     /**
-     * @param hasItem the hasItem to set
+     * Sets whether a Tile has an item upon it
+     *
+     * @param hasItem The boolean of whether the Tile has an item upon it
      */
     public void setHasItem(boolean hasItem) {
         this.hasItem = hasItem;
     }
 
     /**
-     * @return the invalid
+     * Returns whether a Tile can have a weapon placed upon it
+     *
+     * @return True if the Tile is invalid, false if it is not
      */
     public boolean isInvalid() {
         return invalid;
     }
 
     /**
-     * @param invalid the invalid to set
+     * Sets the Tile invalid status to determine whether items can be placed on it
+     *
+     * @param invalid The boolean of whether the Tile is invalid or not
      */
     public void setInvalid(boolean invalid) {
         this.invalid = invalid;

@@ -4,40 +4,28 @@ import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.gamesetting.items.ItemStack;
 import com.badlogic.gdx.utils.Array;
 
-import java.util.ArrayList;
-
-public class StackableInventory implements Inventory{
-
-    private final ArrayList<ItemStack> itemStacks = new ArrayList<>();
+public class StackableInventory implements Inventory {
+    private final Array<ItemStack<Item>> itemStacks = new Array<>();
 
     @Override
     public void addItem(Item item) {
-
-        ItemStack itemStack = findStack(item);
-
+        ItemStack<Item> itemStack = findStack(item);
         if(itemStack != null){
             //add the item to the found item stack
             itemStack.addItem(item);
-
-        }else{
+        } else {
             //create a new item stack and add it to the array list
-            ItemStack newStack = new ItemStack(item);
-
+            ItemStack<Item> newStack = new ItemStack<>(item);
             itemStacks.add(newStack);
-
         }
-
     }
 
     @Override
     public void removeItem(Item item) {
-
-        ItemStack itemStack = findStack(item);
-
+        ItemStack<Item> itemStack = findStack(item);
         if(itemStack != null){
             itemStack.removeItem(item);
         }
-
     }
 
     @Override
@@ -53,7 +41,6 @@ public class StackableInventory implements Inventory{
 
     @Override
     public void removeItemById(int id) {
-
     }
 
     @Override
@@ -63,41 +50,40 @@ public class StackableInventory implements Inventory{
 
     @Override
     public void removeAllItemsById(int id) {
-
     }
 
     @Override
     public Array<Item> getItems() {
-
         Array<Item> itemsArray = new Array<>();
-
-
-        for (int i = 0; i < itemStacks.size(); i++) {
+        for (int i = 0; i < itemStacks.size; i++) {
             for (int j = 0; j < itemStacks.get(i).getCount(); j++) {
                 itemsArray.add(itemStacks.get(i).getItem());
             }
         }
-
         return itemsArray;
     }
 
-    public ArrayList<ItemStack> getItemStacks() {
+    /**
+     * Returns the ItemStacks being used in the StackableInventory
+     *
+     * @return The ItemStacks being used in the StackableInventory
+     */
+    public Array<ItemStack<Item>> getItemStacks() {
         return itemStacks;
     }
 
-    private ItemStack findStack(Item item){
-
-        for (int i = 0; i < itemStacks.size(); i++) {
-
-            if(itemStacks.get(i).getItem().getClass().equals(item.getClass()) && !itemStacks.get(i).isFull()){
-
-                return itemStacks.get(i);
-
+    /**
+     * Find the ItemStack for a specific Item
+     *
+     * @param item The Item to find the ItemStack of
+     * @return The ItemStack that contains the Item
+     */
+    private ItemStack<Item> findStack(Item item) {
+        for (ItemStack<Item> itemStack : itemStacks) {
+            if (itemStack.getItem().getClass().equals(item.getClass()) && !itemStack.isFull()) {
+                return itemStack;
             }
-
         }
-
         return null;
-
     }
 }

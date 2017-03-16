@@ -50,7 +50,6 @@ public abstract class Item {
      * Render the Item.
      */
     public void render() {
-        //TODO: add specular effect
         if (texture != null) {
             batch.begin();
             batch.draw(texture, x, y, width, height);

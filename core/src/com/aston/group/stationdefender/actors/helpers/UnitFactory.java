@@ -15,7 +15,7 @@ public class UnitFactory {
      * @param units The set of Units to choose from
      * @return A new Enemy Unit
      */
-    public static Unit getEnemy(Units units) {
+    private static Unit getEnemy(Units units) {
         switch (units) {
             case ALIEN:
                 return new Alien(0,0);
@@ -39,5 +39,4 @@ public class UnitFactory {
         int rand = (int) (Math.random() * (Units.values().length));
         return UnitFactory.getEnemy(Units.values()[rand]);
     }
-
 }
