@@ -4,10 +4,7 @@ import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.engine.GameEngine;
-import com.aston.group.stationdefender.gamesetting.items.Item;
-import com.aston.group.stationdefender.gamesetting.items.ItemBlank;
-import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
-import com.aston.group.stationdefender.gamesetting.items.ItemTurret;
+import com.aston.group.stationdefender.gamesetting.items.*;
 import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.hud.Hud;
@@ -15,6 +12,7 @@ import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
 import com.aston.group.stationdefender.utils.resources.Inventory;
 import com.aston.group.stationdefender.utils.resources.PlayerInventory;
 import com.aston.group.stationdefender.utils.resources.QuickSlot;
+import com.aston.group.stationdefender.utils.resources.StackableInventory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
@@ -24,6 +22,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Array;
+
+import java.util.List;
 
 /**
  * Skeleton Player class
@@ -51,7 +51,7 @@ public class Player implements InputProcessor {
      */
     public Player() {
         batch = GameEngine.getBatch();
-        inventory = new PlayerInventory();
+        inventory = new StackableInventory();
         score = 0;
         money = Constants.START_MONEY;
         inventory.addItem(new ItemTurret());
@@ -61,7 +61,8 @@ public class Player implements InputProcessor {
         int slotX = 0;
         for (int i = 0; i < 8; i++) {
             QuickSlot quickSlot = new QuickSlot(slotX);
-            quickSlot.setItem(new ItemBlank());
+            quickSlot.setItem(new ItemBlank()); //todo remove
+            quickSlot.setItemStack(new ItemStack<>(new ItemBlank()));
             quickSlots.add(quickSlot);
             slotX += 48;
         }
@@ -255,14 +256,27 @@ public class Player implements InputProcessor {
      * Updates the QuickSlots with the Items in the Inventory
      */
     private void updateQuickSlots() {
+
         for (int i = 0; i < quickSlots.size; i++) {
-            if (i < inventory.getItems().size && inventory.getItems().get(i) != null)
-                quickSlots.get(i).setItem(inventory.getItems().get(i));
-            else
-                quickSlots.get(i).setItem(new ItemBlank());
+            if(i < ((StackableInventory) inventory).getItemStacks().size() && ((StackableInventory) inventory).getItemStacks().get(i) != null){
+                quickSlots.get(i).setItemStack(((StackableInventory) inventory).getItemStacks().get(i));
+            }else{
+                quickSlots.get(i).setItemStack(new ItemStack<>(new ItemBlank()));
+            }
         }
 
-        currentItem = quickSlots.get(0).getItem();
+        currentItem = quickSlots.get(0).getItemStack().getItem();
+    }
+
+    //Used to determine if an item can fit in an existing item stack or if a new one needs to be made
+    private boolean canUseExistingQuickSlot(Item item){
+        for (int i = 0; i < quickSlots.size; i++) {
+            if(quickSlots.get(i).getItemStack().getItem().getClass().equals(item.getClass()) && !quickSlots.get(i).getItemStack().isFull()){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.aston.group.stationdefender.utils.resources;
 
 import com.aston.group.stationdefender.gamesetting.items.Item;
+import com.aston.group.stationdefender.gamesetting.items.ItemStack;
 import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.TextureManager;
@@ -28,6 +29,7 @@ public class QuickSlot {
     private final int height = 48;
     private boolean isSelected;
     private Item item;
+    private ItemStack itemStack;
 
     /**
      * Construct a new QuickSlot
@@ -61,13 +63,16 @@ public class QuickSlot {
             batch.end();
         }
 
-        batch.begin();
-        if (item != null) {
-            item.setX(x + (width / 5));
-            item.setY(y + (height / 6));
-            item.render();
+//        if (item != null) {
+//            item.setX(x + (width / 5));
+//            item.setY(y + (height / 6));
+//            item.render();
+//        }
+        if(itemStack != null){
+            itemStack.setX(x + (width / 5));
+            itemStack.setY(y + (width / 6));
+            itemStack.render(delta);
         }
-        batch.end();
 
         if (isColliding(MouseInput.getX(), MouseInput.getY())) {
             batch.begin();
@@ -138,7 +143,7 @@ public class QuickSlot {
      * @return The Item in the QuickSlot
      */
     public Item getItem() {
-        return item;
+        return itemStack.getItem();
     }
 
     /**
@@ -148,6 +153,14 @@ public class QuickSlot {
      */
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public ItemStack getItemStack() {
+        return itemStack;
+    }
+
+    public void setItemStack(ItemStack itemStack) {
+        this.itemStack = itemStack;
     }
 
     /**
