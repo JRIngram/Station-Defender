@@ -25,7 +25,6 @@ public enum TextureManager {
     private static final int RF_ALIEN_TEXTURE = 12;
     private static final int RF_WEAPON_TEXTURE = 13;
     private static final int KAMIKAZE_ALIEN_TEXTURE = 14;
-    private static final int EXPLOSION_ANIMATION = 1;
 
     /**
      * Load the texture matching a given ID
