@@ -10,7 +10,6 @@ import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.hud.Hud;
 import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
 import com.aston.group.stationdefender.utils.resources.Inventory;
-import com.aston.group.stationdefender.utils.resources.PlayerInventory;
 import com.aston.group.stationdefender.utils.resources.QuickSlot;
 import com.aston.group.stationdefender.utils.resources.StackableInventory;
 import com.badlogic.gdx.Gdx;
@@ -22,8 +21,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Array;
-
-import java.util.List;
 
 /**
  * Skeleton Player class
@@ -258,7 +255,7 @@ public class Player implements InputProcessor {
     private void updateQuickSlots() {
 
         for (int i = 0; i < quickSlots.size; i++) {
-            if(i < ((StackableInventory) inventory).getItemStacks().size() && ((StackableInventory) inventory).getItemStacks().get(i) != null){
+            if (i < ((StackableInventory) inventory).getItemStacks().size && ((StackableInventory) inventory).getItemStacks().get(i) != null) {
                 quickSlots.get(i).setItemStack(((StackableInventory) inventory).getItemStacks().get(i));
             }else{
                 quickSlots.get(i).setItemStack(new ItemStack<>(new ItemBlank()));
@@ -271,7 +268,7 @@ public class Player implements InputProcessor {
     //Used to determine if an item can fit in an existing item stack or if a new one needs to be made
     private boolean canUseExistingQuickSlot(Item item){
         for (int i = 0; i < quickSlots.size; i++) {
-            if(quickSlots.get(i).getItemStack().getItem().getClass().equals(item.getClass()) && !quickSlots.get(i).getItemStack().isFull()){
+            if (quickSlots.get(i).getItemStack().getItem().getClass().equals(item.getClass()) && quickSlots.get(i).getItemStack().isNotFull()) {
                 return true;
             }
         }

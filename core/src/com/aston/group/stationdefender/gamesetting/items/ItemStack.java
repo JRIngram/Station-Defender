@@ -16,10 +16,10 @@ import java.util.List;
  */
 public class ItemStack<T extends Item> implements Iterable<T>{
     private final int maxItems = 64;
-    public ArrayList<T> items = new ArrayList<>();
+    private final ArrayList<T> items = new ArrayList<>();
+    private final SpriteBatch batch;
+    private final BitmapFont font;
     private int x, y, width, height;
-    private SpriteBatch batch;
-    private BitmapFont font;
 
     /**
      * Construct a new ItemStack with a specific Item
@@ -95,8 +95,8 @@ public class ItemStack<T extends Item> implements Iterable<T>{
      *
      * @return True if the ItemStack is full, false if it is not
      */
-    public boolean isFull(){
-        return items.size() >= maxItems;
+    public boolean isNotFull() {
+        return items.size() <= maxItems;
     }
 
     /**
