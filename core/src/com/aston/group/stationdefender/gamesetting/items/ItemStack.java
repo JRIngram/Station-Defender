@@ -211,4 +211,12 @@ public class ItemStack<T extends Item> implements Iterable<T>{
     public int getMaxItems() {
         return maxItems;
     }
+
+    public boolean isFull(){
+        if(items.size() >= maxItems){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
