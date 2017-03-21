@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Mohammed Foysal
  */
-public class ItemStack<T extends Item> implements Iterable<T>{
+public class ItemStack<T extends Item> implements Iterable<T> {
     private final int maxItems = 64;
     private final ArrayList<T> items = new ArrayList<>();
     private final SpriteBatch batch;
@@ -60,8 +60,8 @@ public class ItemStack<T extends Item> implements Iterable<T>{
      * @param items The list of Items to add to the ItemStack
      * @return True if the Items were successfully added to the ItemStack
      */
-    public boolean addItems(List<T> items){
-        if(canAddItems(items)) {
+    public boolean addItems(List<T> items) {
+        if (canAddItems(items)) {
             this.items.addAll(items);
             return true;
         } else {
@@ -74,7 +74,7 @@ public class ItemStack<T extends Item> implements Iterable<T>{
      *
      * @param item The Item to remove from the ItemStack
      */
-    public void removeItem(T item){
+    public void removeItem(T item) {
         items.remove(item);
     }
 
@@ -83,8 +83,8 @@ public class ItemStack<T extends Item> implements Iterable<T>{
      *
      * @return The Item if it is in the ItemStack, null if it is not
      */
-    public T getItem(){
-        if(items.size() > 0)
+    public T getItem() {
+        if (items.size() > 0)
             return items.get(items.size() - 1);
         else
             return null;
@@ -103,13 +103,13 @@ public class ItemStack<T extends Item> implements Iterable<T>{
      * Render the ItemStack
      */
     public void render() {
-        if(!items.isEmpty() && items.get(0).getTexture() != null){
+        if (!items.isEmpty() && items.get(0).getTexture() != null) {
             batch.begin();
             batch.draw((items.get(0)).getTexture(), x, y, width, height);
             batch.end();
 
             //Draw number of items text
-            if(items.size() > 1){
+            if (items.size() > 1) {
                 batch.begin();
                 font.draw(batch, Integer.toString(items.size()), x + 20, y + 10);
                 batch.end();
@@ -122,7 +122,7 @@ public class ItemStack<T extends Item> implements Iterable<T>{
      *
      * @return The number of Items in the ItemStack
      */
-    public int getCount(){
+    public int getCount() {
         return items.size();
     }
 
@@ -212,11 +212,12 @@ public class ItemStack<T extends Item> implements Iterable<T>{
         return maxItems;
     }
 
-    public boolean isFull(){
-        if(items.size() >= maxItems){
-            return true;
-        }else{
-            return false;
-        }
+    /**
+     * Returns whether the ItemStack is full or not
+     *
+     * @return Whether the ItemStack is full or not
+     */
+    public boolean isFull() {
+        return items.size() >= maxItems;
     }
 }

@@ -10,7 +10,7 @@ public class StackableInventory implements Inventory {
     @Override
     public void addItem(Item item) {
         ItemStack<Item> itemStack = findStack(item);
-        if(itemStack != null){
+        if (itemStack != null) {
             //add the item to the found item stack
             itemStack.addItem(item);
         } else {
@@ -23,7 +23,7 @@ public class StackableInventory implements Inventory {
     @Override
     public void removeItem(Item item) {
         ItemStack<Item> itemStack = findStack(item);
-        if(itemStack != null){
+        if (itemStack != null) {
             itemStack.removeItem(item);
         }
     }

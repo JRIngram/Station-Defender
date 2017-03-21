@@ -68,7 +68,7 @@ public class QuickSlot {
 //            item.setY(y + (height / 6));
 //            item.render();
 //        }
-        if(itemStack != null){
+        if (itemStack != null) {
             itemStack.setX(x + (width / 5));
             itemStack.setY(y + (width / 6));
             itemStack.render();
