@@ -25,6 +25,11 @@ public enum TextureManager {
     private static final int RF_ALIEN_TEXTURE = 12;
     private static final int RF_WEAPON_TEXTURE = 13;
     private static final int KAMIKAZE_ALIEN_TEXTURE = 14;
+    private static final int BOSS_ALIEN_1 = 15;
+    private static final int BOSS_ALIEN_2 = 16;
+    private static final int BOSS_ALIEN_3 = 17;
+    private static final int BOSS_ALIEN_4 = 18;
+
 
     /**
      * Load the texture matching a given ID
@@ -76,6 +81,18 @@ public enum TextureManager {
                 break;
             case KAMIKAZE_ALIEN_TEXTURE:
                 texture = new Texture(Gdx.files.internal("textures/rf-turret.png"));
+                break;
+            case BOSS_ALIEN_1:
+                texture = new Texture(Gdx.files.internal("textures/boss1.png"));
+                break;
+            case BOSS_ALIEN_2:
+                texture = new Texture(Gdx.files.internal("textures/boss2.png"));
+                break;
+            case BOSS_ALIEN_3:
+                texture = new Texture(Gdx.files.internal("textures/boss3.png"));
+                break;
+            case BOSS_ALIEN_4:
+                texture = new Texture(Gdx.files.internal("textures/boss4.png"));
                 break;
         }
         return texture;
