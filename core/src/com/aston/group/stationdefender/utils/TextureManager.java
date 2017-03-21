@@ -11,8 +11,6 @@ import com.badlogic.gdx.graphics.g2d.ParticleEffect;
  */
 public enum TextureManager {
     INSTANCE;
-    public static final int DEFAULT_WEAPON_TEXTURE = 8;
-    public static final int MINE_WEAPON_TEXTURE = 11;
     private static final int BACKGROUND_TITLE_TEXTURE = 1;
     private static final int BACKGROUND_TEXTURE = 2;
     private static final int LEVEL_TEXTURE = 3;
@@ -20,8 +18,10 @@ public enum TextureManager {
     private static final int QUICK_SLOT_TEXTURE = 5;
     private static final int DEFAULT_TOWER_TEXTURE = 6;
     private static final int DEFAULT_ALIEN_TEXTURE = 7;
+    private static final int DEFAULT_WEAPON_TEXTURE = 8;
     private static final int DEFAULT_PROJECTILE_TEXTURE = 9;
     private static final int ITEM_CREDIT_TEXTURE = 10;
+    private static final int MINE_WEAPON_TEXTURE = 11;
     private static final int RF_ALIEN_TEXTURE = 12;
     private static final int RF_WEAPON_TEXTURE = 13;
     private static final int KAMIKAZE_ALIEN_TEXTURE = 14;
