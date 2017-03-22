@@ -4,11 +4,11 @@ import com.aston.group.stationdefender.callbacks.GameCallback;
 import com.aston.group.stationdefender.callbacks.MenuCallback;
 import com.aston.group.stationdefender.callbacks.TwoTextCallback;
 import com.aston.group.stationdefender.config.Constants;
-import com.aston.group.stationdefender.screens.GameScreen;
-import com.aston.group.stationdefender.screens.IntroScreen;
-import com.aston.group.stationdefender.screens.MenuScreen;
-import com.aston.group.stationdefender.screens.TwoTextScreen;
+import com.aston.group.stationdefender.screens.*;
+import com.aston.group.stationdefender.utils.FileUtils;
 import com.aston.group.stationdefender.utils.SoundManager;
+import com.aston.group.stationdefender.utils.resources.Inventory;
+import com.aston.group.stationdefender.utils.resources.StackableInventory;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
@@ -71,28 +71,35 @@ public class Main extends Game implements GameCallback, TwoTextCallback, MenuCal
     }
 
     @Override
-    public void onWinLost(boolean won, int score, int money) {
-        TwoTextScreen twoTextScreen;
+    public void onWinLost(Inventory inventory, boolean won, int score, int money) {
+        //Show Post Level screen
+        PostLevelScreen postLevelScreen;
         String title;
         if (won) {
-            title = "YOU WON";
-            twoTextScreen = new TwoTextScreen(true);
+            //Save the results
+            FileUtils.saveLevel(score, money, levelNumber, (StackableInventory) inventory);
+
+            title = "Level cleared";
+            postLevelScreen = new PostLevelScreen(true);
             levelNumber++;
         } else {
-            title = "YOU LOST";
-            twoTextScreen = new TwoTextScreen(false);
+            //Save the results
+            FileUtils.deleteLevelInfo();
+
+            title = "You failed!";
+            postLevelScreen = new PostLevelScreen(false);
         }
         totalScore += score;
-        twoTextScreen.setTitle(title);
-        twoTextScreen.setBody("Level Score: " + score + "\nMoney: £" + money + "\n\nTotal Score: " + totalScore);
-        twoTextScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 125);
-        twoTextScreen.setTitleY(Gdx.graphics.getHeight() - 25);
-        twoTextScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 110);
-        twoTextScreen.setBodyY((Gdx.graphics.getHeight() / 2) + 75);
-        twoTextScreen.setTwoTextCallback(this);
+        postLevelScreen.setTitle(title);
+        postLevelScreen.setBody("Level Score: " + score + "\nMoney: £" + money + "\n\nTotal Score: " + totalScore);
+        postLevelScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 125);
+        postLevelScreen.setTitleY(Gdx.graphics.getHeight() - 25);
+        postLevelScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 110);
+        postLevelScreen.setBodyY((Gdx.graphics.getHeight() / 2) + 75);
+        postLevelScreen.setTwoTextCallback(this);
         if (!won)
             totalScore = 0;
-        setScreen(twoTextScreen);
+        setScreen(postLevelScreen);
     }
 
     @Override

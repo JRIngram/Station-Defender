@@ -5,6 +5,7 @@ import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.gamesetting.items.*;
+import com.aston.group.stationdefender.utils.FileUtils;
 import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.hud.Hud;
@@ -21,6 +22,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Array;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Skeleton Player class
@@ -52,6 +56,18 @@ public class Player implements InputProcessor {
         score = 0;
         money = Constants.START_MONEY;
         inventory.addItem(new ItemTurret());
+
+        FileUtils.loadLevel(new FileUtils.LevelInfoCallback() {
+            @Override
+            public void onLoaded(int score, int money, int levelNumber, ArrayList<Item> items) {
+                Player.this.score = score;
+                Player.this.money = money;
+
+                for (int i = 0; i < items.size(); i++) {
+                    inventory.addItem(items.get(i));
+                }
+            }
+        });
 
         //Quick Slots
         quickSlots = new Array<>();
@@ -253,7 +269,6 @@ public class Player implements InputProcessor {
      * Updates the QuickSlots with the Items in the Inventory
      */
     private void updateQuickSlots() {
-
         for (int i = 0; i < quickSlots.size; i++) {
             if (i < ((StackableInventory) inventory).getItemStacks().size && ((StackableInventory) inventory).getItemStacks().get(i) != null) {
                 quickSlots.get(i).setItemStack(((StackableInventory) inventory).getItemStacks().get(i));
@@ -261,7 +276,6 @@ public class Player implements InputProcessor {
                 quickSlots.get(i).setItemStack(new ItemStack<>(new ItemBlank()));
             }
         }
-
         currentItem = quickSlots.get(0).getItemStack().getItem();
     }
 
@@ -272,7 +286,6 @@ public class Player implements InputProcessor {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -372,5 +385,14 @@ public class Player implements InputProcessor {
      */
     public void setPlayerCallback(PlayerCallback playerCallback) {
         this.playerCallback = playerCallback;
+    }
+
+    /**
+     * Returns the Inventory that the Player is using
+     *
+     * @return The Inventory that the Player is using
+     */
+    public Inventory getInventory() {
+        return inventory;
     }
 }

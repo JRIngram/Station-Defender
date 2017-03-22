@@ -4,6 +4,7 @@ import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.actors.Weapon;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
+import com.aston.group.stationdefender.utils.resources.Items;
 
 public class ItemTurret extends Item {
 
@@ -16,6 +17,7 @@ public class ItemTurret extends Item {
         cost = 10;
         texture = TextureManager.INSTANCE.loadTexture(8);
         placeable = true;
+        sku = Items.TURRET;
     }
 
     @Override
