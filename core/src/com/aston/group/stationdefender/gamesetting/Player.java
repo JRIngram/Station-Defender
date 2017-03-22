@@ -23,9 +23,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Array;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Skeleton Player class
  *
@@ -56,16 +53,11 @@ public class Player implements InputProcessor {
         score = 0;
         money = Constants.START_MONEY;
         inventory.addItem(new ItemTurret());
-
-        FileUtils.loadLevel(new FileUtils.LevelInfoCallback() {
-            @Override
-            public void onLoaded(int score, int money, int levelNumber, ArrayList<Item> items) {
-                Player.this.score = score;
-                Player.this.money = money;
-
-                for (int i = 0; i < items.size(); i++) {
-                    inventory.addItem(items.get(i));
-                }
+        FileUtils.loadLevel((score, money, levelNumber, items) -> {
+            this.score = score;
+            this.money = money;
+            for (Item item : items) {
+                inventory.addItem(item);
             }
         });
 
@@ -99,7 +91,6 @@ public class Player implements InputProcessor {
 
         //Initialise Money Indicator
         moneyIndicator = new IndicatorManager();
-
         updateQuickSlots();
     }
 
@@ -127,7 +118,7 @@ public class Player implements InputProcessor {
             }
 
             //Render
-            quickSlots.get(i).render(delta);
+            quickSlots.get(i).render();
         }
 
         //Render Player Stats
@@ -279,7 +270,9 @@ public class Player implements InputProcessor {
         currentItem = quickSlots.get(0).getItemStack().getItem();
     }
 
-    //Used to determine if an item can fit in an existing item stack or if a new one needs to be made
+    /**
+     * Used to determine if an item can fit in an existing item stack or if a new one needs to be made
+     */
     private boolean canUseExistingQuickSlot(Item item) {
         for (int i = 0; i < quickSlots.size; i++) {
             if (quickSlots.get(i).getItemStack().getItem().getClass().equals(item.getClass()) && quickSlots.get(i).getItemStack().isNotFull()) {
@@ -310,16 +303,6 @@ public class Player implements InputProcessor {
      */
     public void dropItem(Item item) {
         inventory.removeItem(item);
-        updateQuickSlots();
-    }
-
-    /**
-     * Sets the Player's Inventory
-     *
-     * @param inventory The Inventory to set to the Player
-     */
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
         updateQuickSlots();
     }
 
@@ -394,5 +377,15 @@ public class Player implements InputProcessor {
      */
     public Inventory getInventory() {
         return inventory;
+    }
+
+    /**
+     * Sets the Player's Inventory
+     *
+     * @param inventory The Inventory to set to the Player
+     */
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+        updateQuickSlots();
     }
 }

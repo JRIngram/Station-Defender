@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public abstract class Item {
     private final SpriteBatch batch;
+    Items sku;
     int id;
     boolean placeable;
     Texture texture;
@@ -26,7 +27,6 @@ public abstract class Item {
     private boolean justSpawned;
     private int x, y, width, height;
     private int flareX, flareY;
-    protected Items sku;
 
     /**
      * Construct a new Item with a name and states that can be collected

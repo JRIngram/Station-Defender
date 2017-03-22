@@ -14,7 +14,7 @@ public class ItemMine extends Item {
         super("Mine", true);
         id = 3;
         cost = 10;
-        texture = TextureManager.INSTANCE.loadTexture(TextureManager.MINE_WEAPON_TEXTURE);
+        texture = TextureManager.INSTANCE.loadTexture(11);
         placeable = true;
     }
 

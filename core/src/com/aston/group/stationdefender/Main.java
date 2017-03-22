@@ -4,7 +4,10 @@ import com.aston.group.stationdefender.callbacks.GameCallback;
 import com.aston.group.stationdefender.callbacks.MenuCallback;
 import com.aston.group.stationdefender.callbacks.TwoTextCallback;
 import com.aston.group.stationdefender.config.Constants;
-import com.aston.group.stationdefender.screens.*;
+import com.aston.group.stationdefender.screens.GameScreen;
+import com.aston.group.stationdefender.screens.IntroScreen;
+import com.aston.group.stationdefender.screens.MenuScreen;
+import com.aston.group.stationdefender.screens.TwoTextScreen;
 import com.aston.group.stationdefender.utils.FileUtils;
 import com.aston.group.stationdefender.utils.SoundManager;
 import com.aston.group.stationdefender.utils.resources.Inventory;
@@ -73,26 +76,27 @@ public class Main extends Game implements GameCallback, TwoTextCallback, MenuCal
     @Override
     public void onWinLost(Inventory inventory, boolean won, int score, int money) {
         //Show Post Level screen
-        PostLevelScreen postLevelScreen;
+        TwoTextScreen postLevelScreen;
         String title;
         if (won) {
             //Save the results
             FileUtils.saveLevel(score, money, levelNumber, (StackableInventory) inventory);
 
-            title = "Level cleared";
-            postLevelScreen = new PostLevelScreen(true);
+            title = "Level Cleared";
+            postLevelScreen = new TwoTextScreen(true);
+            postLevelScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 135);
             levelNumber++;
         } else {
             //Save the results
             FileUtils.deleteLevelInfo();
 
-            title = "You failed!";
-            postLevelScreen = new PostLevelScreen(false);
+            title = "You Failed!";
+            postLevelScreen = new TwoTextScreen(false);
+            postLevelScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 125);
         }
         totalScore += score;
         postLevelScreen.setTitle(title);
         postLevelScreen.setBody("Level Score: " + score + "\nMoney: £" + money + "\n\nTotal Score: " + totalScore);
-        postLevelScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 125);
         postLevelScreen.setTitleY(Gdx.graphics.getHeight() - 25);
         postLevelScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 110);
         postLevelScreen.setBodyY((Gdx.graphics.getHeight() / 2) + 75);

@@ -47,10 +47,8 @@ public class QuickSlot {
 
     /**
      * Render the QuickSlot.
-     *
-     * @param delta - The time in seconds since the last render.
      */
-    public void render(float delta) {
+    public void render() {
 
         //Draw Hovered Batch
         if (isSelected) {
@@ -62,12 +60,6 @@ public class QuickSlot {
             batch.draw(trQuickSlot, x, y, width, height);
             batch.end();
         }
-
-//        if (item != null) {
-//            item.setX(x + (width / 5));
-//            item.setY(y + (height / 6));
-//            item.render();
-//        }
         if (itemStack != null) {
             itemStack.setX(x + (width / 5));
             itemStack.setY(y + (width / 6));
