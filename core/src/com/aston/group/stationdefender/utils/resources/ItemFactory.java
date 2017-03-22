@@ -18,7 +18,7 @@ public class ItemFactory {
      * @param items The enum list of Items that can be created
      * @return The new Item to be placed within a Lane
      */
-    private static Item getItem(Items items) {
+    public static Item getItem(Items items) {
         switch (items) {
             case CREDIT:
                 return new ItemCredit();

@@ -5,7 +5,10 @@ import com.aston.group.stationdefender.callbacks.MenuCallback;
 import com.aston.group.stationdefender.callbacks.TwoTextCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.screens.*;
+import com.aston.group.stationdefender.utils.FileUtils;
 import com.aston.group.stationdefender.utils.SoundManager;
+import com.aston.group.stationdefender.utils.resources.Inventory;
+import com.aston.group.stationdefender.utils.resources.StackableInventory;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
@@ -68,14 +71,21 @@ public class Main extends Game implements GameCallback, TwoTextCallback, MenuCal
     }
 
     @Override
-    public void onWinLost(boolean won, int score, int money) {
+    public void onWinLost(Inventory inventory, boolean won, int score, int money) {
+        //Show Post Level screen
         PostLevelScreen postLevelScreen;
         String title;
         if (won) {
+            //Save the results
+            FileUtils.saveLevel(score, money, levelNumber, (StackableInventory) inventory);
+
             title = "Level cleared";
             postLevelScreen = new PostLevelScreen(true);
             levelNumber++;
         } else {
+            //Save the results
+            FileUtils.deleteLevelInfo();
+
             title = "You failed!";
             postLevelScreen = new PostLevelScreen(false);
         }

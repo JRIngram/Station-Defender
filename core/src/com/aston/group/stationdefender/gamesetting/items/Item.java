@@ -3,6 +3,7 @@ package com.aston.group.stationdefender.gamesetting.items;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.engine.GameEngine;
+import com.aston.group.stationdefender.utils.resources.Items;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -25,6 +26,7 @@ public abstract class Item {
     private boolean justSpawned;
     private int x, y, width, height;
     private int flareX, flareY;
+    protected Items sku;
 
     /**
      * Construct a new Item with a name and states that can be collected
@@ -42,6 +44,7 @@ public abstract class Item {
         height = 32;
         cost = 0;
         value = 0;
+        sku = Items.UNKNOWN;
 
         batch = GameEngine.getBatch();
     }
@@ -301,5 +304,13 @@ public abstract class Item {
     @Override
     public String toString() {
         return "Item{" + "id=" + id + ", name='" + name + '\'' + '}';
+    }
+
+    public Items getSku() {
+        return sku;
+    }
+
+    public void setSku(Items sku) {
+        this.sku = sku;
     }
 }

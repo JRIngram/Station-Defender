@@ -3,6 +3,8 @@ package com.aston.group.stationdefender.utils;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.gamesetting.items.ItemTurret;
+import com.aston.group.stationdefender.utils.resources.ItemFactory;
+import com.aston.group.stationdefender.utils.resources.Items;
 import com.aston.group.stationdefender.utils.resources.StackableInventory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
@@ -50,6 +52,8 @@ public class FileUtils {
             JsonObject stackObject = new JsonObject();
             stackObject.addProperty("id", inventory.getItemStacks().get(i).getItem().getId());
             stackObject.addProperty("name", inventory.getItemStacks().get(i).getItem().getName());
+            System.out.println("" + inventory.getItemStacks().get(i).getItem().getSku().toString());
+            stackObject.addProperty("sku", inventory.getItemStacks().get(i).getItem().getSku().toString());
 
             items.add(stackObject);
 
@@ -101,11 +105,14 @@ public class FileUtils {
 
             for (int i = 0; i < jsonItems.size(); i++) {
 
-                JsonObject itemObject = new JsonObject();
+                JsonObject itemObject = jsonItems.get(i).getAsJsonObject();
                 int id = itemObject.get("id").getAsInt();
                 String name = itemObject.get("name").getAsString();
+                String skuText = itemObject.get("sku").getAsString();
+                Items sku = Items.valueOf(skuText);
 
-                //todo Create new items and add to arraylist
+                Item item = ItemFactory.getItem(sku);
+                items.add(item);
 
             }
 
@@ -115,6 +122,11 @@ public class FileUtils {
 
         }
 
+    }
+
+    public static void deleteLevelInfo(){
+        Preferences prefs = Gdx.app.getPreferences(Constants.prefs);
+        prefs.remove("level");
     }
 
 }

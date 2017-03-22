@@ -23,6 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Array;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,6 +56,18 @@ public class Player implements InputProcessor {
         score = 0;
         money = Constants.START_MONEY;
         inventory.addItem(new ItemTurret());
+
+        FileUtils.loadLevel(new FileUtils.LevelInfoCallback() {
+            @Override
+            public void onLoaded(int score, int money, int levelNumber, ArrayList<Item> items) {
+                Player.this.score = score;
+                Player.this.money = money;
+
+                for (int i = 0; i < items.size(); i++) {
+                    inventory.addItem(items.get(i));
+                }
+            }
+        });
 
         //Quick Slots
         quickSlots = new Array<>();
@@ -375,5 +388,9 @@ public class Player implements InputProcessor {
      */
     public void setPlayerCallback(PlayerCallback playerCallback) {
         this.playerCallback = playerCallback;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 }

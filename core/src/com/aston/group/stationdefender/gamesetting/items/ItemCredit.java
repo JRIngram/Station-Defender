@@ -3,6 +3,7 @@ package com.aston.group.stationdefender.gamesetting.items;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
+import com.aston.group.stationdefender.utils.resources.Items;
 
 /**
  * ItemCredit is the in-game currency used.
@@ -20,6 +21,7 @@ public class ItemCredit extends Item {
         texture = TextureManager.INSTANCE.loadTexture(10);
         value = 10;
         placeable = true;
+        sku = Items.CREDIT;
     }
 
     @Override
