@@ -4,7 +4,7 @@ import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
 
-public class ItemBandages extends Item{
+public class ItemBandages extends Item {
 
     /**
      * Construct a new Bandages Item
@@ -29,5 +29,4 @@ public class ItemBandages extends Item{
     public Unit getPlaceableUnit() {
         return null;
     }
-
 }

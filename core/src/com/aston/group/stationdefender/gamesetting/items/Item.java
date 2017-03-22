@@ -39,13 +39,11 @@ public abstract class Item {
         this.name = name;
         this.usable = usable;
         collected = false;
-
         width = 32;
         height = 32;
         cost = 0;
         value = 0;
         sku = Items.UNKNOWN;
-
         batch = GameEngine.getBatch();
     }
 

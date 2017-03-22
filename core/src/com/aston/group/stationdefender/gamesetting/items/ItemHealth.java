@@ -6,7 +6,8 @@ import com.aston.group.stationdefender.utils.TextureManager;
 
 public class ItemHealth extends Item {
 
-    /**`
+    /**
+     * `
      * Construct a new Health Potion Item
      */
     public ItemHealth() {
@@ -30,5 +31,4 @@ public class ItemHealth extends Item {
     public Unit getPlaceableUnit() {
         return null;
     }
-
 }

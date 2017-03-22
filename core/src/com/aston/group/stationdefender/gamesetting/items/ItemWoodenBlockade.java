@@ -5,7 +5,7 @@ import com.aston.group.stationdefender.actors.Weapon;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
 
-public class ItemWoodenBlockade extends Item{
+public class ItemWoodenBlockade extends Item {
 
     /**
      * Construct a new Wooden Blockade Item
@@ -30,5 +30,4 @@ public class ItemWoodenBlockade extends Item{
         //TODO create a blockade actor
         return new Weapon();
     }
-
 }

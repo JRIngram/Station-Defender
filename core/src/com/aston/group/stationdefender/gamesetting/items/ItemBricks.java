@@ -4,7 +4,7 @@ import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
 
-public class ItemBricks extends Item{
+public class ItemBricks extends Item {
 
     /**
      * Construct a new Bricks Item
@@ -29,5 +29,4 @@ public class ItemBricks extends Item{
         //TODO create a blockade actor
         return null;
     }
-
 }

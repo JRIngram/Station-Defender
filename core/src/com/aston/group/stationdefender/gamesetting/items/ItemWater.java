@@ -1,7 +1,6 @@
 package com.aston.group.stationdefender.gamesetting.items;
 
 import com.aston.group.stationdefender.actors.Unit;
-import com.aston.group.stationdefender.actors.Weapon;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
 

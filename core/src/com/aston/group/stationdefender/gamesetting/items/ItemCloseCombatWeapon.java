@@ -29,5 +29,4 @@ public class ItemCloseCombatWeapon extends Item {
     public Unit getPlaceableUnit() {
         return new CloseCombatWeapon();
     }
-
 }

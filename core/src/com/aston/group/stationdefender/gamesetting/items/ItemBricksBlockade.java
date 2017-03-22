@@ -30,5 +30,4 @@ public class ItemBricksBlockade extends Item {
         //TODO create a Bricks blockade actor
         return new Weapon();
     }
-
 }
