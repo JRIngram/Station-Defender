@@ -25,6 +25,8 @@ public class UnitFactory {
                 return new KamikazeAlien(0, 0);
             case RAPID_FIRE_ALIEN:
                 return new RapidFireAlien(0, 0);
+            case BOSS_ALIEN:
+                return new BossAlien(0, 0);
             default:
                 return new Alien(0, 0);
         }
@@ -38,5 +40,9 @@ public class UnitFactory {
     public static Unit getRandomEnemy() {
         int rand = (int) (Math.random() * (Units.values().length));
         return UnitFactory.getEnemy(Units.values()[rand]);
+    }
+
+    public static Unit getBossEnemy() {
+        return UnitFactory.getEnemy(Units.values()[8]);
     }
 }

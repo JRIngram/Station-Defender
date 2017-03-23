@@ -12,13 +12,6 @@ public class RapidFireAlien extends Alien {
     private boolean overloaded = false;
 
     /**
-     * Construct a new RapidFireAlien with default X and Y co-ordinates of '0'
-     */
-    public RapidFireAlien() {
-        this(0, 0);
-    }
-
-    /**
      * Construct a new RapidFireAlien with given X and Y co-ordinates
      *
      * @param x The X co-ordinate to give the Alien

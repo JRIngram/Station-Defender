@@ -13,5 +13,6 @@ public enum Units {
     CLOSE_COMBAT_WEAPON,
     MINE,
     RAPID_FIRE_WEAPON,
-    WEAPON
+    WEAPON,
+    BOSS_ALIEN
 }

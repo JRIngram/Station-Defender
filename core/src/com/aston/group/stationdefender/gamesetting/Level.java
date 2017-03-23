@@ -2,6 +2,7 @@ package com.aston.group.stationdefender.gamesetting;
 
 import com.aston.group.stationdefender.actors.Tower;
 import com.aston.group.stationdefender.actors.Unit;
+import com.aston.group.stationdefender.actors.helpers.UnitFactory;
 import com.aston.group.stationdefender.callbacks.LaneCallback;
 import com.aston.group.stationdefender.callbacks.LevelCallback;
 import com.aston.group.stationdefender.config.Constants;
@@ -22,6 +23,8 @@ import com.badlogic.gdx.utils.Array;
  * @author Jonathon Fitch
  */
 public class Level implements LaneCallback {
+    private static boolean isBossCreated = false;
+    private static boolean isBossDestroyed = false;
     private final SpriteBatch batch;
     private final Texture texture;
     private final LevelCallback levelCallback;
@@ -77,8 +80,13 @@ public class Level implements LaneCallback {
             }
         }
 
-        if (isAllLanesCleared())
-            hasWon = true;
+        if (isAllLanesCleared()) {
+            if (isBossCreated) {
+                if (isBossDestroyed)
+                    hasWon = true;
+            } else
+                createBoss();
+        }
         if (hasLost)
             levelCallback.onWinLost(false);
         if (hasWon)
@@ -225,5 +233,14 @@ public class Level implements LaneCallback {
      */
     public int getLevelNumber() {
         return levelNumber;
+    }
+
+    private void createBoss() {
+        isBossCreated = true;
+        Unit unit = UnitFactory.getRandomEnemy();
+        unit.setX(Gdx.graphics.getWidth() / 2 - (unit.getWidth() / 2));
+        unit.setY(Gdx.graphics.getHeight() / 2 - (unit.getHeight() / 2));
+        if (unit.getHealth() == 0)
+            isBossDestroyed = true;
     }
 }
