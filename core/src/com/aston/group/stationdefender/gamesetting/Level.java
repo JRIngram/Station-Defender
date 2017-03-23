@@ -241,6 +241,7 @@ public class Level implements LaneCallback {
         unit.setX(Gdx.graphics.getWidth() / 2 - (unit.getWidth() / 2));
         unit.setY(Gdx.graphics.getHeight() / 2 - (unit.getHeight() / 2));
         if (unit.getHealth() == 0)
+            unit.destroy();
             isBossDestroyed = true;
     }
 }
