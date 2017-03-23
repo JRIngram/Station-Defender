@@ -237,7 +237,7 @@ public class Level implements LaneCallback {
 
     private void createBoss() {
         isBossCreated = true;
-        Unit unit = UnitFactory.getRandomEnemy();
+        Unit unit = UnitFactory.getBossEnemy();
         unit.setX(Gdx.graphics.getWidth() / 2 - (unit.getWidth() / 2));
         unit.setY(Gdx.graphics.getHeight() / 2 - (unit.getHeight() / 2));
         if (unit.getHealth() == 0)
