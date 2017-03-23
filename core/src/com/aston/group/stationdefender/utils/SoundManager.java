@@ -21,7 +21,7 @@ public enum SoundManager {
      */
     public void playSound(int id) {
         Music music = null;
-        float volume = 0.0f;
+        float volume = 0.2f;
         switch (id) {
             case BACKGROUND_MUSIC_ID:
                 music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Background_Music.ogg"));
@@ -30,11 +30,9 @@ public enum SoundManager {
                 break;
             case GUN_SHOT_SOUND_ID:
                 music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Gun_Shot.mp3"));
-                volume = 0.02f;
                 break;
             case EXPLOSION_SOUND_ID:
                 music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Explosion.mp3"));
-                volume = 0.02f;
                 break;
         }
         if (music != null) {
