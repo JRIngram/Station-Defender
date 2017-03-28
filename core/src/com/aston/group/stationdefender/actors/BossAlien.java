@@ -12,13 +12,6 @@ import java.util.concurrent.ThreadLocalRandom;
 public class BossAlien extends Alien {
 
     /**
-     * Create a new CloseCombatAlien with default X and Y co-ordinates of '0'
-     */
-    public BossAlien() {
-        this(0, 0);
-    }
-
-    /**
      * Create a new CloseCombatAlien with given X and Y co-ordinates
      *
      * @param x The X co-ordinate of the CloseCombatAlien
