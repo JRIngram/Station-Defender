@@ -17,6 +17,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
+import java.util.Random;
+
 /**
  * Skeleton Level class
  *
@@ -34,6 +36,7 @@ public class Level implements LaneCallback {
     private final Tower tower;
     private boolean hasWon;
     private boolean hasLost;
+    private static final int[] backgroundTextures = new int[]{3, 20};
 
     /**
      * Construct a new Level with a given level number.
@@ -46,7 +49,12 @@ public class Level implements LaneCallback {
         this.levelCallback = levelCallback;
         tower = new Tower(100, 100, 400);
         batch = GameEngine.getBatch();
-        texture = TextureManager.INSTANCE.loadTexture(3);
+        if (levelNumber == 1)
+            texture = TextureManager.INSTANCE.loadTexture(3);
+        else {
+            int randomTexture = new Random().nextInt(backgroundTextures.length);
+            texture = TextureManager.INSTANCE.loadTexture(backgroundTextures[randomTexture]);
+        }
         double difficulty = (2 + (levelNumber / 10)) * 3;
 
         int laneY = 110;
