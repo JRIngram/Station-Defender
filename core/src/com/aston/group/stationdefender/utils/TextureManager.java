@@ -30,6 +30,7 @@ public enum TextureManager {
     private static final int BOSS_ALIEN_3 = 17;
     private static final int BOSS_ALIEN_4 = 18;
     private static final int BACKGROUND_TEXTURE_2 = 20;
+    private static final int BACKGROUND_TEXTURE_3 = 21;
 
 
     /**
@@ -97,6 +98,10 @@ public enum TextureManager {
                 break;
             case BACKGROUND_TEXTURE_2:
                 texture = new Texture(Gdx.files.internal("textures/space.png"));
+                break;
+            case BACKGROUND_TEXTURE_3:
+                texture = new Texture(Gdx.files.internal("textures/space2.png"));
+                break;
         }
         return texture;
     }

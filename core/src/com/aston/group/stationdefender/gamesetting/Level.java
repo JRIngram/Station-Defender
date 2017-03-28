@@ -36,7 +36,7 @@ public class Level implements LaneCallback {
     private final Tower tower;
     private boolean hasWon;
     private boolean hasLost;
-    private static final int[] backgroundTextures = new int[]{3, 20};
+    private static final int[] backgroundTextures = new int[]{3, 20, 21};
 
     /**
      * Construct a new Level with a given level number.
