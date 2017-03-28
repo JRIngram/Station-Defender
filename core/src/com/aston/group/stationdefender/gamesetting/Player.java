@@ -272,6 +272,9 @@ public class Player implements InputProcessor {
 
     /**
      * Used to determine if an item can fit in an existing item stack or if a new one needs to be made
+     *
+     * @param item The Item to add to the QuickSlot
+     * @return True if the existing QuickSlot, false if the existing one cannot be used
      */
     private boolean canUseExistingQuickSlot(Item item) {
         for (int i = 0; i < quickSlots.size; i++) {
