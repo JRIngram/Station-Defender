@@ -44,7 +44,7 @@ public class Level implements LaneCallback {
         tower = new Tower(100, 100, 400);
         batch = GameEngine.getBatch();
         texture = TextureManager.INSTANCE.loadTexture(3);
-        double difficulty = (2 + (levelNumber / 10)) * 8;
+        double difficulty = (2 + (levelNumber / 10)) * 3;
 
         int laneY = 110;
         for (int i = 0; i < Constants.LANE_AMOUNT; i++) {
