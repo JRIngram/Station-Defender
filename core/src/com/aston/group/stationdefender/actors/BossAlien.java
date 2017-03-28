@@ -18,7 +18,7 @@ public class BossAlien extends Alien {
      * @param y The Y co-ordinate of the CloseCombatAlien
      */
     public BossAlien(int x, int y) {
-        super("Alien", -80, 500, 5, 1000, 5.0, 8, x, y, 300, 114);
+        super("Alien", -60, 500, 5, 500, 5.0, 8, x, y, 500, 375);
         setTexture(TextureManager.INSTANCE.loadTexture(ThreadLocalRandom.current().nextInt(15, 19)));
     }
 }
