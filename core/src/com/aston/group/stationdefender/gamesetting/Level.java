@@ -91,12 +91,22 @@ public class Level implements LaneCallback {
 
         if (isAllLanesCleared()) {
             if (isBossCreated) {
-                if (isBossDestroyed)
+                if (isBossDestroyed && tower.getHealth() > 0)
                     hasWon = true;
-                bossEnemy.render(delta);
+                else if (isBossDestroyed && tower.getHealth() <= 0)
+                    hasLost = true;
             } else
                 createBoss();
             bossEnemy.render(delta);
+            if (tower.isColliding(bossEnemy.getX(), bossEnemy.getY(), bossEnemy.getWidth(), bossEnemy.getHeight())) {
+                towerTakeDamage(bossEnemy.getDamage());
+                bossEnemy.destroy();
+                isBossDestroyed = true;
+            }
+            if (bossEnemy.getHealth() == 0) {
+                bossEnemy.destroy();
+                isBossDestroyed = true;
+            }
         }
         if (hasLost)
             levelCallback.onWinLost(false);
@@ -253,9 +263,5 @@ public class Level implements LaneCallback {
         isBossCreated = true;
         bossEnemy.setX(Gdx.graphics.getWidth() - (bossEnemy.getWidth()));
         bossEnemy.setY(Gdx.graphics.getHeight() / 2 - (bossEnemy.getHeight() / 2));
-        if (bossEnemy.getHealth() == 0) {
-            bossEnemy.destroy();
-            isBossDestroyed = true;
-        }
     }
 }
