@@ -37,6 +37,7 @@ public class Level implements LaneCallback {
     private boolean hasWon;
     private boolean hasLost;
     private static final int[] backgroundTextures = new int[]{3, 20, 21};
+    private Unit bossEnemy;
 
     /**
      * Construct a new Level with a given level number.
@@ -92,8 +93,10 @@ public class Level implements LaneCallback {
             if (isBossCreated) {
                 if (isBossDestroyed)
                     hasWon = true;
+                bossEnemy.render(delta);
             } else
                 createBoss();
+            bossEnemy.render(delta);
         }
         if (hasLost)
             levelCallback.onWinLost(false);
@@ -245,11 +248,12 @@ public class Level implements LaneCallback {
 
     private void createBoss() {
         isBossCreated = true;
-        Unit unit = UnitFactory.getBossEnemy();
-        unit.setX(Gdx.graphics.getWidth() / 2 - (unit.getWidth() / 2));
-        unit.setY(Gdx.graphics.getHeight() / 2 - (unit.getHeight() / 2));
-        if (unit.getHealth() == 0)
-            unit.destroy();
+        bossEnemy = UnitFactory.getBossEnemy();
+        bossEnemy.setX(Gdx.graphics.getWidth() - (bossEnemy.getWidth()));
+        bossEnemy.setY(Gdx.graphics.getHeight() / 2 - (bossEnemy.getHeight() / 2));
+        if (bossEnemy.getHealth() == 0) {
+            bossEnemy.destroy();
             isBossDestroyed = true;
+        }
     }
 }
