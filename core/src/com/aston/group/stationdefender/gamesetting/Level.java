@@ -25,8 +25,7 @@ import java.util.Random;
  * @author Jonathon Fitch
  */
 public class Level implements LaneCallback {
-    private boolean isBossCreated = false;
-    private boolean isBossDestroyed = false;
+    private static final int[] backgroundTextures = new int[]{3, 20, 21};
     private final SpriteBatch batch;
     private final Texture texture;
     private final LevelCallback levelCallback;
@@ -34,10 +33,11 @@ public class Level implements LaneCallback {
     private final Array<Lane> lanes = new Array<>();
     private final int levelNumber;
     private final Tower tower;
+    private Unit bossEnemy;
+    private boolean isBossCreated = false;
+    private boolean isBossDestroyed = false;
     private boolean hasWon;
     private boolean hasLost;
-    private static final int[] backgroundTextures = new int[]{3, 20, 21};
-    private Unit bossEnemy;
 
     /**
      * Construct a new Level with a given level number.
@@ -50,7 +50,6 @@ public class Level implements LaneCallback {
         this.levelCallback = levelCallback;
         tower = new Tower(100, 100, 400);
         batch = GameEngine.getBatch();
-        bossEnemy = UnitFactory.getBossEnemy();
         if (levelNumber == 1)
             texture = TextureManager.INSTANCE.loadTexture(3);
         else {
@@ -261,8 +260,9 @@ public class Level implements LaneCallback {
      * Create the Boss Enemy
      */
     private void createBoss() {
-        isBossCreated = true;
+        bossEnemy = UnitFactory.getBossEnemy();
         bossEnemy.setX(Gdx.graphics.getWidth() - (bossEnemy.getWidth()));
         bossEnemy.setY(Gdx.graphics.getHeight() / 2 - (bossEnemy.getHeight() / 2));
+        isBossCreated = true;
     }
 }
