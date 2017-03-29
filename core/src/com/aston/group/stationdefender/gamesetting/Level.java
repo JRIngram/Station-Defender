@@ -25,8 +25,8 @@ import java.util.Random;
  * @author Jonathon Fitch
  */
 public class Level implements LaneCallback {
-    private static boolean isBossCreated = false;
-    private static boolean isBossDestroyed = false;
+    private boolean isBossCreated = false;
+    private boolean isBossDestroyed = false;
     private final SpriteBatch batch;
     private final Texture texture;
     private final LevelCallback levelCallback;
@@ -37,7 +37,7 @@ public class Level implements LaneCallback {
     private boolean hasWon;
     private boolean hasLost;
     private static final int[] backgroundTextures = new int[]{3, 20, 21};
-    private static final Unit bossEnemy = UnitFactory.getBossEnemy();
+    private Unit bossEnemy;
 
     /**
      * Construct a new Level with a given level number.
@@ -50,6 +50,7 @@ public class Level implements LaneCallback {
         this.levelCallback = levelCallback;
         tower = new Tower(100, 100, 400);
         batch = GameEngine.getBatch();
+        bossEnemy = UnitFactory.getBossEnemy();
         if (levelNumber == 1)
             texture = TextureManager.INSTANCE.loadTexture(3);
         else {
@@ -91,9 +92,9 @@ public class Level implements LaneCallback {
 
         if (isAllLanesCleared()) {
             if (isBossCreated) {
-                if (isBossDestroyed && tower.getHealth() > 0)
+                if (isBossDestroyed && tower.getExists())
                     hasWon = true;
-                else if (isBossDestroyed && tower.getHealth() <= 0)
+                else if (isBossDestroyed && !tower.getExists())
                     hasLost = true;
             } else
                 createBoss();

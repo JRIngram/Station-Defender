@@ -110,8 +110,4 @@ public class Tower implements Actor {
         } else
             health -= damage;
     }
-
-    public int getHealth() {
-        return health;
-    }
 }
