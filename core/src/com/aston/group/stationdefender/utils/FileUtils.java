@@ -8,7 +8,6 @@ import com.aston.group.stationdefender.utils.resources.Items;
 import com.aston.group.stationdefender.utils.resources.StackableInventory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -23,15 +22,13 @@ import com.google.gson.JsonObject;
 public class FileUtils {
 
     /**
-     * Returns the String of Units in the units configuration JSON file
+     * Save the Player's Level information
      *
-     * @return The String of Units in the Units configuration JSON file
+     * @param score       The Player's score to save
+     * @param money       The Player's amount of money to save
+     * @param levelNumber The Level Number the Player got to
+     * @param inventory   The Inventory the Player had
      */
-    public static String openUnits() {
-        FileHandle fileHandle = Gdx.files.internal("config/units.json");
-        return fileHandle.readString();
-    }
-
     public static void saveLevel(int score, int money, int levelNumber, StackableInventory inventory) {
 
         //PLAYER PARAMS
@@ -40,7 +37,6 @@ public class FileUtils {
         playerObject.addProperty("money", money);
 
         JsonArray items = new JsonArray();
-
         for (int i = 0; i < inventory.getItemStacks().size; i++) {
             JsonObject stackObject = new JsonObject();
             stackObject.addProperty("id", inventory.getItemStacks().get(i).getItem().getId());
@@ -64,6 +60,11 @@ public class FileUtils {
         prefs.flush();
     }
 
+    /**
+     * Load the Player's Level information
+     *
+     * @param levelInfoCallback The LevelInfoCallback to use
+     */
     public static void loadLevel(LevelInfoCallback levelInfoCallback) {
         Gson gson = new Gson();
         Preferences prefs = Gdx.app.getPreferences(Constants.prefs);
@@ -81,8 +82,6 @@ public class FileUtils {
             JsonArray jsonItems = playerObject.get("items").getAsJsonArray();
             for (int i = 0; i < jsonItems.size(); i++) {
                 JsonObject itemObject = jsonItems.get(i).getAsJsonObject();
-                int id = itemObject.get("id").getAsInt();
-                String name = itemObject.get("name").getAsString();
                 String skuText = itemObject.get("sku").getAsString();
                 Items sku = Items.valueOf(skuText);
                 Item item = ItemFactory.getItem(sku);
@@ -95,6 +94,9 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Remove the Level information of the Player
+     */
     public static void deleteLevelInfo() {
         Preferences prefs = Gdx.app.getPreferences(Constants.prefs);
         prefs.remove("level");

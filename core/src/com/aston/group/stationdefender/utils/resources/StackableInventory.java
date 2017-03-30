@@ -20,49 +20,6 @@ public class StackableInventory implements Inventory {
         }
     }
 
-    @Override
-    public void removeItem(Item item) {
-        ItemStack<Item> itemStack = findStack(item);
-        if (itemStack != null) {
-            itemStack.removeItem(item);
-        }
-    }
-
-    @Override
-    public Item getItem(int index) {
-        //todo change implementation
-        return null;
-    }
-
-    @Override
-    public Item getItemById(int id) {
-        return null;
-    }
-
-    @Override
-    public void removeItemById(int id) {
-    }
-
-    @Override
-    public Array<Item> getAllItemsById(int id) {
-        return null;
-    }
-
-    @Override
-    public void removeAllItemsById(int id) {
-    }
-
-    @Override
-    public Array<Item> getItems() {
-        Array<Item> itemsArray = new Array<>();
-        for (int i = 0; i < itemStacks.size; i++) {
-            for (int j = 0; j < itemStacks.get(i).getCount(); j++) {
-                itemsArray.add(itemStacks.get(i).getItem());
-            }
-        }
-        return itemsArray;
-    }
-
     /**
      * Returns the ItemStacks being used in the StackableInventory
      *

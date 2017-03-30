@@ -10,7 +10,7 @@ public class ItemCement extends Item {
      * Construct a Cement Item
      */
     public ItemCement() {
-        super("Cement", true);
+        super("Cement");
         id = 8;
         cost = 3;
         //TODO cement texture needed

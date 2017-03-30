@@ -10,7 +10,7 @@ public class ItemBandages extends Item {
      * Construct a new Bandages Item
      */
     public ItemBandages() {
-        super("Bandages", true);
+        super("Bandages");
         id = 10;
         cost = 3;
         value = 2;

@@ -11,7 +11,7 @@ public class ItemBricksBlockade extends Item {
      * Construct a new Bricks Blockade Item
      */
     public ItemBricksBlockade() {
-        super("Wooden Blockade", true);
+        super("Wooden Blockade");
         id = 8;
         cost = 3;
         //TODO bricks blockade texture needed
@@ -28,6 +28,6 @@ public class ItemBricksBlockade extends Item {
     @Override
     public Unit getPlaceableUnit() {
         //TODO create a Bricks blockade actor
-        return new Weapon();
+        return new Weapon(0, 0);
     }
 }

@@ -14,13 +14,6 @@ public class RapidFireWeapon extends Weapon {
     private boolean overloaded = false;
 
     /**
-     * Construct a new RapidFireWeapon with default X and Y co-ordinates of '0'
-     */
-    public RapidFireWeapon() {
-        this(0, 0);
-    }
-
-    /**
      * Construct a new RapidFireWeapon with given X and Y co-ordinates
      *
      * @param x The X co-ordinate to give the RapidFireWeapon

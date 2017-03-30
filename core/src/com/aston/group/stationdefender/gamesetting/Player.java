@@ -10,7 +10,6 @@ import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.hud.Hud;
 import com.aston.group.stationdefender.utils.indicators.IndicatorManager;
-import com.aston.group.stationdefender.utils.resources.Inventory;
 import com.aston.group.stationdefender.utils.resources.QuickSlot;
 import com.aston.group.stationdefender.utils.resources.StackableInventory;
 import com.badlogic.gdx.Gdx;
@@ -37,8 +36,8 @@ public class Player implements InputProcessor {
     private final Stage stage;
     private final TextButton menuButton;
     private final IndicatorManager moneyIndicator;
+    private final StackableInventory inventory;
     private Item currentItem;
-    private Inventory inventory;
     private int score;
     private int money;
     private PlayerCallback playerCallback;
@@ -261,28 +260,13 @@ public class Player implements InputProcessor {
      */
     private void updateQuickSlots() {
         for (int i = 0; i < quickSlots.size; i++) {
-            if (i < ((StackableInventory) inventory).getItemStacks().size && ((StackableInventory) inventory).getItemStacks().get(i) != null) {
-                quickSlots.get(i).setItemStack(((StackableInventory) inventory).getItemStacks().get(i));
+            if (i < (inventory).getItemStacks().size && (inventory).getItemStacks().get(i) != null) {
+                quickSlots.get(i).setItemStack((inventory).getItemStacks().get(i));
             } else {
                 quickSlots.get(i).setItemStack(new ItemStack<>(new ItemBlank()));
             }
         }
         currentItem = quickSlots.get(0).getItemStack().getItem();
-    }
-
-    /**
-     * Used to determine if an item can fit in an existing item stack or if a new one needs to be made
-     *
-     * @param item The Item to add to the QuickSlot
-     * @return True if the existing QuickSlot, false if the existing one cannot be used
-     */
-    private boolean canUseExistingQuickSlot(Item item) {
-        for (int i = 0; i < quickSlots.size; i++) {
-            if (quickSlots.get(i).getItemStack().getItem().getClass().equals(item.getClass()) && quickSlots.get(i).getItemStack().isNotFull()) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
@@ -297,16 +281,6 @@ public class Player implements InputProcessor {
             inventory.addItem(item);
             updateQuickSlots();
         }
-    }
-
-    /**
-     * Removes an Item from the Inventory
-     *
-     * @param item The Item to remove from the Inventory
-     */
-    public void dropItem(Item item) {
-        inventory.removeItem(item);
-        updateQuickSlots();
     }
 
     /**
@@ -334,15 +308,6 @@ public class Player implements InputProcessor {
      */
     public void addScore(int amount) {
         this.score += amount;
-    }
-
-    /**
-     * Remove a specific number from the Player's score total
-     *
-     * @param amount The amount of money to be removed from the Player's score total
-     */
-    public void removeScore(int amount) {
-        this.score -= amount;
     }
 
     /**
@@ -378,17 +343,7 @@ public class Player implements InputProcessor {
      *
      * @return The Inventory that the Player is using
      */
-    public Inventory getInventory() {
+    public StackableInventory getInventory() {
         return inventory;
-    }
-
-    /**
-     * Sets the Player's Inventory
-     *
-     * @param inventory The Inventory to set to the Player
-     */
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
-        updateQuickSlots();
     }
 }

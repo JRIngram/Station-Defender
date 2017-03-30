@@ -33,7 +33,7 @@ public class TileTest {
 
     @Test
     public void testIsCollidingUnit() {
-        Alien unit = new Alien();
+        Alien unit = new Alien(0, 0);
         assertTrue(tile.isColliding(unit));
         unit.setX(500);
         unit.setY(500);

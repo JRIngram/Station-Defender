@@ -11,7 +11,7 @@ public class CloseCombatAlienTest {
 
     @Before
     public void setUp() {
-        alien = new CloseCombatAlien();
+        alien = new CloseCombatAlien(0, 0);
     }
 
     @Test

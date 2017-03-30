@@ -10,7 +10,7 @@ public class ItemWoodenBlocks extends Item {
      * Construct a new Wooden blocks Item
      */
     public ItemWoodenBlocks() {
-        super("Wooden Blocks", true);
+        super("Wooden Blocks");
         id = 7;
         cost = 3;
         //TODO wood texture needed

@@ -11,7 +11,7 @@ public class ItemCloseCombatWeapon extends Item {
      * Construct a new Close combat weapon Item
      */
     public ItemCloseCombatWeapon() {
-        super("Close Combat Weapon", true);
+        super("Close Combat Weapon");
         id = 4;
         cost = 10;
         //TODO Replace with close combat weapon texture
@@ -27,6 +27,6 @@ public class ItemCloseCombatWeapon extends Item {
 
     @Override
     public Unit getPlaceableUnit() {
-        return new CloseCombatWeapon();
+        return new CloseCombatWeapon(0, 0);
     }
 }

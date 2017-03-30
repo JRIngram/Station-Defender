@@ -11,7 +11,7 @@ public class ItemMine extends Item {
      * Construct a new Mine Item
      */
     public ItemMine() {
-        super("Mine", true);
+        super("Mine");
         id = 3;
         cost = 10;
         texture = TextureManager.INSTANCE.loadTexture(11);
@@ -26,6 +26,6 @@ public class ItemMine extends Item {
 
     @Override
     public Unit getPlaceableUnit() {
-        return new Mine();
+        return new Mine(0, 0);
     }
 }

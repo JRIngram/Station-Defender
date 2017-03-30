@@ -12,7 +12,7 @@ public class ItemTurret extends Item {
      * Construct a new Turret Item
      */
     public ItemTurret() {
-        super("Turret", true);
+        super("Turret");
         id = 2;
         cost = 10;
         texture = TextureManager.INSTANCE.loadTexture(8);
@@ -28,6 +28,6 @@ public class ItemTurret extends Item {
 
     @Override
     public Unit getPlaceableUnit() {
-        return new Weapon();
+        return new Weapon(0, 0);
     }
 }

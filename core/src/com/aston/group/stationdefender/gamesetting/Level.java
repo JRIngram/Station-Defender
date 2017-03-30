@@ -48,7 +48,7 @@ public class Level implements LaneCallback {
     public Level(LevelCallback levelCallback, int levelNumber) {
         this.levelNumber = levelNumber;
         this.levelCallback = levelCallback;
-        tower = new Tower(100, 100, 400);
+        tower = new Tower(100, 400);
         batch = GameEngine.getBatch();
         if (levelNumber == 1)
             texture = TextureManager.INSTANCE.loadTexture(3);

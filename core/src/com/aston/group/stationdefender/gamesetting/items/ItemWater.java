@@ -10,7 +10,7 @@ public class ItemWater extends Item {
      * Construct a new Water Bottle Item
      */
     public ItemWater() {
-        super("Water bottle", true);
+        super("Water bottle");
         id = 9;
         cost = 3;
         value = 2;

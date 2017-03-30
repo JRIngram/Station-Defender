@@ -21,7 +21,7 @@ public class Tower implements Actor {
     private final int height;
     private final int width;
     private final int x = 0;
-    private final int y;
+    private final int y = 100;
     private final SpriteBatch batch;
     private final Texture texture;
     private final BitmapFont font;
@@ -32,12 +32,10 @@ public class Tower implements Actor {
     /**
      * Constructs a new Tower
      *
-     * @param y      The Y co-ordinate of the Tower
      * @param width  The width of the Tower
      * @param height The height of the Tower
      */
-    public Tower(int y, int width, int height) {
-        this.y = y;
+    public Tower(int width, int height) {
         this.width = width;
         this.height = height;
         exists = true;

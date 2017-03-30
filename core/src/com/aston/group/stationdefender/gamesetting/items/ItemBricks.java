@@ -10,7 +10,7 @@ public class ItemBricks extends Item {
      * Construct a new Bricks Item
      */
     public ItemBricks() {
-        super("Bricks", true);
+        super("Bricks");
         id = 8;
         cost = 3;
         //TODO Bricks texture needed

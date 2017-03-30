@@ -15,30 +15,23 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public abstract class Item {
     private final SpriteBatch batch;
+    private final String name;
     Items sku;
     int id;
     boolean placeable;
     Texture texture;
     int cost;
     int value;
-    private String name;
-    private boolean usable;
-    private boolean collected;
     private boolean justSpawned;
     private int x, y, width, height;
-    private int flareX, flareY;
 
     /**
-     * Construct a new Item with a name and states that can be collected
-     * and used
+     * Construct a new Item with a name
      *
-     * @param name   The name of the Item
-     * @param usable Whether the Item is usable or not
+     * @param name The name of the Item
      */
-    Item(String name, boolean usable) {
+    Item(String name) {
         this.name = name;
-        this.usable = usable;
-        collected = false;
         width = 32;
         height = 32;
         cost = 0;
@@ -73,37 +66,12 @@ public abstract class Item {
     public abstract Unit getPlaceableUnit();
 
     /**
-     * Changes the collected state of the Item to show it
-     * has been collected by the player
-     */
-    public void collect() {
-        collected = true;
-    }
-
-    /**
-     * Changes the collected state of the item to show it
-     * has been dropped by the player
-     */
-    public void drop() {
-        collected = false;
-    }
-
-    /**
      * Returns the ID of the Item
      *
      * @return The ID of the item
      */
     public int getId() {
         return id;
-    }
-
-    /**
-     * Sets the Item ID to a given integer
-     *
-     * @param id The ID to give the Item
-     */
-    public void setId(int id) {
-        this.id = id;
     }
 
     /**
@@ -116,57 +84,12 @@ public abstract class Item {
     }
 
     /**
-     * Sets the Item name to a given string
-     *
-     * @param name The name to give the Item
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Return whether the Item can be used by the player
-     *
-     * @return Whether the Item can be used
-     */
-    public boolean isUsable() {
-        return usable;
-    }
-
-    /**
-     * Sets whether the Item is usable or not
-     *
-     * @param usable Whether the Item is usable or not
-     */
-    public void setUsable(boolean usable) {
-        this.usable = usable;
-    }
-
-    /**
-     * Returns whether the Item has been collected or not
-     *
-     * @return Whether the Item has been collected or not
-     */
-    public boolean isCollected() {
-        return collected;
-    }
-
-    /**
      * Returns the texture of the Item
      *
      * @return The Texture of the Item
      */
     public Texture getTexture() {
         return texture;
-    }
-
-    /**
-     * Sets the Texture of the Item
-     *
-     * @param texture The Texture of the Item
-     */
-    public void setTexture(Texture texture) {
-        this.texture = texture;
     }
 
     /**
@@ -258,24 +181,6 @@ public abstract class Item {
     }
 
     /**
-     * Returns whether the Item is placeable or not
-     *
-     * @return Whether the Item is placeable or not
-     */
-    public boolean isPlaceable() {
-        return placeable;
-    }
-
-    /**
-     * Sets whether the Item is placeable or not
-     *
-     * @param placeable Whether the Item is placeable or not
-     */
-    public void setPlaceable(boolean placeable) {
-        this.placeable = placeable;
-    }
-
-    /**
      * Returns the cost of the Item
      *
      * @return The cost of the Item
@@ -305,9 +210,5 @@ public abstract class Item {
 
     public Items getSku() {
         return sku;
-    }
-
-    public void setSku(Items sku) {
-        this.sku = sku;
     }
 }

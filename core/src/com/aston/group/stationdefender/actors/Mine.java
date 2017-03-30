@@ -11,13 +11,6 @@ import com.aston.group.stationdefender.utils.TextureManager;
 public class Mine extends Weapon {
 
     /**
-     * Create a new Mine with default X and Y co-ordinates of '0'
-     */
-    public Mine() {
-        this(0, 0);
-    }
-
-    /**
      * Create a new Mine with given X and Y co-ordinates
      *
      * @param x The X co-ordinate of the Mine

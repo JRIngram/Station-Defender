@@ -11,7 +11,7 @@ public class ItemHealth extends Item {
      * Construct a new Health Potion Item
      */
     public ItemHealth() {
-        super("Wooden Blockade", true);
+        super("Wooden Blockade");
         id = 6;
         cost = 3;
         value = 25;
