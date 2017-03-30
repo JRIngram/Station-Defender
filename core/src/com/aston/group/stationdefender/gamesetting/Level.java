@@ -98,6 +98,9 @@ public class Level implements LaneCallback {
             } else
                 createBoss();
             bossEnemy.render(delta);
+            for (Lane lane : lanes) {
+                lane.projectileCollision(null, bossEnemy);
+            }
             if (tower.isColliding(bossEnemy.getX(), bossEnemy.getY(), bossEnemy.getWidth(), bossEnemy.getHeight())) {
                 towerTakeDamage(bossEnemy.getDamage());
                 bossEnemy.destroy();
