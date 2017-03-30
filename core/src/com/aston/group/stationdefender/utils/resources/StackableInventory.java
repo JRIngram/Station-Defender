@@ -17,10 +17,8 @@ public class StackableInventory implements Inventory {
     public void addItem(Item item) {
         ItemStack<Item> itemStack = findStack(item);
         if (itemStack != null) {
-            //add the item to the found item stack
             itemStack.addItem(item);
         } else {
-            //create a new item stack and add it to the array list
             ItemStack<Item> newStack = new ItemStack<>(item);
             itemStacks.add(newStack);
         }

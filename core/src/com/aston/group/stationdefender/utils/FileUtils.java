@@ -41,7 +41,6 @@ public class FileUtils {
             JsonObject stackObject = new JsonObject();
             stackObject.addProperty("id", inventory.getItemStacks().get(i).getItem().getId());
             stackObject.addProperty("name", inventory.getItemStacks().get(i).getItem().getName());
-            System.out.println("" + inventory.getItemStacks().get(i).getItem().getSku().toString());
             stackObject.addProperty("sku", inventory.getItemStacks().get(i).getItem().getSku().toString());
             items.add(stackObject);
         }
