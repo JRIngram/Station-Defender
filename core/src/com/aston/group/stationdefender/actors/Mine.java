@@ -8,7 +8,8 @@ import com.aston.group.stationdefender.utils.TextureManager;
  *
  * @author IngramJ
  */
-public class Mine extends Weapon {
+public class Mine extends Alien {
+    private long lastTime;
 
     /**
      * Create a new Mine with given X and Y co-ordinates
@@ -17,24 +18,21 @@ public class Mine extends Weapon {
      * @param y The Y co-ordinate of the Mine
      */
     public Mine(int x, int y) {
-        super("Mine", 0, 100, 1, Constants.UNIT_HEALTH, 1, 0.9, x, y, 60, 60, 8.0, 80, 25);
+        super("Mine", 0, 100, 4.0, Constants.UNIT_HEALTH, 4, 0.9, x, y, 60, 50);
         setTexture(TextureManager.INSTANCE.loadTexture(11));
     }
 
     @Override
     public void act(float delta) {
-        if (built && !checkZeroHealth()) {
+        if (!checkZeroHealth()) {
             if (!isAdjacent) {
                 if (unitCallback != null && System.currentTimeMillis() - lastTime >= (10000 / rateOfFire)) {
-                    unitCallback.onFire(x + 40, y + 35, speed, getDamage());
+                    unitCallback.onFire(x - 40, y + 35, -30, getDamage());
                     lastTime = System.currentTimeMillis();
                 }
-            } else {
-                adjacentActor.takeDamage(fire());
-                destroy();
             }
         } else {
-            decrementBuildTimer();
+            destroy();
         }
     }
 }

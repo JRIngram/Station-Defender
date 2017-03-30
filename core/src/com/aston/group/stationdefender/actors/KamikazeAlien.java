@@ -24,9 +24,9 @@ public class KamikazeAlien extends Alien {
     @Override
     public void act(float delta) {
         if (!checkZeroHealth()) {
-            if (isAdjacent) {
+            if (isAdjacent && !(getAdjacentActor() instanceof Mine)) {
                 adjacentActor.takeDamage(fire());
-                super.destroy();
+                destroy();
             } else {
                 move(delta);
             }

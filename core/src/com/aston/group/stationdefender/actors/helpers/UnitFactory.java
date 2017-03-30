@@ -25,6 +25,8 @@ public class UnitFactory {
                 return new KamikazeAlien(0, 0);
             case RAPID_FIRE_ALIEN:
                 return new RapidFireAlien(0, 0);
+            case MINE:
+                return new Mine(0, 0);
             default:
                 return new Alien(0, 0);
         }

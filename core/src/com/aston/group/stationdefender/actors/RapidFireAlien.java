@@ -24,13 +24,15 @@ public class RapidFireAlien extends Alien {
 
     /**
      * Similar to usual act method, but if the alien hits on all shots the alien "overloads" and cannot fire for the next call of act.
-     * No damage is dealt on this round,
+     * No damage is dealt on this round.
+     *
+     * @param delta The time in seconds since the last act
      */
     @Override
     public void act(float delta) {
         if (!checkZeroHealth()) {
             if (!overloaded) {
-                if (isAdjacent) {
+                if (isAdjacent && !(getAdjacentActor() instanceof Mine)) {
                     overloaded = rapidFireHelper();
                 } else {
                     move(delta);

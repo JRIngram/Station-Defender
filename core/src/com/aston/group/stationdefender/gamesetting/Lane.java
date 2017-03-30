@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender.gamesetting;
 
+import com.aston.group.stationdefender.actors.Mine;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.actors.helpers.UnitFactory;
 import com.aston.group.stationdefender.callbacks.LaneCallback;
@@ -183,7 +184,7 @@ public class Lane implements UnitCallback {
             Unit unit = null;
             for (int j = 0; j < units.size; j++) {
                 if (i != j) {
-                    if (units.get(i).isUnitAdjacent(units.get(j))) {
+                    if (units.get(i).isUnitAdjacent(units.get(j)) && !(units.get(i) instanceof Mine)) {
                         isUnitAdjacent = true;
                         unit = units.get(j);
                         break;
@@ -191,12 +192,14 @@ public class Lane implements UnitCallback {
                 }
             }
 
-            if (isUnitAdjacent) {
-                units.get(i).setIsAdjacent(true);
-            } else {
-                units.get(i).setIsAdjacent(false);
+            if (!(units.get(i) instanceof Mine)) {
+                if (isUnitAdjacent) {
+                    units.get(i).setIsAdjacent(true);
+                } else {
+                    units.get(i).setIsAdjacent(false);
+                }
+                units.get(i).setAdjacentActor(unit);
             }
-            units.get(i).setAdjacentActor(unit);
 
             //Check if aliens are near tower
             unit = units.get(i);
@@ -224,9 +227,11 @@ public class Lane implements UnitCallback {
         if (System.currentTimeMillis() - lastRenderTime > 2200 + Math.random() * 3000) {
             if (alienAmount > 0) {
                 Unit unit = UnitFactory.getRandomEnemy();
-                unit.setX(getLastTileCenterX() - (unit.getWidth() / 2));
+                if (unit instanceof Mine)
+                    unit.setX(getRandomTileCenterX() - (unit.getHeight() / 2));
+                else
+                    unit.setX(getLastTileCenterX() - (unit.getWidth() / 2));
                 unit.setY(getLastTileCenterY() - (unit.getHeight() / 2));
-
                 units.add(unit);
                 alienAmount--;
             }
@@ -235,7 +240,6 @@ public class Lane implements UnitCallback {
 
         //Draw Projectiles
         projectileFactory.render(delta);
-
         projectileCollision(units, null);
 
         //Check if lane is cleared
@@ -259,8 +263,20 @@ public class Lane implements UnitCallback {
      * @return The X co-ordinate of the center of the last Tile
      */
     private int getLastTileCenterX() {
-        if (tiles.size > 0) {
+        if (tiles.size > 0)
             return tiles.get(tiles.size - 1).getCenterX();
+        else
+            return 0;
+    }
+
+    /**
+     * Returns the X co-ordinate of the center of a random Tile
+     *
+     * @return The X co-ordinate of the center of a random Tile
+     */
+    private int getRandomTileCenterX() {
+        if (tiles.size > 0) {
+            return tiles.get(new Random().nextInt(tiles.size - 1)).getCenterX();
         } else {
             return 0;
         }
