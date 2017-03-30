@@ -31,6 +31,7 @@ public enum TextureManager {
     private static final int BOSS_ALIEN_4 = 18;
     private static final int BACKGROUND_TEXTURE_2 = 20;
     private static final int BACKGROUND_TEXTURE_3 = 21;
+    private static final int CLOSE_COMBAT_ALIEN_TEXTURE = 22;
 
 
     /**
@@ -82,7 +83,7 @@ public enum TextureManager {
                 texture = new Texture(Gdx.files.internal("textures/rf-turret.png"));
                 break;
             case KAMIKAZE_ALIEN_TEXTURE:
-                texture = new Texture(Gdx.files.internal("textures/rf-turret.png"));
+                texture = new Texture(Gdx.files.internal("textures/bomber-enemy.png"));
                 break;
             case BOSS_ALIEN_1:
                 texture = new Texture(Gdx.files.internal("textures/boss1.png"));
@@ -101,6 +102,9 @@ public enum TextureManager {
                 break;
             case BACKGROUND_TEXTURE_3:
                 texture = new Texture(Gdx.files.internal("textures/space2.png"));
+                break;
+            case CLOSE_COMBAT_ALIEN_TEXTURE:
+                texture = new Texture(Gdx.files.internal("textures/CloseCombatAlien.png"));
                 break;
         }
         return texture;
