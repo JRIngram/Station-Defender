@@ -382,7 +382,7 @@ public class Lane implements UnitCallback {
      * Checks if projectiles are colliding with a Unit or an array of Units
      *
      * @param unitsArray The array of Units to cycle through
-     * @param bossUnit The singular boss Unit to check for collisions
+     * @param bossUnit   The singular boss Unit to check for collisions
      */
     void projectileCollision(Array<Unit> unitsArray, Unit bossUnit) {
         for (int i = 0; i < projectileFactory.getProjectiles().size; i++) {
@@ -401,7 +401,7 @@ public class Lane implements UnitCallback {
      * Helper class to avoid duplicate code in projectileCollision()
      *
      * @param projectile The Projectile to check for collisions
-     * @param unit The Unit to check for collisions against the Projectile
+     * @param unit       The Unit to check for collisions against the Projectile
      */
     private void projectileCollisionHelper(Projectile projectile, Unit unit) {
         if (unit.isFacingLeft() && projectile.isColliding(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight())) {
