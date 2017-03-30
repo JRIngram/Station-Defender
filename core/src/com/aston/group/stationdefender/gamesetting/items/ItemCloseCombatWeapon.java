@@ -4,6 +4,7 @@ import com.aston.group.stationdefender.actors.CloseCombatWeapon;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
+import com.aston.group.stationdefender.utils.resources.Items;
 
 public class ItemCloseCombatWeapon extends Item {
 
@@ -17,6 +18,7 @@ public class ItemCloseCombatWeapon extends Item {
         //TODO Replace with close combat weapon texture
         texture = TextureManager.INSTANCE.loadTexture(8);
         placeable = true;
+        sku = Items.CLOSE_COMBAT_WEAPON;
     }
 
     @Override

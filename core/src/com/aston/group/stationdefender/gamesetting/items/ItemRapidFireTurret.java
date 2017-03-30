@@ -17,7 +17,7 @@ public class ItemRapidFireTurret extends Item {
         cost = 15;
         texture = TextureManager.INSTANCE.loadTexture(13);
         placeable = true;
-        sku = Items.TURRET;
+        sku = Items.RAPID_FIRE_WEAPON;
     }
 
     @Override
