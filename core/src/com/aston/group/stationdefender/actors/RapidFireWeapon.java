@@ -34,11 +34,16 @@ public class RapidFireWeapon extends Weapon {
             if (!overloaded) {
                 if (isAdjacent) {
                     overloaded = rapidFireHelper();
+                } else {
+                    overloaded = false;
+                    if (unitCallback != null && System.currentTimeMillis() - lastTime >= (10000 / rateOfFire)) {
+                        unitCallback.onFire(x + 40, y + 35, speed, getDamage());
+                        lastTime = System.currentTimeMillis();
+                    }
                 }
-            } else
-                overloaded = false;
+            }
         } else {
-            destroy();
+            decrementBuildTimer();
         }
     }
 

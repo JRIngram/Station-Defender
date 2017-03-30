@@ -6,5 +6,5 @@ package com.aston.group.stationdefender.utils.resources;
  * @author Mohammad Foysal
  */
 public enum Items {
-    CREDIT, TURRET, UNKNOWN
+    CREDIT, TURRET, RAPID_FIRE_WEAPON, UNKNOWN
 }

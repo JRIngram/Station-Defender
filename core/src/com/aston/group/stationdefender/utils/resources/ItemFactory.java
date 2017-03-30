@@ -1,9 +1,6 @@
 package com.aston.group.stationdefender.utils.resources;
 
-import com.aston.group.stationdefender.gamesetting.items.Item;
-import com.aston.group.stationdefender.gamesetting.items.ItemBlank;
-import com.aston.group.stationdefender.gamesetting.items.ItemCredit;
-import com.aston.group.stationdefender.gamesetting.items.ItemTurret;
+import com.aston.group.stationdefender.gamesetting.items.*;
 
 /**
  * This class is responsible for handling what Items are created
@@ -24,6 +21,8 @@ public class ItemFactory {
                 return new ItemCredit();
             case TURRET:
                 return new ItemTurret();
+            case RAPID_FIRE_WEAPON:
+                return new ItemRapidFireTurret();
             default:
                 return new ItemBlank();
         }

@@ -11,7 +11,7 @@ public class ItemBricks extends Item {
      */
     public ItemBricks() {
         super("Bricks");
-        id = 8;
+        id = 6;
         cost = 3;
         //TODO Bricks texture needed
         texture = TextureManager.INSTANCE.loadTexture(8);

@@ -1,21 +1,23 @@
 package com.aston.group.stationdefender.gamesetting.items;
 
-import com.aston.group.stationdefender.actors.Mine;
+import com.aston.group.stationdefender.actors.RapidFireWeapon;
 import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
+import com.aston.group.stationdefender.utils.resources.Items;
 
-public class ItemMine extends Item {
+public class ItemRapidFireTurret extends Item {
 
     /**
-     * Construct a new Mine Item
+     * Construct a new Rapid Fire Turret Item
      */
-    public ItemMine() {
-        super("Mine");
+    public ItemRapidFireTurret() {
+        super("Rapid Fire Turret");
         id = 3;
         cost = 10;
-        texture = TextureManager.INSTANCE.loadTexture(11);
+        texture = TextureManager.INSTANCE.loadTexture(13);
         placeable = true;
+        sku = Items.TURRET;
     }
 
     @Override
@@ -26,6 +28,6 @@ public class ItemMine extends Item {
 
     @Override
     public Unit getPlaceableUnit() {
-        return new Mine(0, 0);
+        return new RapidFireWeapon(0, 0);
     }
 }

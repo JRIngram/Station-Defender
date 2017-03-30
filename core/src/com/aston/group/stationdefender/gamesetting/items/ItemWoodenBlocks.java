@@ -11,7 +11,7 @@ public class ItemWoodenBlocks extends Item {
      */
     public ItemWoodenBlocks() {
         super("Wooden Blocks");
-        id = 7;
+        id = 12;
         cost = 3;
         //TODO wood texture needed
         texture = TextureManager.INSTANCE.loadTexture(8);

@@ -11,7 +11,7 @@ public class ItemWater extends Item {
      */
     public ItemWater() {
         super("Water bottle");
-        id = 9;
+        id = 10;
         cost = 3;
         value = 2;
         //TODO water bottle item texture needed

@@ -11,8 +11,8 @@ public class ItemHealth extends Item {
      * Construct a new Health Potion Item
      */
     public ItemHealth() {
-        super("Wooden Blockade");
-        id = 6;
+        super("Health");
+        id = 9;
         cost = 3;
         value = 25;
         //TODO health texture needed

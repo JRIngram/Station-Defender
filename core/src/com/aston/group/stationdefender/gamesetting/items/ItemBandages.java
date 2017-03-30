@@ -11,7 +11,7 @@ public class ItemBandages extends Item {
      */
     public ItemBandages() {
         super("Bandages");
-        id = 10;
+        id = 5;
         cost = 3;
         value = 2;
         //TODO bandages texture needed

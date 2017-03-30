@@ -12,7 +12,7 @@ public class ItemWoodenBlockade extends Item {
      */
     public ItemWoodenBlockade() {
         super("Wooden Blockade");
-        id = 5;
+        id = 11;
         cost = 3;
         //TODO wooden blockade texture needed
         texture = TextureManager.INSTANCE.loadTexture(8);
