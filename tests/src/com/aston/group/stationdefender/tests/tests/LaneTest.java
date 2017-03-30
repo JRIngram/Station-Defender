@@ -110,8 +110,4 @@ public class LaneTest implements LaneCallback {
     public int getLevelNumber() {
         return 1;
     }
-
-    public LaneCallback getLaneCallback() {
-        return this;
-    }
 }
