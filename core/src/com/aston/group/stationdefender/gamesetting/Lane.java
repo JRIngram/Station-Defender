@@ -398,7 +398,7 @@ public class Lane implements UnitCallback {
     }
 
     /**
-     * Helper class to avoid duplicate code in projectileCollision()
+     * Helper method to avoid duplicate code in projectileCollision()
      *
      * @param projectile The Projectile to check for collisions
      * @param unit       The Unit to check for collisions against the Projectile

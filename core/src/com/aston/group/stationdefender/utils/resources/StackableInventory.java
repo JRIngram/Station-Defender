@@ -4,6 +4,12 @@ import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.gamesetting.items.ItemStack;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * StackableInventory is an Inventory that allows Items to be stacked to allow more than one of the same type of item
+ * per slot
+ *
+ * @author Mohammed Foysal
+ */
 public class StackableInventory implements Inventory {
     private final Array<ItemStack<Item>> itemStacks = new Array<>();
 
