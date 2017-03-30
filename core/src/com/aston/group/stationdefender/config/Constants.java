@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Color;
  * @author Mohammed Foysal
  */
 public interface Constants {
-
     boolean DEBUG = false;
 
     // 16/9 Aspect Ratio
@@ -63,7 +62,6 @@ public interface Constants {
 
     Color primaryColor = Color.valueOf("#37474F");
     Color primaryDarkColor = Color.valueOf("#263238");
-    Color accentColor = Color.valueOf("#f44336");
 
     float VERSION = 1.1f;
 

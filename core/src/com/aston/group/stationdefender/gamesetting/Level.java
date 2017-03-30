@@ -2,6 +2,7 @@ package com.aston.group.stationdefender.gamesetting;
 
 import com.aston.group.stationdefender.actors.Tower;
 import com.aston.group.stationdefender.actors.Unit;
+import com.aston.group.stationdefender.actors.helpers.UnitFactory;
 import com.aston.group.stationdefender.callbacks.LaneCallback;
 import com.aston.group.stationdefender.callbacks.LevelCallback;
 import com.aston.group.stationdefender.config.Constants;
@@ -16,12 +17,15 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
+import java.util.Random;
+
 /**
  * Skeleton Level class
  *
  * @author Jonathon Fitch
  */
 public class Level implements LaneCallback {
+    private static final int[] backgroundTextures = new int[]{3, 20, 21};
     private final SpriteBatch batch;
     private final Texture texture;
     private final LevelCallback levelCallback;
@@ -29,6 +33,9 @@ public class Level implements LaneCallback {
     private final Array<Lane> lanes = new Array<>();
     private final int levelNumber;
     private final Tower tower;
+    private Unit bossEnemy;
+    private boolean isBossCreated = false;
+    private boolean isBossDestroyed = false;
     private boolean hasWon;
     private boolean hasLost;
 
@@ -43,7 +50,12 @@ public class Level implements LaneCallback {
         this.levelCallback = levelCallback;
         tower = new Tower(100, 100, 400);
         batch = GameEngine.getBatch();
-        texture = TextureManager.INSTANCE.loadTexture(3);
+        if (levelNumber == 1)
+            texture = TextureManager.INSTANCE.loadTexture(3);
+        else {
+            int randomTexture = new Random().nextInt(backgroundTextures.length);
+            texture = TextureManager.INSTANCE.loadTexture(backgroundTextures[randomTexture]);
+        }
         double difficulty = (2 + (levelNumber / 10)) * 3;
 
         int laneY = 110;
@@ -77,8 +89,28 @@ public class Level implements LaneCallback {
             }
         }
 
-        if (isAllLanesCleared())
-            hasWon = true;
+        if (isAllLanesCleared()) {
+            if (isBossCreated) {
+                if (isBossDestroyed && tower.getExists())
+                    hasWon = true;
+                else if (isBossDestroyed && !tower.getExists())
+                    hasLost = true;
+            } else
+                createBoss();
+            bossEnemy.render(delta);
+            for (Lane lane : lanes) {
+                lane.projectileCollision(null, bossEnemy);
+            }
+            if (tower.isColliding(bossEnemy.getX(), bossEnemy.getY(), bossEnemy.getWidth(), bossEnemy.getHeight())) {
+                towerTakeDamage(bossEnemy.getDamage());
+                bossEnemy.destroy();
+                isBossDestroyed = true;
+            }
+            if (bossEnemy.getHealth() == 0) {
+                bossEnemy.destroy();
+                isBossDestroyed = true;
+            }
+        }
         if (hasLost)
             levelCallback.onWinLost(false);
         if (hasWon)
@@ -225,5 +257,15 @@ public class Level implements LaneCallback {
      */
     public int getLevelNumber() {
         return levelNumber;
+    }
+
+    /**
+     * Create the Boss Enemy
+     */
+    private void createBoss() {
+        bossEnemy = UnitFactory.getBossEnemy();
+        bossEnemy.setX(Gdx.graphics.getWidth() - (bossEnemy.getWidth()));
+        bossEnemy.setY(Gdx.graphics.getHeight() / 2 - (bossEnemy.getHeight() / 2));
+        isBossCreated = true;
     }
 }

@@ -236,21 +236,7 @@ public class Lane implements UnitCallback {
         //Draw Projectiles
         projectileFactory.render(delta);
 
-        for (int i = 0; i < projectileFactory.getProjectiles().size; i++) {
-            for (int j = 0; j < units.size; j++) {
-                Projectile projectile = projectileFactory.getProjectiles().get(i);
-                if (units.get(j).isFacingLeft() && projectile.isColliding(units.get(j).getX(), units.get(j).getY(),
-                        units.get(j).getWidth(), units.get(j).getHeight())) {
-                    projectile.setDead();
-                    double damage = projectile.getDamage();
-                    if (units.get(j).getHealth() - damage <= 0) {
-                        laneCallback.addMoney(Constants.MONEY_REGENERATION);
-                        laneCallback.addScore(Constants.ADD_SCORE_AMOUNT);
-                    }
-                    units.get(j).takeDamage(damage);
-                }
-            }
-        }
+        projectileCollision(units, null);
 
         //Check if lane is cleared
         if (isLaneCleared() && alienAmount <= 0) {
@@ -390,5 +376,30 @@ public class Lane implements UnitCallback {
      */
     public void setCleared(boolean cleared) {
         this.cleared = cleared;
+    }
+
+    void projectileCollision(Array<Unit> unitsArray, Unit bossUnit) {
+        for (int i = 0; i < projectileFactory.getProjectiles().size; i++) {
+            if (unitsArray != null) {
+                for (int j = 0; j < unitsArray.size; j++) {
+                    Unit unit = unitsArray.get(j);
+                    projectileCollisionHelper(projectileFactory.getProjectiles().get(i), unit);
+                }
+            } else {
+                projectileCollisionHelper(projectileFactory.getProjectiles().get(i), bossUnit);
+            }
+        }
+    }
+
+    private void projectileCollisionHelper(Projectile projectile, Unit unit) {
+        if (unit.isFacingLeft() && projectile.isColliding(unit.getX(), unit.getY(), unit.getWidth(), unit.getHeight())) {
+            projectile.setDead();
+            double damage = projectile.getDamage();
+            if (unit.getHealth() - damage <= 0) {
+                laneCallback.addMoney(Constants.MONEY_REGENERATION);
+                laneCallback.addScore(Constants.ADD_SCORE_AMOUNT);
+            }
+            unit.takeDamage(damage);
+        }
     }
 }

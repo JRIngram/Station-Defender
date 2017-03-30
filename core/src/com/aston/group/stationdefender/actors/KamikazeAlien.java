@@ -11,13 +11,6 @@ import com.aston.group.stationdefender.utils.TextureManager;
 public class KamikazeAlien extends Alien {
 
     /**
-     * Create a new KamikazeAlien with default X and Y co-ordinates of '0'
-     */
-    public KamikazeAlien() {
-        this(0, 0);
-    }
-
-    /**
      * Create a new KamikazeAlien with given X and Y co-ordinates
      *
      * @param x The X co-ordinate of the KamikazeAlien

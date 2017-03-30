@@ -39,4 +39,8 @@ public class UnitFactory {
         int rand = (int) (Math.random() * (Units.values().length));
         return UnitFactory.getEnemy(Units.values()[rand]);
     }
+
+    public static Unit getBossEnemy() {
+        return new BossAlien(0, 0);
+    }
 }

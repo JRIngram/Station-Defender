@@ -98,5 +98,6 @@ public class FileUtils {
     public static void deleteLevelInfo() {
         Preferences prefs = Gdx.app.getPreferences(Constants.prefs);
         prefs.remove("level");
+        prefs.remove("player");
     }
 }
