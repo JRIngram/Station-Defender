@@ -22,7 +22,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import java.util.Objects;
@@ -41,8 +40,6 @@ public class IntroScreen implements Screen {
     private final BitmapFont smallerFont;
     private final TextButton backgroundButton, instructionButton, playButton, exitButton;
     private final TextButton[] buttons;
-    private final Texture texture;
-    private final Texture hoverTexture;
     private final GameEngine gameEngine;
     private MenuCallback menuCallback;
     private float fadeElapsed = 0;
@@ -53,13 +50,10 @@ public class IntroScreen implements Screen {
     public IntroScreen() {
         gameEngine = GameEngine.INSTANCE;
         batch = GameEngine.getBatch();
-
         font = FontManager.getFont(50);
         smallerFont = FontManager.getFont(16);
-
-        texture = TextureManager.INSTANCE.loadTexture(1);
-        hoverTexture = new Texture(Gdx.files.internal("textures/black.jpg"));
-
+        Texture texture = TextureManager.INSTANCE.loadTexture(1);
+        Texture hoverTexture = new Texture(Gdx.files.internal("textures/black.jpg"));
         Table table = new Table();
         table.setFillParent(true);
 
@@ -81,11 +75,9 @@ public class IntroScreen implements Screen {
 
         //Buttons
         stage = new Stage();
-
         TextButtonStyle textButtonStyle = new TextButtonStyle();
         textButtonStyle.font = font;
         textButtonStyle.over = new TextureRegionDrawable(new TextureRegion(hoverTexture));
-
         backgroundButton = new TextButton(Constants.MENU_ITEMS[0], textButtonStyle);
         instructionButton = new TextButton(Constants.MENU_ITEMS[1], textButtonStyle);
         playButton = new TextButton(Constants.MENU_ITEMS[2], textButtonStyle);
@@ -110,7 +102,6 @@ public class IntroScreen implements Screen {
         image.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
 
         background.addActor(image);
-
         stage.addActor(background);
         stage.addActor(table);
     }
@@ -131,27 +122,16 @@ public class IntroScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         gameEngine.render();
-
-//        batch.begin();
-//        batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//        batch.end();
-
         stage.act(delta);
-
-//        stage.getBatch().begin();
-//        stage.getBatch().draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//        stage.getBatch().end();
-
         batch.begin();
         stage.draw();
         // delay animation by a certain amount for each menu item
         font.setColor(1, 1, 1, fade);
         for (int i = 0; i < buttons.length; i++) {
             fade = Interpolation.fade.apply((fadeElapsed - (fadeDelay + i + 1f)) / fadeInTime);
-            buttons[i].setColor(1, 1, 1, 1);
+            buttons[i].setColor(1, 1, 1, fade);
         }
         batch.end();
-
         batch.begin();
         smallerFont.draw(batch, "v" + Constants.VERSION, 20, 30);
         batch.end();
