@@ -14,7 +14,7 @@ public class ItemRapidFireTurret extends Item {
     public ItemRapidFireTurret() {
         super("Rapid Fire Turret");
         id = 3;
-        cost = 10;
+        cost = 15;
         texture = TextureManager.INSTANCE.loadTexture(13);
         placeable = true;
         sku = Items.TURRET;
