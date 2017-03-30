@@ -12,10 +12,10 @@ import java.util.concurrent.ThreadLocalRandom;
 public class BossAlien extends Alien {
 
     /**
-     * Create a new CloseCombatAlien with given X and Y co-ordinates
+     * Create a new BossAlien with given X and Y co-ordinates
      *
-     * @param x The X co-ordinate of the CloseCombatAlien
-     * @param y The Y co-ordinate of the CloseCombatAlien
+     * @param x The X co-ordinate of the BossAlien
+     * @param y The Y co-ordinate of the BossAlien
      */
     public BossAlien(int x, int y) {
         super("Alien", -60, 500, 5, 800, 5.0, 8, x, y, 500, 375);
