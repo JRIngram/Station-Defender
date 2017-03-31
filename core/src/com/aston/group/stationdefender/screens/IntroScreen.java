@@ -161,6 +161,11 @@ public class IntroScreen implements Screen {
         batch.dispose();
     }
 
+    /**
+     * Sets the MenuCallback to be used for the IntroScreen
+     *
+     * @param menuCallback The MenuCallback to be used for the IntroScreen
+     */
     public void setMenuCallback(MenuCallback menuCallback) {
         this.menuCallback = menuCallback;
     }

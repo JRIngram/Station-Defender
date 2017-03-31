@@ -208,6 +208,11 @@ public abstract class Item {
         return "Item{" + "id=" + id + ", name='" + name + '\'' + '}';
     }
 
+    /**
+     * Returns the unique SKU identifier of the Item
+     *
+     * @return The unique SKU identifier of the Item
+     */
     public Items getSku() {
         return sku;
     }

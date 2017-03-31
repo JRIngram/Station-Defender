@@ -53,7 +53,6 @@ public class TwoTextScreen implements Screen {
         this.continueBool = continueBool;
         gameEngine = GameEngine.INSTANCE;
         batch = GameEngine.getBatch();
-
         bodyFont = FontManager.getFont(30);
         titleFont = FontManager.getFont(50);
         BitmapFont buttonFont = FontManager.getFont(18);

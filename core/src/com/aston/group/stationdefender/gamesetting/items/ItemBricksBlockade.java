@@ -5,6 +5,11 @@ import com.aston.group.stationdefender.actors.Weapon;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
 
+/**
+ * ItemBandages represents a blockage formed of bricks that can be used within the game
+ *
+ * @author Mohammed Foysal
+ */
 public class ItemBricksBlockade extends Item {
 
     /**

@@ -41,9 +41,7 @@ public class MenuScreen implements Screen {
     public MenuScreen() {
         gameEngine = GameEngine.INSTANCE;
         batch = GameEngine.getBatch();
-
         font = FontManager.getFont(50);
-
         stage = new Stage();
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.font = font;

@@ -8,6 +8,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+/**
+ * This class is a container for the HUD
+ *
+ * @author Mohammad Foysal
+ */
 public class HudContainer extends HudElement {
     final BitmapFont font;
     final SpriteBatch batch;

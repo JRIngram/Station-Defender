@@ -78,7 +78,7 @@ public class IndicatorManager {
     }
 
     /**
-     * This class is a private inner class that holds the Indicator object
+     * This inner-class is a private inner class that holds the Indicator object
      *
      * @author Mohammad Foysal
      */
