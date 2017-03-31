@@ -19,14 +19,11 @@ public class HudContainer extends HudElement {
     private final ShapeRenderer shapeRenderer;
 
     /**
-     * Create a new HudContainer at given X and Y co-ordinates
-     *
-     * @param x The X co-ordinate of the HudContainer
-     * @param y The Y co-ordinate of the HudContainer
+     * Create a new HudContainer at with default X and Y co-ordinates of '0'
      */
-    HudContainer(int x, int y) {
-        this.x = x;
-        this.y = y;
+    HudContainer() {
+        this.x = 0;
+        this.y = 0;
         width = 400;
         height = 200;
         title = "Blank Container";

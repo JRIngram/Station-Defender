@@ -12,13 +12,10 @@ import java.util.concurrent.ThreadLocalRandom;
 public class BossAlien extends Alien {
 
     /**
-     * Create a new BossAlien with given X and Y co-ordinates
-     *
-     * @param x The X co-ordinate of the BossAlien
-     * @param y The Y co-ordinate of the BossAlien
-     */
-    public BossAlien(int x, int y) {
-        super("Alien", -60, 500, 5, 800, 5.0, 8, x, y, 500, 375);
+     * Create a new BossAlien with default X and Y co-ordinates of '0'
+     *  */
+    public BossAlien() {
+        super("Alien", -60, 500, 5, 800, 5.0, 8, 0, 0, 500, 375);
         setTexture(TextureManager.INSTANCE.loadTexture(ThreadLocalRandom.current().nextInt(15, 19)));
     }
 }

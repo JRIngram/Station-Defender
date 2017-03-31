@@ -48,6 +48,6 @@ public class UnitFactory {
      * @return The new Boss Enemy unit
      */
     public static Unit getBossEnemy() {
-        return new BossAlien(0, 0);
+        return new BossAlien();
     }
 }

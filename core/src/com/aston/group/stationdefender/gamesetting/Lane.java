@@ -429,5 +429,9 @@ public class Lane implements UnitCallback {
             }
             unit.takeDamage(damage);
         }
+        if (laneCallback.isTowerColliding(projectile.getX(), projectile.getY(), projectile.getWidth(), projectile.getHeight())) {
+            laneCallback.towerTakeDamage(projectile.getDamage());
+            projectile.setDead();
+        }
     }
 }

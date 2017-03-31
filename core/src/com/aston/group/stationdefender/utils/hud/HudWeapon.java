@@ -14,19 +14,7 @@ public class HudWeapon extends HudContainer {
      * Creates a new HudWeapon with default X and Y co-ordinates of '0'
      */
     public HudWeapon() {
-        this(0, 0);
-    }
-
-    /**
-     * Creates a new HudWeapon with given X and Y co-ordinates
-     *
-     * @param x The X co-ordinate of the HudWeapon
-     * @param y The Y co-ordinate of the HudWeapon
-     */
-    private HudWeapon(int x, int y) {
-        super(x, y);
-        this.x = x;
-        this.y = y;
+        super();
         title = "Weapon";
         if (weapon != null) {
             title = weapon.getName();

@@ -126,4 +126,40 @@ public class Projectile implements Pool.Poolable {
     public double getDamage() {
         return damage;
     }
+
+    /**
+     * Returns the X co-ordinate of the Projectile
+     *
+     * @return The X co-ordinate of the Projectile
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * Returns the Y co-ordinate of the Projectile
+     *
+     * @return The Y co-ordinate of the Projectile
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     * Returns the width of the Projectile
+     *
+     * @return The width of the Projectile
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * Returns the height of the Projectile
+     *
+     * @return The height of the Projectile
+     */
+    public int getHeight() {
+        return height;
+    }
 }

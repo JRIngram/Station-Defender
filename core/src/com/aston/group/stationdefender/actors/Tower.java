@@ -18,8 +18,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * @author Jonathon Fitch, Peter Holmes
  */
 public class Tower implements Actor {
-    private final int height;
-    private final int width;
+    private final int height = 400;
+    private final int width = 100;
     private final int x = 0;
     private final int y = 100;
     private final SpriteBatch batch;
@@ -30,14 +30,9 @@ public class Tower implements Actor {
     private boolean exists;
 
     /**
-     * Constructs a new Tower
-     *
-     * @param width  The width of the Tower
-     * @param height The height of the Tower
+     * Construct a new Tower
      */
-    public Tower(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public Tower() {
         exists = true;
         health = Constants.TOWER_HEALTH;
         texture = TextureManager.INSTANCE.loadTexture(6);
