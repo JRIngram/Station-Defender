@@ -4,6 +4,12 @@ import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
 
+/**
+ * ItemBandages represents a health Item that can be used within the game to give the Tower
+ * additional health
+ *
+ * @author Mohammed Foysal
+ */
 public class ItemHealth extends Item {
 
     /**

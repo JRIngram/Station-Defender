@@ -6,6 +6,11 @@ import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.aston.group.stationdefender.utils.resources.Items;
 
+/**
+ * ItemBandages represents a Turret Weapon Item that can be used within the game
+ *
+ * @author Mohammed Foysal
+ */
 public class ItemTurret extends Item {
 
     /**

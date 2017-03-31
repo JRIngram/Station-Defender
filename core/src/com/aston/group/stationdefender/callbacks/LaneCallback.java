@@ -42,6 +42,11 @@ public interface LaneCallback {
      */
     boolean isTowerColliding(int x, int y, int width, int height);
 
+    /**
+     * Callback to collect an Item from the Lane
+     *
+     * @param item The Item to collect
+     */
     void collectItem(Item item);
 
     /**

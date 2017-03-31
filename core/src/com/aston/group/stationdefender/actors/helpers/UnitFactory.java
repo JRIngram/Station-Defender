@@ -42,6 +42,11 @@ public class UnitFactory {
         return UnitFactory.getEnemy(Units.values()[rand]);
     }
 
+    /**
+     * Returns a new Boss Enemy
+     *
+     * @return The new Boss Enemy unit
+     */
     public static Unit getBossEnemy() {
         return new BossAlien(0, 0);
     }

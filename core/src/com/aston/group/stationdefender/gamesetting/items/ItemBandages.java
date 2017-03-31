@@ -4,6 +4,11 @@ import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
 
+/**
+ * ItemBandages represents a bandage Item that can be used within the game
+ *
+ * @author Mohammed Foysal
+ */
 public class ItemBandages extends Item {
 
     /**
