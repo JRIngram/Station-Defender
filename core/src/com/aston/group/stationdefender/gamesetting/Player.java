@@ -42,6 +42,7 @@ public class Player implements InputProcessor {
     private int money;
     private PlayerCallback playerCallback;
     private int selectedSlot = 0;
+    private boolean dataLoaded = false;
 
     /**
      * Construct a new Player
@@ -51,21 +52,26 @@ public class Player implements InputProcessor {
         inventory = new StackableInventory();
         score = 0;
         money = Constants.START_MONEY;
-        inventory.addItem(new ItemTurret());
         FileUtils.loadLevel((score, money, levelNumber, items) -> {
+            dataLoaded = true;
             this.score = score;
             this.money = money;
             for (Item item : items) {
                 inventory.addItem(item);
             }
         });
+        if (!dataLoaded) {
+            inventory.addItem(new ItemTurret());
+            inventory.addItem(new ItemTurret());
+            inventory.addItem(new ItemTurret());
+            inventory.addItem(new ItemTurret());
+        }
 
         //Quick Slots
         quickSlots = new Array<>();
         int slotX = 0;
         for (int i = 0; i < 8; i++) {
             QuickSlot quickSlot = new QuickSlot(slotX);
-            quickSlot.setItem(new ItemBlank()); //todo remove
             quickSlot.setItemStack(new ItemStack<>(new ItemBlank()));
             quickSlots.add(quickSlot);
             slotX += 48;
@@ -211,6 +217,8 @@ public class Player implements InputProcessor {
                             if (playerCallback.placeUnit(currentItem.getPlaceableUnit(), MouseInput.getX(), MouseInput.getY())) {
                                 removeMoney(currentItem.getCost());
                                 addMoney(currentItem.getValue());
+                                inventory.removeItem(currentItem);
+                                updateQuickSlots();
                             }
                         } else {
                             removeMoney(currentItem.getCost());
@@ -260,8 +268,8 @@ public class Player implements InputProcessor {
      */
     private void updateQuickSlots() {
         for (int i = 0; i < quickSlots.size; i++) {
-            if (i < (inventory).getItemStacks().size && (inventory).getItemStacks().get(i) != null) {
-                quickSlots.get(i).setItemStack((inventory).getItemStacks().get(i));
+            if (i < inventory.getItemStacks().size && inventory.getItemStacks().get(i) != null) {
+                quickSlots.get(i).setItemStack(inventory.getItemStacks().get(i));
             } else {
                 quickSlots.get(i).setItemStack(new ItemStack<>(new ItemBlank()));
             }

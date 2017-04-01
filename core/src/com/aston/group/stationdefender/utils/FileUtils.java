@@ -87,9 +87,7 @@ public class FileUtils {
                 items.add(item);
             }
 
-            if (levelInfoCallback != null) {
-                levelInfoCallback.onLoaded(score, money, levelNumber, items);
-            }
+            levelInfoCallback.onLoaded(score, money, levelNumber, items);
         }
     }
 

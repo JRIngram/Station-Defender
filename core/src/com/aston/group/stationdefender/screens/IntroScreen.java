@@ -53,7 +53,7 @@ public class IntroScreen implements Screen {
         font = FontManager.getFont(50);
         smallerFont = FontManager.getFont(16);
         Texture texture = TextureManager.INSTANCE.loadTexture(1);
-        Texture hoverTexture = new Texture(Gdx.files.internal("textures/black.jpg"));
+        Texture hoverTexture = TextureManager.INSTANCE.loadTexture(23);
         Table table = new Table();
         table.setFillParent(true);
 

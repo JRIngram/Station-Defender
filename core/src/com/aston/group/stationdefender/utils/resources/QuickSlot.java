@@ -3,9 +3,7 @@ package com.aston.group.stationdefender.utils.resources;
 import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.gamesetting.items.ItemStack;
 import com.aston.group.stationdefender.utils.FontManager;
-import com.aston.group.stationdefender.utils.MouseInput;
 import com.aston.group.stationdefender.utils.TextureManager;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -64,15 +62,6 @@ public class QuickSlot {
             itemStack.setX(x + (width / 5));
             itemStack.setY(y + (width / 6));
             itemStack.render();
-        }
-
-        if (isColliding(MouseInput.getX(), MouseInput.getY())) {
-            batch.begin();
-            font.setColor(Color.BLACK);
-            font.draw(batch, item.getName(), x, y + height + 19);
-            font.setColor(Color.WHITE);
-            font.draw(batch, item.getName(), x, y + height + 20);
-            batch.end();
         }
     }
 
@@ -163,16 +152,5 @@ public class QuickSlot {
      */
     public void setItemStack(ItemStack<Item> itemStack) {
         this.itemStack = itemStack;
-    }
-
-    /**
-     * Checks whether the params collides with the QuickSlot box
-     *
-     * @param x The x to be compared with the QuickSlot
-     * @param y The y to be compared with the QuickSlot
-     * @return isColliding - returns true if params collide, false if not
-     */
-    private boolean isColliding(int x, int y) {
-        return x + 1 > this.x && x < this.x + this.width && y + 1 > this.y && y < this.y + this.height;
     }
 }

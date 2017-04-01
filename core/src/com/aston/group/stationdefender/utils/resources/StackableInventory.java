@@ -25,6 +25,18 @@ public class StackableInventory implements Inventory {
     }
 
     /**
+     * Remove an Item from the StackableInventory
+     *
+     * @param item The Item to be removed from the StackableInventory
+     */
+    public void removeItem(Item item) {
+        ItemStack<Item> itemStack = findStack(item);
+        if (itemStack != null) {
+            itemStack.removeItem(item);
+        }
+    }
+
+    /**
      * Returns the ItemStacks being used in the StackableInventory
      *
      * @return The ItemStacks being used in the StackableInventory
@@ -41,8 +53,10 @@ public class StackableInventory implements Inventory {
      */
     private ItemStack<Item> findStack(Item item) {
         for (ItemStack<Item> itemStack : itemStacks) {
-            if (itemStack.getItem().getClass().equals(item.getClass()) && !itemStack.isFull()) {
-                return itemStack;
+            if (itemStack.getItem() != null) {
+                if (itemStack.getItem().getClass().equals(item.getClass()) && !itemStack.isFull()) {
+                    return itemStack;
+                }
             }
         }
         return null;

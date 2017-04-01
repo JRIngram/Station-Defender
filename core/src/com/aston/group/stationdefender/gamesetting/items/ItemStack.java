@@ -2,6 +2,8 @@ package com.aston.group.stationdefender.gamesetting.items;
 
 import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.FontManager;
+import com.aston.group.stationdefender.utils.MouseInput;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -46,6 +48,15 @@ public class ItemStack<T extends Item> implements Iterable<T> {
     }
 
     /**
+     * Remove an Item from the ItemStack
+     *
+     * @param item The Item to remove from the Stack
+     */
+    public void removeItem(T item) {
+        items.remove(item);
+    }
+
+    /**
      * Gets an Item from the ItemStack
      *
      * @return The Item if it is in the ItemStack, null if it is not
@@ -67,11 +78,18 @@ public class ItemStack<T extends Item> implements Iterable<T> {
             batch.end();
 
             //Draw number of items text
-            if (items.size() > 1) {
-                batch.begin();
-                font.draw(batch, Integer.toString(items.size()), x + 20, y + 10);
-                batch.end();
-            }
+            batch.begin();
+            font.draw(batch, Integer.toString(items.size()), x + 20, y + 10);
+            batch.end();
+        }
+
+        if (isColliding(MouseInput.getX(), MouseInput.getY())) {
+            batch.begin();
+            font.setColor(Color.BLACK);
+            font.draw(batch, getItem().getName(), x - 10, y + height + 19);
+            font.setColor(Color.WHITE);
+            font.draw(batch, getItem().getName(), x - 10, y + height + 20);
+            batch.end();
         }
     }
 
@@ -105,5 +123,16 @@ public class ItemStack<T extends Item> implements Iterable<T> {
      */
     public boolean isFull() {
         return items.size() >= maxItems;
+    }
+
+    /**
+     * Checks whether the params collides with the QuickSlot box
+     *
+     * @param x The x to be compared with the QuickSlot
+     * @param y The y to be compared with the QuickSlot
+     * @return isColliding - returns true if params collide, false if not
+     */
+    private boolean isColliding(int x, int y) {
+        return x + 1 > this.x && x < this.x + this.width && y + 1 > this.y && y < this.y + this.height;
     }
 }

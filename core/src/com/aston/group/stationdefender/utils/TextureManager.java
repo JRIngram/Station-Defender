@@ -32,6 +32,7 @@ public enum TextureManager {
     private static final int BACKGROUND_TEXTURE_2 = 20;
     private static final int BACKGROUND_TEXTURE_3 = 21;
     private static final int CLOSE_COMBAT_ALIEN_TEXTURE = 22;
+    private static final int BLACK_HOVER_TEXTURE = 23;
 
 
     /**
@@ -105,6 +106,9 @@ public enum TextureManager {
                 break;
             case CLOSE_COMBAT_ALIEN_TEXTURE:
                 texture = new Texture(Gdx.files.internal("textures/CloseCombatAlien.png"));
+                break;
+            case BLACK_HOVER_TEXTURE:
+                texture = new Texture(Gdx.files.internal("textures/black.jpg"));
                 break;
         }
         return texture;
