@@ -43,7 +43,7 @@ public class Player implements InputProcessor, ItemCallback {
     private int money;
     private PlayerCallback playerCallback;
     private int selectedSlot = 0;
-    private boolean dataLoaded = false;
+    private boolean itemsLoaded = false;
 
     /**
      * Construct a new Player
@@ -55,14 +55,14 @@ public class Player implements InputProcessor, ItemCallback {
         money = Constants.START_MONEY;
         FileUtils.loadLevel((score, money, levelNumber, items) -> {
             if (items.size != 0)
-                dataLoaded = true;
+                itemsLoaded = true;
             this.score = score;
             this.money = money;
             for (Item item : items) {
                 inventory.addItem(item);
             }
         });
-        if (!dataLoaded) {
+        if (!itemsLoaded) {
             for (int i = 4; i < 8; i++) {
                 inventory.addItem(new ItemTurret());
             }
