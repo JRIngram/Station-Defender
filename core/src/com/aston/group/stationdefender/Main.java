@@ -78,6 +78,7 @@ public class Main extends Game implements GameCallback, TwoTextCallback, MenuCal
         //Show Post Level screen
         TwoTextScreen postLevelScreen;
         String title;
+        FileUtils.deleteLevelInfo();
         if (won) {
             FileUtils.saveLevel(score, money, levelNumber, (StackableInventory) inventory);
             title = "Level Cleared";
@@ -85,7 +86,6 @@ public class Main extends Game implements GameCallback, TwoTextCallback, MenuCal
             postLevelScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 135);
             levelNumber++;
         } else {
-            FileUtils.deleteLevelInfo();
             title = "You Failed!";
             postLevelScreen = new TwoTextScreen(false);
             postLevelScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 125);

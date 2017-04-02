@@ -38,7 +38,7 @@ public class FileUtils {
 
         JsonArray items = new JsonArray();
         for (int i = 0; i < inventory.getItemStacks().size; i++) {
-            if (inventory.getItemStacks().get(i) != null) {
+            if (inventory.getItemStacks().get(i).getItem() != null) {
                 JsonObject stackObject = new JsonObject();
                 stackObject.addProperty("id", inventory.getItemStacks().get(i).getItem().getId());
                 stackObject.addProperty("name", inventory.getItemStacks().get(i).getItem().getName());
@@ -97,8 +97,6 @@ public class FileUtils {
      * Remove the Level information of the Player
      */
     public static void deleteLevelInfo() {
-        Preferences prefs = Gdx.app.getPreferences(Constants.prefs);
-        prefs.remove("level");
-        prefs.remove("player");
+        Gdx.app.getPreferences(Constants.prefs).clear();
     }
 }

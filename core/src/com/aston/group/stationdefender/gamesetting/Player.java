@@ -1,5 +1,6 @@
 package com.aston.group.stationdefender.gamesetting;
 
+import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.config.Constants;
@@ -28,7 +29,7 @@ import com.badlogic.gdx.utils.Array;
  * @author Jonathon Fitch
  * @author Mohammed Foysal
  */
-public class Player implements InputProcessor {
+public class Player implements InputProcessor, ItemCallback {
     private final Array<QuickSlot> quickSlots;
     private final QuickSlotCallback quickSlotCallback;
     private final SpriteBatch batch;
@@ -211,19 +212,7 @@ public class Player implements InputProcessor {
         if (button == Input.Buttons.LEFT) {
             if (Hud.isNotColliding()) {
                 if (currentItem != null && money >= currentItem.getCost()) {
-                    currentItem.useItem(placeable -> {
-                        if (placeable) {
-                            if (playerCallback.placeUnit(currentItem.getPlaceableUnit(), MouseInput.getX(), MouseInput.getY())) {
-                                removeMoney(currentItem.getCost());
-                                addMoney(currentItem.getValue());
-                                inventory.removeItem(currentItem);
-                                updateQuickSlots();
-                            }
-                        } else {
-                            removeMoney(currentItem.getCost());
-                            addMoney(currentItem.getValue());
-                        }
-                    });
+                    currentItem.useItem(this);
                 }
             }
 
@@ -353,5 +342,20 @@ public class Player implements InputProcessor {
      */
     public StackableInventory getInventory() {
         return inventory;
+    }
+
+    @Override
+    public void onUse(boolean placeable) {
+        if (placeable) {
+            if (playerCallback.placeUnit(currentItem.getPlaceableUnit(), MouseInput.getX(), MouseInput.getY())) {
+                removeMoney(currentItem.getCost());
+                addMoney(currentItem.getValue());
+                inventory.removeItem(currentItem);
+                updateQuickSlots();
+            }
+        } else {
+            removeMoney(currentItem.getCost());
+            addMoney(currentItem.getValue());
+        }
     }
 }
