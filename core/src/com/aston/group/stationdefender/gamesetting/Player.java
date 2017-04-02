@@ -54,7 +54,8 @@ public class Player implements InputProcessor, ItemCallback {
         score = 0;
         money = Constants.START_MONEY;
         FileUtils.loadLevel((score, money, levelNumber, items) -> {
-            dataLoaded = true;
+            if (items.size != 0)
+                dataLoaded = true;
             this.score = score;
             this.money = money;
             for (Item item : items) {
