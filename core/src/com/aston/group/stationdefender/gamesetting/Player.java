@@ -61,10 +61,9 @@ public class Player implements InputProcessor {
             }
         });
         if (!dataLoaded) {
-            inventory.addItem(new ItemTurret());
-            inventory.addItem(new ItemTurret());
-            inventory.addItem(new ItemTurret());
-            inventory.addItem(new ItemTurret());
+            for (int i = 4; i < 8; i++) {
+                inventory.addItem(new ItemTurret());
+            }
         }
 
         //Quick Slots
