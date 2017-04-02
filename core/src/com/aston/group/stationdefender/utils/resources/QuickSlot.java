@@ -26,7 +26,6 @@ public class QuickSlot {
     private final int width = 48;
     private final int height = 48;
     private boolean isSelected;
-    private Item item;
     private ItemStack<Item> itemStack;
 
     /**
@@ -125,15 +124,6 @@ public class QuickSlot {
      */
     public Item getItem() {
         return itemStack.getItem();
-    }
-
-    /**
-     * Puts an item in a QuickSlot
-     *
-     * @param item The item to put in the QuickSlot
-     */
-    public void setItem(Item item) {
-        this.item = item;
     }
 
     /**
