@@ -312,7 +312,7 @@ public class Player implements InputProcessor {
     /**
      * Adds a specific number to the Player's score total
      *
-     * @param amount The amount of money to be added to the Player's score total
+     * @param amount The score to be added to the Player's score total
      */
     public void addScore(int amount) {
         this.score += amount;
@@ -334,7 +334,8 @@ public class Player implements InputProcessor {
      * @param amount The amount of money to be removed from the Player's money total
      */
     private void removeMoney(int amount) {
-        this.money -= amount;
+        if (money - amount >= 0)
+            money -= amount;
     }
 
     /**

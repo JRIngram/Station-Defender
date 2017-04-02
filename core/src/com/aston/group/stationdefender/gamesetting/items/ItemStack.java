@@ -84,11 +84,17 @@ public class ItemStack<T extends Item> implements Iterable<T> {
         }
 
         if (isColliding(MouseInput.getX(), MouseInput.getY())) {
+            String name;
+            if (getItem() == null) {
+                name = "Empty";
+            } else {
+                name = getItem().getName();
+            }
             batch.begin();
             font.setColor(Color.BLACK);
-            font.draw(batch, getItem().getName(), x - 10, y + height + 19);
+            font.draw(batch, name, x - 10, y + height + 19);
             font.setColor(Color.WHITE);
-            font.draw(batch, getItem().getName(), x - 10, y + height + 20);
+            font.draw(batch, name, x - 10, y + height + 20);
             batch.end();
         }
     }
