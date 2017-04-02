@@ -26,7 +26,7 @@ public class ItemBricks extends Item {
     @Override
     public void useItem(ItemCallback itemCallback) {
         if (itemCallback != null)
-            itemCallback.onUse(placeable);
+            itemCallback.onUse(placeable, cost, value);
     }
 
     @Override
