@@ -141,4 +141,13 @@ public class ItemStack<T extends Item> implements Iterable<T> {
     private boolean isColliding(int x, int y) {
         return x + 1 > this.x && x < this.x + this.width && y + 1 > this.y && y < this.y + this.height;
     }
+
+    /**
+     * Returns whether the ItemStack is full or not
+     *
+     * @return True if the ItemStack is full, false if it is not
+     */
+    public boolean isNotFull() {
+        return items.size() < maxItems;
+    }
 }

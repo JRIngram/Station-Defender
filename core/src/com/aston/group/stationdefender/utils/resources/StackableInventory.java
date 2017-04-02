@@ -54,7 +54,7 @@ public class StackableInventory implements Inventory {
     private ItemStack<Item> findStack(Item item) {
         for (ItemStack<Item> itemStack : itemStacks) {
             if (itemStack.getItem() != null) {
-                if (itemStack.getItem().getClass().equals(item.getClass()) && !itemStack.isFull()) {
+                if (itemStack.getItem().getClass().equals(item.getClass()) && itemStack.isNotFull()) {
                     return itemStack;
                 }
             }
