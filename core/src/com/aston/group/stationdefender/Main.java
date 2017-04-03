@@ -10,7 +10,6 @@ import com.aston.group.stationdefender.screens.MenuScreen;
 import com.aston.group.stationdefender.screens.TwoTextScreen;
 import com.aston.group.stationdefender.utils.FileUtils;
 import com.aston.group.stationdefender.utils.SoundManager;
-import com.aston.group.stationdefender.utils.resources.Inventory;
 import com.aston.group.stationdefender.utils.resources.StackableInventory;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -74,13 +73,13 @@ public class Main extends Game implements GameCallback, TwoTextCallback, MenuCal
     }
 
     @Override
-    public void onWinLost(Inventory inventory, boolean won, int score, int money) {
+    public void onWinLost(StackableInventory inventory, boolean won, int score, int money) {
         //Show Post Level screen
         TwoTextScreen postLevelScreen;
         String title;
         FileUtils.deleteLevelInfo();
         if (won) {
-            FileUtils.saveLevel(score, money, levelNumber, (StackableInventory) inventory);
+            FileUtils.saveLevel(score, money, levelNumber, inventory);
             title = "Level Cleared";
             postLevelScreen = new TwoTextScreen(true);
             postLevelScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 135);

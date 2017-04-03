@@ -10,10 +10,9 @@ import com.badlogic.gdx.utils.Array;
  *
  * @author Mohammed Foysal
  */
-public class StackableInventory implements Inventory {
+public class StackableInventory {
     private final Array<ItemStack<Item>> itemStacks = new Array<>();
 
-    @Override
     public void addItem(Item item) {
         ItemStack<Item> itemStack = findStack(item);
         if (itemStack != null) {

@@ -1,6 +1,6 @@
 package com.aston.group.stationdefender.callbacks;
 
-import com.aston.group.stationdefender.utils.resources.Inventory;
+import com.aston.group.stationdefender.utils.resources.StackableInventory;
 
 /**
  * GameCallback is the callback class for GameScreen
@@ -16,7 +16,7 @@ public interface GameCallback {
      * @param score     The Player's score
      * @param money     The amount of money the Player has
      */
-    void onWinLost(Inventory inventory, boolean won, int score, int money);
+    void onWinLost(StackableInventory inventory, boolean won, int score, int money);
 
     /**
      * The pause game situation callback
