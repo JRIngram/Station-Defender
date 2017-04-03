@@ -269,13 +269,17 @@ public class Player implements InputProcessor, ItemCallback {
      * @param item The Item to be added to the Inventory
      */
     public void collectItem(Item item) {
-        if (item instanceof ItemCredit) {
-            money += item.getValue();
-        } else if (item instanceof ItemHealth) {
-            addHealth(item.getHealth());
-        } else {
-            inventory.addItem(item);
-            updateQuickSlots();
+        switch (item.getSku()) {
+            case CREDIT:
+                money += item.getValue();
+                break;
+            case HEALTH:
+                addHealth(item.getHealth());
+                break;
+            default:
+                inventory.addItem(item);
+                updateQuickSlots();
+                break;
         }
     }
 
