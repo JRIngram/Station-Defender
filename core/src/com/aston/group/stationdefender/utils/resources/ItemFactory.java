@@ -47,7 +47,7 @@ public class ItemFactory {
      */
     public static Item getItemByChance() {
         int rand = (int) (Math.random() * 100);
-        if (rand <= 25) {
+        if (rand <= 35) {
             return ItemFactory.getRandomItem();
         } else {
             return null;

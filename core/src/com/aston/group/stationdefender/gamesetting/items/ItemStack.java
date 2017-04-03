@@ -152,5 +152,4 @@ public class ItemStack<T extends Item> implements Iterable<T> {
     private boolean isColliding(int x, int y) {
         return x + 1 > this.x && x < this.x + this.width && y + 1 > this.y && y < this.y + this.height;
     }
-
 }
