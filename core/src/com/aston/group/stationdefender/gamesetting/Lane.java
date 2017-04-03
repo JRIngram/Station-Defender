@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.Array;
 
 import java.util.Iterator;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
 /**
@@ -275,11 +276,10 @@ public class Lane implements UnitCallback {
      * @return The X co-ordinate of the center of a random Tile
      */
     private int getRandomTileCenterX() {
-        if (tiles.size > 0) {
-            return tiles.get(new Random().nextInt(tiles.size - 1)).getCenterX();
-        } else {
+        if (tiles.size > 0)
+            return tiles.get(ThreadLocalRandom.current().nextInt(1, tiles.size)).getCenterX();
+        else
             return 0;
-        }
     }
 
     /**

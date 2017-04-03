@@ -43,7 +43,6 @@ public class Player implements InputProcessor, ItemCallback {
     private int money;
     private PlayerCallback playerCallback;
     private int selectedSlot = 0;
-    private boolean itemsLoaded = false;
 
     /**
      * Construct a new Player
@@ -59,16 +58,13 @@ public class Player implements InputProcessor, ItemCallback {
             if (money < 20)
                 this.money += 20;
             if (items.size >= 4)
-                itemsLoaded = true;
+                for (int i = 4; i < 8; i++) {
+                    inventory.addItem(new ItemTurret());
+                }
             for (Item item : items) {
                 inventory.addItem(item);
             }
         });
-        if (!itemsLoaded) {
-            for (int i = 4; i < 8; i++) {
-                inventory.addItem(new ItemTurret());
-            }
-        }
 
         //Quick Slots
         quickSlots = new Array<>();
