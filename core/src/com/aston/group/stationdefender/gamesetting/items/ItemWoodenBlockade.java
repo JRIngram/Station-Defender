@@ -6,7 +6,7 @@ import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.utils.TextureManager;
 
 /**
- * ItemBandages represents a blockade formed of wood blocks that can be used within the game
+ * ItemWoodenBlockade represents a blockade formed of wood blocks that can be used within the game
  *
  * @author Mohammed Foysal
  */
@@ -19,7 +19,7 @@ public class ItemWoodenBlockade extends Item {
         super("Wooden Blockade");
         id = 11;
         cost = 3;
-        //TODO wooden blockade texture needed
+        // TODO: Wooden Blockade texture needed
         texture = TextureManager.INSTANCE.loadTexture(8);
         placeable = true;
     }
@@ -27,12 +27,12 @@ public class ItemWoodenBlockade extends Item {
     @Override
     public void useItem(ItemCallback itemCallback) {
         if (itemCallback != null)
-            itemCallback.onUse(placeable, cost, value);
+            itemCallback.onUse(placeable, cost, value, health);
     }
 
     @Override
     public Unit getPlaceableUnit() {
-        //TODO create a blockade actor
+        // TODO: create a Wooden Blockade actor
         return new Weapon(0, 0);
     }
 }

@@ -28,7 +28,7 @@ public class ItemRapidFireTurret extends Item {
     @Override
     public void useItem(ItemCallback itemCallback) {
         if (itemCallback != null)
-            itemCallback.onUse(placeable, cost, value);
+            itemCallback.onUse(placeable, cost, value, health);
     }
 
     @Override

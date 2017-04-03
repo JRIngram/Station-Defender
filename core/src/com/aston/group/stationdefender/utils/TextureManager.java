@@ -29,10 +29,12 @@ public enum TextureManager {
     private static final int BOSS_ALIEN_2 = 16;
     private static final int BOSS_ALIEN_3 = 17;
     private static final int BOSS_ALIEN_4 = 18;
-    private static final int BACKGROUND_TEXTURE_2 = 20;
-    private static final int BACKGROUND_TEXTURE_3 = 21;
+    private static final int BACKGROUND_TEXTURE_2 = 19;
+    private static final int BACKGROUND_TEXTURE_3 = 20;
+    private static final int BACKGROUND_TEXTURE_4 = 21;
     private static final int CLOSE_COMBAT_ALIEN_TEXTURE = 22;
     private static final int BLACK_HOVER_TEXTURE = 23;
+    private static final int ITEM_HEALTH_TEXTURE = 24;
 
 
     /**
@@ -104,11 +106,17 @@ public enum TextureManager {
             case BACKGROUND_TEXTURE_3:
                 texture = new Texture(Gdx.files.internal("textures/space2.png"));
                 break;
+            case BACKGROUND_TEXTURE_4:
+                texture = new Texture(Gdx.files.internal("textures/space2.png"));
+                break;
             case CLOSE_COMBAT_ALIEN_TEXTURE:
                 texture = new Texture(Gdx.files.internal("textures/CloseCombatAlien.png"));
                 break;
             case BLACK_HOVER_TEXTURE:
                 texture = new Texture(Gdx.files.internal("textures/black.jpg"));
+                break;
+            case ITEM_HEALTH_TEXTURE:
+                texture = new Texture(Gdx.files.internal("textures/item-health.png"));
                 break;
         }
         return texture;

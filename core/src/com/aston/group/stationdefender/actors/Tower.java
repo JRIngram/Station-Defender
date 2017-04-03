@@ -103,4 +103,13 @@ public class Tower implements Actor {
         } else
             health -= damage;
     }
+
+    /**
+     * Add health the the Tower
+     *
+     * @param health The amount of health to add to the Tower
+     */
+    public void addHealth(int health) {
+        this.health += health;
+    }
 }

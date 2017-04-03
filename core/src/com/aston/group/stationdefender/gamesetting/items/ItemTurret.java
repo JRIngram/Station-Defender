@@ -7,7 +7,7 @@ import com.aston.group.stationdefender.utils.TextureManager;
 import com.aston.group.stationdefender.utils.resources.Items;
 
 /**
- * ItemBandages represents a Turret Weapon Item that can be used within the game
+ * ItemTurret represents a Turret Weapon Item that can be used within the game
  *
  * @author Mohammed Foysal
  */
@@ -28,7 +28,7 @@ public class ItemTurret extends Item {
     @Override
     public void useItem(ItemCallback itemCallback) {
         if (itemCallback != null)
-            itemCallback.onUse(placeable, cost, value);
+            itemCallback.onUse(placeable, cost, value, health);
     }
 
     @Override

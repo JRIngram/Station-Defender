@@ -19,7 +19,7 @@ public class ItemBandages extends Item {
         id = 5;
         cost = 3;
         value = 2;
-        //TODO bandages texture needed
+        // TODO: Bandages texture needed
         texture = TextureManager.INSTANCE.loadTexture(8);
         placeable = false;
     }
@@ -27,11 +27,12 @@ public class ItemBandages extends Item {
     @Override
     public void useItem(ItemCallback itemCallback) {
         if (itemCallback != null)
-            itemCallback.onUse(placeable, cost, value);
+            itemCallback.onUse(placeable, cost, value, health);
     }
 
     @Override
     public Unit getPlaceableUnit() {
+        // TODO: create a Bandages actor
         return null;
     }
 }

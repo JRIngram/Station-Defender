@@ -23,4 +23,11 @@ public interface PlayerCallback {
      * The callback to pause the game
      */
     void onPause();
+
+    /**
+     * The callback to add health to the Tower
+     *
+     * @param health The amount of health to be added to the Tower
+     */
+    void addHealth(int health);
 }

@@ -23,6 +23,8 @@ public class ItemFactory {
                 return new ItemTurret();
             case RAPID_FIRE_WEAPON:
                 return new ItemRapidFireTurret();
+            case HEALTH:
+                return new ItemHealth();
             default:
                 return new ItemBlank();
         }

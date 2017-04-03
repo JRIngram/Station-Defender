@@ -25,7 +25,7 @@ import java.util.Random;
  * @author Jonathon Fitch
  */
 public class Level implements LaneCallback {
-    private static final int[] backgroundTextures = new int[]{3, 20, 21};
+    private static final int[] backgroundTextures = new int[]{3, 19, 20/*, 21*/};
     private final SpriteBatch batch;
     private final Texture texture;
     private final LevelCallback levelCallback;
@@ -267,5 +267,14 @@ public class Level implements LaneCallback {
         bossEnemy.setX(Gdx.graphics.getWidth() - 500);
         bossEnemy.setY(Gdx.graphics.getHeight() / 2 - (bossEnemy.getHeight() / 2));
         isBossCreated = true;
+    }
+
+    /**
+     * Add health the the Tower
+     *
+     * @param health The amount of health to add to the Tower
+     */
+    public void towerAddHealth(int health) {
+        tower.addHealth(health);
     }
 }

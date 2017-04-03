@@ -22,6 +22,7 @@ public abstract class Item {
     Texture texture;
     int cost;
     int value;
+    int health;
     private boolean justSpawned;
     private int x, y, width, height;
 
@@ -36,6 +37,7 @@ public abstract class Item {
         height = 32;
         cost = 0;
         value = 0;
+        health = 0;
         sku = Items.UNKNOWN;
         batch = GameEngine.getBatch();
     }
@@ -196,6 +198,15 @@ public abstract class Item {
      */
     public int getValue() {
         return value;
+    }
+
+    /**
+     * Returns the health of the Item
+     *
+     * @return The health of the Item
+     */
+    public int getHealth() {
+        return health;
     }
 
     /**

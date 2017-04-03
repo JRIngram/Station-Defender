@@ -54,11 +54,10 @@ public class Player implements InputProcessor, ItemCallback {
         money = Constants.START_MONEY;
         FileUtils.loadLevel((score, money, levelNumber, items) -> {
             this.score = score;
-            this.money = money;
             if (money < 20)
-                this.money += 20;
-            if (items.size >= 4)
-                for (int i = 4; i < 8; i++) {
+                this.money = money + 20;
+            if (items.size < 4)
+                for (int i = 0; i < 4; i++) {
                     inventory.addItem(new ItemTurret());
                 }
             for (Item item : items) {
@@ -272,6 +271,8 @@ public class Player implements InputProcessor, ItemCallback {
     public void collectItem(Item item) {
         if (item instanceof ItemCredit) {
             money += item.getValue();
+        } else if (item instanceof ItemHealth) {
+            addHealth(item.getHealth());
         } else {
             inventory.addItem(item);
             updateQuickSlots();
@@ -325,6 +326,10 @@ public class Player implements InputProcessor, ItemCallback {
             money -= amount;
     }
 
+    private void addHealth(int health) {
+        playerCallback.addHealth(health);
+    }
+
     /**
      * Sets the PlayerCallback for the Player
      *
@@ -344,17 +349,28 @@ public class Player implements InputProcessor, ItemCallback {
     }
 
     @Override
-    public void onUse(boolean placeable, int cost, int value) {
+    public void onUse(boolean placeable, int cost, int value, int health) {
         if (placeable) {
             if (playerCallback.placeUnit(currentItem.getPlaceableUnit(), MouseInput.getX(), MouseInput.getY())) {
-                removeMoney(cost);
-                addMoney(value);
+                useItemProperties(cost, value, health);
                 inventory.removeItem(currentItem);
                 updateQuickSlots();
             }
         } else {
-            removeMoney(cost);
-            addMoney(value);
+            useItemProperties(cost, value, health);
         }
+    }
+
+    /**
+     * Helper method to prevent duplicate code in the onUse method
+     *
+     * @param cost   The cost of the Item being used
+     * @param value  The money to add to the Player's total money
+     * @param health The health to add to the Tower
+     */
+    private void useItemProperties(int cost, int value, int health) {
+        removeMoney(cost);
+        addMoney(value);
+        addHealth(health);
     }
 }

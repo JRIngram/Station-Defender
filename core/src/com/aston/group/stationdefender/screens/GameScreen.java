@@ -109,4 +109,9 @@ public class GameScreen implements Screen, PlayerCallback, LevelCallback {
     public void onPause() {
         gameCallback.onPause();
     }
+
+    @Override
+    public void addHealth(int health) {
+        level.towerAddHealth(health);
+    }
 }
