@@ -21,6 +21,8 @@ public class ItemFactory {
                 return new ItemCredit();
             case TURRET:
                 return new ItemTurret();
+            case CLOSE_COMBAT_WEAPON:
+                return new ItemCloseCombatWeapon();
             case RAPID_FIRE_WEAPON:
                 return new ItemRapidFireTurret();
             case HEALTH:
