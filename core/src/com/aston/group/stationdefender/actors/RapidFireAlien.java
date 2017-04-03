@@ -18,7 +18,7 @@ public class RapidFireAlien extends Alien {
      * @param y The Y co-ordinate to give the Alien
      */
     public RapidFireAlien(int x, int y) {
-        super("Rapid Fire Alien", -100, 5.0, 10, Constants.UNIT_HEALTH, 2, 0.5, x, y, 100, 38);
+        super("Rapid Fire Alien", -125, 5.0, 10, Constants.UNIT_HEALTH, 2, 0.5, x, y, 100, 38);
         setTexture(TextureManager.INSTANCE.loadTexture(12));
     }
 

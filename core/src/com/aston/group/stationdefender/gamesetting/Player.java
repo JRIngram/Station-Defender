@@ -5,7 +5,10 @@ import com.aston.group.stationdefender.callbacks.PlayerCallback;
 import com.aston.group.stationdefender.callbacks.QuickSlotCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.engine.GameEngine;
-import com.aston.group.stationdefender.gamesetting.items.*;
+import com.aston.group.stationdefender.gamesetting.items.Item;
+import com.aston.group.stationdefender.gamesetting.items.ItemBlank;
+import com.aston.group.stationdefender.gamesetting.items.ItemStack;
+import com.aston.group.stationdefender.gamesetting.items.ItemTurret;
 import com.aston.group.stationdefender.utils.FileUtils;
 import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.MouseInput;
@@ -43,6 +46,7 @@ public class Player implements InputProcessor, ItemCallback {
     private int money;
     private PlayerCallback playerCallback;
     private int selectedSlot = 0;
+    private boolean itemsLoaded = false;
 
     /**
      * Construct a new Player
@@ -56,14 +60,19 @@ public class Player implements InputProcessor, ItemCallback {
             this.score = score;
             if (money < 20)
                 this.money = money + 20;
-            if (items.size < 4)
-                for (int i = 0; i < 4; i++) {
-                    inventory.addItem(new ItemTurret());
-                }
+            System.out.println(items.size);
+            if (items.size >= 4)
+                itemsLoaded = true;
             for (Item item : items) {
                 inventory.addItem(item);
             }
         });
+
+        if (!itemsLoaded) {
+            for (int i = 0; i < 4; i++) {
+                inventory.addItem(new ItemTurret());
+            }
+        }
 
         //Quick Slots
         quickSlots = new Array<>();

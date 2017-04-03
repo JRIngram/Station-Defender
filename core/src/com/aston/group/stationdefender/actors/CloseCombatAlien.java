@@ -17,7 +17,7 @@ public class CloseCombatAlien extends Alien {
      * @param y The Y co-ordinate of the CloseCombatAlien
      */
     public CloseCombatAlien(int x, int y) {
-        super("Close Combat Alien", -125, 60.0, 2, Constants.UNIT_HEALTH, 1, 7.0, x, y, 20, 20);
+        super("Close Combat Alien", -100, 60.0, 2, Constants.UNIT_HEALTH, 1, 7.0, x, y, 20, 20);
         setTexture(TextureManager.INSTANCE.loadTexture(22));
     }
 }

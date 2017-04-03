@@ -19,9 +19,8 @@ public class ItemCloseCombatWeapon extends Item {
     public ItemCloseCombatWeapon() {
         super("Close Combat Weapon");
         id = 4;
-        cost = 10;
-        // TODO: Replace with close combat weapon texture
-        texture = TextureManager.INSTANCE.loadTexture(8);
+        cost = 15;
+        texture = TextureManager.INSTANCE.loadTexture(25);
         placeable = true;
         sku = Items.CLOSE_COMBAT_WEAPON;
     }

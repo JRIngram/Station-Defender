@@ -20,7 +20,7 @@ public class RapidFireWeapon extends Weapon {
      * @param y The Y co-ordinate to give the RapidFireWeapon
      */
     public RapidFireWeapon(int x, int y) {
-        super("Rapid Fire Weapon", 0, 5.0, 15.0, 10, 2, 0.5, x, y, 60, 60, 1.0, 60, 25);
+        super("Rapid Fire Weapon", 25, 5.0, 15.0, 10, 10, 0.5, x, y, 60, 60, 1.0, 15, 25);
         setTexture(TextureManager.INSTANCE.loadTexture(13));
     }
 
