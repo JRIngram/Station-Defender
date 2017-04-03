@@ -326,6 +326,11 @@ public class Player implements InputProcessor, ItemCallback {
             money -= amount;
     }
 
+    /**
+     * Add a specific amount of health to the Tower
+     *
+     * @param health The amount health to add to the Tower's current health
+     */
     private void addHealth(int health) {
         playerCallback.addHealth(health);
     }
