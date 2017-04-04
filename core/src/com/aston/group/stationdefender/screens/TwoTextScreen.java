@@ -40,17 +40,15 @@ public class TwoTextScreen implements Screen {
     private final BitmapFont titleFont;
     private final BitmapFont bodyFont;
     private final TextButton backButton;
-    private final Texture texture;
     private final boolean continueBool;
     private final GameEngine gameEngine;
+    private final Label titleLabel;
+    private final Label bodyLabel;
     private TextButton continueButton;
     private TwoTextCallback twoTextCallback;
     private float fadeElapsed = 0;
     private String title;
     private String body;
-    private Label titleLabel;
-    private Label bodyLabel;
-    private int titleX, titleY, bodyX, bodyY;
 
     /**
      * Constructor sets the camera, viewpoint and
@@ -66,29 +64,27 @@ public class TwoTextScreen implements Screen {
         bodyFont = FontManager.getFont(30);
         titleFont = FontManager.getFont(50);
         BitmapFont buttonFont = FontManager.getFont(18);
-
         stage = new Stage();
 
         //Background
-        texture = TextureManager.INSTANCE.loadTexture(2);
+        Texture texture = TextureManager.INSTANCE.loadTexture(2);
 
         Table table = new Table();
         table.setFillParent(true);
-//        table.setDebug(true);
 
         Group background = new Group();
         background.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
         Image image = new Image();
         image.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         image.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
 
         background.addActor(image);
-
         titleLabel = new Label(title, new Label.LabelStyle(titleFont, Color.WHITE));
         titleLabel.setAlignment(Align.center);
-
         bodyLabel = new Label(body, new Label.LabelStyle(bodyFont, Color.WHITE));
+
+        bodyLabel.setColor(1, 1, 1, 0);
+        titleLabel.setColor(1, 1, 1, 0);
         table.add(titleLabel).expandX().padTop(16).row();
         table.add(bodyLabel).expandY();
 
@@ -126,10 +122,6 @@ public class TwoTextScreen implements Screen {
         backButton.setPosition(-150, (Gdx.graphics.getHeight()) - 60);
         if (continueBool)
             continueButton.addListener(buttonListener);
-        titleX = (Gdx.graphics.getWidth() / 2) - 150;
-        titleY = Gdx.graphics.getHeight() - 25;
-        bodyX = (Gdx.graphics.getWidth() / 2) - 235;
-        bodyY = (Gdx.graphics.getHeight() / 2) + 40;
 
 
     }
@@ -154,19 +146,16 @@ public class TwoTextScreen implements Screen {
 
         // Draw things on screen
         batch.begin();
-        titleFont.setColor(1, 1, 1, fade);
+        titleLabel.setColor(1, 1, 1, fade);
         backButton.setColor(1, 1, 1, fade);
         if (continueBool)
             continueButton.setColor(1, 1, 1, fade);
-//        batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//        titleFont.draw(batch, title, titleX, titleY);
         restartBatch();
         stage.draw();
         restartBatch();
 
         // delay animation by a certain amount for each menu item
-        bodyFont.setColor(1, 1, 1, fade2);
-//        bodyFont.draw(batch, body, bodyX, bodyY);
+        bodyLabel.setColor(1, 1, 1, fade2);
         batch.end();
     }
 
@@ -233,39 +222,4 @@ public class TwoTextScreen implements Screen {
         batch.begin();
     }
 
-    /**
-     * Sets the X co-ordinate of the Title text
-     *
-     * @param x The X co-ordinate of the Title text
-     */
-    public void setTitleX(int x) {
-        this.titleX = x;
-    }
-
-    /**
-     * Sets the Y co-ordinate of the Title text
-     *
-     * @param y The Y co-ordinate of the Title text
-     */
-    public void setTitleY(int y) {
-        this.titleY = y;
-    }
-
-    /**
-     * Sets the X co-ordinate of the Body text
-     *
-     * @param x The X co-ordinate of the Body text
-     */
-    public void setBodyX(int x) {
-        this.bodyX = x;
-    }
-
-    /**
-     * Sets the Y co-ordinate of the Body text
-     *
-     * @param y The Y co-ordinate of the Body text
-     */
-    public void setBodyY(int y) {
-        this.bodyY = y;
-    }
 }

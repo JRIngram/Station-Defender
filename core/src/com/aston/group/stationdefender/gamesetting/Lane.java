@@ -131,7 +131,7 @@ public class Lane implements UnitCallback {
 
     /**
      * Empty the Lane of Tiles
-     **/
+     */
     public void clear() {
         tiles.clear();
     }

@@ -34,7 +34,6 @@ public class MenuScreen implements Screen {
     private final SpriteBatch batch;
     private final BitmapFont font;
     private final TextButton playButton, exitButton;
-    private final TextButton[] buttons;
     private final Stage stage;
     private final Texture texture;
     private final GameEngine gameEngine;
@@ -63,21 +62,16 @@ public class MenuScreen implements Screen {
         stage = new Stage();
 
         Texture hoverTexture = TextureManager.INSTANCE.loadTexture(23);
-
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.font = font;
         textButtonStyle.over = new TextureRegionDrawable(new TextureRegion(hoverTexture));
-
         playButton = new TextButton(Constants.MENU_ITEMS[2], textButtonStyle);
         exitButton = new TextButton(Constants.MENU_ITEMS[3], textButtonStyle);
-        buttons = new TextButton[]{playButton, exitButton};
 
         Table table = new Table();
         table.setFillParent(true);
-
         playButton.addListener(buttonListener);
         exitButton.addListener(buttonListener);
-
         table.add(playButton).row();
         table.add(exitButton).row();
 
@@ -85,7 +79,6 @@ public class MenuScreen implements Screen {
 
         Group background = new Group();
         background.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
         Image image = new Image();
         image.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         image.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
@@ -105,20 +98,12 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         gameEngine.render();
-
         batch.begin();
         batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
-
         stage.act(delta);
-
         batch.begin();
         stage.draw();
-        // delay animation by a certain amount for each menu item
-        font.setColor(1, 1, 1, 1);
-        for (TextButton button : buttons) {
-            button.setColor(1, 1, 1, 1);
-        }
         batch.end();
     }
 

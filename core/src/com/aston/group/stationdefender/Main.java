@@ -41,12 +41,8 @@ public class Main extends Game implements GameCallback, TwoTextCallback, MenuCal
         // Setup title and body text
         backgroundScreen.setTitle(Constants.MENU_ITEMS[0]);
         backgroundScreen.setBody(Constants.BACKGROUND);
-        backgroundScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 500);
-        backgroundScreen.setBodyY((Gdx.graphics.getHeight() / 2) + (185));
         instructionScreen.setTitle(Constants.MENU_ITEMS[1]);
         instructionScreen.setBody(Constants.INSTRUCTIONS);
-        instructionScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 500);
-        instructionScreen.setBodyY((Gdx.graphics.getHeight() / 2) + (185));
 
         // Setup callbacks
         introScreen.setMenuCallback(this);
@@ -74,7 +70,6 @@ public class Main extends Game implements GameCallback, TwoTextCallback, MenuCal
 
     @Override
     public void onWinLost(StackableInventory inventory, boolean won, int score, int money) {
-        //Show Post Level screen
         TwoTextScreen postLevelScreen;
         String title;
         FileUtils.deleteLevelInfo();
@@ -82,19 +77,14 @@ public class Main extends Game implements GameCallback, TwoTextCallback, MenuCal
             FileUtils.saveLevel(score, money, levelNumber, inventory);
             title = "Level Cleared";
             postLevelScreen = new TwoTextScreen(true);
-            postLevelScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 135);
             levelNumber++;
         } else {
             title = "You Failed!";
             postLevelScreen = new TwoTextScreen(false);
-            postLevelScreen.setTitleX((Gdx.graphics.getWidth() / 2) - 125);
         }
         totalScore += score;
         postLevelScreen.setTitle(title);
         postLevelScreen.setBody("Level Score: " + score + "\nMoney: £" + money + "\n\nTotal Score: " + totalScore);
-        postLevelScreen.setTitleY(Gdx.graphics.getHeight() - 25);
-        postLevelScreen.setBodyX((Gdx.graphics.getWidth() / 2) - 110);
-        postLevelScreen.setBodyY((Gdx.graphics.getHeight() / 2) + 75);
         postLevelScreen.setTwoTextCallback(this);
         if (!won)
             totalScore = 0;

@@ -4,7 +4,6 @@ import com.aston.group.stationdefender.actors.Unit;
 import com.aston.group.stationdefender.callbacks.ItemCallback;
 import com.aston.group.stationdefender.engine.GameEngine;
 import com.aston.group.stationdefender.utils.resources.Items;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -49,9 +48,7 @@ public abstract class Item {
     public void render() {
         if (texture != null) {
             batch.begin();
-//            batch.setColor(0, 0, 0, 1);
             batch.draw(texture, x + 2, y + 1, width, height);
-//            batch.setColor(Color.valueOf("#000000"));
             batch.end();
 
             batch.begin();
