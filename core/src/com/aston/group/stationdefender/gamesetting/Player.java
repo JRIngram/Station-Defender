@@ -60,14 +60,12 @@ public class Player implements InputProcessor, ItemCallback {
             this.score = score;
             if (money < 20)
                 this.money = money + 20;
-            System.out.println(items.size);
             if (items.size >= 4)
                 itemsLoaded = true;
             for (Item item : items) {
                 inventory.addItem(item);
             }
         });
-
         if (!itemsLoaded) {
             for (int i = 0; i < 4; i++) {
                 inventory.addItem(new ItemTurret());
