@@ -63,7 +63,7 @@ public interface Constants {
     Color primaryColor = Color.valueOf("#37474F");
     Color primaryDarkColor = Color.valueOf("#263238");
 
-    float VERSION = 2.0f;
+    float VERSION = 2.1f;
 
     String prefs = "PREFS";
 }
