@@ -108,7 +108,7 @@ public enum TextureManager {
                 texture = new Texture(Gdx.files.internal("textures/space2.png"));
                 break;
             case BACKGROUND_TEXTURE_4:
-                texture = new Texture(Gdx.files.internal("textures/space2.png"));
+                texture = new Texture(Gdx.files.internal("textures/space3.png"));
                 break;
             case CLOSE_COMBAT_ALIEN_TEXTURE:
                 texture = new Texture(Gdx.files.internal("textures/CloseCombatAlien.png"));

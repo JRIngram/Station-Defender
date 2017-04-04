@@ -25,7 +25,7 @@ import java.util.Random;
  * @author Jonathon Fitch
  */
 public class Level implements LaneCallback {
-    private static final int[] backgroundTextures = new int[]{3, 19, 20/*, 21*/};
+    private static final int[] backgroundTextures = new int[]{3, 19, 20, 21};
     private final SpriteBatch batch;
     private final Texture texture;
     private final LevelCallback levelCallback;
