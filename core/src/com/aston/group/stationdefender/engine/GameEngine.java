@@ -3,6 +3,7 @@ package com.aston.group.stationdefender.engine;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.utils.MouseInput;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -73,6 +74,8 @@ public enum GameEngine {
      * @param height The current height of the viewport
      */
     public void update(int width, int height) {
-        viewport.update(width, height);
+        viewport.update(width, height, false);
+        viewport.apply();
+        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
     }
 }

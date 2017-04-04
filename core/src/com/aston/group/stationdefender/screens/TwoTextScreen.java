@@ -173,6 +173,7 @@ public class TwoTextScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         gameEngine.update(width, height);
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
