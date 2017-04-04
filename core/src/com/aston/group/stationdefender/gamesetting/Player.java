@@ -101,9 +101,16 @@ public class Player implements InputProcessor, ItemCallback {
         stage.addActor(menuButton);
         menuButton.setPosition((Gdx.graphics.getWidth() / 2) + 200, Gdx.graphics.getHeight() - 80);
 
+        //Award new turrets
+        for (int i = 0; i < 10; i++) {
+            inventory.addItem(new ItemTurret());
+        }
+
         //Initialise Money Indicator
         moneyIndicator = new IndicatorManager();
         updateQuickSlots();
+
+
     }
 
     /**

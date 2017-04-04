@@ -15,7 +15,7 @@ public class BossAlien extends Alien {
      * Create a new BossAlien with default X and Y co-ordinates of '0'
      */
     public BossAlien() {
-        super("Alien", -60, 500, 5, 800, 5.0, 8, 0, 0, 500, 375);
+        super("Alien", -60, 500, 5, 800, 5.0, 8, 0, 0, 300, 225);
         setTexture(TextureManager.INSTANCE.loadTexture(ThreadLocalRandom.current().nextInt(15, 19)));
     }
 }

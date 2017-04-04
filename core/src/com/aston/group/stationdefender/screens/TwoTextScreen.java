@@ -7,16 +7,24 @@ import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 
 import java.util.Objects;
 
@@ -40,6 +48,8 @@ public class TwoTextScreen implements Screen {
     private float fadeElapsed = 0;
     private String title;
     private String body;
+    private Label titleLabel;
+    private Label bodyLabel;
     private int titleX, titleY, bodyX, bodyY;
 
     /**
@@ -57,8 +67,35 @@ public class TwoTextScreen implements Screen {
         titleFont = FontManager.getFont(50);
         BitmapFont buttonFont = FontManager.getFont(18);
 
-        //Buttons
         stage = new Stage();
+
+        //Background
+        texture = TextureManager.INSTANCE.loadTexture(2);
+
+        Table table = new Table();
+        table.setFillParent(true);
+//        table.setDebug(true);
+
+        Group background = new Group();
+        background.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        Image image = new Image();
+        image.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        image.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
+
+        background.addActor(image);
+
+        titleLabel = new Label(title, new Label.LabelStyle(titleFont, Color.WHITE));
+        titleLabel.setAlignment(Align.center);
+
+        bodyLabel = new Label(body, new Label.LabelStyle(bodyFont, Color.WHITE));
+        table.add(titleLabel).expandX().padTop(16).row();
+        table.add(bodyLabel).expandY();
+
+        stage.addActor(background);
+        stage.addActor(table);
+
+        //Buttons
         TextButtonStyle textButtonStyle = new TextButtonStyle();
         textButtonStyle.font = buttonFont;
         backButton = new TextButton(Constants.BACK, textButtonStyle);
@@ -89,11 +126,12 @@ public class TwoTextScreen implements Screen {
         backButton.setPosition(-150, (Gdx.graphics.getHeight()) - 60);
         if (continueBool)
             continueButton.addListener(buttonListener);
-        texture = TextureManager.INSTANCE.loadTexture(2);
         titleX = (Gdx.graphics.getWidth() / 2) - 150;
         titleY = Gdx.graphics.getHeight() - 25;
         bodyX = (Gdx.graphics.getWidth() / 2) - 235;
         bodyY = (Gdx.graphics.getHeight() / 2) + 40;
+
+
     }
 
     @Override
@@ -120,15 +158,15 @@ public class TwoTextScreen implements Screen {
         backButton.setColor(1, 1, 1, fade);
         if (continueBool)
             continueButton.setColor(1, 1, 1, fade);
-        batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        titleFont.draw(batch, title, titleX, titleY);
+//        batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+//        titleFont.draw(batch, title, titleX, titleY);
         restartBatch();
         stage.draw();
         restartBatch();
 
         // delay animation by a certain amount for each menu item
         bodyFont.setColor(1, 1, 1, fade2);
-        bodyFont.draw(batch, body, bodyX, bodyY);
+//        bodyFont.draw(batch, body, bodyX, bodyY);
         batch.end();
     }
 
@@ -173,6 +211,7 @@ public class TwoTextScreen implements Screen {
      */
     public void setTitle(String title) {
         this.title = title;
+        this.titleLabel.setText(title);
     }
 
     /**
@@ -182,6 +221,7 @@ public class TwoTextScreen implements Screen {
      */
     public void setBody(String body) {
         this.body = body;
+        this.bodyLabel.setText(body);
     }
 
     /**

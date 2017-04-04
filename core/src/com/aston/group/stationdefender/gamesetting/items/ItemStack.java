@@ -55,7 +55,18 @@ public class ItemStack<T extends Item> implements Iterable<T> {
      * @param item The Item to remove from the Stack
      */
     public void removeItem(T item) {
-        items.remove(item);
+        Iterator<T> iterator = items.iterator();
+
+        while (iterator.hasNext()){
+            T chosenItem = iterator.next();
+
+            if(chosenItem != null) {
+                if (chosenItem.getClass().getName().equals(item.getClass().getName())) {
+                    iterator.remove();
+                    return;
+                }
+            }
+        }
     }
 
     /**

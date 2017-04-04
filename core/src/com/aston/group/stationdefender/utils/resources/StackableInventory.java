@@ -4,6 +4,8 @@ import com.aston.group.stationdefender.gamesetting.items.Item;
 import com.aston.group.stationdefender.gamesetting.items.ItemStack;
 import com.badlogic.gdx.utils.Array;
 
+import java.util.Iterator;
+
 /**
  * StackableInventory is an Inventory that allows Items to be stacked to allow more than one of the same type of item
  * per slot
@@ -33,6 +35,22 @@ public class StackableInventory {
         if (itemStack != null) {
             itemStack.removeItem(item);
         }
+
+//        Iterator<ItemStack<Item>> iterator = itemStacks.iterator();
+//
+//
+//        while(iterator.hasNext()){
+//            ItemStack<Item> chosenStack = iterator.next();
+//
+//            if(chosenStack != null) {
+//                chosenStack.removeItem(item);
+//            }
+//        }
+//
+//        for (int i = 0; i < ; i++) {
+//
+//        }
+
     }
 
     /**
