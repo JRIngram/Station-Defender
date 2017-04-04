@@ -119,15 +119,12 @@ public class Player implements InputProcessor, ItemCallback {
 
         //Render Quick Slots
         for (int i = 0; i < quickSlots.size; i++) {
-
-            //Update Selected
             if (selectedSlot == i) {
                 quickSlots.get(i).setSelected(true);
+                currentItem = quickSlots.get(i).getItem();
             } else {
                 quickSlots.get(i).setSelected(false);
             }
-
-            //Render
             quickSlots.get(i).render();
         }
 
@@ -267,7 +264,6 @@ public class Player implements InputProcessor, ItemCallback {
                 quickSlots.get(i).setItemStack(new ItemStack<>(new ItemBlank()));
             }
         }
-        currentItem = quickSlots.get(0).getItemStack().getItem();
     }
 
     /**
