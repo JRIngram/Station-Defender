@@ -93,7 +93,7 @@ public class Level implements LaneCallback {
             if (isBossCreated) {
                 if (isBossDestroyed && tower.getExists())
                     hasWon = true;
-                else if (isBossDestroyed && !tower.getExists())
+                else if (!tower.getExists())
                     hasLost = true;
             } else
                 createBoss();

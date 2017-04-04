@@ -225,14 +225,12 @@ public abstract class Unit implements Actor {
      * false if there is not a Unit adjacent to the current Unit
      */
     public boolean isUnitAdjacent(Unit unit) {
-        if (unit == this) return false;
-
+        if (unit == this)
+            return false;
         if (facingLeft) {
-            return unit.getX() + unit.getWidth() > this.x && unit.getX() < this.x + this.width &&
-                    y + height > this.y && y < this.y + this.height;
+            return unit.getX() + unit.getWidth() > x && unit.getX() < x + width && y + height > y && y < y + height;
         } else {
-            return unit.getX() + unit.getWidth() > this.x && unit.getX() < this.x + (this.width) &&
-                    y + height > this.y && y < this.y + this.height;
+            return unit.getX() + unit.getWidth() > x && unit.getX() < x + width && y + height > y && y < y + height;
         }
     }
 

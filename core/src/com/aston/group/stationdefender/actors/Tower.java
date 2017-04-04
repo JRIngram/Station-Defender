@@ -76,6 +76,7 @@ public class Tower implements Actor {
      */
     @Override
     public void destroy() {
+        health = 0;
         exists = false;
         particleEffectHelper.destroy(x, y);
     }
@@ -97,9 +98,8 @@ public class Tower implements Actor {
      * @param damage Causes the Unit's health to deplete.
      */
     public void takeDamage(double damage) {
-        if ((health - damage) <= 0) {
+        if (health - damage <= 0) {
             destroy();
-            health = 0;
         } else
             health -= damage;
     }
