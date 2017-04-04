@@ -84,6 +84,10 @@ public class IntroScreen implements Screen {
         exitButton = new TextButton(Constants.MENU_ITEMS[3], textButtonStyle);
         buttons = new TextButton[]{backgroundButton, instructionButton, playButton, exitButton};
 
+        for (int i = 0; i < buttons.length; i++) {
+            buttons[i].setColor(1, 1, 1, 0);
+        }
+
         backgroundButton.addListener(buttonListener);
         instructionButton.addListener(buttonListener);
         playButton.addListener(buttonListener);

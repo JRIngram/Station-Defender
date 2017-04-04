@@ -12,10 +12,15 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import java.util.Objects;
 
@@ -42,34 +47,62 @@ public class MenuScreen implements Screen {
         gameEngine = GameEngine.INSTANCE;
         batch = GameEngine.getBatch();
         font = FontManager.getFont(50);
+
+        ChangeListener buttonListener = new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
+                if (Objects.equals(actor, playButton)) {
+                    menuCallback.onPlay(false);
+                } else if (Objects.equals(actor, exitButton)) {
+                    menuCallback.onExit();
+                }
+            }
+        };
+
         stage = new Stage();
+
+        Texture hoverTexture = TextureManager.INSTANCE.loadTexture(23);
+
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.font = font;
+        textButtonStyle.over = new TextureRegionDrawable(new TextureRegion(hoverTexture));
+
         playButton = new TextButton(Constants.MENU_ITEMS[2], textButtonStyle);
         exitButton = new TextButton(Constants.MENU_ITEMS[3], textButtonStyle);
         buttons = new TextButton[]{playButton, exitButton};
-        for (TextButton button : buttons) {
-            button.setColor(0, 0, 0, 0);
-            button.setWidth(400);
-            button.setHeight(50);
-            stage.addActor(button);
-            ChangeListener buttonListener = new ChangeListener() {
-                @Override
-                public void changed(ChangeEvent event, Actor actor) {
-                    Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
-                    if (Objects.equals(actor, playButton)) {
-                        menuCallback.onPlay(false);
-                    } else if (Objects.equals(actor, exitButton)) {
-                        menuCallback.onExit();
-                    }
-                }
-            };
-            button.addListener(buttonListener);
-        }
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i].setPosition((Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + (30 - 60 * i));
-        }
+
+        Table table = new Table();
+        table.setFillParent(true);
+
+        playButton.addListener(buttonListener);
+        exitButton.addListener(buttonListener);
+
+        table.add(playButton).row();
+        table.add(exitButton).row();
+
+//        for (TextButton button : buttons) {
+//            table.addActor(button);
+//
+//            button.addListener(buttonListener);
+//        }
+//        for (int i = 0; i < buttons.length; i++) {
+//            buttons[i].setPosition((Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + (30 - 60 * i));
+//        }
         texture = TextureManager.INSTANCE.loadTexture(1);
+
+
+
+        Group background = new Group();
+        background.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        Image image = new Image();
+        image.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        image.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
+
+        background.addActor(image);
+        stage.addActor(background);
+        stage.addActor(table);
     }
 
     @Override
@@ -87,6 +120,8 @@ public class MenuScreen implements Screen {
         batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
 
+        stage.act(delta);
+
         batch.begin();
         stage.draw();
         // delay animation by a certain amount for each menu item
@@ -100,6 +135,7 @@ public class MenuScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         gameEngine.update(width, height);
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
