@@ -81,17 +81,7 @@ public class MenuScreen implements Screen {
         table.add(playButton).row();
         table.add(exitButton).row();
 
-//        for (TextButton button : buttons) {
-//            table.addActor(button);
-//
-//            button.addListener(buttonListener);
-//        }
-//        for (int i = 0; i < buttons.length; i++) {
-//            buttons[i].setPosition((Gdx.graphics.getWidth() / 2) - 200, (Gdx.graphics.getHeight() / 2) + (30 - 60 * i));
-//        }
         texture = TextureManager.INSTANCE.loadTexture(1);
-
-
 
         Group background = new Group();
         background.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
