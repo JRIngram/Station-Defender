@@ -218,6 +218,7 @@ public class Lane implements UnitCallback {
             Unit unit = unitsIterator.next();
             if (!unit.getExists()) {
                 dropItem(ItemFactory.getItemByChance(), unit.getX(), unit.getY());
+                unit.setHealth(-1);
             }
             if (unit.getHealth() <= 0) {
                 unitsIterator.remove();

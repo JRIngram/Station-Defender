@@ -381,4 +381,8 @@ public abstract class Unit implements Actor {
     void setTexture(Texture texture) {
         this.texture = texture;
     }
+
+    public void setHealth(double health) {
+        this.health = health;
+    }
 }
