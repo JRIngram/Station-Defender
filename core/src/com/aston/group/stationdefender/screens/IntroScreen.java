@@ -3,6 +3,7 @@ package com.aston.group.stationdefender.screens;
 import com.aston.group.stationdefender.callbacks.MenuCallback;
 import com.aston.group.stationdefender.config.Constants;
 import com.aston.group.stationdefender.engine.GameEngine;
+import com.aston.group.stationdefender.utils.FileUtils;
 import com.aston.group.stationdefender.utils.FontManager;
 import com.aston.group.stationdefender.utils.TextureManager;
 import com.badlogic.gdx.Gdx;
@@ -72,6 +73,9 @@ public class IntroScreen implements Screen {
                 }
             }
         };
+
+        //Delete save files to reset inventory
+        FileUtils.deleteLevelInfo();
 
         //Buttons
         stage = new Stage();
