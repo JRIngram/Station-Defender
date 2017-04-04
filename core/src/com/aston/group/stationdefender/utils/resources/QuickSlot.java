@@ -127,15 +127,6 @@ public class QuickSlot {
     }
 
     /**
-     * Returns the ItemStack used in the QuickSlot Inventory
-     *
-     * @return The ItemStack used in the QuickSlot Inventory
-     */
-    public ItemStack<Item> getItemStack() {
-        return itemStack;
-    }
-
-    /**
      * Sets the ItemStack used in the QuickSlot Inventory
      *
      * @param itemStack The ItemStack to be used in the QuickSlot Inventory
