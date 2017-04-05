@@ -18,7 +18,7 @@ public class Mine extends Alien {
      * @param y The Y co-ordinate of the Mine
      */
     public Mine(int x, int y) {
-        super("Mine", 0, 100, 4.0, Constants.UNIT_HEALTH, 4, 0.9, x, y, 60, 50);
+        super("Mine", 0, 10, 4.0, Constants.UNIT_HEALTH, 4, 0.9, x, y, 60, 50);
         setTexture(TextureManager.INSTANCE.loadTexture(11));
     }
 

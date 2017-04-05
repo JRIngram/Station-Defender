@@ -16,7 +16,7 @@ allprojects {
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
-    version = '2.1'
+    version = '2.2'
     ext {
         appName = "StationDefender"
         gdxVersion = '1.9.6'
